@@ -73,7 +73,7 @@ node {
                 writeLogFile(LOG_FILE_PATH, BUILD_URL, BUILD_NUMBER, CLONE_IP, CLONE_USERNAME, RUN_IP, RUN_USERNAME, EXECUTION_DIR, SETUP_ENV_CMD, DESIGN_LOADING_HW_CMD)
 
                 bat """
-                set PYTHONPATH=C:\\Program Files\\Python311\\Scripts\
+                set PYTHONPATH=C:\\Program Files\\Python311\\Scripts
                 C:\\Program Files\\Python311\\python.exe --version
                 C:\\Program Files\\Python311\\python.exe -u jenkins_runner.py --clone_ip "${CLONE_IP}" --clone_username "${CLONE_USERNAME}" --clone_password "${CLONE_PASSWORD}" --run_ip "${RUN_IP}" --run_username "${RUN_USERNAME}" --run_password "${RUN_PASSWORD}" --dir "${EXECUTION_DIR}" --env "${SETUP_ENV_CMD}" --db_hw "${DESIGN_LOADING_HW_CMD}"
                 """
