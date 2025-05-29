@@ -1,0 +1,3457 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/rcs/logger/logger/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/rcs/logger/logger/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_rcs_logger_logger_reg">AddressMap abc_soc_top/rcs/logger/logger/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/rcs/logger/logger/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr">0x000007ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000800[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_40B9F87819A7D7AA">AXI2EDCRn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Control Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000804[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C366EA92405663CD">AXI2EDSR1n[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Status Register 1</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000808[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_860F7796419D5E31">AXI2EDSR2n[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Status Register 2</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x0000080c[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_1D66CB8ED4D50292">AXI2EDEARn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Error Address Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000810[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4DF1CDEDBA9375E8">ECCSBECn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED ECC Single-Bit Error Counter Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000814[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_7D69DB2EBD8A0F59">ECCDBECn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED ECC Double-Bit Error Counter Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000818[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_6B6E0FDCBD0A329B">AWPECn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AWADDR Parity Error Counter Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x0000081c[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_9541C3619926E493">WPECn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">WDATA Parity Error Control Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000820[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_0C02153870A24F05">ARPECn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">ARADDR Parity Error Counter Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000824[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_3AC2F5963874E8C7">AXI2EDIMTn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">Idle Measurement Time Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000828[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_ECD894C7C95B62F5">AXI2EDIMTOn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Parity Error Status Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x0000082c[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_6A68697BF5326BCF">AXI2EDFIFOSRn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Single-Bit Error Address FIFO Status Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000830[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_AB10A3BDA75393F3">AXI2EDFIFOn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Single-Bit Error Address FIFO Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000834[+=0x40]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_66BF79B2582153D8">AXI2EDIDn[2]</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED ID Logging Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000838</td>
+        <td class="unboxed addr">0x00000fbf</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fc0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C3E716AB34A1C462">PID</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral ID Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fc4</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_B01A454AF539725E">PEIWER</a>  </b></td>
+        <td class="unboxed sdescmap">Parity Error Injection Write Enable register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fc8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_9E6A82CFF612819D">EMCR</a>  </b></td>
+        <td class="unboxed sdescmap">Error Masking Control Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000fcc</td>
+        <td class="unboxed addr">0x00000fdb</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fdc</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DEDA56EBB4072544">ADBESR</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Double-Bit Error Status Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fe0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5B163145242CFBE3">APESR</a>  </b></td>
+        <td class="unboxed sdescmap">AXI2ED Parity Error Status Register</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/rcs/logger/logger/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_40B9F87819A7D7AA" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000800[+=0x40]</span> Register(32 bit) AXI2EDCRn[2]</span><br/>
+      <span class="sdescdet">AXI2ED Control Register</span><br/>
+      <span class="ldescdet">The AXI2ED memory controller requires various control signals. These signals help in controlling the AXI bus parity protection, they govern the way memory is accessed, and also regulate the ECC protection scheme of memories. All of<br/>these control signals are driven from the APB soft error protection control and status module. Use this register to program the driving values. Reset this register using the PRESETn signal.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240800[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x001ff2ee</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="11">Reserved</td>
+        <td class="fldnorm" colspan="9">FRPn</td>
+        <td class="fldnorm" colspan="1">SEALDn</td>
+        <td class="fldnorm" colspan="1">IMTEn</td>
+        <td class="fldnorm" colspan="1">DRPGn</td>
+        <td class="fldnorm" colspan="1">RPPn</td>
+        <td class="fldnorm" colspan="1">DARPCHK</td>
+        <td class="fldnorm" colspan="1">DWPCHK</td>
+        <td class="fldnorm" colspan="1">DAWPCHK</td>
+        <td class="fldnorm" colspan="1">READECC</td>
+        <td class="fldnorm" colspan="1">ENECCGEN</td>
+        <td class="fldnorm" colspan="1">ENRDECCCHK</td>
+        <td class="fldnorm" colspan="1">ENRMWECCCHK</td>
+        <td class="fldnorm" colspan="1">WP</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="11">RW</td>
+        <td class="accno" colspan="9">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:21]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When these bits are read, 0x000 appears on the read bus.</span></p>
+          <p><b>Reset: </b>hex:0x000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRPn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Flip RDATA Parity.<br/>Flip the RDATA parity of the nth AXI2ED module. These bits are programmable only when the parity error injection write enable register write enable bit is set to a value of 1. The values programmed in these bits appear on the flip_rdata_parity_axi2ed[n][8:0] primary output signals. These output signals flip the parity generated for the R channel. A width of 9 bits is maintained to support a maximum data width of 1024 bits. These bits are decoded and the associated parity bit is flipped.<br/>On reset, the parity bits are not flipped</span></p>
+          <p><b>Reset: </b>hex:0x1ff;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SEALDn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Single-bit error address logger disable.<br/>When this bit is set and the error ID reported by the AXI2ED controller matches the ID programmed in the AXI2EDIDn register with appropriate mask bits applied, single-bit errors are not logged into the FIFO.<br/>Typically, this bit is set when performing a scrubbing operation along with having the required value programmed into the AXI2EDIDn register. When reset, error-logging for all IDs is enabled.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">IMTEn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Idle measurement timer enable of the nth AXI2ED controller.<br/>- 0: Disable idle measurement timer.<br/>- 1: Enable idle measurement timer.<br/>--------------------------------------------------------------------------------------------------<br/>NOTE: You must enable the timer only when the time-out register is programmed to a non-zero value.<br/>--------------------------------------------------------------------------------------------------<br/>                                        </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DRPGn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Disable RDATA parity generation of the nth AXI2ED module.<br/>The value programmed in this bit appears on the disable_rdata_pargen_axi2ed[n] primary output signal.<br/>On reset, parity generation is disabled.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RPPn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity generation polarity of RDATA for the nth AXI2ED module.<br/>The value programmed in this bit appears on the rdata_parity_polarity_axi2ed[n] primary output signal. This output signal generates the odd polarity parity or even polarity parity.<br/>On reset, even parity is generated</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DARPCHK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Disable the ARADDR parity check of the nth manager module.<br/>The value programmed in this bit appears on the disable_araddr_parchk_axi2ed[n] primary output signal. This output signal disables the ARADDR parity check.<br/>The parity check is disabled on reset.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DWPCHK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Disable the WDATA parity check of the nth manager module.<br/>                                  The value programmed in this bit appears on the disable_wdata_parchk_axi2ed[n] primary output signal. This output signal disables the WDATA parity check.<br/>The parity check is disabled on reset.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DAWPCHK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Disable the AWADDR parity check of the nth manager module.<br/>The value programmed in this bit appears on the disable_awaddr_parchk_axi2ed[n] primary output signal. This output signal disables the AWADDR parity check.<br/>The parity check is disabled on reset.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">READECC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Read ECC bits onto AXI.<br/>When this bit is set, the AXI2ED controller responds with the ECC data on the R channel.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENECCGEN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable ECC generation.<br/>When this bit is set, only ECC is generated and written to memory. Otherwise, the ECC bits are not written into memory.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENRDECCCHK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">ECC check control for read operations of the nth AXI2ED controller.<br/>- 0: Disable ECC check.<br/>- 1: Enable ECC check.<br/>The value programmed in this bit appears on the primary ENABLE_RD_ECC_CHECK[n] output signal. This output signal controls the ECC checks of read operations.<br/>On reset, ECC checks for read operations are disabled.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENRMWECCCHK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">ECC check control for read operations during RMW of the nth AXI2ED controller.<br/>- 0: Disable ECC check.<br/>- 1: Enable ECC check.<br/>The value programmed in this bit appears on the primary ENABLE_RMW_ECC_CHECK[n] output signal. This output signal controls the ECC checks of read operations in RMW sequences.<br/>On reset, the ECC checks for read operations of RMW sequences are disabled.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">WP</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Write protect of the nth AXI2ED controller.<br/>The value programmed in this bit appears on the primary write_protect[n] output signal. This output signal protects the AXI2ED memories from write operations.<br/>On reset, the memories are enabled for write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C366EA92405663CD" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000804[+=0x40]</span> Register(32 bit) AXI2EDSR1n[2]</span><br/>
+      <span class="sdescdet">AXI2ED Status Register 1</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the status information of the AXI bus and memory soft errors. All of these status signals are stored in the APB soft error protection control and status module, but only for the first occurrence of the error. Reset this register using the STATRESETn signal. If another error occurs in the same cycle as the RW1C operation, the new error information is logged into this register, the AXI2EDSR2n register, and into the AXI2ED error address register. Read the AXI2EDSR2n register and the address register to get a correct indication of the error address, and then clear this register using the W1C operation. Firmware steps are explained in the Firmware Procedures for Error Recovery section of Soft Error Logger Document.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240804[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="25">Reserved</td>
+        <td class="fldnorm" colspan="3">ERRTYPEn</td>
+        <td class="fldnorm" colspan="1">ARPERR</td>
+        <td class="fldnorm" colspan="1">WPERR</td>
+        <td class="fldnorm" colspan="1">AWPERR</td>
+        <td class="fldnorm" colspan="1">DEDn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="25">RO/V</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:07]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When these bits are read, 0x0000000 appears on the read bus.</span></p>
+          <p><b>Reset: </b>hex:0x0000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ERRTYPEn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Transfer type of the AXI2ED operation when the double-bit error occurred.<br/>- 0x0 : Read operation ECC error.<br/>- 0x1 : Write operation RMW ECC double-bit error.<br/>- 0x2 : ARADDR parity error.<br/>- 0x3 : AWADDR parity error.<br/>- 0x4 : WDATA parity error.<br/>This register drives the value that appears on the primary ERR_TYPE[n] input signal in one of the following cases:<br/>- If the error is the first double-bit error detected in the AXI2ED memories.<br/>- If the error is the first parity error detected on the AWADDR bus, the WDATA bus, or the ARADDR bus, after the status is cleared or after a reset.<br/>The ERR_TYPE signal of the nth AXI2ED controller drives the ERR_TYPE[n] input signal.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ARPERR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">ARADDR parity error of the nth AXI2ED module.<br/>This register stores the value that appears on the araddr_parerr_axi2ed[n] primary input in one of the following cases:<br/>- If the error is the first double-bit error detected in the AXI2ED memories.<br/>- If the error is the first parity error detected on the AWADDR bus, the WDATA bus, or the ARADDR bus, after the status is cleared or after a reset.<br/>The araddr_parerr_axi2ed signal (ARADDR parity check that results in a parity error) of the nth AXI2ED parity module drives the araddr_parerr_axi2ed[n] input signal.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">WPERR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">WDATA parity error of the nth AXI2ED module.<br/>This register stores the value that appears on the wdata_parerr_axi2ed[n] primary input in one of the following cases:<br/>- If the error is the first double-bit error detected in the AXI2ED memories.<br/>- If the error is the first parity error detected on the AWADDR bus, the WDATA bus, or the ARADDR bus, after the status is cleared or after a reset.<br/>The wdata_parerr_axi2ed signal (WDATA parity check that results in a parity error) of the nth AXI2ED parity module drives the wdata_parerr_axi2ed[n] input signal.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">AWPERR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">AWADDR parity error of the nth AXI2ED module.<br/>This register stores the value that appears on the awaddr_parerr_axi2ed[n] primary input in one of the following cases:<br/>- If the error is the first double-bit error detected in the AXI2ED memories.<br/>- If the error is the first parity error detected on the AWADDR bus, the WDATA bus, or the ARADDR bus, after the status is cleared or after a reset.<br/>The awaddr_parerr_axi2ed signal (AWADDR parity check that results in a parity error) of the nth AXI2ED parity module drives the awaddr_parerr_axi2ed[n] input signal.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEDn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error detection of the nth manager module.<br/>This register stores the value that appears on the primary ERR_MULTPL[n] input signal in one of the following cases:<br/>- If the error is the first double-bit error detected in the AXI2ED memories.<br/>- If the error is the first parity error detected on the AWADDR bus, the WDATA bus, or the ARADDR bus, after the status is cleared or after a reset.<br/>The ERR_MULTPL signal of the nth AXI2ED controller drives the ERR_MULTPL[n]<br/>input signal.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_860F7796419D5E31" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000808[+=0x40]</span> Register(32 bit) AXI2EDSR2n[2]</span><br/>
+      <span class="sdescdet">AXI2ED Status Register 2</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the status information of the AXI bus/memory soft errors. The ID for the error transaction and the ECC syndrome for ECC errors are stored in this APB subordinate module, but only for the first occurrence of the error. The XferIDn bits are reset using STATRESETn and the SYNDROMEn bits are reset using PRESETn. All bits are read only. Use the transaction ID and syndrome along with the error address and the AXI2ED ECC status registers. Firmware steps are described in the Firmware Procedures for Error Recovery section.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240808[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="16">XferIDn</td>
+        <td class="fldnorm" colspan="16">SYNDROMEn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="16">RO/V</td>
+        <td class="accno" colspan="16">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:16]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">XferIDn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Transfer ID address at which the first error occurred.<br/>This register stores the value that appears on the primary ERRID_AXI2ED input in<br/>one of the following cases:<br/>- If the error is the first double-bit error detected in the AXI2ED memories.<br/>- If the error is the first parity error detected on the AWADDR bus, the WDATA bus, or the ARADDR bus, after the status is cleared or after a reset.<br/>If the ID width is less than 16 bits, the LSBs are stored in the XferIDn field. The ERR_ID signal of the nth AXI2ED controller drives the ERRID_AXI2ED[n] input signal.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SYNDROMEn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Error syndrome of the nth manager module.<br/>This register stores the value that appears on the primary ERR_SYNDROME[n] input signal, if the error is the first single bit error detected in AXI2ED memories, for which error address logging is enabled (SEALD bit is set) and the AXI2ED single bit error address FIFO is empty.<br/>The ERR_SYNDROME signal of the nth AXI2ED controller drives the ERR_SYNDROME[n] input signal.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_1D66CB8ED4D50292" class="boxed tabrbd"><span class="regname">+<span class="addr">0x0000080c[+=0x40]</span> Register(32 bit) AXI2EDEARn[2]</span><br/>
+      <span class="sdescdet">AXI2ED Error Address Register</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the status information of the AXI bus and memory soft errors. The error address signals are stored in this APB subordinate module, but only for the first occurrence of the error. Reset this status register using the STATRESETn signal. All bits are read only. Use the error address along with the AXI2ED Status 1 Register and the AXI2ED Status 2 Register. Firmware steps are described in the Firmware Procedures for Error Recovery section.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0024080c[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">XferAddress</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">XferAddress</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Transaction address at which the first error occurred.<br/>This register stores the value that appears on the primary ERRADDR_AXI2ED[n] input signal in one of the following cases:<br/>- If the error is the first double-bit error detected in the AXI2ED memories.<br/>- If the error is the first parity error detected on the AWADDR bus, the WDATA bus, or the ARADDR bus, after the status is cleared or after a reset.<br/>The ERR_ADDR signal of the nth AXI2ED controller drives the ERRADDR_AXI2ED[n] input signal.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_4DF1CDEDBA9375E8" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000810[+=0x40]</span> Register(32 bit) ECCSBECn[2]</span><br/>
+      <span class="sdescdet">AXI2ED ECC Single-Bit Error Counter Register</span><br/>
+      <span class="ldescdet">The AXI2ED counter provides the correctable single-bit error status information of the AXI2ED memory soft errors. All single-bit errors are counted and present in the counter register. Reset this register using the PRESETn signal. All of the bits can be read from or written to by firmware to clear the counter. Write operations to this counter always result in clearing the counter, independent of the write data.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240810[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">Reserved</td>
+        <td class="fldnorm" colspan="8">SBECn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RW</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is Reserved</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SBECn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Single-bit error counter of the nth AXI2ED controller.<br/>When a single-bit error occurs, as indicated by the ERR_DETECT[n] signal, this counter is incremented.<br/>-------------------------------------------------------------------------------<br/>NOTE To increment this counter, single-bit error logging must be disabled using the AXI2EDIDn and SEALDn bits in the AXI2EDCRn register.<br/>-------------------------------------------------------------------------------<br/>A write operation always results in clearing the counter, independent of the write<br/>data.<br/>When a firmware write operation and an external error occur in the same cycle, with error-logging enabled, the counter is set to a value of 0x01 and it is not cleared. If errors occur after the counter reaches a value of 0xFF, the counter is held constant at a value of 0xFF till the firmware clears the register.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_7D69DB2EBD8A0F59" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000814[+=0x40]</span> Register(32 bit) ECCDBECn[2]</span><br/>
+      <span class="sdescdet">AXI2ED ECC Double-Bit Error Counter Register</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the uncorrectable double-bit error status information of the AXI2ED memory soft errors. All double-bit errors are counted and present in the counter register. Reset this register using the STATRESETn signal. All of the bits can be read from or written to by firmware to clear the counter. Write operations to this counter always result in clearing the counter, independent of the write data.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240814[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">Reserved</td>
+        <td class="fldnorm" colspan="8">DBECn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RW</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is reserved</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBECn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error counter of nth AXI2ED controller.<br/>This counter is incremented when a double-bit error occurs, as indicated by the ERR_MULTPL[n] signal. A write operation always results in clearing the counter, independent of the write data.<br/>When firmware performs a write operation and an external error indication occurs in the same cycle, this counter is set to a value of 0x01, it does not clear the counter. If errors occur after the counter reaches a value of 0xFF, the counter is held constant at a value of 0xFF till the firmware clears the register.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_6B6E0FDCBD0A329B" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000818[+=0x40]</span> Register(32 bit) AWPECn[2]</span><br/>
+      <span class="sdescdet">AWADDR Parity Error Counter Register</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the AWADDR parity error status information. All AWADDR parity errors are counted and present in the counter register. Reset this register using the STATRESETn signal. All of the bits can be read from or written to by firmware to clear the counter. Write operations to this counter always result in clearing the counter, independent of the write data.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240818[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">Reserved</td>
+        <td class="fldnorm" colspan="8">AWPECn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RW</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is Reserved</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">AWPECn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">AWADDR parity error counter of nth AXI2ED controller.<br/>This counter is incremented when an AWADDR parity error occurs, as indicated by the awaddr_parerr_axi2ed[n] signal. A write operation always results in clearing the counter, independent of the write data.<br/>When the firmware performs a write operation and an external error indication occurs in the same cycle, this counter is set to a value of 0x01, and it is not cleared. If errors occur after the counter reaches a value of 0xFF, the counter is held constant at a value of 0xFF till the firmware clears the register.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_9541C3619926E493" class="boxed tabrbd"><span class="regname">+<span class="addr">0x0000081c[+=0x40]</span> Register(32 bit) WPECn[2]</span><br/>
+      <span class="sdescdet">WDATA Parity Error Control Register</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the WDATA parity error status information. All WDATA parity errors are counted and present in the counter register. Reset this register using the STATRESETn signal. All of the bits can be read from or written to by firmware to clear the counter. Write operations to this counter always result in clearing the counter, independent of the write data.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0024081c[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">Reserved</td>
+        <td class="fldnorm" colspan="8">WPECn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RW</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is reserved</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">WPECn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">WDATA parity error counter of nth AXI2ED controller.<br/>This counter is incremented when a WDATA parity error occurs, as indicated by the wdata_parerr_axi2ed[n] signal. A write operation always results in clearing the counter, independent of the write data.<br/>When the firmware performs a write operation and an external error indication occurs in the same cycle, this counter is set to a value of 0x01, and is not cleared. If errors occur after the counter reaches a value of 0xFF, the counter is held constant at a value of 0xFF till the firmware clears the register.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_0C02153870A24F05" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000820[+=0x40]</span> Register(32 bit) ARPECn[2]</span><br/>
+      <span class="sdescdet">ARADDR Parity Error Counter Register</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the ARADDR parity error status information. All ARADDR parity errors are counted and present in the counter register. Reset this register using the STATRESETn signal. All of the bits can be read from or written to by firmware to clear the counter. Write operations to this counter always result in clearing the counter, independent of the write data.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240820[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">Reserved</td>
+        <td class="fldnorm" colspan="8">ARPECn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RW</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is reserved.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ARPECn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">ARADDR parity error counter of nth AXI2ED controller.<br/>                                        This counter is incremented when an ARADDR parity error occurs, as indicated by the araddr_parerr_axi2ed[n] signal. A write operation always results in clearing the counter, independent of the write data.<br/>When the firmware performs a write operation and an external error indication occurs in the same cycle, this counter is set to a value of 0x01, and is not cleared. If errors occur after the counter reaches a value of 0xFF, the counter is held constant at a value of 0xFF till the firmware clears the register.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_3AC2F5963874E8C7" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000824[+=0x40]</span> Register(32 bit) AXI2EDIMTn[2]</span><br/>
+      <span class="sdescdet">Idle Measurement Time Register</span><br/>
+      <span class="ldescdet">Because the AXI2ED controller contains memories, and because those memories might not be used all of the time, it is recommended that you keep the memories in Power Save mode when they are not used. To put the memories in Power Save mode, the idle measurement timer register and the idle measurement time-out register are implemented in the APB soft error protection control and status module. The timer is triggered when the AXI2ED controller is idle, as indicated by the AXI2ED_IDLE[n] input (the AXI2ED_IDLE output pin of the AXI2ED controller). When the counter reaches the time-out limit programmed in the AXI2ED idle measurement time-out register, the time-out is indicated as the AXI2ED_IMTO[n] output of the APB subordinate, and the counter stops counting. The counter is then reset when an IDLE is pulled LOW or the timer is disabled. You must enable the timer only when the time-out register is programmed to a non-zero value. This output controls the power modes of the AXI2ED logic and memories. Reset this register using the PRESETn signal. Firmware can read from or write to all of the bits to clear the counter.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240824[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">AXI2EDIMTn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">AXI2EDIMTn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">AXI2ED idle measurement timer of the nth AXI2ED controller.<br/>This counter is incremented as long as the AXI2ED_IDLE[n] signal is asserted. When the AXI2ED_IDLE signal is deasserted, this counter is reset to all 0s. Writing all 0s clears this register.<br/>If the AXI2ED_IDLE[n] signal is asserted, firmware takes precedence when<br/>updating this register.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_ECD894C7C95B62F5" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000828[+=0x40]</span> Register(32 bit) AXI2EDIMTOn[2]</span><br/>
+      <span class="sdescdet">AXI2ED Parity Error Status Register</span><br/>
+      <span class="ldescdet">This register provides the time-out value for the AXI2ED idle measurement timer register counter. Reset this register using the PRESETn signal. All of the bits can be read from or written to by firmware.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240828[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0xffffffff</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">AXI2EDIMTOn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">AXI2EDIMTOn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Time-out value of the nth AXI2ED controller.<br/>Use this register to program the time-out value of the AXI2ED idle measurement timer. When the idle measurement timer reaches this time-out value, the AXI2ED_IMTO[n] output is asserted and the idle measurement timer stops counting further until an idle measurement timer reset occurs in firmware or hardware.</span></p>
+          <p><b>Reset: </b>hex:0xffffffff;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_6A68697BF5326BCF" class="boxed tabrbd"><span class="regname">+<span class="addr">0x0000082c[+=0x40]</span> Register(32 bit) AXI2EDFIFOSRn[2]</span><br/>
+      <span class="sdescdet">AXI2ED Single-Bit Error Address FIFO Status Register</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the correctable single-bit error status information of the AXI2ED memory soft errors. The FIFO stores the address locations of the single-bit errors that are detected during read transfers. This register indicates the FIFO status, and is reset using the PRESETn signal. All bits can be only read by firmware.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0024082c[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="30">Reserved</td>
+        <td class="fldnorm" colspan="1">Nen</td>
+        <td class="fldnorm" colspan="1">FULLn</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="30">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is reserved.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Nen</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">FIFO of the nth AXI2ED controller is not empty. This bit is set when the FIFO is not<br/>empty.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FULLn</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">FIFO of the nth AXI2ED controller is full. This bit is set when the FIFO is full.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_AB10A3BDA75393F3" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000830[+=0x40]</span> Register(32 bit) AXI2EDFIFOn[2]</span><br/>
+      <span class="sdescdet">AXI2ED Single-Bit Error Address FIFO Register</span><br/>
+      <span class="ldescdet">The AXI2ED controller provides the correctable single-bit error status information of the AXI2ED memory soft errors. All single-bit error address locations (that are detected during read transfers) are stored in the FIFO. This FIFO performs memory scrubbing. Access the contents of this FIFO using this single address. Reset this FIFO register using the PRESETn signal.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240830[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">SEA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SEA</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Single-bit error address.<br/>                                        Transaction address at which a correctable single-bit error was detected during read transactions. This FIFO stores the value that appears on the primary ERRADDR_AXI2ED[n] input signal, if the FIFO is not full and a single-bit error is detected during a read transfer.<br/>                                        You can use this FIFO for memory scrubbing.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_66BF79B2582153D8" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000834[+=0x40]</span> Register(32 bit) AXI2EDIDn[2]</span><br/>
+      <span class="sdescdet">AXI2ED ID Logging Register</span><br/>
+      <span class="ldescdet">The FIFO typically stores the transaction addresses for single-bit errors. While performing scrubbing, addresses that cause single-bit errors do not need to be stored in the FIFO. To avoid logging single-bit error addresses while scrubbing, you must program this register along with the SEALDn bit (bit 11) in the AXI2ED Control Register. When the SEALDn bit is set and the ID programmed in this register matches the error ID reported by the AXI2ED controller with the required mask bits enabled (unmask bits are programmable in this register using the UNMSK field), single-bit error addresses are not stored in the FIFO.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=2, Start=0, Step=1&#x2003;<i>(From hierarchy)</i><br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240834[+=0x40]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="16">UNMSK</td>
+        <td class="fldnorm" colspan="16">ID</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="16">RW</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">UNMSK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When the UNMSK bit is set, the corresponding ID bit is unmasked while the programmed ID is compared with the reported error ID by the AXI2ED controller.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When the ID programmed in this register matches the error ID reported by the<br/>AXI2ED controller while mask bits (as per UNMSK field in this register) are applied, and the SEALDn bit in the AXI2ED Control Register is set, logging the single-bit error address into the FIFO is disabled. In addition, the AXI2ED ECC Single-Bit Error Counter Register does not count the errors.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C3E716AB34A1C462" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fc0</span> Register(32 bit) PID</span><br/>
+      <span class="sdescdet">Peripheral ID Register</span><br/>
+      <span class="ldescdet">This register contains the peripheral ID that also includes the revision history. This register is read only.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240fc0</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000310</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="20">Reserved</td>
+        <td class="fldnorm" colspan="4">APBVER</td>
+        <td class="fldnorm" colspan="4">MAIN_VERSION</td>
+        <td class="fldnorm" colspan="4">SUBVERSION</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="20">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is reserved.</span></p>
+          <p><b>Reset: </b>hex:0x00000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">APBVER</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This value represents the version of the supported APB protocol. This IP supports the APB3.0 protocol and hence the value of this field is 0x3.</span></p>
+          <p><b>Reset: </b>hex:0x3;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MAIN_VERSION</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This value tracks the main version of the IP.<br/>For example, if the 1.4 version of this IP is released, then the sub-version is 0x4 and the version is 0x1.<br/>The current version of the IP is 1.0 and hence the version is 0x1.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SUBVERSION</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This value tracks the sub-version of the IP.<br/>For example, if the 1.4 version of this IP is released, then the sub-version is 0x4 and the version is 0x1.<br/>The current version of the IP is 1.0 and hence the sub-version is 0x0.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_B01A454AF539725E" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fc4</span> Register(32 bit) PEIWER</span><br/>
+      <span class="sdescdet">Parity Error Injection Write Enable register</span><br/>
+      <span class="ldescdet">This register is programmed to enable writing various parity flip control bits. Reset this register using the PRESETn signal.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240fc4</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="31">Reserved</td>
+        <td class="fldnorm" colspan="1">PEIWE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="31">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is reserved.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PEIWE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error injection write enable.<br/>Various parity flip bits present in control registers are programmed to inject parity errors. To avoid accidental programming of these parity flip bits, this parity error injection write enable manager control bit is provided.<br/>- 0x1: Only various parity flip controls are programmable.<br/>- 0x0: Writes to various parity flip controls are ignored.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_9E6A82CFF612819D" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fc8</span> Register(32 bit) EMCR</span><br/>
+      <span class="sdescdet">Error Masking Control Register</span><br/>
+      <span class="ldescdet">This register masks the normal error indications and the fatal error indications of this module. Reset this register using the PRESETn signal.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240fc8</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="27">Reserved</td>
+        <td class="fldnorm" colspan="1">MFIFONE</td>
+        <td class="fldnorm" colspan="1">MFIFOFULL</td>
+        <td class="fldnorm" colspan="1">MAE</td>
+        <td class="fldnorm" colspan="1">MNE</td>
+        <td class="fldnorm" colspan="1">MFE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="27">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">Reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When these bits are read, 0x0000000 appears on the read bus.</span></p>
+          <p><b>Reset: </b>hex:0x0000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MFIFONE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Mask FIFO not empty.<br/>                                        The FIFO_NE output signal is asserted when any of the AXI2ED FIFOs is not empty. When this bit is set, the FIFO_NE output is masked. Only the output is masked.<br/>                                        Upon storing single bit errors into the FIFO, the individual status bits remain set.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MFIFOFULL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Mask FIFO full.<br/>The FIFO_FULL output signal is asserted when any of the AXI2ED FIFOs is full. When this bit is set, the FIFO_FULL output is masked. Only the output is masked. Upon single bit error FIFO full, the individual status bits remain set.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MAE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Mask AXI2ED error.<br/>The AXI2ED_ERROR output signal is asserted when a normal error occurs on any of the AXI2ED modules. When this bit is set, the AXI2ED_ERROR output is masked. Only the output is masked. Upon detecting ECC double bit error or parity error on AWADDR/ARADDR/WDATA, the individual status bits remain set.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MNE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Mask normal error.<br/>The NORMAL_ERROR output is asserted when a normal error occurs on any parity module of the AXI manager interface or the AXI subordinate interface. When this bit is set, the NORMAL_ERROR output is masked. Only the output is masked.<br/>Upon detecting a normal error, the individual status bits remain set.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MFE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Mask fatal error.<br/>                                        The FATAL_ERROR output is asserted when a fatal error occurs on any parity module of the AXI manager interface, the AXI subordinate interface, or the NIC AMIB interface. When this bit is set, the FATAL_ERROR output is masked. Only the output is masked.<br/>                                        Upon detecting a fatal error, the individual status bits remain set.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DEDA56EBB4072544" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fdc</span> Register(32 bit) ADBESR</span><br/>
+      <span class="sdescdet">AXI2ED Double-Bit Error Status Register</span><br/>
+      <span class="ldescdet">Although the status of double-bit errors in the various AXI2ED controllers is indicated by the associated AXI2ED statusregisters, many read operations might be required to locate the parity module that contains the double-bit error. This register provides a consolidated view of the double-bit errors of the various AXI2ED controllers. This register is read only. This register is not directly resettable. If all individual status registers are reset, this register is reset.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240fdc</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">DBE31</td>
+        <td class="fldnorm" colspan="1">DBE30</td>
+        <td class="fldnorm" colspan="1">DBE29</td>
+        <td class="fldnorm" colspan="1">DBE28</td>
+        <td class="fldnorm" colspan="1">DBE27</td>
+        <td class="fldnorm" colspan="1">DBE26</td>
+        <td class="fldnorm" colspan="1">DBE25</td>
+        <td class="fldnorm" colspan="1">DBE24</td>
+        <td class="fldnorm" colspan="1">DBE23</td>
+        <td class="fldnorm" colspan="1">DBE22</td>
+        <td class="fldnorm" colspan="1">DBE21</td>
+        <td class="fldnorm" colspan="1">DBE20</td>
+        <td class="fldnorm" colspan="1">DBE19</td>
+        <td class="fldnorm" colspan="1">DBE18</td>
+        <td class="fldnorm" colspan="1">DBE17</td>
+        <td class="fldnorm" colspan="1">DBE16</td>
+        <td class="fldnorm" colspan="1">DBE15</td>
+        <td class="fldnorm" colspan="1">DBE14</td>
+        <td class="fldnorm" colspan="1">DBE13</td>
+        <td class="fldnorm" colspan="1">DBE12</td>
+        <td class="fldnorm" colspan="1">DBE11</td>
+        <td class="fldnorm" colspan="1">DBE10</td>
+        <td class="fldnorm" colspan="1">DBE9</td>
+        <td class="fldnorm" colspan="1">DBE8</td>
+        <td class="fldnorm" colspan="1">DBE7</td>
+        <td class="fldnorm" colspan="1">DBE6</td>
+        <td class="fldnorm" colspan="1">DBE5</td>
+        <td class="fldnorm" colspan="1">DBE4</td>
+        <td class="fldnorm" colspan="1">DBE3</td>
+        <td class="fldnorm" colspan="1">DBE2</td>
+        <td class="fldnorm" colspan="1">DBE1</td>
+        <td class="fldnorm" colspan="1">DBE0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE31</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE30</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE29</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:28]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE28</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:27]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE27</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[26:26]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE26</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[25:25]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE25</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[24:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE24</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:23]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE23</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[22:22]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE22</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:21]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE21</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:20]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE20</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:19]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE19</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:18]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE18</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:17]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE17</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE16</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE15</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:14]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE14</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:13]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE13</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:12]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE12</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE11</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE10</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE9</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE8</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DBE0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Double-bit error of the nth AXI2ED controller.<br/>This bit is set when a double bit ECC error is detected, during read operations or RMW read operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5B163145242CFBE3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fe0</span> Register(32 bit) APESR</span><br/>
+      <span class="sdescdet">AXI2ED Parity Error Status Register</span><br/>
+      <span class="ldescdet">Although the status of parity errors in the various AXI2ED controllers is indicated by the associated AXI2ED status registers, many read operations might be required to locate the parity module that contains the parity error. This register provides a consolidated view of the parity errors of the various AXI2ED controllers. This register is read only. This register is not directly resettable. If all individual status  registers are reset, this register is reset.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00240fe0</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">PE31</td>
+        <td class="fldnorm" colspan="1">PE30</td>
+        <td class="fldnorm" colspan="1">PE29</td>
+        <td class="fldnorm" colspan="1">PE28</td>
+        <td class="fldnorm" colspan="1">PE27</td>
+        <td class="fldnorm" colspan="1">PE26</td>
+        <td class="fldnorm" colspan="1">PE25</td>
+        <td class="fldnorm" colspan="1">PE24</td>
+        <td class="fldnorm" colspan="1">PE23</td>
+        <td class="fldnorm" colspan="1">PE22</td>
+        <td class="fldnorm" colspan="1">PE21</td>
+        <td class="fldnorm" colspan="1">PE20</td>
+        <td class="fldnorm" colspan="1">PE19</td>
+        <td class="fldnorm" colspan="1">PE18</td>
+        <td class="fldnorm" colspan="1">PE17</td>
+        <td class="fldnorm" colspan="1">PE16</td>
+        <td class="fldnorm" colspan="1">PE15</td>
+        <td class="fldnorm" colspan="1">PE14</td>
+        <td class="fldnorm" colspan="1">PE13</td>
+        <td class="fldnorm" colspan="1">PE12</td>
+        <td class="fldnorm" colspan="1">PE11</td>
+        <td class="fldnorm" colspan="1">PE10</td>
+        <td class="fldnorm" colspan="1">PE9</td>
+        <td class="fldnorm" colspan="1">PE8</td>
+        <td class="fldnorm" colspan="1">PE7</td>
+        <td class="fldnorm" colspan="1">PE6</td>
+        <td class="fldnorm" colspan="1">PE5</td>
+        <td class="fldnorm" colspan="1">PE4</td>
+        <td class="fldnorm" colspan="1">PE3</td>
+        <td class="fldnorm" colspan="1">PE2</td>
+        <td class="fldnorm" colspan="1">PE1</td>
+        <td class="fldnorm" colspan="1">PE0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE31</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE30</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE29</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:28]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE28</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:27]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE27</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[26:26]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE26</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[25:25]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE25</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[24:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE24</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:23]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE23</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[22:22]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE22</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:21]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE21</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:20]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE20</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:19]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE19</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:18]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE18</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:17]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE17</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE16</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE15</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:14]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE14</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:13]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE13</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:12]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE12</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE11</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE10</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE9</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE8</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PE0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Parity error of the nth AXI2ED controller.<br/>This bit is set when a parity error is detected, during read operations or write operations.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_logger_logger_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

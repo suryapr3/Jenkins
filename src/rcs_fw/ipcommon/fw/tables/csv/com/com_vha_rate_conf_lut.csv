@@ -1,0 +1,25 @@
+Table Name,com_vha_rate_conf_lut,,,,,,,,,,,,,,,,,,,,,,,,
+Table Description,"supported VHA DUC/DDC configuration, this table indexed by usecase (need 4-bit)",,,,,,,,,,,,,,,,,,,,,,,,
+single entry bitwidth,16,,,,,,,,,,,,,,,,,,,,,,,,
+base type bit layout,,,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,,,,,,,
+Bit Field Name,,,smpl_per_clk,,,mix_rate,,,low_rate,,,high_rate,,,stage_active,,,,,,,,,,
+Bit Field Description,,,"num of samples at input to MOD (for DL) or DMOD (for UL), this can be used by SWG configuration for num of polyphases. 0 means input sample rate is lower than mix_rate",,,"optional mod/demod rate, value e_VHA_NO_MIX=6 indicating no mod/demod used(if input_rate for DDC or output_rate for DUC is less than min SWG rate 983.04/1474.56MSPS). mix_rate almost always the same as high_rate",,,"for DUC, this is the sample rate of the data present in the downlink band 0/1 input FIFO, this must be set correctly so that the VHA circuitry extracts data for the respective band correctly, if the VHA_DUC is being used, this must be programmed to match its input rate. for DDC, this is the sample rate of the data at the output of the VHA_DDC",,,"for VHA_DDC, this is the sample rate of the data present in the UL input FIFO, if vha_dmod is being used, this cannot be any less than VHA_RATE_1, if dmod is bypassed, this can take any legal rate; for VHA_DUC, This is the sample rate out of bank 0/1 of vha_duc, Note that if vha_mod is being used, this cannot be any less than VHA_RATE_1.",,,"Manual filter stage selection bits. 
+These bits determine which filter stages are active when MODE is 1. When a STAGE_ACTIVE bit is 1, corresponding filter stage is active, otherwise it is bypassed(low to high: w1 to w4)",,,,,,,,,,
+Unit [string],,,value,,,value,,,value,,,value,,,bits,,,,,,,,,,
+Granularity,,,1,,,1,,,1,,,1,,,1,,,,,,,,,,
+Minimum Value,,,0,,,3,,,0,,,2,,,0,,,,,,,,,,
+Maximum Value,,,4,,,6,,,3,,,5,,,15,,,,,,,,,,
+Sign Type,,,unsigned,,,e_vha_rate_t,,,e_vha_rate_t,,,e_vha_rate_t,,,unsigned,,,,,,,,,,
+Bit Field Width,,,3,,,3,,,3,,,3,,,4,,,,,,,,,,
+subtable dimension and name,11*1,,VHA_RATE_CONF,,,,,,,,,,,,,,,,,,w4,w3,w2,w1,"SUM(BITLSHIFT(V14,3),BITLSHIFT(W14,2),BITLSHIFT(X14,1),BITLSHIFT(Y14,0))"
+0,,,0,,,6,,,0,,,2,,,3,,,,,,0,0,1,1,3
+1,,,2,,,3,,,0,,,3,,,7,,,,,,0,1,1,1,7
+2,,,1,,,3,,,1,,,3,,,3,,,,,,0,0,1,1,3
+3,,,4,,,3,,,2,,,3,,,1,,,,,,0,0,0,1,1
+4,,,2,,,4,,,0,,,4,,,15,,,,,,1,1,1,1,15
+5,,,1,,,4,,,1,,,4,,,7,,,,,,0,1,1,1,7
+6,,,4,,,4,,,2,,,4,,,3,,,,,,0,0,1,1,3
+7,,,2,,,4,,,3,,,4,,,1,,,,,,0,0,0,1,1
+8,,,1,,,5,,,1,,,5,,,15,,,,,,1,1,1,1,15
+9,,,4,,,5,,,2,,,5,,,7,,,,,,0,1,1,1,7
+10,,,2,,,5,,,3,,,5,,,3,,,,,,0,0,1,1,3

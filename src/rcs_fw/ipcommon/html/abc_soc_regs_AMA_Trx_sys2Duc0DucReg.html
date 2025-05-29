@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/trx_sys2/duc0/DUC/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/trx_sys2/duc0/DUC/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_trx_sys2_duc0_DUC_reg">AddressMap abc_soc_top/trx_sys2/duc0/DUC/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/trx_sys2/duc0/DUC/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_0D78D9F9D97A94D0">SCRATCH</a>  </b></td>
+        <td class="unboxed sdescmap">DUC scratchpad register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_3A835C6A3C97DCB4">CONFIG</a>  </b></td>
+        <td class="unboxed sdescmap">DUC configuration register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_FE3C7E2C57D1C7CC">STATUS</a>  </b></td>
+        <td class="unboxed sdescmap">DUC status register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000000c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_B6F862AF38F244FA">APB_BRIDGE_STATUS</a>  </b></td>
+        <td class="unboxed sdescmap">APB Bridge Status Register</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/trx_sys2/duc0/DUC/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_0D78D9F9D97A94D0" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) SCRATCH</span><br/>
+      <span class="sdescdet">DUC scratchpad register.</span><br/>
+      <span class="ldescdet">Totally useless read/write register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x052a2000</span> at NOC.trx_sys__trx_sys_axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">SCRATCHPAD</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SCRATCHPAD</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Do anything with this field.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_trx_sys2_duc0_DUC_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_3A835C6A3C97DCB4" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) CONFIG</span><br/>
+      <span class="sdescdet">DUC configuration register.</span><br/>
+      <span class="ldescdet">
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x052a2004</span> at NOC.trx_sys__trx_sys_axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffff000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffff000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="20">-</td>
+        <td class="fldnorm" colspan="1">HBF6</td>
+        <td class="fldnorm" colspan="1">HBF5</td>
+        <td class="fldnorm" colspan="1">HBF4</td>
+        <td class="fldnorm" colspan="1">HBF3</td>
+        <td class="fldnorm" colspan="1">HBF2</td>
+        <td class="fldnorm" colspan="1">FBF1</td>
+        <td class="fldnorm" colspan="1">HBF1</td>
+        <td class="fldnorm" colspan="1">TBF2D</td>
+        <td class="fldnorm" colspan="1">TBF2</td>
+        <td class="fldnorm" colspan="1">TBF1D</td>
+        <td class="fldnorm" colspan="1">TBF1</td>
+        <td class="fldnorm" colspan="1">MODE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="20">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF6</span><br/>
+          <span class="sdescdet">Manual mode HBF6 active</span><br/>
+          <span class="ldescdet">0: HBF6 is bypassed in manual mode.<br/>                                        1: HBF6 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF5</span><br/>
+          <span class="sdescdet">Manual mode HBF5 active</span><br/>
+          <span class="ldescdet">0: HBF5 is bypassed in manual mode.<br/>                                        1: HBF5 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF4</span><br/>
+          <span class="sdescdet">Manual mode HBF4 active</span><br/>
+          <span class="ldescdet">0: HBF4 is bypassed in manual mode.<br/>                                        1: HBF4 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF3</span><br/>
+          <span class="sdescdet">Manual mode HBF3 active</span><br/>
+          <span class="ldescdet">0: HBF3 is bypassed in manual mode.<br/>                                        1: HBF3 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF2</span><br/>
+          <span class="sdescdet">Manual mode HBF2 active</span><br/>
+          <span class="ldescdet">0: HBF2 is bypassed in manual mode.<br/>                                        1: HBF2 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FBF1</span><br/>
+          <span class="sdescdet">Manual mode FBF1 active</span><br/>
+          <span class="ldescdet">0: FBF1 is bypassed in manual mode.<br/>                                        1: FBF1 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF1</span><br/>
+          <span class="sdescdet">Manual mode HBF1 active</span><br/>
+          <span class="ldescdet">0: HBF1 is bypassed in manual mode.<br/>                                        1: HBF1 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TBF2D</span><br/>
+          <span class="sdescdet">Manual mode TBF2 decimation enable</span><br/>
+          <span class="ldescdet">0: TBF2 output decimation is disabled in manual mode.<br/>                                        1: TBF2 output decimation is enabled in manual mode (ignored if TBF1 is not active).</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TBF2</span><br/>
+          <span class="sdescdet">Manual mode TBF2 active</span><br/>
+          <span class="ldescdet">0: TBF2 is bypassed in manual mode.<br/>                                        1: TBF2 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TBF1D</span><br/>
+          <span class="sdescdet">Manual mode TBF1 decimation enable</span><br/>
+          <span class="ldescdet">0: TBF1 output decimation is disabled in manual mode.<br/>                                        1: TBF1 output decimation is enabled in manual mode (ignored if TBF1 is not active).</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TBF1</span><br/>
+          <span class="sdescdet">Manual mode TBF1 active</span><br/>
+          <span class="ldescdet">0: TBF1 is bypassed in manual mode.<br/>                                        1: TBF1 is active in manual mode.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MODE</span><br/>
+          <span class="sdescdet">Active stage selection mode</span><br/>
+          <span class="ldescdet">0: Automatically select active filter stages based on SYS_RATE and ANT_RATE.<br/>                                        1: Manually select active filter stages based on STAGE_ACTIVE.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_trx_sys2_duc0_DUC_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_FE3C7E2C57D1C7CC" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000008</span> Register(32 bit) STATUS</span><br/>
+      <span class="sdescdet">DUC status register.</span><br/>
+      <span class="ldescdet">
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x052a2008</span> at NOC.trx_sys__trx_sys_axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffff000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffff000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="20">-</td>
+        <td class="fldnorm" colspan="1">HBF6</td>
+        <td class="fldnorm" colspan="1">HBF5</td>
+        <td class="fldnorm" colspan="1">HBF4</td>
+        <td class="fldnorm" colspan="1">HBF3</td>
+        <td class="fldnorm" colspan="1">HBF2</td>
+        <td class="fldnorm" colspan="1">FBF1</td>
+        <td class="fldnorm" colspan="1">HBF1</td>
+        <td class="fldnorm" colspan="1">TBF2D</td>
+        <td class="fldnorm" colspan="1">TBF2</td>
+        <td class="fldnorm" colspan="1">TBF1D</td>
+        <td class="fldnorm" colspan="1">TBF1</td>
+        <td class="fldnorm" colspan="1">MODE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="20">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[11:11]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF6</span><br/>
+          <span class="sdescdet">HBF6 status</span><br/>
+          <span class="ldescdet">0: HBF6 is bypassed.<br/>                                        1: HBF6 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF5</span><br/>
+          <span class="sdescdet">HBF5 status</span><br/>
+          <span class="ldescdet">0: HBF5 is bypassed.<br/>                                        1: HBF5 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF4</span><br/>
+          <span class="sdescdet">HBF4 status</span><br/>
+          <span class="ldescdet">0: HBF4 is bypassed.<br/>                                        1: HBF4 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF3</span><br/>
+          <span class="sdescdet">HBF3 status</span><br/>
+          <span class="ldescdet">0: HBF3 is bypassed.<br/>                                        1: HBF3 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF2</span><br/>
+          <span class="sdescdet">HBF2 status</span><br/>
+          <span class="ldescdet">0: HBF2 is bypassed.<br/>                                        1: HBF2 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FBF1</span><br/>
+          <span class="sdescdet">FBF1 status</span><br/>
+          <span class="ldescdet">0: FBF1 is bypassed.<br/>                                        1: FBF1 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HBF1</span><br/>
+          <span class="sdescdet">HBF1 status</span><br/>
+          <span class="ldescdet">0: HBF1 is bypassed.<br/>                                        1: HBF1 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TBF2D</span><br/>
+          <span class="sdescdet">TBF2 decimation status</span><br/>
+          <span class="ldescdet">0: TBF2 output decimation is disabled.<br/>                                        1: TBF2 output decimation is enabled.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TBF2</span><br/>
+          <span class="sdescdet">TBF2 status</span><br/>
+          <span class="ldescdet">0: TBF2 is bypassed.<br/>                                        1: TBF2 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TBF1D</span><br/>
+          <span class="sdescdet">TBF1 decimation status</span><br/>
+          <span class="ldescdet">0: TBF1 output decimation is disabled.<br/>                                        1: TBF1 output decimation is enabled.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TBF1</span><br/>
+          <span class="sdescdet">TBF1 status</span><br/>
+          <span class="ldescdet">0: TBF1 is bypassed.<br/>                                        1: TBF1 is active.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MODE</span><br/>
+          <span class="sdescdet">Active stage selection mode</span><br/>
+          <span class="ldescdet">0: Filter stage selection is being done automatically.<br/>                                        1: Filter stage selection is being done manually.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_trx_sys2_duc0_DUC_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_B6F862AF38F244FA" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000000c</span> Register(32 bit) APB_BRIDGE_STATUS</span><br/>
+      <span class="sdescdet">APB Bridge Status Register</span><br/>
+      <span class="ldescdet">This is the AW_apb2core_bridge status register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x052a200c</span> at NOC.trx_sys__trx_sys_axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00010000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">TIMEOUT</td>
+        <td class="fldnorm" colspan="1">ACK_ERROR</td>
+        <td class="fldnorm" colspan="1">UNSOL_ACK</td>
+        <td class="fldnorm" colspan="1">SW_LOCK_CTRL</td>
+        <td class="fldnorm" colspan="8">REVISION</td>
+        <td class="fldnorm" colspan="20">TIMEOUT_VALUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1S/V/L</td>
+        <td class="accno" colspan="8">RO</td>
+        <td class="accno" colspan="20">RW/L</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMEOUT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">An APB request has timed out</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ACK_ERROR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Acknowledgement had error bit set</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">UNSOL_ACK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">An unsolicited acknowledge was received</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:28]</b><br/>RW/1S/V/L</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SW_LOCK_CTRL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Block software writes to timeout_value if set</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:20]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">REVISION</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Module Revision Number</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:00]</b><br/>RW/L</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMEOUT_VALUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Number of core clocks to wait before timing out an APB request</span></p>
+          <p><b>Reset: </b>hex:0x10000;</p>
+    <p><b>Locked by:</b> APB_BRIDGE_STATUS.SW_LOCK_CTRL; <b>Lock value:</b> 1</p>        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_trx_sys2_duc0_DUC_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

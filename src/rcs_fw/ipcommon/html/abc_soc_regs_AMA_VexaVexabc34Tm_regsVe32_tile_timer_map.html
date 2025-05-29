@@ -1,0 +1,3975 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/vexa/vexabc34/tm_regs/ve32_tile_timer_map</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/vexa/vexabc34/tm_regs/ve32_tile_timer_map</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">AddressMap abc_soc_top/vexa/vexabc34/tm_regs/ve32_tile_timer_map</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/vexa/vexabc34/tm_regs/ve32_tile_timer_map -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_3A86F0A18A118C9A">reg_timer_tmdparamsr</a>  </b></td>
+        <td class="unboxed sdescmap">tmdparamsr register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_558B436EAB03DFBA">reg_timer_tmdvalr0</a>  </b></td>
+        <td class="unboxed sdescmap">tmdvalr0 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr">0x0000000b</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000000c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C1BC94E2A7302C8E">reg_timer_tmdcfgr0</a>  </b></td>
+        <td class="unboxed sdescmap">tmdcfgr0 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000010</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5530CFA1A8B1722E">reg_timer_tmdinitr0</a>  </b></td>
+        <td class="unboxed sdescmap">tmdinitr0 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000014</td>
+        <td class="unboxed addr">0x00000017</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000018</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_E9B7462098DC7237">reg_timer_tmdwdnotr0</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwdnotr0 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000001c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_246930D5D92630E4">reg_timer_tmdwdaddrr0</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwdaddrr0 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000020</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_7A1BE1B774CD99F8">reg_timer_tmdwddatar0</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwddatar0 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000024</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4C3EF730D9EA792C">reg_timer_tmdcmdr0</a>  </b></td>
+        <td class="unboxed sdescmap">tmdcmdr0 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000028</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8F90F0A5EE57950D">reg_timer_tmdvalr1</a>  </b></td>
+        <td class="unboxed sdescmap">tmdvalr1 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x0000002c</td>
+        <td class="unboxed addr">0x0000002f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000030</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5C2D7FC431329EC7">reg_timer_tmdcfgr1</a>  </b></td>
+        <td class="unboxed sdescmap">tmdcfgr1 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000034</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2C7AC5DA6C2194E3">reg_timer_tmdinitr1</a>  </b></td>
+        <td class="unboxed sdescmap">tmdinitr1 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000038</td>
+        <td class="unboxed addr">0x0000003b</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000003c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DB15EF8BCDCAE01F">reg_timer_tmdwdnotr1</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwdnotr1 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000040</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D609EC13ABEA6C9E">reg_timer_tmdwdaddrr1</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwdaddrr1 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000044</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_65B86C72F375D251">reg_timer_tmdwddatar1</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwddatar1 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000048</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_68806EF6F6DEC912">reg_timer_tmdcmdr1</a>  </b></td>
+        <td class="unboxed sdescmap">tmdcmdr1 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000004c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_80194E3E328C05F6">reg_timer_tmdvalr2</a>  </b></td>
+        <td class="unboxed sdescmap">tmdvalr2 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000050</td>
+        <td class="unboxed addr">0x00000053</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000054</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_52B15591A84A3474">reg_timer_tmdcfgr2</a>  </b></td>
+        <td class="unboxed sdescmap">tmdcfgr2 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000058</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_EA6C609779DB2CF3">reg_timer_tmdinitr2</a>  </b></td>
+        <td class="unboxed sdescmap">tmdinitr2 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x0000005c</td>
+        <td class="unboxed addr">0x0000005f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000060</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F258492D0E0B70FB">reg_timer_tmdwdnotr2</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwdnotr2 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000064</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_53E0599C4257BBB1">reg_timer_tmdwdaddrr2</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwdaddrr2 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000068</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_24C2B265B6231FD8">reg_timer_tmdwddatar2</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwddatar2 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000006c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2C159EA604040A5C">reg_timer_tmdcmdr2</a>  </b></td>
+        <td class="unboxed sdescmap">tmdcmdr2 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000070</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_6474ED28147473F6">reg_timer_tmdvalr3</a>  </b></td>
+        <td class="unboxed sdescmap">tmdvalr3 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000074</td>
+        <td class="unboxed addr">0x00000077</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000078</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D59029F72CAC89EA">reg_timer_tmdcfgr3</a>  </b></td>
+        <td class="unboxed sdescmap">tmdcfgr3 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000007c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_FD20EDF54E4F7087">reg_timer_tmdinitr3</a>  </b></td>
+        <td class="unboxed sdescmap">tmdinitr3 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000080</td>
+        <td class="unboxed addr">0x00000083</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000084</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_A775B8C8A72EE2AD">reg_timer_tmdwdnotr3</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwdnotr3 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000088</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_FE1E2428D8DE8901">reg_timer_tmdwdaddrr3</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwdaddrr3 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000008c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_9A2C47FF476929AE">reg_timer_tmdwddatar3</a>  </b></td>
+        <td class="unboxed sdescmap">tmdwddatar3 register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000090</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_682A01DEAAA57B73">reg_timer_tmdcmdr3</a>  </b></td>
+        <td class="unboxed sdescmap">tmdcmdr3 register.</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000094</td>
+        <td class="unboxed addr">0x0000027f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000280</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_85AB278D23684E16">reg_timer_tmdglobalctlr</a>  </b></td>
+        <td class="unboxed sdescmap">tmdglobalctlr register.</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/vexa/vexabc34/tm_regs/ve32_tile_timer_map</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_3A86F0A18A118C9A" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) reg_timer_tmdparamsr</span><br/>
+      <span class="sdescdet">tmdparamsr register.</span><br/>
+      <span class="ldescdet">Timer Device Parameters.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083000</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00002004</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="8">cntbits</td>
+        <td class="fldnorm" colspan="8">numtimers</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="8">RO</td>
+        <td class="accno" colspan="8">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cntbits</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Bits per counter.</span></p>
+          <p><b>Reset: </b>hex:0x20;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">numtimers</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Number of timers (counters).</span></p>
+          <p><b>Reset: </b>hex:0x04;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_558B436EAB03DFBA" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) reg_timer_tmdvalr0</span><br/>
+      <span class="sdescdet">tmdvalr0 register.</span><br/>
+      <span class="ldescdet">Timer Value Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083004</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">value</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">value</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Current value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C1BC94E2A7302C8E" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000000c</span> Register(32 bit) reg_timer_tmdcfgr0</span><br/>
+      <span class="sdescdet">tmdcfgr0 register.</span><br/>
+      <span class="ldescdet">Timer Configuration Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0308300c</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="2">cnt_mode</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cnt_mode</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Counter mode: '00' Normal (count-up) mode timer; '01' UNUSED; '10' Single-shot watchdog (count-down); '11' Continuous-mode watchdog (count-down).</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5530CFA1A8B1722E" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000010</span> Register(32 bit) reg_timer_tmdinitr0</span><br/>
+      <span class="sdescdet">tmdinitr0 register.</span><br/>
+      <span class="ldescdet">Timer Initial- or Timeout Value Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083010</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">value</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">value</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Initial value for normal timer or timeout value for watchdog.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_E9B7462098DC7237" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000018</span> Register(32 bit) reg_timer_tmdwdnotr0</span><br/>
+      <span class="sdescdet">tmdwdnotr0 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Enable Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083018</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="fldnorm" colspan="1">notify</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">notify</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Notify: '0' No notification is sent when watchdog timer counter reaches zero; '1' Notification is sent via the initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_246930D5D92630E4" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000001c</span> Register(32 bit) reg_timer_tmdwdaddrr0</span><br/>
+      <span class="sdescdet">tmdwdaddrr0 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Target Address Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0308301c</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00004000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">addr</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">addr</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Target address for watchdog notification via initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x00004000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_7A1BE1B774CD99F8" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000020</span> Register(32 bit) reg_timer_tmdwddatar0</span><br/>
+      <span class="sdescdet">tmdwddatar0 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Data Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083020</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">data</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">data</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Data value for watchdog notification via initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_4C3EF730D9EA792C" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000024</span> Register(32 bit) reg_timer_tmdcmdr0</span><br/>
+      <span class="sdescdet">tmdcmdr0 register.</span><br/>
+      <span class="ldescdet">Timer Command Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083024</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access WO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="2">cmd</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="2">WO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:00]</b><br/>WO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cmd</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Command: '00' No operation; '01' Start the timer from initial or timeout value; '10' Stop the timer; '11' Continue counting from its current value.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_8F90F0A5EE57950D" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000028</span> Register(32 bit) reg_timer_tmdvalr1</span><br/>
+      <span class="sdescdet">tmdvalr1 register.</span><br/>
+      <span class="ldescdet">Timer Value Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083028</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">value</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">value</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Current value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5C2D7FC431329EC7" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000030</span> Register(32 bit) reg_timer_tmdcfgr1</span><br/>
+      <span class="sdescdet">tmdcfgr1 register.</span><br/>
+      <span class="ldescdet">Timer Configuration Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083030</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="2">cnt_mode</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cnt_mode</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Counter mode: '00' Normal (count-up) mode timer; '01' UNUSED; '10' Single-shot watchdog (count-down); '11' Continuous-mode watchdog (count-down).</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2C7AC5DA6C2194E3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000034</span> Register(32 bit) reg_timer_tmdinitr1</span><br/>
+      <span class="sdescdet">tmdinitr1 register.</span><br/>
+      <span class="ldescdet">Timer Initial- or Timeout Value Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083034</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">value</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">value</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Initial value for normal timer or timeout value for watchdog.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DB15EF8BCDCAE01F" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000003c</span> Register(32 bit) reg_timer_tmdwdnotr1</span><br/>
+      <span class="sdescdet">tmdwdnotr1 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Enable Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0308303c</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="fldnorm" colspan="1">notify</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">notify</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Notify: '0' No notification is sent when watchdog timer counter reaches zero; '1' Notification is sent via the initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D609EC13ABEA6C9E" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000040</span> Register(32 bit) reg_timer_tmdwdaddrr1</span><br/>
+      <span class="sdescdet">tmdwdaddrr1 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Target Address Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083040</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00004000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">addr</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">addr</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Target address for watchdog notification via initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x00004000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_65B86C72F375D251" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000044</span> Register(32 bit) reg_timer_tmdwddatar1</span><br/>
+      <span class="sdescdet">tmdwddatar1 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Data Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083044</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">data</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">data</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Data value for watchdog notification via initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_68806EF6F6DEC912" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000048</span> Register(32 bit) reg_timer_tmdcmdr1</span><br/>
+      <span class="sdescdet">tmdcmdr1 register.</span><br/>
+      <span class="ldescdet">Timer Command Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083048</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access WO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="2">cmd</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="2">WO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:00]</b><br/>WO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cmd</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Command: '00' No operation; '01' Start the timer from initial or timeout value; '10' Stop the timer; '11' Continue counting from its current value.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_80194E3E328C05F6" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000004c</span> Register(32 bit) reg_timer_tmdvalr2</span><br/>
+      <span class="sdescdet">tmdvalr2 register.</span><br/>
+      <span class="ldescdet">Timer Value Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0308304c</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">value</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">value</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Current value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_52B15591A84A3474" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000054</span> Register(32 bit) reg_timer_tmdcfgr2</span><br/>
+      <span class="sdescdet">tmdcfgr2 register.</span><br/>
+      <span class="ldescdet">Timer Configuration Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083054</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="2">cnt_mode</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cnt_mode</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Counter mode: '00' Normal (count-up) mode timer; '01' UNUSED; '10' Single-shot watchdog (count-down); '11' Continuous-mode watchdog (count-down).</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_EA6C609779DB2CF3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000058</span> Register(32 bit) reg_timer_tmdinitr2</span><br/>
+      <span class="sdescdet">tmdinitr2 register.</span><br/>
+      <span class="ldescdet">Timer Initial- or Timeout Value Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083058</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">value</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">value</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Initial value for normal timer or timeout value for watchdog.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F258492D0E0B70FB" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000060</span> Register(32 bit) reg_timer_tmdwdnotr2</span><br/>
+      <span class="sdescdet">tmdwdnotr2 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Enable Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083060</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="fldnorm" colspan="1">notify</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">notify</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Notify: '0' No notification is sent when watchdog timer counter reaches zero; '1' Notification is sent via the initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_53E0599C4257BBB1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000064</span> Register(32 bit) reg_timer_tmdwdaddrr2</span><br/>
+      <span class="sdescdet">tmdwdaddrr2 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Target Address Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083064</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00004000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">addr</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">addr</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Target address for watchdog notification via initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x00004000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_24C2B265B6231FD8" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000068</span> Register(32 bit) reg_timer_tmdwddatar2</span><br/>
+      <span class="sdescdet">tmdwddatar2 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Data Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083068</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">data</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">data</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Data value for watchdog notification via initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2C159EA604040A5C" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000006c</span> Register(32 bit) reg_timer_tmdcmdr2</span><br/>
+      <span class="sdescdet">tmdcmdr2 register.</span><br/>
+      <span class="ldescdet">Timer Command Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0308306c</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access WO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="2">cmd</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="2">WO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:00]</b><br/>WO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cmd</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Command: '00' No operation; '01' Start the timer from initial or timeout value; '10' Stop the timer; '11' Continue counting from its current value.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_6474ED28147473F6" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000070</span> Register(32 bit) reg_timer_tmdvalr3</span><br/>
+      <span class="sdescdet">tmdvalr3 register.</span><br/>
+      <span class="ldescdet">Timer Value Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083070</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">value</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">value</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Current value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D59029F72CAC89EA" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000078</span> Register(32 bit) reg_timer_tmdcfgr3</span><br/>
+      <span class="sdescdet">tmdcfgr3 register.</span><br/>
+      <span class="ldescdet">Timer Configuration Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083078</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="2">cnt_mode</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cnt_mode</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Counter mode: '00' Normal (count-up) mode timer; '01' UNUSED; '10' Single-shot watchdog (count-down); '11' Continuous-mode watchdog (count-down).</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_FD20EDF54E4F7087" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000007c</span> Register(32 bit) reg_timer_tmdinitr3</span><br/>
+      <span class="sdescdet">tmdinitr3 register.</span><br/>
+      <span class="ldescdet">Timer Initial- or Timeout Value Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0308307c</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">value</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">value</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Initial value for normal timer or timeout value for watchdog.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_A775B8C8A72EE2AD" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000084</span> Register(32 bit) reg_timer_tmdwdnotr3</span><br/>
+      <span class="sdescdet">tmdwdnotr3 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Enable Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083084</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="fldnorm" colspan="1">notify</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">notify</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Notify: '0' No notification is sent when watchdog timer counter reaches zero; '1' Notification is sent via the initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_FE1E2428D8DE8901" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000088</span> Register(32 bit) reg_timer_tmdwdaddrr3</span><br/>
+      <span class="sdescdet">tmdwdaddrr3 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Target Address Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083088</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00004000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">addr</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">addr</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Target address for watchdog notification via initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x00004000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_9A2C47FF476929AE" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000008c</span> Register(32 bit) reg_timer_tmdwddatar3</span><br/>
+      <span class="sdescdet">tmdwddatar3 register.</span><br/>
+      <span class="ldescdet">Timer Watchdog Notification Data Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0308308c</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">data</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">data</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Data value for watchdog notification via initiator interface.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_682A01DEAAA57B73" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000090</span> Register(32 bit) reg_timer_tmdcmdr3</span><br/>
+      <span class="sdescdet">tmdcmdr3 register.</span><br/>
+      <span class="ldescdet">Timer Command Register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083090</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access WO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="2">cmd</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="2">WO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:00]</b><br/>WO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cmd</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Command: '00' No operation; '01' Start the timer from initial or timeout value; '10' Stop the timer; '11' Continue counting from its current value.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_85AB278D23684E16" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000280</span> Register(32 bit) reg_timer_tmdglobalctlr</span><br/>
+      <span class="sdescdet">tmdglobalctlr register.</span><br/>
+      <span class="ldescdet">Timer Global Control Register. Controls the start and stop of the timers together with the global control bit signal.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x03083280</span> at NOC.vexarray (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000001</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffff0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffff0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="28">-</td>
+        <td class="fldnorm" colspan="4">ctl_bits</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="28">-</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ctl_bits</span><br/>
+          <span class="sdescdet">See long description for details.</span><br/>
+          <span class="ldescdet">Control bits. Each bit is ANDed with the global control bit to generate start/stop pulses for the corresponding timer. First timer is enabled by default.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexabc34_tm_regs_ve32_tile_timer_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

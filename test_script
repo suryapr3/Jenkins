@@ -1,0 +1,19 @@
+#!/bin/bash
+#bash 2>&1 | tee ./bash.log
+echo " Hello test script"
+
+#check whether FRIO RTE and ABC RTE are loaded. If not load it
+pwd
+cd ../../
+source FPGA.env
+#Any test-related env source here
+echo "executing memory access tests"
+#./$PROJCT_HOME/tests/mem_access/mem_access_execution_18a.sh
+echo "executing register access tests"
+./$PROJCT_HOME/tests/reg_access/reg_access_execution_18a.sh
+echo "executing vha tests"
+echo "executing v2d tests"
+echo "executing rcs tests"
+echo "executing vex tests"
+#run another test
+python ./$PROJCT_HOME/scripts/report.py

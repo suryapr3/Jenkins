@@ -1,0 +1,4 @@
+#!/bin/sh -f
+
+cd $WORKAREA/src/rcs_fw
+$SWTOOLS_CTL/bin/xt-run --xtensa-core=HWC_RCS_LX7 ./out/bin/unit/tx/com_timing_test.elf 

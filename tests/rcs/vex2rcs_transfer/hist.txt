@@ -1,0 +1,1000 @@
+   23  cp -rf /nfs/site/disks/xne_00003/workspace/hw/SiHive .
+   24  cd SiHive/
+   25  cat SiHive.env
+   26  . ./SiHive.env 
+   27  echo $PATH
+   28  srpRead 0x63.0.0x4000 32
+   29  srpWrite 0x63.0.0x4010 0x20 0x30 0x40 0x50
+   30  srpRead 0x63.0.0x4000 32
+   31  srpWrite 0x63.0.0x4030 0x20 0x30 0x40 0x50
+   32  cd /nfs/an/disks/an_home_disk014/chandrbi
+   33  cat myScript.sh 
+   34  history
+   35  exit
+   36  cd ../vpaidi/ABC/ABC_DEMO/tests/vex/vex_2_rcs/
+   37  geany rte/srpVex2Rcs.c &
+   38  cd ../../../../../../chandrbi/ABC/ABC_DEMO/tests/rcs/boot/
+   39  srpRead 0x63.0.0x4000 10
+   40  pwd
+   41  cd /nfs/site/disks/xne_00001/workspace/hw/chandrbi
+   42  ls
+   43  cd /nfs/an/disks/an_home_disk014/chandrbi/Desktop/rundir_anfpgafrio112-043304-24042023
+   44  cd ../
+   45  bash
+   46  exit
+   47  bash
+   48  exit
+   49  geany /p/frio/tools/abc/srp_rte/RTE_AddressMap_ABC.txt  &
+   50  cd ../
+   51  pwd
+   52  bash
+   53  cd ../
+   54  source myScript.sh 
+   55  srpRead 0x64.0.0xc0000
+   56  srpRead 0x64.0.0xc0000 32
+   57  srpRead 0x63.0.0x4000 32
+   58  bash
+   59  ls
+   60  source frio_setup.sh
+   61  ls
+   62  pwd
+   63  ls
+   64  cp -rf ../../../../../akashmur/ABC_DEMO/tests/rcs/boot .
+   65  ls
+   66  cp -rf ../../../../../akashmur/ABC_DEMO/tests/rcs/idma_tests .
+   67  cp -rf ../../../../../akashmur/ABC_DEMO/tests/rcs/dcode_wr_core_rd_pcie .
+   68  cp -rf ../../../../../akashmur/ABC_DEMO/tests/rcs/rsm_wr_core_rd_pcie/ .
+   69  ls
+   70  cd boot/rte
+   71  make clean;make
+   72  python srpRcsBoot.py 
+   73  cd ../../idma_tests/rte/
+   74  ls
+   75  mv srpRcsBoot.c srpRcsidma.c
+   76  mv srpRcsBoot.py srpRcsidma.py
+   77  cd ../../rcs2vex_transfer/
+   78  ls
+   79  mkdir rte
+   80  ls rcs
+   81  cd rte
+   82  cp -rf ../../boot/rte/* .
+   83  ls
+   84  mv srpRcsBoot.c srpRcs2Vex.c
+   85  mv srpRcsBoot.py srpRcs2Vex.py
+   86  geany makefile srpRcs2Vex.c srpRcs2Vex.py&
+   87  make clean;make
+   88  ls
+   89  make clean;make
+   90  python srpRcs2Vex.py 
+   91  ls
+   92  make clean;make
+   93  python srpRcs2Vex.py 
+   94  srpRead 0x63.0.0x30000 32
+   95  srpRead 0x63.0.0xc000 32
+   96  srpRead 0x19.0.0 32
+   97  bash
+   98  cd /nfs/site/disks/xne_00001/workspace/hw/chandrbi
+   99  ls
+  100  source frio_setup.sh 
+  101  srpRead 
+  102  srpRead 0x63.0.0xc000 32
+  103  srpRead 0x19.0.0
+  104  cd /nfs/site/disks/xne_00001/workspace/hw/chandrbi
+  105  ls
+  106  source frio_setup.sh 
+  107  srpRead 0x19.0.0 32
+  108  srpRead 0x63.0.0xc000 32
+  109  srpRead 0x19.0.0 32
+  110  exit
+  111  bash
+  112  exit
+  113  bash
+  114  cd /nfs/site/disks/xne_00001/workspace/hw/chandrbi
+  115  ls
+  116  source frio_setup.sh
+  117  cd rcs2vex_transfer/rte/
+  118  ls
+  119  python srpRcs2Vex.py 
+  120  srpRead 0x63.0.0xc000 32
+  121  srpRead 0x63.0.0x30000 32
+  122  srpRead 0x19.0.0 32
+  123  cd /nfs/site/disks/xne_00001/workspace/hw/chandrbi
+  124  source frio_setup.sh 
+  125  bash
+  126  cd /nfs/site/disks/xne_00001/workspace/hw/chandrbi/
+  127  source frio_setup.sh 
+  128  cd rcs2vex_transfer/
+  129  cd rte/
+  130  ls
+  131  make clean;make
+  132  srpRead 0x19.0.0 32
+  133  python srpRcs2Vex.py 
+  134  srpRead 0x19.0.0 32
+  135  nedit regWr.sh &
+  136  source regWr.sh 
+  137  srpRead 0x19.0.0 32
+  138  cd ../
+  139  pwd
+  140  ls
+  141  pwd
+  142  cd ../
+  143  ls
+  144  clear
+  145  ls
+  146  cp myScript.sh Desktop/
+  147  cd Desktop/
+  148  bash
+  149  source myScript.sh 
+  150  pwd
+  151  cd ABC/ABC_DEMO/tests/rcs/rcs2vex_transfer/rte
+  152  make clean;make
+  153  cd ../../
+  154  cd ../../../
+  155  cd ../
+  156  ls
+  157  cd chandrbi@anfpgafrio069:/nfs/an/disks/an_home_disk014/chandrbi/Desktop> source myScript.sh 
+  158  cd /nfs/an/disks/an_home_disk014/chandrbi/Desktop
+  159  ls
+  160  geany myScript.sh &
+  161  cd -
+  162  cd ABC/ABC_DEMO
+  163  ls
+  164  source python.env 
+  165  cd tests/rcs/rcs2vex_transfer/rte/
+  166  make clean;make
+  167  srpWrite 0x62.0.0x94 0x0
+  168  srpWrite 0x62.0.0x98 0x0
+  169  srpWrite 0x63.0.0xc010 0x1
+  170  srpWrite 0x63.0.0xc020 0x1
+  171  srpRcsLoader -c0 -f ../rcs/tx_hw.elf 
+  172  srpWrite 0x19.0.0x8 0x0
+  173  srpRead 0x63.0.0xc000 32
+  174  srpRead 0x63.0.0x30000 32
+  175  python srpRcs2Vex.py 
+  176  srpRead 0x63.0.0x30000 32
+  177  srpRead 0x63.0.0xc000 32
+  178  srpRead 0x1c.0.0
+  179  srpRead 0x1c.0.0 32
+  180  srpWrite 0x1c.0.0 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  181  srpRead 0x1c.0.0 32
+  182  srpWrite 0x19.0.0x8 0x0
+  183  srpRead 0x63.0.0x30000 32
+  184  srpWrite 0x1c.0.0x50 0x1
+  185  srpRead 0x63.0.0x30000 32
+  186  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  187  srpRead 0x63.0.0x30000 32
+  188  srpWrite 0x1c.0.0x50 0x1
+  189  srpRead 0x63.0.0x30000 32
+  190  make clean;make
+  191  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  192  python srpRcs2Vex.py 
+  193  srpRead 0x63.0.0x30000 32
+  194  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  195  srpRead 0x63.0.0x30000 32
+  196  python srpRcs2Vex.py 
+  197  srpRead 0x63.0.0x30000 32
+  198  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  199  srpRead 0x63.0.0x30000 32
+  200  python srpRcs2Vex.py 
+  201  srpRead 0x63.0.0x30000 32
+  202  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  203  srpRead 0x63.0.0x30000 32
+  204  make clean;make
+  205  srpRead 0x63.0.0x30000 32
+  206  python srpRcs2Vex.py 
+  207  pwd
+  208  bash
+  209  cd ../
+  210  ls
+  211  source myScript.sh 
+  212  cd rcs2vex_transfer/rte
+  213  pwd
+  214  make clean;make
+  215  python srpRcs2Vex.py 
+  216  ssrpRead 0x63.0.0x30000 32
+  217  srpRead 0x63.0.0x30000 32
+  218  make clean;make
+  219  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  220  make clean;make
+  221  srpRead 0x63.0.0x30000 32
+  222  python srpRcs2Vex.py 
+  223  srpRead 0x63.0.0x30000 32
+  224  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  225  srpRead 0x63.0.0x30000 32
+  226  make clean;make
+  227  python srpRcs2Vex.py 
+  228  make clean;make
+  229  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  230  python srpRcs2Vex.py 
+  231  srpRead 0x13.0.0x3fff0
+  232  ls -l ../rcs/
+  233  srpWrite 0x63.0.0x30000 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  234  python srpRcs2Vex.py 
+  235  srpRead 0x13.0.0x3fff0
+  236  make clean;make
+  237  python srpRcs2Vex.py 
+  238  cd ../
+  239  ls
+  240  source myScript.sh 
+  241  srpRead 0x19.0.0 32
+  242  cd boot/rte
+  243  ls
+  244  python srpRcsBoot.py 
+  245  srpRead 0x19.0.0 32
+  246  cd ../../
+  247  ls
+  248  mkdir lock_tests
+  249  cd lock_tests
+  250  mkdir rte
+  251  vmkdir rcs
+  252  mkdir rcs
+  253  cd rte
+  254  cp -rf ../../boot/rte/* .
+  255  ls
+  256  mv srpRcsBoot.c srpRcsLock.c
+  257  mv srpRcsBoot.py srpRcsLock.py
+  258  make clean;make
+  259  python srpRcsLock.py 
+  260  ls
+  261  make clean;make
+  262  ls
+  263  python srpRcsLock.py 
+  264  srpRead 0x13.0.0x3FFF0
+  265  srpRead 0x13.0.0x10000 32
+  266  srpWrite 0x13.0.0x10000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 
+  267  srpRead 0x13.0.0x10000 32
+  268  python srpRcsLock.py 
+  269  srpRead 0x13.0.0x10000 32
+  270  ls ../rcs
+  271  make clean;make
+  272  python srpRcsLock.py 
+  273  srpRead 0x13.0.0x3fff0 8
+  274  python srpRcsLock.py 
+  275  srpRead 0x13.0.0x3fff0 8
+  276  srpWrite 0x13.0.0x3fff0 0 0 0 0 
+  277  srpRead 0x13.0.0x3fff0 8
+  278  python srpRcsLock.py 
+  279  srpRead 0x13.0.0x3fff0 8
+  280  srpWrite 0x13.0.0x3fff0 0 0 0 0 
+  281  srpRead 0x13.0.0x3fff0 8
+  282  python srpRcsLock.py 
+  283  srpRead 0x13.0.0x3fff0 8
+  284  srpWrite 0x13.0.0x3fff0 0 0 0 0 
+  285  python srpRcsLock.py 
+  286  srpRead 0x13.0.0x3fff0 8
+  287  srpWrite 0x13.0.0x3fff0 0 0 0 0 
+  288  python srpRcsLock.py 
+  289  srpRead 0x13.0.0x3fff0 8
+  290  rm -rf ../rcs/*
+  291  ls ../rcs/*
+  292  cd ../
+  293  ls
+  294  ls rcs/
+  295  srpWrite 0x13.0.0x3fff0 0 0 0 0 
+  296  srpRead 0x13.0.0x3fff0 8
+  297  python srpRcsLock.py 
+  298  srpRead 0x13.0.0x3fff0 8
+  299  make clean;make
+  300  python srpRcsLock.py 
+  301  srpRead 0x13.0.0x3fff0 8
+  302  srpWrite 0x13.0.0x3fff0 0 0 0 0 
+  303  python srpRcsLock.py 
+  304  srpRead 0x13.0.0x3fff0 8
+  305  bash
+  306  source ../myScript.sh 
+  307  cd lock_tests/
+  308  cd rte/
+  309  python srpRcsLock.py 
+  310  srpRead 0x13.0.0x3fff0 4
+  311  srpwrite 0x13.0.0x3fff0 0 0 0 0
+  312  srpRead 0x13.0.0x3fff0 4
+  313  srpWrite 0x13.0.0x3fff0 0 0 0 0
+  314  srpRead 0x13.0.0x3fff0 4
+  315  python srpRcsLock.py 
+  316  srpRead 0x13.0.0x3fff0 4
+  317  bash
+  318  source ../myScript.sh 
+  319  cd lock_tests/
+  320  cd rte
+  321  make clean;make
+  322  python srpRcsLock.py 
+  323  srpRead 0x13.0.0x3fff0 4
+  324  srpWrite 0x13.0.0 0 0 0 0
+  325  srpRead 0x13.0.0x3fff0 4
+  326  srpWrite 0x13.0.0x3fff0 0 0 0 0 
+  327  srpRead 0x13.0.0x3fff0 4
+  328  python srpRcsLock.py 
+  329  srpRead 0x13.0.0x3fff0 4
+  330  srpRead 0x19.0.0 32
+  331  srpRead 0x13.0.0x3fff0 4
+  332  srpWrite 0x13.0.0x3fff0 0 0 0 0
+  333  srpRead 0x13.0.0x3fff0 4
+  334  python srpRcsLock.py 
+  335  srpRead 0x13.0.0x10000 4
+  336  srpRead 0x13.0.0x3fff0 4
+  337  srpRead 0x13.0.0x10000 4
+  338  python srpRcsLock.py 
+  339  srpRead 0x13.0.0x10000 4
+  340  python srpRcsLock.py 
+  341  srpRead 0x13.0.0x10000 4
+  342  srpRead 0x13.0.0x3fff0 4
+  343  python srpRcsLock.py 
+  344  srpRead 0x13.0.0x3fff0 4
+  345  srpRead 0x13.0.0x10000 4
+  346  srpWrite 0x13.0.0x3fff0 0 0 0 0 0
+  347  srpRead 0x13.0.0x3fff0 4
+  348  ls -l ../rcs 
+  349  python srpRcsLock.py 
+  350  srpRead 0x13.0.0x3fff0 4
+  351  srpRead 0x13.0.0x10000 4
+  352  python srpRcsLock.py 
+  353  srpRead 0x13.0.0x10000 8
+  354  python srpRcsLock.py 
+  355  srpRead 0x13.0.0x10000 8
+  356  srpRead 0x13.0.0x3fff0 4
+  357  python srpRcsLock.py 
+  358  srpRead 0x13.0.0x3fff0 4
+  359  srpRead 0x13.0.0x10000 8
+  360  python srpRcsLock.py 
+  361  srpRead 0x13.0.0x3fff0 4
+  362  srpRead 0x13.0.0x10000 8
+  363  python srpRcsLock.py 
+  364  srpRead 0x13.0.0x3fff0 4
+  365  srpWrite 0x13.0.0x3fff0 0 0 0 0 
+  366  srpRead 0x13.0.0x3fff0 4
+  367  srpRead 0x13.0.0x10000 8
+  368  python srpRcsLock.py 
+  369  srpRead 0x13.0.0x3fff0 4
+  370  srpRead 0x13.0.0x10000 8
+  371  srpWrite 0x13.0.0x10000 0 0 0 0 0 0 0 0 0 0
+  372  srpRead 0x13.0.0x10000 8
+  373  python srpRcsLock.py 
+  374  srpRead 0x13.0.0x10000 8
+  375  srpRead 0x13.0.0x3fff0 4
+  376  python srpRcsLock.py 
+  377  srpRead 0x13.0.0x3fff0 4
+  378  srpRead 0x13.0.0x10000 8
+  379  srpWrite 0x13.0.0x10000 0 0 0 0 0 0 0 0 0 0
+  380  python srpRcsLock.py 
+  381  srpRead 0x13.0.0x10000 8
+  382  srpWrite 0x13.0.0x10000 0 0 0 0 0 0 0 0 0 0
+  383  python srpRcsLock.py 
+  384  srpRead 0x13.0.0x10000 8
+  385  srpRead 0x13.0.0x3fff0 4
+  386  source ../myScript.sh 
+  387  cd lock_tests/rte/
+  388  make clean;make
+  389  python srpRcsLock.py 
+  390  srpRead 0x13.0.0x3fff0 4
+  391  srpRead 0x13.0.0  8
+  392  srpRead 0x13.0.0x20000  8
+  393  srpRead 0x19.0.0 8
+  394  python srpRcsLock.py 
+  395  srpRead 0x19.0.0 8
+  396  srpRead 0x13.0.0x10000  8
+  397  python srpRcsLock.py 
+  398  bash
+  399  source ../myScript.sh 
+  400  cd lock_tests/
+  401  cd rte
+  402  python srpRcsLock.py 
+  403  srpRead 0x3.0.0x3FFF0 8
+  404  srpRead 0x3.0.0x3FFFF0 8
+  405  srpRead 0x13.0.0x3FFF0 8
+  406  python srpRcsLock.py 
+  407  source ../myScript.sh 
+  408  cd rcs2vex_transfer/
+  409  cd rte
+  410  ls
+  411  make clean;make 
+  412  python srpRcs2Vex.py 
+  413  srpVexLoader -c0 -f /nfs/site/disks/xne_00001/workspace/hw/vpaidi/ABC/ABC_DEMO/tests/vex/timer_sleep.fw 
+  414  srpWrite 0x63.0.0x4000 1 2 3 4
+  415  srpRead 0x63.0.0x4000
+  416  srpRead 0x63.0.0x4000 32
+  417  srpVexStart -c0
+  418  srpVexReady -c0
+  419  srpVexReady -c1
+  420  source /nfs/site/disks/xne_00001/workspace/hw/vpaidi/ABC/ABC_DEMO/tests/vex/timer_sleep.sh 
+  421  srpVexReady -c0
+  422  srpRead 0x63.0.0x10000 32
+  423  cat /nfs/site/disks/xne_00001/workspace/hw/vpaidi/ABC/ABC_DEMO/tests/vex/timer_sleep.sh
+  424  cp /nfs/site/disks/xne_00001/workspace/hw/vpaidi/ABC/ABC_DEMO/tests/vex/timer_sleep.sh .
+  425  geany timer_sleep.sh &
+  426  srpVexLoader -c1 -f /nfs/site/disks/xne_00001/workspace/hw/vpaidi/ABC/ABC_DEMO/tests/vex/timer_sleep.fw 
+  427  srpWrite 0x63.1.0x4000 1 2 3 4
+  428  srpVexStart -c1
+  429  srpVexReady -c1
+  430  srpVexReady -c2
+  431  source timer_sleep.sh
+  432  srpVexReady -c1
+  433  srpRead 0x63.1.0x4000
+  434  srpRead 0x63.1.0x4000 32
+  435  srpVexReady -c1
+  436  srpRead 0x63.0.0x4000 32
+  437  srpRead 0x62.0.0x100 21
+  438  srpRead 0x62.0.0x8100 16
+  439  srpRead 0x62.0.0x100 21
+  440  cat /p/frio/tools/abc/srp_rte/RTE_AddressMap_ABC.txt 
+  441  srpRead 0x62.0.0x0 32
+  442  srpRead 0x62.0.0x0 128
+  443  cd ../../../
+  444  ls
+  445  srpVexLoader -c2 -f tst.fw
+  446  srpWrite 0x63.2.0x4010 0x0 0x20 0x11010
+  447  srpRead 0x63.2.0x4000 32
+  448  srpVexStart -c2
+  449  srpRead 0x63.2.0x4000 32
+  450  srpVexReady -c2
+  451  srpRead 0x62.0.0 128
+  452  srpRead 0x63.2.0x10000 32
+  453  srpRead 0x63.2.0x11000 32
+  454  ls
+  455  cd -
+  456  cd ../../
+  457  ls
+  458  tar -zcvf tests.tar.gz lock_tests/ rcs2vex_transfer/
+  459  ls
+  460  cd -
+  461  cd ../
+  462  ls
+  463  geany vijay.sh &
+  464  source vijay.sh 
+  465  srpRead 0x63.3.0x11000 32
+  466  srpRead 0x63.3.0x10000 32
+  467  cat vijay.sh
+  468  srpRead 0x63.3.0x4000
+  469  srpRead 0x62.0.0 128
+  470  geany &
+  471  geany
+  472  geany vijay.sh
+  473  source vijay.sh 
+  474  srpRead 0x63.3.0x10000 32
+  475  srpRead 0x63.3.0x11000 32
+  476  source vijay.sh 
+  477  geany vijay.sh
+  478  source vijay.sh 
+  479  srpRead 0x63.3.0x11000 32
+  480  source vijay.sh 
+  481  geany vijay.sh
+  482  source vijay.sh 
+  483  srpRead 0x63.3.0x11000 32
+  484  srpRead 0x62.0.0 128
+  485  ls
+  486  srpVexReady -c3
+  487  srpVexReady -c2
+  488  srpRead 0x63.2.0x11000 32
+  489  srpWrite 0x63.2.0x11010 0x1
+  490  srpVexReady -c2
+  491  srpRead 0x62.0.0 128
+  492  cat vijay.sh
+  493  srpVexReady -c3
+  494  srpVexReady -c2
+  495  srpVexLoader -c 4 -f /nfs/site/disks/xne_00001/workspace/hw/vpaidi/ABC/ABC_DEMO/tests/vex/timer_sleep.fw
+  496  srpRead 0x63.4.0x4000 1 2 3 4
+  497  srpWrite 0x63.4.0x4000 1 2 3 4
+  498  srpRead 0x63.4.0x4000
+  499  srpRead 0x63.4.0x4000 16
+  500  srpVexStart -c4
+  501  srpRead 0x63.0.0 32
+  502  srpRead 0x63.4.0 32
+  503  geany vijay.sh
+  504  cat vijay.sh 
+  505  source vijay.sh
+  506  srpRead 0x63.4.0 32
+  507  srpVexReady -c4
+  508  srpVexReady -c3
+  509  srpVexReady -c2
+  510  srpRead 0x63.2.0 32
+  511  geany vijay.sh
+  512  source vijay.sh 
+  513  cat vijay.sh 
+  514  srpRead 0x63.2.0 32
+  515  srpRead 0x63.1.0 32
+  516  srpRead 0x63.0.0 32
+  517  srpRead 0x63.5.0x10000 32
+  518  exit
+  519  bash
+  520  exit
+  521  bash
+  522  source ../myScript.sh 
+  523  cd lock_tests/
+  524  cd rte
+  525  make clean;make
+  526  python srpRcsLock.py 
+  527  srpRead 0x13.0.0x3fff0 4
+  528  pwd
+  529  srpRead 0x13.0.0x3fff0 4
+  530  pwd
+  531  nedit ../myScript.sh &
+  532  source ../myScript.sh 
+  533  srpRead 0x19.0.0 32
+  534  cd /nfs/an/disks/an_home_disk014/chandrbi/Desktop/rundir_anfpgafrio065-215301-07052023
+  535  nedit ../myScript.sh &
+  536  source ../myScript.sh 
+  537  srpRead 0x19.0.0 32
+  538  exit
+  539  pwd
+  540  bash
+  541  exit
+  542  source ../myScript.sh 
+  543  cd lock_tests/rte/
+  544  python srpRcsLock.py 
+  545  srpRead 0x13.0.0x3fff0 4
+  546  python srpRcsLock.py 
+  547  bash
+  548  source ../myScript.sh 
+  549  cd rcs2vex_transfer/rte
+  550  make clean;make
+  551  python srpRcs2Vex.py 
+  552  cd /nfs/an/disks/an_home_disk014/chandrbi/Desktop/rundir_anfpgafrio112-220236-08052023
+  553  nedit ../myScript.sh &
+  554  nedit /nfs/site/disks/xne_00001/workspace/hw/vpaidi/atu_design.sh &
+  555  python srpRcs2Vex.py 
+  556  cd -
+  557  python srpRcs2Vex.py 
+  558  source ../myScript.sh 
+  559  cd lock_tests/rte
+  560  python srpRcsLock.py 
+  561  cd ../../boot/rte/
+  562  make clean;make
+  563  python srpRcsBoot.py 
+  564  make clean;make
+  565  python srpRcsBoot.py 
+  566  bash
+  567  source ../myScript.sh 
+  568  cd lock_tests/rte/
+  569  python srpRcsLock.py 
+  570  srpRead 0x13.0.0x3fff0 4
+  571  cd ../../rcs2vex_transfer/rte
+  572  ls -l ../rcs
+  573  python srpRcs2Vex.py 
+  574  srpWrite 0x1c.0.0 0x11111111 0x22222222 0x33333333 0x44444444 0x55555555 0x66666666 0x77777777 0x88888888 0x99999999 0xaaaaaaaa 0xbbbbbbbb 0xcccccccc 0xdddddddd 0xeeeeeeee 0xffffffff 0x12345678
+  575  srpRead 0x1c.0.0 32
+  576  python srpRcs2Vex.py 
+  577  srpRead 0x1c.0.0 32
+  578  python srpRcs2Vex.py 
+  579  srpRead 0x1c.0.0 32
+  580  python srpRcs2Vex.py 
+  581  source ../myScript.sh 
+  582  cd rcs2vex_transfer/rte/
+  583  python srpRcs2Vex.py 
+  584  bash
+  585  source ../myScript.sh 
+  586  cd rcs2vex_transfer/rte
+  587  python srpRcs2Vex.py 
+  588  source ../myScript.sh 
+  589  cd rcs2vex_transfer/rte/
+  590  python srpRcs2Vex.py 
+  591  bash
+  592  pwd
+  593  source ../myScript.sh 
+  594  cd rcs2vex_transfer/rte
+  595  python srpRcs2Vex.py 
+  596  source ../myScript.sh 
+  597  cd rcs2vex_transfer/rt
+  598  cd rcs2vex_transfer/rte
+  599  python srpRcs2Vex.py 
+  600  bash
+  601  source ../myScript.sh 
+  602  cd rcs2vex_transfer/rte
+  603  python srpRcs2Vex.py 
+  604  ls -l ../rcs/
+  605  python srpRcs2Vex.py 
+  606  srpRead 0x13.0.0x3fff0 4
+  607  ls
+  608  make clean;make
+  609  python srpRcs2Vex.py 
+  610  srpRead 0x63.0.0x30000 32
+  611  srpRead 0x1c.0.0 32
+  612  srpRead 0x13.0.0x3fff0 4
+  613  srpWrite 0x1c.0.0x50 0x1
+  614  srpRead 0x63.0.0x30000 32
+  615  srpRead 0x1c.0.0x40
+  616  make clean;make
+  617  python srpRcs2Vex.py 
+  618  srpWrite 0x63.0.0x30000 0
+  619  0
+  620  srpWrite 0x63.0.0x30000 0 0 0 0 0 0 0 0 0 0 0 0
+  621  srpRead 0x63.0.0x30000 32
+  622  python srpRcs2Vex.py 
+  623  srpRead 0x63.0.0x30000 32
+  624  make clean;make
+  625  python srpRcs2Vex.py 
+  626  srpRead 0x63.0.0x30000 32
+  627  make clean;make
+  628  python srpRcs2Vex.py 
+  629  srpRead 0x13.0.0x3ffff0 4
+  630  bash
+  631  source ../myScript.sh 
+  632  make clean;make
+  633  cd rcs2vex_transfer/rte
+  634  make clean;make
+  635  ls -l ../rcs/
+  636  python srpRcs2Vex.py 
+  637  srpRead 0x13.0.0x3ffff0 4
+  638  cd ../../boot/rte/
+  639  make clean;make
+  640  python srpRcsBoot.py 
+  641  bash
+  642  source ../myScript.sh 
+  643  cd boot/rte/
+  644  make clean;make
+  645  ls -l ../rcs/
+  646  python srpRcsBoot.py 
+  647  bash
+  648  source ../myScript.sh 
+  649  cd boot/rte/
+  650  make clean;make
+  651  python srpRcsBoot.py 
+  652  bash
+  653  source ../myScript.sh 
+  654  cd boot/rte
+  655  make clean;make
+  656  python srpRcsBoot.py 
+  657  cd ../../rcs2vex_transfer/rte
+  658  make clean;make
+  659  python srpRcs2Vex.py 
+  660  srpRead 0x19.0.0 32
+  661  srpWrite 0x19.0.0xc 0x10
+  662  srpRead 0x1c.0.0 32
+  663  srpRead 0x13.0.0x3fff0 4
+  664  srpWrite 0x13.0.0xc 0xAA55
+  665  srpRead 0x13.0.0x3fff0 4
+  666  srpWrite 0x13.0.0x3fffc 0xAA55
+  667  srpRead 0x13.0.0x3fff0 4
+  668  srpRead 0x1c.0.0 32
+  669  srpRead 0x63.0.0x30000 32
+  670  srpWrite 0x1c.0.0x50 0x1
+  671  srpRead 0x63.0.0x30000 32
+  672  srpWrite 0x63.0.0x30000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+  673  srpRead 0x63.0.0x30000 32
+  674  srpWrite 0x63.0.0x30000 0x1122
+  675  srpRead 0x63.0.0x30000 32
+  676  make clean;make
+  677  python srpRcs2Vex.py 
+  678  srpRead 0x63.0.0x30000 32
+  679  srpRead 0x1c.0.0 32
+  680  srpRead 0x13.0.0x3fff0 4
+  681  srpWrite 0x13.0.0x3fffc 0xAA55
+  682  srpRead 0x1c.0.0 32
+  683  srpRead 0x13.0.0x3fff0 4
+  684  srpRead 0x19.0.0 32
+  685  mke clean;make
+  686  make clean; make
+  687  python srpRcs2Vex.py 
+  688  srpRead 0x19.0.0 32
+  689  python srpRcs2Vex.py 
+  690  srpRead 0x19.0.0 32
+  691  srpRead 0x1c.0.50 32
+  692  srpRead 0x1c.0.0 32
+  693  srpRead 0x63.0.0x30000 32
+  694  make clean; make
+  695  python srpRcs2Vex.py 
+  696  make clean;make
+  697  python srpRcs2Vex.py 
+  698  make clean;make
+  699  python srpRcs2Vex.py 
+  700  make clean;make
+  701  python srpRcs2Vex.py 
+  702  make clean;make
+  703  python srpRcs2Vex.py 
+  704  make clean;make
+  705  python srpRcs2Vex.py 
+  706  make clean;make
+  707  python srpRcs2Vex.py 
+  708  make clean;make
+  709  python srpRcs2Vex.py 
+  710  srpRead 0x1c.0.0 32
+  711  srpRead 0x63.0.0x30000 32
+  712  make clean;make
+  713  python srpRcs2Vex.py 
+  714  srpRead 0x63.0.0x30000 32
+  715  srpRead 0x1c.0.0 32
+  716  make clean;make
+  717  python srpRcs2Vex.py 
+  718  make clean;make
+  719  python srpRcs2Vex.py 
+  720  ls
+  721  srpRcsVarAddr ../rcs/tx_hw.elf 
+  722  srpRcsVarAddr -m 2 -f ../rcs/tx_hw.elf -n write_rsm
+  723  srpRcsVarAddr -m 1 -f ../rcs/tx_hw.elf -n write_rsm
+  724  srpRcsVarAddr -m 0 -f ../rcs/tx_hw.elf -n write_rsm
+  725  srpRead 0x13.0.0x10000
+  726  srpRead 0x13.0.0x10000 32
+  727  srpWrite 0x13.0.0x10000 0x2 0 0 0 0 0 0 0 0 0 0
+  728  ls
+  729  srpRead 0x13.0.0x10000 32
+  730  python srpRcs2Vex.py 
+  731  srpRead 0x63.2.0x30000 32
+  732  cat /p/frio/tools/abc/srp_rte/include/srp_block_ids.h
+  733  make clean; make
+  734  python srpRcs2Vex.py
+  735  srpRead 0x63.0.0x30000 32
+  736  python srpRcs2Vex.py
+  737  ls
+  738  srpRead 0x63.1.0x30000 32
+  739  python srpRcs2Vex.py
+  740  srpRead 0x1c.0.0x0 64
+  741  srpRead 0x13.0.0x10000 32
+  742  srpRcsVarAddr -m 0 -f ../rcs/tx_hw.elf -n write_rsm
+  743  srpRcsVarAddr -m 0 -f ../rcs/rx_hw.elf -n write_rsm
+  744  srpRcsVarAddr -m 0 -f ../rcs/cal_hw.elf -n write_rsm
+  745  python srpRcs2Vex.py 
+  746  make clean; make
+  747  python srpRcs2Vex.py 
+  748  make clean; make
+  749  python srpRcs2Vex.py 
+  750  make clean; make
+  751  python srpRcs2Vex.py 
+  752  srpRead 0x63.39.0x30000 32
+  753  make clean; make
+  754  python srpRcs2Vex.py 
+  755  srpRead 0x63.39.0x30000 32
+  756  make clean; make
+  757  python srpRcs2Vex.py 
+  758  source ../myScript.sh 
+  759  cd rcs2vex_transfer/rte
+  760  make clean;make
+  761  srpRcsVarAddr 
+  762  srpRcsVarAddr -m0 -f ../rcs/tx_hw.elf -n write_rsm
+  763  srpRcsVarAddr -m0 -f ../rcs/rx_hw.elf -n write_rsm
+  764  srpRcsVarAddr -m0 -f ../rcs/cal_hw.elf -n write_rsm
+  765  make clean;make
+  766  python srpRcs2Vex.py 
+  767  make clean;make
+  768  python srpRcs2Vex.py 
+  769  cd ../../../
+  770  ls
+  771  cd vex/vex_2_rcs/vex/
+  772  ls
+  773  bash
+  774  source ../myScript.sh 
+  775  cd rcs2vex_transfer/rte
+  776  python srpRcs2Vex.py 
+  777  cd ../../
+  778  cd ../vex/
+  779  ls
+  780  cd vex_2_rcs/rte
+  781  make clean
+  782  make
+  783  python srpVex2Rcs.py 
+  784  srpRead 0x1c.0.0 64
+  785  srpWrite 0x1c.0.0x60 1
+  786  srpRead 0x1c.0.0 64
+  787  srpWrite 0x1c.0.0x60 1
+  788  srpRead 0x1c.0.0 64
+  789  ls
+  790  cd ../../../rcs/
+  791  mkdir vex2rcs_transfer
+  792  cd vex2rcs_transfer/
+  793  scp -r vpaidi@scea293714.zsc14.intel.com:/nfs/site/disks/zsc14.xne_abc_fe_001/users/vpaidi/check_in/vex-trunk/vex_core/vex/applications/ve32/examples/vex_2_rcs/* .
+  794  ls
+  795  cd rte/obj/
+  796  cd ../
+  797  make clean; make
+  798  python srpVex2Rcs.py 
+  799  ls
+  800  geany makefile
+  801  make clean; make
+  802  ls
+  803  rm -rf vex_2_rcs.so vex_2_rcs.log
+  804  make clean; make
+  805  python srpVex2Rcs.py 
+  806  srpRead 0x1c.0.0 64
+  807  srpWrite 0x1c.0.0x60 1
+  808  srpRead 0x1c.0.0 64
+  809  srpWrite 0x1c.0.0x60 1
+  810  srpRead 0x1c.0.0 64
+  811  srpWrite 0x1c.0.0x60 1
+  812  srpRead 0x1c.0.0 64
+  813  srpWrite 0x1c.0.0x60 1
+  814  srpRead 0x1c.0.0 64
+  815  srpWrite 0x1c.0.0x60 1
+  816  srpRead 0x1c.0.0 64
+  817  srpWrite 0x1c.0.0x60 1
+  818  srpRead 0x1c.0.0 64
+  819  srpWrite 0x1c.0.0x60 1
+  820  srpRead 0x1c.0.0 64
+  821  srpWrite 0x1c.0.0x60 1
+  822  srpRead 0x1c.0.0 64
+  823  bash
+  824  source ../myScript.sh 
+  825  cd rcs2vex_transfer/rte/
+  826  python srpRcs2Vex.py 
+  827  source ../myScript.sh 
+  828  cd rcs2vex_transfer/rte/
+  829  source srpRcs2Vex.
+  830  source srpRcs2Vex.py 
+  831  python srpRcs2Vex.py 
+  832  bash
+  833  source ../myScript.sh 
+  834  cd rcs2vex_transfer/rte
+  835  make clean;make
+  836  python srpRcs2Vex.py 
+  837  cd ../../
+  838  ls
+  839  cd vex2rcs_transfer/
+  840  cd rte
+  841  ls
+  842  python srpVex2Rcs.py 
+  843  srpRead 0x63.0.0x30000 32
+  844  srpRead 0x1c.0.0xa0 32
+  845  srpWrite 0x1c.0.0x60 0x1
+  846  srpRead 0x1c.0.0xa0 32
+  847  srpWrite 0x1c.0.0x60 0x1
+  848  srpRead 0x1c.0.0xa0 32
+  849  srpWrite 0x1c.0.0x60 0x1
+  850  srpRead 0x1c.0.0xa0 32
+  851  srpWrite 0x1c.0.0x60 0x1
+  852  srpRead 0x1c.0.0xa0 32
+  853  srpWrite 0x1c.0.0x60 0x1
+  854  srpRead 0x1c.0.0xa0 32
+  855  srpWrite 0x1c.0.0x60 0x1
+  856  srpRead 0x1c.0.0xa0 32
+  857  srpWrite 0x1c.0.0x60 0x1
+  858  srpRead 0x1c.0.0xa0 32
+  859  srpWrite 0x1c.0.0x60 0x1
+  860  srpRead 0x1c.0.0xa0 32
+  861  srpWrite 0x1c.0.0x60 0x1
+  862  srpRead 0x1c.0.0xa0 32
+  863  cd ../
+  864  ls
+  865  mkdir rcs
+  866  cd -
+  867  ls ../
+  868  ls -l ../rcs/
+  869  make clean;make
+  870  python srpVex2Rcs.py 
+  871  make clean;make
+  872  python srpVex2Rcs.py 
+  873  srpRead 0x13.0.0 32
+  874  srpRead 0x13.0.0x10000 32
+  875  srpRead 0x1c.0.0xa0 32
+  876  python srpVex2Rcs.py 
+  877  srpRead 0x1c.0.0xa0 32
+  878  srpRead 0x13.0.0x10000 32
+  879  python srpVex2Rcs.py 
+  880  srpRead 0x13.0.0x3fffc 4
+  881  srpRead 0x11.0.0x24000 32
+  882  python srpVex2Rcs.py 
+  883  srpRead 0x13.0.0x3fffc 4
+  884  srpRead 0x13.0.0x10000 32
+  885  make clean;make
+  886  python srpVex2Rcs.py 
+  887  srpRead 0x13.0.0x3fffc 4
+  888  srpRead 0x13.0.0x10000 32
+  889  python srpVex2Rcs.py 
+  890  srpRead 0x13.0.0x3fff4 4
+  891  srpRead 0x13.0.0x10000 32
+  892  srpWrite 0x13.0.0x10000 0 0 0
+  893  srpRead 0x13.0.0x10000 32
+  894  python srpVex2Rcs.py 
+  895  srpRead 0x13.0.0x10000 32
+  896  srpRead 0x13.0.0x3fff0 4
+  897  srpRead 0x1c.0.0xa0 32
+  898  srpWrite 0x1c.0.0x60 0x1
+  899  srpRead 0x1c.0.0xa0 32
+  900  srpWrite 0x1c.0.0x60 0x1
+  901  srpRead 0x1c.0.0xa0 32
+  902  srpWrite 0x1c.0.0x60 0x1
+  903  srpRead 0x1c.0.0xa0 32
+  904  make clean;make
+  905  python srpVex2Rcs.py 
+  906  srpRead 0x1c.0.0xa0 32
+  907  srpWrite 0x1c.0.0x60 0x1
+  908  srpRead 0x1c.0.0xa0 32
+  909  srpWrite 0x1c.0.0x60 0x1
+  910  srpRead 0x1c.0.0xa0 32
+  911  srpWrite 0x1c.0.0x60 0x1
+  912  srpRead 0x1c.0.0xa0 32
+  913  source ../myScript.sh 
+  914  bash
+  915  source ../myScript.sh 
+  916  cd rcs2vex_transfer/rte
+  917  python srpRcs2Vex.py 
+  918  bash
+  919  source ../myScript.sh 
+  920  cd vex2rcs_transfer/rte/
+  921  ls -l ../rcs/
+  922  make clean;make
+  923  python srpVex2Rcs.py 
+  924  srpRead 0x11.0.0x24000 32
+  925  srpRead 0x13.0.0x3fff0 4
+  926  srpRead 0x1c.0.0xa0 32
+  927  srpWrite 0x1c.0.0x60 0x1
+  928  srpRead 0x1c.0.0xa0 32
+  929  srpWrite 0x1c.0.0x60 0x1
+  930  srpRead 0x1c.0.0xa0 32
+  931  srpWrite 0x1c.0.0x60 0x1
+  932  srpRead 0x1c.0.0xa0 32
+  933  srpWrite 0x1c.0.0x60 0x1
+  934  srpRead 0x1c.0.0xa0 32
+  935  srpWrite 0x1c.0.0x60 0x1
+  936  srpRead 0x1c.0.0xa0 32
+  937  srpWrite 0x1c.0.0x60 0x1
+  938  srpRead 0x1c.0.0xa0 32
+  939  python srpVex2Rcs.py 
+  940  srpRead 0x1c.0.0xa0 32
+  941  python srpVex2Rcs.py 
+  942  bash
+  943  source ../myScript.sh 
+  944  cd vex2rcs_transfer/rte/
+  945  srpRead 0x1c.0.0xa0 32
+  946  ls/p/frio/tools/abc/srp_rte/
+  947  ls /p/frio/tools/abc/srp_rte/
+  948  cat /p/frio/tools/abc/srp_rte/RTE_AddressMap_ABC.txt
+  949  srpRead 0x1b.0.0x0 32
+  950  python srpVex2Rcs.py 
+  951  srpRead 0x1b.0.0x0 32
+  952  srpRead 0x1c.0.0xa0 32
+  953  srpRead 0x1b.0.0x0 32
+  954  srpWrite 0x1c.0.0x60 0x1
+  955  srpRead 0x1b.0.0x0 32
+  956  srpRead 0x1c.0.0xa0 32
+  957  srpWrite 0x1c.0.0x60 0x1
+  958  srpRead 0x1c.0.0xa0 32
+  959  srpWrite 0x1c.0.0x60 0x1
+  960  srpRead 0x1c.0.0xa0 32
+  961  srpWrite 0x1c.0.0x60 0x1
+  962  srpRead 0x1c.0.0xa0 32
+  963  srpRead 0x1c.0.0xa0 32
+  964  srpWrite 0x1c.0.0x60 0x1
+  965  srpRead 0x1c.0.0xa0 32
+  966  srpRead 0x1b.0.0x0 32
+  967  python srpVex2Rcs.py 
+  968  srpRead 0x1b.0.0x0 32
+  969  srpRead 0x1c.0.0xa0 32
+  970  srpWrite 0x1c.0.0x60 0x1
+  971  srpRead 0x1c.0.0xa0 32
+  972  bash
+  973  source ../myScript.sh 
+  974  cd vex2rcs_transfer/rte
+  975  python srpVex2Rcs.py 
+  976  srpRead 0x1b.0.0 32
+  977  srpRead 0x1c.0.0xa0 32
+  978  srpRead 0x11.0.0x24000 32
+  979  srpWrite 0x1c.0.0x60 0x1
+  980  srpRead 0x1c.0.0xa0 32
+  981  srpRead 0x11.0.0x24000 32
+  982  srpWrite 0x1c.0.0x60 0x1
+  983  srpRead 0x1c.0.0xa0 32
+  984  srpWrite 0x1c.0.0x60 0x1
+  985  srpRead 0x1c.0.0xa0 32
+  986  srpWrite 0x1c.0.0x60 0x1
+  987  srpRead 0x1c.0.0xa0 32
+  988  srpWrite 0x1c.0.0x60 0x1
+  989  srpRead 0x1c.0.0xa0 32
+  990  srpWrite 0x1c.0.0x60 0x1
+  991  srpRead 0x1c.0.0xa0 32
+  992  python srpVex2Rcs.py 
+  993  srpRead 0x1c.0.0xa0 32
+  994  srpRead 0x12.0.0 32
+  995  srpRead 0x1b.0.0 32
+  996  srpWrite 0x1c.0.0x60 0x1
+  997  srpRead 0x1c.0.0xa0 32
+  998  srpRead 0x1b.0.0 32
+  999  source ../myScript.sh 
+ 1000  cd vex2rcs_transfer/rte
+ 1001  srpRead 0x1c.0.0 32
+ 1002  python srpVex2Rcs.py 
+ 1003  srpRead 0x1b.0.0 32
+ 1004  srpRead 0x1c.0.0xa0 32
+ 1005  srpWrite 0x1c.0.0x60 0x1
+ 1006  srpRead 0x1b.0.0 32
+ 1007  srpWrite 0x1c.0.0x60 0x1
+ 1008  srpRead 0x1b.0.0 32
+ 1009  srpWrite 0x1c.0.0x60 0x1
+ 1010  srpRead 0x1b.0.0 32
+ 1011  srpWrite 0x1c.0.0x60 0x1
+ 1012  srpRead 0x1b.0.0 32
+ 1013  srpWrite 0x1c.0.0x60 0x1
+ 1014  srpRead 0x1b.0.0 32
+ 1015  srpRead 0x1c.0.0xa0 32
+ 1016  python srpVex2Rcs.py 
+ 1017  srpRead 0x1b.0.0 32
+ 1018  srpRead 0x63.0.0x30000 32
+ 1019  srpRead 0x1c.0.0xa0 32
+ 1020  srpWrite 0x1c.0.0x60 0x1
+ 1021  srpRead 0x1c.0.0xa0 32
+ 1022  history > hist.txt

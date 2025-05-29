@@ -1,0 +1,67 @@
+#!/usr/intel/bin/python3.6.3a
+import UsrIntel.R3
+import openpyxl
+import subprocess
+import sys
+import scripts as fw
+wb = openpyxl.Workbook()
+
+V2D = fw.ABC_V2D()
+wa = wb.active
+header = ["quad_instance", "drf_clock", "test_config", "delay_value", "capture_delay_value", "delay_antenna_capture", "capture_blocks_per_antenna", "consecutive_captures_delay"]
+row = 1
+
+wa.cell(row, 1).value = header[0]
+wa.cell(row, 2).value = header[1]
+wa.cell(row, 3).value = header[2]
+wa.cell(row, 4).value = header[3]
+wa.cell(row, 5).value = header[4]
+wa.cell(row, 6).value = header[5]
+wa.cell(row, 7).value = header[6]
+wa.cell(row, 8).value = header[7]
+row += 1
+
+test_config_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+arg_len = len(sys.argv)
+if arg_len != 2:
+    print("Script should be run in below format\n")
+    print("python regression_list_generation.py <drf_clock>\n")
+    print("As there were no inputs provided executing with drf_clock: 0\n")
+    drf_clock = 0
+else:
+    drf_clock = (int) (sys.argv[1])
+
+V2D.drf_clock_check(drf_clock)
+print("all parameters are proper\n")
+delay_value_list = [768, 1152]
+if (0 == drf_clock):
+    capture_delay_value_list = [0, 512, 1024]
+    delay_antenna_capture_list = [0, 512, 1024]
+    consecutive_capture_delay_value_list = [0, 512, 1024]
+else:
+    capture_delay_value_list = [0, 768, 1536]
+    delay_antenna_capture_list = [0, 768, 1536]
+    consecutive_capture_delay_value_list = [0, 768, 1536]
+capture_blocks_per_antenna_list = [2, 10, 15]
+
+for quad_instance in range(2):
+    for test_config in test_config_list:
+        for capture_delay_value in capture_delay_value_list:
+            for delay_antenna_capture_value in delay_antenna_capture_list:
+                for capture_blocks_per_antenna_value in capture_blocks_per_antenna_list:
+                    for consecutive_capture_delay_value in consecutive_capture_delay_value_list:
+                        wa.cell(row,1).value = quad_instance
+                        wa.cell(row,2).value = drf_clock
+                        wa.cell(row,3).value = test_config
+                        wa.cell(row,4).value = delay_value_list[drf_clock]  #delay value
+                        wa.cell(row,5).value = capture_delay_value
+                        wa.cell(row,6).value = delay_antenna_capture_value
+                        wa.cell(row,7).value = capture_blocks_per_antenna_value
+                        wa.cell(row,8).value = consecutive_capture_delay_value
+                        row+=1
+
+sheet_name= wb['Sheet']
+sheet_name.title ='quad_flow3_pdpd_ingress_double'
+
+wb.save("quad_flow3_pdpd_ingress_double_list.xlsx")
+

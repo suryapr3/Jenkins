@@ -1,0 +1,10 @@
+# Enable Ral Transactor
+__TREX_APPEND__ => -simv_args +UVM_RAL_TRACE=ral_mon.trk +UVM_RAL_TRACE_RESET +UVM_RAL_TRACE_PRINT_FIELD -simv_args-
+
+# FW_TEST Shortcut
+# Format:  -fw  FULL_PATH_TO_C_FILE
+
+-fw %CFILE% => -pre $WORKAREA/scripts/compile_fw_c -c=%CFILE% -pre- -simv_args -sv_root ./libfw_test_cc -sv_lib libfw_test_cc -simv_args-
+
+-fwso %SV_ROOT% %SV_LIB% => -simv_args -sv_root %SV_ROOT% -sv_lib %SV_LIB% -simv_args-
+

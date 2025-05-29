@@ -1,0 +1,98 @@
+User:      chandrbi
+Area:      /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4
+Cluster:   abc_emul
+Stepping:  srvrgen4
+Branch:    abc_emul
+Time:      Sun Jun 16 22:11:35 2024
+gmtime:    Mon Jun 17 05:11:35 2024
+Host:      sccf06104916.zsc14.intel.com
+PID:       11533
+Program:  /nfs/site/disks/crt_tools_045/gatekeeper4/master/4.51.01_22ww42a/bin/turnin
+Version:  4.51.01_22ww42a (Tue Oct 11 19:31:02 2022)
+Config:   /nfs/site/disks/crt_tools_079/gatekeeper_configs/abc/24.02.003/GkConfig.pl
+Version control tool: /usr/intel/pkgs/git/2.18.0/bin/git
+Version control tool version: 2.18.0
+pid: 11533
+ppid:       11431
+Active Groups: arborcrest_soc gnr74 hdk10nm hdk10nmproc hdk7nm hdk7nmproc i1278 i1278proc intelall ncsg78 soc soc73 socenv srvr10nm ve_hw
+Signature: eb25f04970244cff3f5a1ff99d0b587179526f37
+Searching for files not checked in: 
+
+THE FOLLOWING FILES have not been committed:
+GATEKEEPER/turnin_comments
+
+Searching for local changes
+Finding files in new changesets
+ECO Control check not done.
+Running pre-turnin check...
+%I-pre_turnin_script: @commands = (
+              '/p/hdk/pu_tu/prd/gatekeeper_hooks/abc/latest/pre_turnin_qc.pl',
+              '/p/hdk/pu_tu/prd/gatekeeper_hooks/abc/latest/check_commits.pl -check_current_branch',
+              '/p/hdk/pu_tu/prd/gatekeeper_hooks/abc/latest/check_turnin_changes.pl',
+              '/p/hdk/pu_tu/prd/gatekeeper_hooks/abc/latest/gk_blocklist.pl',
+              '/p/hdk/pu_tu/prd/proj_bin/abc/latest/validate_changes turnin -debug -logdir <MODEL_ROOT>/GATEKEEPER',
+              '/p/hdk/pu_tu/prd/gatekeeper_hooks/abc/latest/gk_hsdes_check.pl -gkcfgdir <GK_CONFIG_DIR>'
+            );
+
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: Begin QC Stage: Filename QC checks
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: END QC Stage: Filename QC checks
+%I-pre_turnin_qc.pl: Errors: 0, Warnings: 0
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: Begin QC Stage: GK Recipe QC Checks
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: END QC Stage: GK Recipe QC Checks
+%I-pre_turnin_qc.pl: Errors: 0, Warnings: 0
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: 
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: Begin QC Stage: ===================   PRE_TURNIN_QC SUMMARY  ===================
+%I-pre_turnin_qc.pl: --------------------------------------------------------------------------------
+%I-pre_turnin_qc.pl: 
+%I-pre_turnin_qc.pl: STAGE: filename:[Filename QC checks] : PASSED
+%I-pre_turnin_qc.pl: STAGE: recipe:[GK Recipe QC Checks] : PASSED
+%I-pre_turnin_qc.pl: QC Checks Warnings: 0
+%I-pre_turnin_qc.pl: QC Checks Passed!
+%I-check_commits.pl: Current Branch: abc_emul
+%I-check_commits.pl: Turnining into branch abc_emul from checked out branch
+%I-check_commits.pl: Repository comes from same root commits as master.
+%I-check_commits.pl: No bad commits configured for cluster/stepping in $cfg_common{disallowed_commits}.
+%I-check_commits.pl: Did not find any problems with commits.
+================================================================================
+%I-check_turnin_changes.pl: 
+Did not find any active turnins with the same files changed
+
+================================================================================
+
+
+%I-gk_hsdes_check.pl: No -bugs or -ecos specified
+
+pre_turnin_script exit status = 0
+done
+Messages of the Day
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Connecting to GateKeeper...*
+GateKeeper is starting a new pipeline.  Please wait.
+..
+Sending Changes
+RUNNING: /usr/intel/pkgs/git/2.18.0/bin/git clone --bare --no-local --reference /nfs/site/disks/abc.git.01/abc_emul-srvrgen4 /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4 /nfs/site/disks/abc.gkwork.0001/gk4/incomingrepos/abc/abc_emul/temp.chandrbi.1DCB7E68-2C68-11EF-8CA7-8162E2361CCB
+### Sun Jun 16 22:11:56 2024: Submitting your changesets to GateKeeper
+Starting with data copy to GateKeeper incoming area...
+Cloning into bare repository '/nfs/site/disks/abc.gkwork.0001/gk4/incomingrepos/abc/abc_emul/temp.chandrbi.1DCB7E68-2C68-11EF-8CA7-8162E2361CCB'...
+Data copy to incoming area done
+Sun Jun 16 22:11:56 2024: Starting permissions fixing in GateKeeper incoming area...
+Permissions fixed
+----Server-Messages------------------------------------------
+Received turnin 16634
+There are 0 other submissions in the pipeline.
+To monitor your turnin, use the following:
+  command:  turnininfo 16634
+  webpage:  http://scygatkpr334.zsc14.intel.com:32501/turnin?id=16634
+For additional help, please contact the powerusers listed in the command:
+  turnin -c abc_emul -s srvrgen4 -b abc_emul -info
+Submission successful.

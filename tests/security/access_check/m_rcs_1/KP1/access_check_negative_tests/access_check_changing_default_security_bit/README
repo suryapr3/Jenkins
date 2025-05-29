@@ -1,0 +1,32 @@
+/*********************************************************************
+*                                                                    *
+* Project     : ABC                                                  *
+* Author      : Sneha Singh                                          *
+* Date        : 31 July 2024                                         *
+* Test        : access check changing default security bit           *
+*                                                                    *
+*********************************************************************/
+
+This is a negative test case where in KP1 core is made to access the NoC targets after modifying
+the default base address register corresponding to that target in the RBM register space of the m_rcs1 bridge.
+By default, the base address register will be pointing to the address space of the target, where in the access
+via m_rcs_1 will pass through. However, in this test, the security bit of this base address register will be modified
+to 1 so that any access to that target address space should be blocked. So in this test, we're validating whether
+that access is blocked or not.
+
+How to run the test ?
+    From any ABC FRIO bash terminal, execute the following.
+    python access_check_changing_default_security_bit.py <rcs_core> <pattern>
+
+    @input arguments
+        <rcs_core>    : This is the RCS core number who'll initiate access via m_rcs_1 port.
+                        This argument can take value 3 KP1 CAL respectively.
+        <pattern>     : This the input pattern the rcs writes to the target registers
+
+How to check the output ?
+    Upon completion of the test, PASS/FAIL status will be displayed in the bash terminal.
+    Additionally, the same can be confirmed from the log file generated from the serial console.
+
+Errors if any ?
+    Take a look at the serial log so generated and grep for string "ERROR". Triage it depending upon the
+    nature of the ERROR logged.

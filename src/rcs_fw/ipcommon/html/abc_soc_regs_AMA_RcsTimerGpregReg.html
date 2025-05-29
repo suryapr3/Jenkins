@@ -1,0 +1,5143 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/rcs/timer/gpreg/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/rcs/timer/gpreg/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_rcs_timer_gpreg_reg">AddressMap abc_soc_top/rcs/timer/gpreg/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/rcs/timer/gpreg/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_38CCF15CC2FF9767">ssp_cs_mux_15_8</a>  </b></td>
+        <td class="unboxed sdescmap">RCS SSP CS MUX</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2E0FDD719592352F">ssp_cs_mux_7_0_r</a>  </b></td>
+        <td class="unboxed sdescmap">RCS SSP CS MUX</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F71E11F9A210DD3B">ssp_cs_gpio_mux</a>  </b></td>
+        <td class="unboxed sdescmap">RCS SSP CS / GPIO MUX</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000000c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_AAD5DBF6A29800C2">ssp_dma_trigger_gpio_sel</a>  </b></td>
+        <td class="unboxed sdescmap">SSP DMA trigger gpio assignment</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000010</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_3F88072DEABB5EDE">core_dma_trigger_gpio_sel</a>  </b></td>
+        <td class="unboxed sdescmap">Core DMA trigger gpio assignment</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000014</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DA71C3CA56233A97">LCNT_INC</a>  </b></td>
+        <td class="unboxed sdescmap">Timesync BFN Lower Count Increment Control Register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000018</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4AC1525245B9BA6F">TEN_MS_CNT</a>  </b></td>
+        <td class="unboxed sdescmap">Timesync Ten Millisecond Count.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000001c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_B65006CE2E491136">INC_PRE_REG0</a>  </b></td>
+        <td class="unboxed sdescmap">Part 0 of Timesync Timer Increment/Preset Value.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000020</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_692FE2B31A9F8DE9">INC_PRE_REG1</a>  </b></td>
+        <td class="unboxed sdescmap">Part 1 of Timesync Timer Increment/Preset Value.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000024</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D2F8E1838956AEAD">CNT_ADJ_REG0</a>  </b></td>
+        <td class="unboxed sdescmap">Part 0 of Timesync Counter Adjustment Value.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000028</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8DA795F7A01580A5">CNT_ADJ_REG1</a>  </b></td>
+        <td class="unboxed sdescmap">Part 1 of Timesync Counter Adjustment Value.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000002c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_04CA123A8AD1F74E">bfn_capt_cfg1</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Capture strobe edge select</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000030</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_B1DD0CE389CB6B0F">bfn_capt_cfg2</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Capture strobe edge select</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000034</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DBCF59A46DF915AA">bfn_capt_int_mask</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Capture strobe interrupt masks</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000038</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4E38B66E19280B3A">BFN_TIME_CAPT_STATUS</a>  </b></td>
+        <td class="unboxed sdescmap">Status for bfn time capture strobes</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000003c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_EEE78E08A14536E4">ICTRL</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Timesync General Control Register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000040</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_29343BAF2A19D840">opps_val_timesync_ctrl</a>  </b></td>
+        <td class="unboxed sdescmap">timesync control</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000044</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_570DEC6E48A22A98">BFN_CNT_LO</a>  </b></td>
+        <td class="unboxed sdescmap">Lower BFN Count Value captured during tsync pulse</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000048</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_26A4435ADF6FE608">BFN_CNT_HI</a>  </b></td>
+        <td class="unboxed sdescmap">Upper BFN Count Value captured during tsync pulse</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000004c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D32D39DB187D276D">bfn_live_count_lo</a>  </b></td>
+        <td class="unboxed sdescmap">Live lower BFN Count Value</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000050</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_29D1096671F4A0D1">bfn_live_count_hi</a>  </b></td>
+        <td class="unboxed sdescmap">Live Upper BFN Count Value</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000054</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_62A42C1822EFA621">BFN_CNT_VAL1_REG0</a>  </b></td>
+        <td class="unboxed sdescmap">Part 0 of BFN Read Value1.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000058</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_0518B36997ED4ACA">BFN_CNT_VAL1_REG1</a>  </b></td>
+        <td class="unboxed sdescmap">Part 1 of BFN Read Value1.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000005c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C5048B6FA586A2D2">BFN_CNT_VAL2_REG0</a>  </b></td>
+        <td class="unboxed sdescmap">Part 0 of BFN Read Value2.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000060</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_A3518EEE14B1DBEE">BFN_CNT_VAL2_REG1</a>  </b></td>
+        <td class="unboxed sdescmap">Part 1 of BFN Read Value2.</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000064[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_B1072FA32239EFB5">TX_EN_BFN_CAPTURE_VAL[4]</a>  </b></td>
+        <td class="unboxed sdescmap">Lower BFN Count Value captured by capture strobes</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000074[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_02F7FF46C09D5D58">RX_EN_BFN_CAPTURE_VAL[4]</a>  </b></td>
+        <td class="unboxed sdescmap">Lower BFN Count Value captured by capture strobes</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000084[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_48819F636CD1DED3">RX_FB_BFN_CAPTURE_VAL[4]</a>  </b></td>
+        <td class="unboxed sdescmap">Lower BFN Count Value captured by capture strobes</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/rcs/timer/gpreg/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_38CCF15CC2FF9767" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) ssp_cs_mux_15_8</span><br/>
+      <span class="sdescdet">RCS SSP CS MUX</span><br/>
+      <span class="ldescdet">16 mux selects to select from 4 CS to connect to GPIO15 to GPIO8
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c00</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_15</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_14</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_13</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_12</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_11</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_10</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_9</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_8</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_15</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_14</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_13</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_12</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_11</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_10</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_9</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_8</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2E0FDD719592352F" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) ssp_cs_mux_7_0_r</span><br/>
+      <span class="sdescdet">RCS SSP CS MUX</span><br/>
+      <span class="ldescdet">16 mux selects to select from 4 CS to connect to GPIO7 downto GPIO0
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c04</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_7</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_6</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_5</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_4</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_3</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_2</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_1</td>
+        <td class="fldnorm" colspan="2">gpio_ssp_mux_sel_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_ssp_mux_sel_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SSP CS Select for coresponding GPIO</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">CS0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">SSP_0_CS[0]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">SSP_0_CS[1]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">SSP_0_CS[2]<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CS3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">SSP_0_CS[3]<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F71E11F9A210DD3B" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000008</span> Register(32 bit) ssp_cs_gpio_mux</span><br/>
+      <span class="sdescdet">RCS SSP CS / GPIO MUX</span><br/>
+      <span class="ldescdet">16 mux selects to select from either the raw CS, the CS selected by SSP_CS_MUX* or the output of the timers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c08</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel15</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel14</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel13</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel12</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel11</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel10</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel9</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel8</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel7</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel6</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel5</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel4</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel3</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel2</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel1</td>
+        <td class="fldnorm" colspan="2">ssp_gpio_mux_sel0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:30]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel15</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:28]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel14</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:26]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel13</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[25:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel12</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:22]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel11</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:20]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel10</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:18]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel9</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel8</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_gpio_mux_sel0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">For rcs_gpio_grp2_pdo[n], this field selects which source will be driven onto the gpio pin.<br/><br/>0=rcs_gpio_grp2_pdo[n],<br/>1=ssp_cs indicated by gpio_ssp_mux_sel_[n] field.<br/>2=rcs_gpio_grp2_pdo[n] qualified by ssp_cs indicated by gpio_ssp_mux_sel_n field<br/>3=reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_AAD5DBF6A29800C2" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000000c</span> Register(32 bit) ssp_dma_trigger_gpio_sel</span><br/>
+      <span class="sdescdet">SSP DMA trigger gpio assignment</span><br/>
+      <span class="ldescdet">This registers specifies which of the 32 gpio outputs will be configured to drive the DMA triggers for the SSP block.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c0c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffffc0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffffc0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="26">-</td>
+        <td class="fldnorm" colspan="1">sspdma_trig_en</td>
+        <td class="fldnorm" colspan="5">ssp_dma_gpio_sel0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="26">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">sspdma_trig_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Each bit enables the corresponding ssp dma trigger.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ssp_dma_gpio_sel0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates which gpio pdo signal will drive the ssp DMA start trigger.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_3F88072DEABB5EDE" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000010</span> Register(32 bit) core_dma_trigger_gpio_sel</span><br/>
+      <span class="sdescdet">Core DMA trigger gpio assignment</span><br/>
+      <span class="ldescdet">This registers specifies which of the 32 gpio outputs will be configured to drive the DMA triggers for each of the 4 cores. 
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c10</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="4">core_dma_trig_en</td>
+        <td class="fldnorm" colspan="5">core_3_dma_trig_gpio_sel</td>
+        <td class="fldnorm" colspan="5">core_2_dma_trig_gpio_sel</td>
+        <td class="fldnorm" colspan="5">core_1_dma_trig_gpio_sel</td>
+        <td class="fldnorm" colspan="5">core_0_dma_trig_gpio_sel</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="5">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:20]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">core_dma_trig_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Each bit enables the corresponding core dma trigger.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">core_3_dma_trig_gpio_sel</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates which gpio pdo signal will drive the DMA start trigger for core n</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">core_2_dma_trig_gpio_sel</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates which gpio pdo signal will drive the DMA start trigger for core n</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">core_1_dma_trig_gpio_sel</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates which gpio pdo signal will drive the DMA start trigger for core n</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">core_0_dma_trig_gpio_sel</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates which gpio pdo signal will drive the DMA start trigger for core n</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DA71C3CA56233A97" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000014</span> Register(32 bit) LCNT_INC</span><br/>
+      <span class="sdescdet">Timesync BFN Lower Count Increment Control Register.</span><br/>
+      <span class="ldescdet">This register controls the increment of AW_isync BFN lower counter every clock cycle.  The value should meet (TEN_MS_CNT+1)%BFN_LOWER_CNT_INC = 0.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c14</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000001</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="24">BFN_LOWER_CNT_INC</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_LOWER_CNT_INC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">BFN_LOWER_CNT_INC. The value programmed in this register is used to increment the BFN lower counter every clock-cycle.</span></p>
+          <p><b>Reset: </b>hex:0x000001;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_4AC1525245B9BA6F" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000018</span> Register(32 bit) TEN_MS_CNT</span><br/>
+      <span class="sdescdet">Timesync Ten Millisecond Count.</span><br/>
+      <span class="ldescdet">This register controls lower BFN counter value for ten millisecond count.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c18</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x0095ffff</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="24">TEN_MS_CNT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TEN_MS_CNT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TEN_MS_CNT. The lower BFN counter resets to zero when it reaches this value. This register should be programmed with the desired 10ms lower count - BFN_LOWER_CNT_INC.  Note, that this should be adjested based on the clk_bfn frequency.  By default it is based on 983MHz frequence, but it could be running at 1474MHz.</span></p>
+          <p><b>Reset: </b>hex:0x95ffff;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_B65006CE2E491136" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000001c</span> Register(32 bit) INC_PRE_REG0</span><br/>
+      <span class="sdescdet">Part 0 of Timesync Timer Increment/Preset Value.</span><br/>
+      <span class="ldescdet">This register controls AW_isync timer increment/preset value.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c1c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">TIMER_INC_PRE0_UBC</td>
+        <td class="fldnorm" colspan="24">TIMER_INC_PRE_LBC</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMER_INC_PRE0_UBC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part 0 of TIMER_INC_PRE for Upper BFN Counter. This value is used to preset/increment the lower BFN counter or add to the upper BFN counter depending on the value of i_timer_cmd. This is bits 7:0 of the Upper BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMER_INC_PRE_LBC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TIMER_INC_PRE for Lower BFN Counter. This value is used to preset/increment the lower BFN counter or add to the upper BFN counter depending on the value of i_timer_cmd.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_692FE2B31A9F8DE9" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000020</span> Register(32 bit) INC_PRE_REG1</span><br/>
+      <span class="sdescdet">Part 1 of Timesync Timer Increment/Preset Value.</span><br/>
+      <span class="ldescdet">This register controls AW_isync timer increment/preset value.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c20</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">TIMER_INC_PRE1_UBC</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMER_INC_PRE1_UBC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part 1 of TIMER_INC_PRE for Upper BFN Counter. This value is used to preset/increment the lower BFN counter or add to the upper BFN counter depending on the value of i_timer_cmd. This is bits 39:8 of the Upper BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D2F8E1838956AEAD" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000024</span> Register(32 bit) CNT_ADJ_REG0</span><br/>
+      <span class="sdescdet">Part 0 of Timesync Counter Adjustment Value.</span><br/>
+      <span class="ldescdet">This register controls AW_isync upper counter adjustment value.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c24</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">TIMER_CNT_ADJ0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMER_CNT_ADJ0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part 0 of TIMER_CNT_ADJ. When the value of the upper BFN counter equals this value, the Upper BFN counter is incremented by the value in TIMER_INC_PRE register. This is bits 31:0 of the Upper BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_8DA795F7A01580A5" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000028</span> Register(32 bit) CNT_ADJ_REG1</span><br/>
+      <span class="sdescdet">Part 1 of Timesync Counter Adjustment Value.</span><br/>
+      <span class="ldescdet">This register controls AW_isync upper counter adjustment value.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c28</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="24">-</td>
+        <td class="fldnorm" colspan="8">TIMER_CNT_ADJ1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="24">-</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMER_CNT_ADJ1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part 1 of TIMER_CNT_ADJ. When the value of the upper BFN counter equals this value, the Upper BFN counter is incremented by the value in TIMER_INC_PRE register. This is bits 39:32 of the Upper BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_04CA123A8AD1F74E" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000002c</span> Register(32 bit) bfn_capt_cfg1</span><br/>
+      <span class="sdescdet">BFN Capture strobe edge select</span><br/>
+      <span class="ldescdet">This register configures which edge is used for each rx_en and rx_fb strobe to trigger a capture of the BFN counter.  The 32 LSB of the BFN count will be stored in the corresponding bfn capture register.  The upper msb of the bfn are not captured.
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c2c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="2">rx_en_capt_edge_sel3</td>
+        <td class="fldnorm" colspan="2">rx_en_capt_edge_sel2</td>
+        <td class="fldnorm" colspan="2">rx_en_capt_edge_sel1</td>
+        <td class="fldnorm" colspan="2">rx_en_capt_edge_sel0</td>
+        <td class="fldnorm" colspan="2">rx_fb_capt_edge_sel3</td>
+        <td class="fldnorm" colspan="2">rx_fb_capt_edge_sel2</td>
+        <td class="fldnorm" colspan="2">rx_fb_capt_edge_sel1</td>
+        <td class="fldnorm" colspan="2">rx_fb_capt_edge_sel0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_capt_edge_sel3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_capt_edge_sel2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_capt_edge_sel1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_capt_edge_sel0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_capt_edge_sel3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_capt_edge_sel2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_capt_edge_sel1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_capt_edge_sel0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_B1DD0CE389CB6B0F" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000030</span> Register(32 bit) bfn_capt_cfg2</span><br/>
+      <span class="sdescdet">BFN Capture strobe edge select</span><br/>
+      <span class="ldescdet">This register configures which edge is used for each tx_en strobe to trigger a capture of the BFN counter.  The 32 LSB of the BFN count will be stored in the corresponding bfn capture register.  The upper msb of the bfn are not captured.
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c30</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="2">tx_en_capt_edge_sel3</td>
+        <td class="fldnorm" colspan="2">tx_en_capt_edge_sel2</td>
+        <td class="fldnorm" colspan="2">tx_en_capt_edge_sel1</td>
+        <td class="fldnorm" colspan="2">tx_en_capt_edge_sel0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_capt_edge_sel3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_capt_edge_sel2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_capt_edge_sel1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_capt_edge_sel0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selects which edges of the strobe pin to capture the bfn count on.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">DISABLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Disabled<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Rising</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capture on rising edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Falling</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Capture on falling edge only<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Both</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Capture on both edges.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DBCF59A46DF915AA" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000034</span> Register(32 bit) bfn_capt_int_mask</span><br/>
+      <span class="sdescdet">BFN Capture strobe interrupt masks</span><br/>
+      <span class="ldescdet">This register masks interrupts that indicate when a bfn time has been captured based on a strobe.
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c34</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffff000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffff000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldgap" colspan="4">-</td>
+        <td class="fldnorm" colspan="1">tx_en_bfn_capt_int_mask3</td>
+        <td class="fldnorm" colspan="1">tx_en_bfn_capt_int_mask2</td>
+        <td class="fldnorm" colspan="1">tx_en_bfn_capt_int_mask1</td>
+        <td class="fldnorm" colspan="1">tx_en_bfn_capt_int_mask0</td>
+        <td class="fldnorm" colspan="1">rx_en_bfn_capt_int_mask3</td>
+        <td class="fldnorm" colspan="1">rx_en_bfn_capt_int_mask2</td>
+        <td class="fldnorm" colspan="1">rx_en_bfn_capt_int_mask1</td>
+        <td class="fldnorm" colspan="1">rx_en_bfn_capt_int_mask0</td>
+        <td class="fldnorm" colspan="1">rx_fb_bfn_capt_int_mask3</td>
+        <td class="fldnorm" colspan="1">rx_fb_bfn_capt_int_mask2</td>
+        <td class="fldnorm" colspan="1">rx_fb_bfn_capt_int_mask1</td>
+        <td class="fldnorm" colspan="1">rx_fb_bfn_capt_int_mask0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldgap" colspan="4">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_bfn_capt_int_mask3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_bfn_capt_int_mask2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_bfn_capt_int_mask1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_bfn_capt_int_mask0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_bfn_capt_int_mask3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_bfn_capt_int_mask2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_bfn_capt_int_mask1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_bfn_capt_int_mask0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_bfn_capt_int_mask3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_bfn_capt_int_mask2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_bfn_capt_int_mask1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_bfn_capt_int_mask0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Masks the interrupt for TX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_4E38B66E19280B3A" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000038</span> Register(32 bit) BFN_TIME_CAPT_STATUS</span><br/>
+      <span class="sdescdet">Status for bfn time capture strobes</span><br/>
+      <span class="ldescdet">Indicates that a strobe caused a new bfn time to be captured for one of the 12 sources.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c38</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/1C/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffff000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffff000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="20">-</td>
+        <td class="fldnorm" colspan="1">tx_en_bfn_capt_int3</td>
+        <td class="fldnorm" colspan="1">tx_en_bfn_capt_int2</td>
+        <td class="fldnorm" colspan="1">tx_en_bfn_capt_int1</td>
+        <td class="fldnorm" colspan="1">tx_en_bfn_capt_int0</td>
+        <td class="fldnorm" colspan="1">rx_en_bfn_capt_int3</td>
+        <td class="fldnorm" colspan="1">rx_en_bfn_capt_int2</td>
+        <td class="fldnorm" colspan="1">rx_en_bfn_capt_int1</td>
+        <td class="fldnorm" colspan="1">rx_en_bfn_capt_int0</td>
+        <td class="fldnorm" colspan="1">rx_fb_bfn_capt_int3</td>
+        <td class="fldnorm" colspan="1">rx_fb_bfn_capt_int2</td>
+        <td class="fldnorm" colspan="1">rx_fb_bfn_capt_int1</td>
+        <td class="fldnorm" colspan="1">rx_fb_bfn_capt_int0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="20">-</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[11:11]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_bfn_capt_int3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for TX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_bfn_capt_int2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for TX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_bfn_capt_int1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for TX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_en_bfn_capt_int0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for TX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_bfn_capt_int3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for RX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_bfn_capt_int2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for RX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_bfn_capt_int1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for RX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_en_bfn_capt_int0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for RX_EN strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_bfn_capt_int3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for RX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_bfn_capt_int2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for RX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_bfn_capt_int1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for RX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rx_fb_bfn_capt_int0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Status of interrupt for RX_FB strobe bfn time capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_EEE78E08A14536E4" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000003c</span> Register(32 bit) ICTRL</span><br/>
+      <span class="sdescdet">BFN Timesync General Control Register.</span><br/>
+      <span class="ldescdet">This is the general control register for AW_isync instantiation.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c3c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff7c48</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff7c48</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="1">SOFT_RESET</td>
+        <td class="fldgap" colspan="5">-</td>
+        <td class="fldnorm" colspan="1">FORCE_CLEAR</td>
+        <td class="fldnorm" colspan="1">LOAD_READ</td>
+        <td class="fldnorm" colspan="1">ISYNC_TRIGGER</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="2">ISYNC_VALUE</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">TIMER_CMD</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="5">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW/AC</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SOFT_RESET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Soft Reset. Active high. Equivalent to the chip reset.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FORCE_CLEAR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This bit is DEPRICATED. (i.e. no longer connected to anything).<br/><br/><br/><br/>When set, force to clear the BFN load counter value.  </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">LOAD_READ</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This register controls whether a new value needs to be read or loaded into the BFN counter when the timesync pulse occurs. The value used is from the i_timer_inc_pre register. 1 =&gt; load, 0 =&gt; read.  When set to load, only the first timesync pulse will cause a load.  To load again in the future, it must be cleared by FW then set again.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW/AC</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ISYNC_TRIGGER</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When set, trigger the generation of an o_isync pulse with value of ISYNC_VALUE, this bit will be self clearing.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ISYNC_VALUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Value for signal o_isync to all BFNs. Controlled by ISYNC_TRIGGER.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Default</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Default behavior, when lower count equals 10ms count value, reset the lower count and increment the upper count by 1, otherwise increment lower count by the programed increment value.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Increment</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Increment bfn count by an extra count.  If new lower count greater then 10ms, then reset lower count and increment upper count.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Decrement</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Increment bfn count by one less count.  If new lower counter is greater then 10ms, then reset lower counter and increment upper counter.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Command</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Execute the timer command specified in the TIMER_CMD field.  Note, each bfn, leader or remote, can have its own TIMER_CMD, so they can be adjusted seperatly.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMER_CMD</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TIMER_CMD. When i_isync value is 11, the command programmed in this register is executed. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Count</td>
+          <td class="unboxed addr">0x0, 0x4, 0x6</td>
+          <td class="unboxed scdescmap">bfn_lower_cnt is incremented with the value in BFN_LOWER_CNT_INC. If the lower count value equals the TEN_MS_CNT value the bfn_upper_cnt value is incremented by 1.  Normal behavior.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">preset</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">bfn_lower_cnt and bfn_upper_cnt are preset to the value in the TIMER_INC_PRE register. <br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">initialize</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">The internal registers corresponding to BFN_LOWER_CNT_INC., TIMER_INC_PRE, TIMER_INC_ADJ, TEN_MS_CNT are updated to match the value in the configuration registers.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Increment</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Increment the BFN by the value stored in isync_timer_inc_pre register.  If the lower bfn count sum exceeds the 10Ms count, then 1 extra will be added to the upper bfn count, and the lower count will wrap.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">sync_adj</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap">If bfn_lower_cnt value equals the TEN_MS_CNT value, reset the bfn_lower_cnt to zero and increment the bfn_upper_cnt by 1. If not, increment bfn_lower_cnt by a value in the BFN_LOWER_CNT_INC. register. A sync_adj_pulse is also generated so that when the bfn_lower_cnt value is equal to the TEN_MS_CNT and the bfn_upper_cnt equals timer_cnt_adj the bfn_lower_cnt is preset to the value in TIMER_INC_PRE and the bfn_upper_cnt is incremented by the value in TIMER_INC_PRE register.  <br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">capture</td>
+          <td class="unboxed addr">0x7</td>
+          <td class="unboxed scdescmap">The current value in the bfn_lower_cnt and bfn_upper_cnt is captured and made available in a register for the application to read.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_29343BAF2A19D840" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000040</span> Register(32 bit) opps_val_timesync_ctrl</span><br/>
+      <span class="sdescdet">timesync control</span><br/>
+      <span class="ldescdet">Controls the frequency of the one pps signal, and the source of the timesync strobe.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c40</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000031</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfe000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfe000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="7">-</td>
+        <td class="fldnorm" colspan="1">sysref_sel</td>
+        <td class="fldnorm" colspan="5">extsync_gpio_sel</td>
+        <td class="fldnorm" colspan="1">TS_CAPTURE</td>
+        <td class="fldnorm" colspan="1">extsync_en</td>
+        <td class="fldnorm" colspan="1">sysrefen</td>
+        <td class="fldnorm" colspan="16">ONEPPS_VAL</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="7">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW/AC</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[24:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">sysref_sel</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This bit selects which sys_ref to use.  The RCS may be running at 983Mhz or 1.474Ghz.  There will be two versions of sys_ref coming to the RCS, one synchronized to 983Mhz and one to 14745Mhz.  </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">SYSREF_983Mhz</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Select sys_ref synched to 983Mhz.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SYSREF_1474Mhz</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Select sys_ref synched to 1.474Ghz.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:19]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">extsync_gpio_sel</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This value selects which gpio from group 1 will be used as an external timesync when the extsync_en bit is set.  This timesync trigger is also qualified by the SYS_REF input pin.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:18]</b><br/>RW/AC</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_CAPTURE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When this bit is set to 1, the TIMESYNC strobe will be sent to the BFN initiator.  It will also be sent on a signal externally.  This bit is self clearing after 32 bfn clocks.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">extsync_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable for the incoming external sync strobe.  Set to 1 to enable triggering off of the external sync strobe.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">sysrefen</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable for the incoming sysref/timesync bit. Set to 1 to enable timesync input BFN initiator.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ONEPPS_VAL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This value controls the toggle of the one_pulse_per_sec signal. The value indicates that the o_one_pulse_per_sec will toggle every (ONEPPS_VAL+1)*10ms or 500ms by default.</span></p>
+          <p><b>Reset: </b>hex:0x0031;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_570DEC6E48A22A98" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000044</span> Register(32 bit) BFN_CNT_LO</span><br/>
+      <span class="sdescdet">Lower BFN Count Value captured during tsync pulse</span><br/>
+      <span class="ldescdet">Lower 32 bits of a BFN count value from when the tsych sample pulse occured.  When this register is read, the upper 32 bits of the sampled BFN is stored in the corresponding bfn_count_hi register.<br/><br/>There is a delay between when a timesync is initiated and when the actual BFN value is available.  This accounts for delays for synchronization, edge detecting, and a BFN network delay to ensure the manager and followers see the timesync on same cycle.  If FW initiates the timesync through the TS_CAPTURE bit, this delay should be accounted for.  In case of FW initiated timesync, there could also be variations on bus latency that could impact the total delay.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c44</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME</td>
+        <td class="fldnorm" colspan="24">OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 8 bits of a BFN frame count value ([31:24] of BFN).  The upper 32 bits are stored in bfn_count_hi register.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 24 bits of a BFN count value. </span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_26A4435ADF6FE608" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000048</span> Register(32 bit) BFN_CNT_HI</span><br/>
+      <span class="sdescdet">Upper BFN Count Value captured during tsync pulse</span><br/>
+      <span class="ldescdet">Upper 32 bits of the BFN count value captured during tsync pulse.  This register should only be read after reading the corresponding LOWER register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c48</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">FRAME</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The upper 32 bits of a BFN count value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D32D39DB187D276D" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000004c</span> Register(32 bit) bfn_live_count_lo</span><br/>
+      <span class="sdescdet">Live lower BFN Count Value</span><br/>
+      <span class="ldescdet">Lower 32 bits of a BFN count value, which represent the 24 bits of the frame offset, and the 8 LSB of the Frame.  This is the live view of the counter.  When this value is read, the upper 32 bits of the Frame are captured and stored in the bfn_live_count_hi register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c4c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">BFN_COUNT_LIVE_FRAME_LO</td>
+        <td class="fldnorm" colspan="24">BFN_COUNT_LIVE_OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_COUNT_LIVE_FRAME_LO</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [31:24] of a BFN count value which represents the 8 LSF frame value.  This is a live value.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_COUNT_LIVE_OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 24 bits of a BFN count value which represents the 24 frame offset.  This is a live value.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_29D1096671F4A0D1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000050</span> Register(32 bit) bfn_live_count_hi</span><br/>
+      <span class="sdescdet">Live Upper BFN Count Value</span><br/>
+      <span class="ldescdet">Upper 32 bits of a BFN count value, which represetn bits [47:8] of the frame.  This is caputed when the BFN_COUNT_LIVE_LO register was read.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c50</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">BFN_COUNT_HI</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_COUNT_HI</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The upper 32 bits of a BFN count value. This register should only be read after reading the corresponding LOWER register</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_62A42C1822EFA621" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000054</span> Register(32 bit) BFN_CNT_VAL1_REG0</span><br/>
+      <span class="sdescdet">Part 0 of BFN Read Value1.</span><br/>
+      <span class="ldescdet">This is a read-only register showing BFN counter value when i_timesync pulse occurs.<br/><br/>There is a delay between when a timesync is initiated and when the actual BFN value is available.  This accounts for delays for synchronization, edge detecting, and a BFN network delay to ensure the manager and followers see the timesync on same cycle.  If FW initiates the timesync through the TS_CAPTURE bit, this delay should be accounted for.  In case of FW initiated timesync, there could also be variations on bus latency that could impact the total delay.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c54</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">BFN_VALUE1_UBC0</td>
+        <td class="fldnorm" colspan="24">BFN_VALUE1_LBC</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_VALUE1_UBC0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part 0 of BFN Value1 for Upper BFN Counter. This is bits 7:0 of the Upper BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_VALUE1_LBC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">BFN Value1 for Lower BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_0518B36997ED4ACA" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000058</span> Register(32 bit) BFN_CNT_VAL1_REG1</span><br/>
+      <span class="sdescdet">Part 1 of BFN Read Value1.</span><br/>
+      <span class="ldescdet">This is a read-only register showing BFN counter value when i_timesync pulse occurs.<br/><br/>There is a delay between when a timesync is initiated and when the actual BFN value is available.  This accounts for delays for synchronization, edge detecting, and a BFN network delay to ensure the manager and followers see the timesync on same cycle.  If FW initiates the timesync through the TS_CAPTURE bit, this delay should be accounted for.  In case of FW initiated timesync, there could also be variations on bus latency that could impact the total delay.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c58</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">BFN_VALUE1_UBC1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_VALUE1_UBC1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part 1 of BFN Value1 for Upper BFN Counter. This is bits 39:8 of the Upper BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C5048B6FA586A2D2" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000005c</span> Register(32 bit) BFN_CNT_VAL2_REG0</span><br/>
+      <span class="sdescdet">Part 0 of BFN Read Value2.</span><br/>
+      <span class="ldescdet">This is a read-only register showing BFN counter value when i_isync=11 and i_timer_cmd=111 occur.<br/><br/><br/>There is a delay between when a isync is initiated and when the actual BFN value is available.  This accounts for delays for a BFN network delay to ensure the manager and followers see the isync on same cycle.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c5c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">BFN_VALUE2_UBC0</td>
+        <td class="fldnorm" colspan="24">BFN_VALUE2_LBC</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_VALUE2_UBC0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part 0 of BFN Value2 for Upper BFN Counter. This is bits 7:0 of the Upper BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_VALUE2_LBC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">BFN Value2 for Lower BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_A3518EEE14B1DBEE" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000060</span> Register(32 bit) BFN_CNT_VAL2_REG1</span><br/>
+      <span class="sdescdet">Part 1 of BFN Read Value2.</span><br/>
+      <span class="ldescdet">This is a read-only register showing BFN counter value when i_isync=11 and i_timer_cmd=111 occur.<br/><br/>There is a delay between when a isync is initiated and when the actual BFN value is available.  This accounts for delays for a BFN network delay to ensure the manager and followers see the isync on same cycle.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c60</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">BFN_VALUE2_UBC1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_VALUE2_UBC1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part 1 of BFN Value2 for Upper BFN Counter. This is bits 39:8 of the Upper BFN Counter.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_B1072FA32239EFB5" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000064[+=0x4]</span> Register(32 bit) TX_EN_BFN_CAPTURE_VAL[4]</span><br/>
+      <span class="sdescdet">Lower BFN Count Value captured by capture strobes</span><br/>
+      <span class="ldescdet">Lower 32 bits of the BFN count sampled when an edge detected on the capture stobe signals.  The edge used to capture can be configured with the bfn_capture_strobe_cfg register.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c64[+=0x4]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME</td>
+        <td class="fldnorm" colspan="24">OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 8 bits of a BFN frame count value ([31:24] of BFN).</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 24 bits of the BFN count value. </span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_02F7FF46C09D5D58" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000074[+=0x4]</span> Register(32 bit) RX_EN_BFN_CAPTURE_VAL[4]</span><br/>
+      <span class="sdescdet">Lower BFN Count Value captured by capture strobes</span><br/>
+      <span class="ldescdet">Lower 32 bits of the BFN count sampled when an edge detected on the capture stobe signals.  The edge used to capture can be configured with the bfn_capture_strobe_cfg register.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c74[+=0x4]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME</td>
+        <td class="fldnorm" colspan="24">OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 8 bits of a BFN frame count value ([31:24] of BFN).</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 24 bits of the BFN count value. </span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_48819F636CD1DED3" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000084[+=0x4]</span> Register(32 bit) RX_FB_BFN_CAPTURE_VAL[4]</span><br/>
+      <span class="sdescdet">Lower BFN Count Value captured by capture strobes</span><br/>
+      <span class="ldescdet">Lower 32 bits of the BFN count sampled when an edge detected on the capture stobe signals.  The edge used to capture can be configured with the bfn_capture_strobe_cfg register.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268c84[+=0x4]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME</td>
+        <td class="fldnorm" colspan="24">OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 8 bits of a BFN frame count value ([31:24] of BFN).</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The lower 24 bits of the BFN count value. </span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_gpreg_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

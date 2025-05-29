@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/fb_ant0/cmem0/cmem_sram_map</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/fb_ant0/cmem0/cmem_sram_map</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_fb_ant0_cmem0_cmem_sram_map">AddressMap abc_soc_top/fb_ant0/cmem0/cmem_sram_map</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/fb_ant0/cmem0/cmem_sram_map -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000000[+=0x20]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_1F15D17F46A5A015">mem_cell[4096]</a>  </b></td>
+        <td class="unboxed sdescmap">SRAM Memory</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/fb_ant0/cmem0/cmem_sram_map</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_1F15D17F46A5A015" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000000[+=0x20]</span> Register(256 bit) mem_cell[4096]</span><br/>
+      <span class="sdescdet">SRAM Memory</span><br/>
+      <span class="ldescdet">
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4096, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x05000000[+=0x20]</span> at NOC.fb_ant__fb_ant_axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>255</td>
+        <td>254</td>
+        <td>253</td>
+        <td>252</td>
+        <td>251</td>
+        <td>250</td>
+        <td>249</td>
+        <td>248</td>
+        <td>247</td>
+        <td>246</td>
+        <td>245</td>
+        <td>244</td>
+        <td>243</td>
+        <td>242</td>
+        <td>241</td>
+        <td>240</td>
+        <td>239</td>
+        <td>238</td>
+        <td>237</td>
+        <td>236</td>
+        <td>235</td>
+        <td>234</td>
+        <td>233</td>
+        <td>232</td>
+        <td>231</td>
+        <td>230</td>
+        <td>229</td>
+        <td>228</td>
+        <td>227</td>
+        <td>226</td>
+        <td>225</td>
+        <td>224</td>
+        <td>223</td>
+        <td>222</td>
+        <td>221</td>
+        <td>220</td>
+        <td>219</td>
+        <td>218</td>
+        <td>217</td>
+        <td>216</td>
+        <td>215</td>
+        <td>214</td>
+        <td>213</td>
+        <td>212</td>
+        <td>211</td>
+        <td>210</td>
+        <td>209</td>
+        <td>208</td>
+        <td>207</td>
+        <td>206</td>
+        <td>205</td>
+        <td>204</td>
+        <td>203</td>
+        <td>202</td>
+        <td>201</td>
+        <td>200</td>
+        <td>199</td>
+        <td>198</td>
+        <td>197</td>
+        <td>196</td>
+        <td>195</td>
+        <td>194</td>
+        <td>193</td>
+        <td>192</td>
+        <td>191</td>
+        <td>190</td>
+        <td>189</td>
+        <td>188</td>
+        <td>187</td>
+        <td>186</td>
+        <td>185</td>
+        <td>184</td>
+        <td>183</td>
+        <td>182</td>
+        <td>181</td>
+        <td>180</td>
+        <td>179</td>
+        <td>178</td>
+        <td>177</td>
+        <td>176</td>
+        <td>175</td>
+        <td>174</td>
+        <td>173</td>
+        <td>172</td>
+        <td>171</td>
+        <td>170</td>
+        <td>169</td>
+        <td>168</td>
+        <td>167</td>
+        <td>166</td>
+        <td>165</td>
+        <td>164</td>
+        <td>163</td>
+        <td>162</td>
+        <td>161</td>
+        <td>160</td>
+        <td>159</td>
+        <td>158</td>
+        <td>157</td>
+        <td>156</td>
+        <td>155</td>
+        <td>154</td>
+        <td>153</td>
+        <td>152</td>
+        <td>151</td>
+        <td>150</td>
+        <td>149</td>
+        <td>148</td>
+        <td>147</td>
+        <td>146</td>
+        <td>145</td>
+        <td>144</td>
+        <td>143</td>
+        <td>142</td>
+        <td>141</td>
+        <td>140</td>
+        <td>139</td>
+        <td>138</td>
+        <td>137</td>
+        <td>136</td>
+        <td>135</td>
+        <td>134</td>
+        <td>133</td>
+        <td>132</td>
+        <td>131</td>
+        <td>130</td>
+        <td>129</td>
+        <td>128</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="256">DATA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="256">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[255:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">sram cells data</span></p>
+          <p><b>Reset: </b>hex:0x0000000000000000000000000000000000000000000000000000000000000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_fb_ant0_cmem0_cmem_sram_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

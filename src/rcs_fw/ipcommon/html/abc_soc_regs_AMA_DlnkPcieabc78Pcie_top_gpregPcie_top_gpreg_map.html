@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/dlnk/pcieabc78/pcie_top_gpreg/pcie_top_gpreg_map</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/dlnk/pcieabc78/pcie_top_gpreg/pcie_top_gpreg_map</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet">PCIE TOP GPREG Register Map</h3>
+    <p class="ldescdet">This address map contains the complete register set for PCIE TOP GPREG Module</p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">AddressMap abc_soc_top/dlnk/pcieabc78/pcie_top_gpreg/pcie_top_gpreg_map</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/dlnk/pcieabc78/pcie_top_gpreg/pcie_top_gpreg_map -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4E237DFED995420A">pcie_top_scratch0</a>  </b></td>
+        <td class="unboxed sdescmap">Scratch Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_9C2CB782F2DD39EF">pcie_top_scratch1</a>  </b></td>
+        <td class="unboxed sdescmap">Scratch Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr">0x000000ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000100</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_76B733B4650454B4">pcie_top_ctl_0</a>  </b></td>
+        <td class="unboxed sdescmap">PCIE Control 0 Register - Interrupt Enables</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000104</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_FF867BD7253AD977">pcie_top_ctl_1_S</a>  </b></td>
+        <td class="unboxed sdescmap">PCIE Control 1 Register - Memory Powerdown Control</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000108</td>
+        <td class="unboxed addr">0x000001ef</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000001f0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_E62AE75E66129CC9">pcie_top_ctl_rwm_0_S</a>  </b></td>
+        <td class="unboxed sdescmap">PCIE Control 0 Write Maskable Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x000001f4</td>
+        <td class="unboxed addr">0x000001ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000200</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4F790F3652ACE2F9">pcie_top_ro_0</a>  </b></td>
+        <td class="unboxed sdescmap">Interrupt Summary Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000204</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F8DB9B12112A5362">pcie_top_ro_1</a>  </b></td>
+        <td class="unboxed sdescmap">TOP IDE BIST Monitor Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000208</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2C26DFF126BEA3AA">pcie_top_ro_2</a>  </b></td>
+        <td class="unboxed sdescmap">TOP IDE BIST Monitor Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000020c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F276DC50235456FD">pcie_top_ro_3</a>  </b></td>
+        <td class="unboxed sdescmap">TOP IDE BIST Monitor Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000210</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4C80D11AA0CE1680">pcie_top_ro_4</a>  </b></td>
+        <td class="unboxed sdescmap">TOP IDE BIST Monitor Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000214</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_1A629D0A72A09A47">pcie_top_ro_5</a>  </b></td>
+        <td class="unboxed sdescmap">TOP IDE BIST Monitor Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000218</td>
+        <td class="unboxed addr">0x000003ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000400</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_1F58C2FBBDB24D70">pcie_top_intr0_status</a>  </b></td>
+        <td class="unboxed sdescmap">TOP Interrupt Status 0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000404</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_71C7715209E03877">pcie_top_intr0_high_en</a>  </b></td>
+        <td class="unboxed sdescmap">TOP Interrupt High EN 0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000408</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_BD194678B21F84DA">pcie_top_intr0_low_en</a>  </b></td>
+        <td class="unboxed sdescmap">TOP Interrupt Low EN 0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000040c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_BF36E7E291311F7B">pcie_top_intr0_clear</a>  </b></td>
+        <td class="unboxed sdescmap">TOP Interrupt Clear 0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000410</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_618DDC361DBA01F0">pcie_top_intr0_force</a>  </b></td>
+        <td class="unboxed sdescmap">TOP Interrupt Force 0</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/dlnk/pcieabc78/pcie_top_gpreg/pcie_top_gpreg_map</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_4E237DFED995420A" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) pcie_top_scratch0</span><br/>
+      <span class="sdescdet">Scratch Register</span><br/>
+      <span class="ldescdet">Scratch Register for SW
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01800</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">scratch</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">scratch</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Scratch Regiser - Has no functionality in RTL</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_9C2CB782F2DD39EF" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) pcie_top_scratch1</span><br/>
+      <span class="sdescdet">Scratch Register</span><br/>
+      <span class="ldescdet">Scratch Register for SW
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01804</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">scratch</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">scratch</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Scratch Regiser - Has no functionality in RTL</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_76B733B4650454B4" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000100</span> Register(32 bit) pcie_top_ctl_0</span><br/>
+      <span class="sdescdet">PCIE Control 0 Register - Interrupt Enables</span><br/>
+      <span class="ldescdet">PCIE Control 0 Register - Interrupt Enables - NON-SECURE ACCESS - This is active high. Setting to 1 enables the corresponding status bit to drive the associated interrupt output.<br/>      
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01900</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000f00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="20">reserved12</td>
+        <td class="fldnorm" colspan="4">intr_hi_en</td>
+        <td class="fldnorm" colspan="4">reserved4</td>
+        <td class="fldnorm" colspan="4">intr_low_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="20">RO</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:12]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">reserved12</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved</span></p>
+          <p><b>Reset: </b>hex:0x00000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">intr_hi_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">3=ide_glb_irq_out;2=ide_aes_hcfg_irq_out[2];1=ide_aes_hcfg_irq_out[1];0=ide_aes_hcfg_irq_out[0]</span></p>
+          <p><b>Reset: </b>hex:0xf;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">reserved4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">intr_low_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">3=ide_glb_irq_out;2=ide_aes_hcfg_irq_out[2];1=ide_aes_hcfg_irq_out[1];0=ide_aes_hcfg_irq_out[0]</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_FF867BD7253AD977" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000104</span> Register(32 bit) pcie_top_ctl_1_S</span><br/>
+      <span class="sdescdet">PCIE Control 1 Register - Memory Powerdown Control</span><br/>
+      <span class="ldescdet">PCIE Control 1 Register - Memory Powerdown Enable - SECURE ACCESS 
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01904</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">reserved0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">reserved0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_E62AE75E66129CC9" class="boxed tabrb"><span class="regname">+<span class="addr">0x000001f0</span> Register(32 bit) pcie_top_ctl_rwm_0_S</span><br/>
+      <span class="sdescdet">PCIE Control 0 Write Maskable Register</span><br/>
+      <span class="ldescdet">PCIE Control 0 Write Maskable Register - Write Masked Register designates the lower 16-bit for the application and the upper 16-bits for setting the mask  ZeroSet - SECURE ACCESS<br/>      
+      <br/><span><b>Maskable (ZeroSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a019f0</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff8fc0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff8fc0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">ide_bist_test_mode_in</td>
+        <td class="fldgap" colspan="6">-</td>
+        <td class="fldnorm" colspan="1">ide_hcfg_config_lock_in</td>
+        <td class="fldnorm" colspan="1">ide_aes_hcfg_key_lock_in</td>
+        <td class="fldnorm" colspan="1">ide_bist_status_clr</td>
+        <td class="fldnorm" colspan="1">ide_bist_start_in</td>
+        <td class="fldnorm" colspan="1">ide_bist_done_set_ctl</td>
+        <td class="fldnorm" colspan="1">ide_test_enable</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="fldgap" colspan="6">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[14:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_test_mode_in</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This signal indicates the type of test mode that the current BIST operation will execute. 0001-&gt; Batch Mode (all the following test<br/>                modes in this same order) 0010-&gt; ECB Only 0100-&gt; GCM Only 1000-&gt; Bypass Only<br/>          </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_hcfg_config_lock_in</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When asserted, does not allow any configuration to the Host APB</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_aes_hcfg_key_lock_in</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When asserted, does not allow any configuration to the AES-GCM APB</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_status_clr</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">A rising edge on this register bit clears the BIST Status Registers. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_start_in</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Assertion of this signal launches an On-Demand BIST operation if ide_test_enable is asserted. During the self-test, all AES inputs are ignored. <br/>                It is assumed that no traffic is received while executing an On-Demand BIST<br/>          </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_done_set_ctl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">DEBUG - Force ide_test_done_cap signal to 1. This allows SW to control the app_ltssm_enable input to the controller if the IDE self-test does not complete.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_test_enable</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SW override value: This signal enables FIPS 140-3 testing functionalities. When asserted, FIPS 140-3 testing and BIST execution are allowed.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_4F790F3652ACE2F9" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000200</span> Register(32 bit) pcie_top_ro_0</span><br/>
+      <span class="sdescdet">Interrupt Summary Register</span><br/>
+      <span class="ldescdet">Interrupt Summary Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01a00</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0x0001c000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0x0001c000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="15">reserved</td>
+        <td class="fldgap" colspan="3">-</td>
+        <td class="fldnorm" colspan="1">wire_access_alarm_intr</td>
+        <td class="fldnorm" colspan="1">tc_rd_wr_detect_intr</td>
+        <td class="fldnorm" colspan="1">ide_glb_irq_out</td>
+        <td class="fldnorm" colspan="3">ide_aes_hcfg_irq_out</td>
+        <td class="fldnorm" colspan="1">doe_low_intr</td>
+        <td class="fldnorm" colspan="1">interrupt_low_axi</td>
+        <td class="fldnorm" colspan="1">interrupt_low_cc</td>
+        <td class="fldnorm" colspan="1">interrupt_low_top</td>
+        <td class="fldnorm" colspan="1">doe_high_intr</td>
+        <td class="fldnorm" colspan="1">interrupt_high_axi</td>
+        <td class="fldnorm" colspan="1">interrupt_high_cc</td>
+        <td class="fldnorm" colspan="1">interrupt_high_top</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="15">RO</td>
+        <td class="fldgap" colspan="3">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:17]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">reserved</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:13]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">wire_access_alarm_intr</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Wire Access to Protected Region Detected - High Interrupt Only</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:12]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tc_rd_wr_detect_intr</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Traffic Class Read or Write Transaction Detect - High Interrupt Only</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_glb_irq_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">IDE Host Config Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_aes_hcfg_irq_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">IDE Host AES Config Interrupt; 0=Tx, 1=Rx; 2=Reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">doe_low_intr</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">DOE Low Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">interrupt_low_axi</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">pcie_axi_gpreg Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">interrupt_low_cc</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">pcie_cc_gpreg Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">interrupt_low_top</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">pcie_top_gpreg Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">doe_high_intr</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">DOE High Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">interrupt_high_axi</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">pcie_axi_gpreg Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">interrupt_high_cc</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">pcie_cc_gpreg Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">interrupt_high_top</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">pcie_top_gpreg Interrupt</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F8DB9B12112A5362" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000204</span> Register(32 bit) pcie_top_ro_1</span><br/>
+      <span class="sdescdet">TOP IDE BIST Monitor Register</span><br/>
+      <span class="ldescdet">IDE BIST Monitor Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01a04</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x20000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0x1000c88c</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0x1000c88c</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">FUSE_PCIE_DISABLE_IDE_EXPORT_COMPLIANCE</td>
+        <td class="fldnorm" colspan="1">FUSE_PCIE_DISABLE_IDE_POR_SELFTST</td>
+        <td class="fldnorm" colspan="1">ide_test_enable_hw</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="4">out_selective_ide_stream_state</td>
+        <td class="fldnorm" colspan="4">out_link_ide_stream_state</td>
+        <td class="fldnorm" colspan="2">ide_tx_rekey_req_stat</td>
+        <td class="fldnorm" colspan="2">ide_rx_rekey_req_stat</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="2">ide_bist_err_core_out</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">ide_bist_err_test_type_rx1_out</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">ide_bist_err_test_type_tx_out</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="1">ide_bist_fail_out</td>
+        <td class="fldnorm" colspan="1">ide_bist_done_out</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="4">RO/V</td>
+        <td class="accno" colspan="4">RO/V</td>
+        <td class="accno" colspan="2">RO/V</td>
+        <td class="accno" colspan="2">RO/V</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="2">RO/V</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FUSE_PCIE_DISABLE_IDE_EXPORT_COMPLIANCE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When high the IDE Module is Disabled - Export Compliance Mode</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FUSE_PCIE_DISABLE_IDE_POR_SELFTST</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When high the IDE Power-on-Reset Selftest is disabled. - DEBUG</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_test_enable_hw</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Hardware value send to ide module of ide_test_enable input. - DEBUG </span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">out_selective_ide_stream_state</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Selective Stream Current State</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:20]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">out_link_ide_stream_state</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Link Stream Current State</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:18]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_tx_rekey_req_stat</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Tx ReKey Status</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:16]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_rx_rekey_req_stat</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Rx ReKey Status</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_err_core_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The assertion of the bit position corresponding to each core represents failure. The least significant bit represents failure for the TX core, <br/>                the second least significant bit represents failure for the RX core.<br/>          </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_err_test_type_rx1_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates the type of test that failed for the first RX (RX1) core.  000/001-&gt;Bypass 010/011-&gt;ECB 100/101-&gt;GCM</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_err_test_type_tx_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates the type of test that failed for the TX core. 000/001-&gt;Bypass 010/011-&gt;ECB 100/101-&gt;GCM.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_fail_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This signal indicates the overall result of the BIST. If the result is 1, the BIST operation failed. If the result is 0, the BIST operation passed.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_done_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This signal indicates the IDE done signal went active (high).</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2C26DFF126BEA3AA" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000208</span> Register(32 bit) pcie_top_ro_2</span><br/>
+      <span class="sdescdet">TOP IDE BIST Monitor Register</span><br/>
+      <span class="ldescdet">IDE BIST Monitor Register - Lower CNT value
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01a08</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">ide_bist_err_timestamp_tx_out_low</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_err_timestamp_tx_out_low</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates the number of clock cycles since the last BIST execution or since startup, if this is the first BIST execution, for the TX core - ide_bist_err_timestamp_tx_out[31:0]</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F276DC50235456FD" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000020c</span> Register(32 bit) pcie_top_ro_3</span><br/>
+      <span class="sdescdet">TOP IDE BIST Monitor Register</span><br/>
+      <span class="ldescdet">IDE BIST Monitor Register - High CNT value
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01a0c</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">ide_bist_err_timestamp_tx_out_high</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_err_timestamp_tx_out_high</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates the number of clock cycles since the last BIST execution or since startup, if this is the first BIST execution, for the TX core - ide_bist_err_timestamp_tx_out[63:32]</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_4C80D11AA0CE1680" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000210</span> Register(32 bit) pcie_top_ro_4</span><br/>
+      <span class="sdescdet">TOP IDE BIST Monitor Register</span><br/>
+      <span class="ldescdet">IDE BIST Monitor Register - Lower CNT value
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01a10</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">ide_bist_err_timestamp_rx1_out_low</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_err_timestamp_rx1_out_low</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates the number of clock cycles since the last BIST execution or since startup, if this is the first BIST execution, for the first RX  core. - ide_bist_err_timestamp_rx1_out_low[31:0]</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_1A629D0A72A09A47" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000214</span> Register(32 bit) pcie_top_ro_5</span><br/>
+      <span class="sdescdet">TOP IDE BIST Monitor Register</span><br/>
+      <span class="ldescdet">IDE BIST Monitor Register - High CNT value
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01a14</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">ide_bist_err_timestamp_rx1_out_high</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_err_timestamp_rx1_out_high</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates the number of clock cycles since the last BIST execution or since startup, if this is the first BIST execution, for the first RX  core. - ide_bist_err_timestamp_rx1_out_high[63:32]</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_1F58C2FBBDB24D70" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000400</span> Register(32 bit) pcie_top_intr0_status</span><br/>
+      <span class="sdescdet">TOP Interrupt Status 0</span><br/>
+      <span class="ldescdet">TOP Interrupt Status - This register is a sticky register that shows the raw status for all interrupt sources.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01c00</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="1">detected_write_access_out</td>
+        <td class="fldnorm" colspan="1">ide_bist_done_out</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">detected_write_access_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Write Access Detection. Attempts to modify IDE registers, BARs, and other structures that could affect the security of the device or an IDE Stream must be detected. <br/>                Applicable only to accesses from the wire<br/>          </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_done_out</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When asserted, indicates that the BIST operation is finished.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_71C7715209E03877" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000404</span> Register(32 bit) pcie_top_intr0_high_en</span><br/>
+      <span class="sdescdet">TOP Interrupt High EN 0</span><br/>
+      <span class="ldescdet">TOP Interrupt High EN - This register enables the interrupts to trigger High interrupt indication. This is active high. Setting to 1 enables the corresponding status bit to drive the high interrupt output.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01c04</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="1">detected_write_access_out_high_en</td>
+        <td class="fldnorm" colspan="1">ide_bist_done_out_high_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">detected_write_access_out_high_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Write Access Detection. Attempts to modify IDE registers, BARs, and other structures that could affect the security of the device or an IDE Stream must be detected. <br/>                Applicable only to accesses from the wire<br/>          </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_done_out_high_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When asserted, indicates that the BIST operation is finished.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_BD194678B21F84DA" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000408</span> Register(32 bit) pcie_top_intr0_low_en</span><br/>
+      <span class="sdescdet">TOP Interrupt Low EN 0</span><br/>
+      <span class="ldescdet">TOP Interrupt Low EN - This register enables the interrupts to trigger Low interrupt indication. This is active high. Setting to 1 enables the corresponding status bit to drive the low interrupt output.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01c08</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="1">detected_write_access_out_low_en</td>
+        <td class="fldnorm" colspan="1">ide_bist_done_out_low_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">detected_write_access_out_low_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Write Access Detection. Attempts to modify IDE registers, BARs, and other structures that could affect the security of the device or an IDE Stream must be detected. <br/>                Applicable only to accesses from the wire<br/>          </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_done_out_low_en</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When asserted, indicates that the BIST operation is finished.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_BF36E7E291311F7B" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000040c</span> Register(32 bit) pcie_top_intr0_clear</span><br/>
+      <span class="sdescdet">TOP Interrupt Clear 0</span><br/>
+      <span class="ldescdet">TOP Interrupt Clear - This register clears the interrupt. Setting to 1 clears the associated status bit. Clearing is a single cycle operation, the interrupt status bit will not be held low. Reading returns the last value written.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01c0c</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="1">detected_write_access_out_clr</td>
+        <td class="fldnorm" colspan="1">ide_bist_done_out_clr</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">detected_write_access_out_clr</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Write Access Detection. Attempts to modify IDE registers, BARs, and other structures that could affect the security of the device or an IDE Stream must be detected. <br/>                Applicable only to accesses from the wire<br/>          </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_done_out_clr</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When asserted, indicates that the BIST operation is finished.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_618DDC361DBA01F0" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000410</span> Register(32 bit) pcie_top_intr0_force</span><br/>
+      <span class="sdescdet">TOP Interrupt Force 0</span><br/>
+      <span class="ldescdet">TOP Interrupt Force - This register forces the interrupt. Setting to 1 forces the associated interrupt status to 1. Forcing is a single cycle operation, the interrupt status bit will not be held asserted. Reading returns the last value written.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01a01c10</span> at NOC.pcie__DWC_pcie_apb__MemSpace (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="fldnorm" colspan="1">detected_write_access_out_frc</td>
+        <td class="fldnorm" colspan="1">ide_bist_done_out_frc</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="30">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">detected_write_access_out_frc</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Write Access Detection. Attempts to modify IDE registers, BARs, and other structures that could affect the security of the device or an IDE Stream must be detected. <br/>                Applicable only to accesses from the wire<br/>          </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ide_bist_done_out_frc</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When asserted, indicates that the BIST operation is finished.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_pcieabc78_pcie_top_gpreg_pcie_top_gpreg_map">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

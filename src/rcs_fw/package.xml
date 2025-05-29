@@ -1,0 +1,172 @@
+<!--
+*##########################################################################
+* File:         package.xml
+* Description:  Package file for the ABC FW.
+*##########################################################################
+-->
+<project name="ArborCrest Firmware Software" default="package" basedir="..">
+  <property environment="env"/>
+
+  <fail message="Destination directory not set. Use -Ddest=&lt;dest-dir&gt;"
+        status="1">
+    <condition>
+      <equals arg1="${dest}" arg2="$${dest}"/>
+    </condition>
+  </fail>
+
+  <!--
+    * Properties
+    -->
+  <property name="abcfw"               location="${user.dir}"/>
+
+  <!--
+    *##################################################################
+    * BINARY PACKAGE
+    *##################################################################
+  -->
+
+  <target name="bin-package">
+    <echo>
+       INFO: Generate binaries/ELF directory
+    </echo>
+    <mkdir dir="${dest}/abc_fw/bin"/>
+    <copy todir="${dest}/abc_fw">
+      <fileset dir="${user.dir}/out">
+        <exclude name="**/factory*"/>
+        <include name="bin/*.elf"/>
+        <include name="bin/info/*.lst"/>
+        <include name="bin/info/*.map"/>
+      </fileset>
+    </copy>
+
+    <echo>
+       INFO: Generate Source Interfaces
+    </echo>
+    <mkdir dir="${dest}/abc_fw/api/com"/>
+    <copy todir="${dest}/abc_fw/api/com">
+      <fileset dir="${user.dir}/ipcommon/fw/com">
+        <include name="inc/*.h"/>
+        <include name="src/*.c"/>
+      </fileset>
+    </copy>
+
+    <echo>
+       INFO: Generate message directory
+    </echo>
+    <mkdir dir="${dest}/abc_fw/api/msg"/>
+    <copy todir="${dest}/abc_fw/api/msg">
+      <fileset dir="${user.dir}/ipcommon/fw/msg">
+        <include name="inc/*.h"/>
+      </fileset>
+    </copy>
+
+    <echo>
+       INFO: Generate tables directory
+    </echo>
+    <mkdir dir="${dest}/abc_fw/api/tables"/>
+    <copy todir="${dest}/abc_fw/api/tables">
+      <fileset dir="${user.dir}/ipcommon/fw/tables">
+        <include name="inc/*.h"/>
+      </fileset>
+    </copy>
+
+    <echo>
+       INFO: Generate python directory
+    </echo>
+    <mkdir dir="${dest}/abc_fw/api/py"/>
+    <copy todir="${dest}/abc_fw/api/py">
+      <fileset dir="${user.dir}/ipcommon/fw/tables/py_inc">
+        <include name="*.py"/>
+      </fileset>
+    </copy>
+
+  </target>
+
+  <!--
+    *##################################################################
+    * Documentation PACKAGE
+    *##################################################################
+  -->
+	  <target name="doc-package">
+    <echo>
+       INFO: Generate Documentation directory
+    </echo>
+    <mkdir dir="${dest}/html"/>
+    <copy todir="${dest}/html">
+      <fileset dir="${user.dir}/out/doxy_doc">
+        <include name="*.html"/>
+        <include name="com/**"/>
+        <include name="rcs/**"/>
+        <include name="ipcommon/**"/>
+      </fileset>
+    </copy>
+    <mkdir dir="${dest}/html/msg"/>
+    <copy todir="${dest}/html/msg">
+      <fileset dir="${user.dir}/ipcommon/fw/msg/html"/>
+    </copy>
+    <mkdir dir="${dest}/html/tables"/>
+    <copy todir="${dest}/html/tables">
+      <fileset dir="${user.dir}/ipcommon/fw/tables/html"/>
+    </copy>
+</target>
+  <!--
+    *##################################################################
+    * SOURCE PACKAGE
+    *##################################################################
+  -->
+
+  <target name="src-package">
+    <echo>
+       INFO: Generate the source package for abcfw
+    </echo>
+    <mkdir dir="${dest}/abc_src"/>
+    <mkdir dir="${dest}/abc_src/ipcommon"/>
+    <copy todir="${dest}/abc_src/ipcommon">
+       <fileset dir="${user.dir}/ipcommon">
+         <include name="hw_inc/*.h"/>
+       </fileset>
+       <fileset dir="${user.dir}/ipcommon">
+          <include name="fw/com/inc/*"/>
+          <include name="fw/msg/inc/*.h"/>
+          <include name="fw/tables/inc/*.h"/>
+          <include name="fw/tables/src/*.c"/>
+       </fileset>
+    </copy>
+    <patternset id="lsp_files">
+       <include name="scripts/lsp/**"/>
+       <exclude name="scripts/lsp/*/ana/**"/>
+       <exclude name="scripts/lsp/*/factory/**"/>
+    </patternset>
+    <copy todir="${dest}/abc_src">
+       <fileset dir="${user.dir}/">
+         <include name="com/**"/>
+         <include name="rcs/**"/>
+         <include name="spl/**"/>
+         <include name="scripts/mk/*.mk"/>
+         <include name="scripts/gen_ram.py"/>
+         <include name="scripts/gen_dbg_prints.py"/>
+         <patternset refid="lsp_files"/>
+         <include name="makefile"/>
+         <include name="env.tcsh"/>
+         <include name="src.env"/>
+         <include name="bldtools/fw_ver.txt"/>
+       </fileset>
+    </copy>
+  </target>
+
+  <!--
+    *##################################################################
+    * help
+    *##################################################################
+    -->
+  <target name="help">
+    <echo>
+The following top-level targets are available for building the package:
+
+    bin-package
+    src-package
+     </echo>
+  </target>
+
+
+</project>

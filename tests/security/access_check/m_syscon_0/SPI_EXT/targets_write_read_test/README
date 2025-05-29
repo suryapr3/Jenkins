@@ -1,0 +1,26 @@
+/************************************************************
+*                                                           *
+* Project     : ABC                                         *
+* Author      : Sneha Singh                                 *
+* Date        : 8 Aug 2024                                  *
+* Test        : targets_write_read_test                     *
+*                                                           *
+************************************************************/
+This test aims to validate the 'm_syscon_0' port of the NoC by initiating WRITE/READ access from SPI_EXT to
+the target ports.  The SPI is made to write and read the target registers and compares the value against the
+default values.
+
+How to run the test ?
+    From any ABC FRIO bash terminal, execute the following.
+    python targets_write_read_test.py <pattern>
+
+    @input arguments
+        <pattern>     : This the pattern that user wants to write in the target register.
+
+How to check the output ?
+    Upon completion of the test, PASS/FAIL status will be displayed in the bash terminal.
+    Additionally, the same can be confirmed from the log file generated from the serial console.
+
+Errors if any ?
+    Take a look at the serial log so generated and grep for string "ERROR". Triage it depending upon the
+    nature of the ERROR logged.

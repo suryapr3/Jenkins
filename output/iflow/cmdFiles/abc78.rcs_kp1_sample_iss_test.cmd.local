@@ -1,0 +1,4 @@
+#!/bin/sh -f
+
+cd $WORKAREA/src/rcs_fw
+$SWTOOLS_CTL/bin/xt-run --xtensa-core=HWC_RCS_KP1 ./out/bin/unit/cal/cal_sample_unit_test.elf 

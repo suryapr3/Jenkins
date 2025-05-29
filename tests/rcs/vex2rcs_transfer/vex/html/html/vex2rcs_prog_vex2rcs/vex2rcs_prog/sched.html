@@ -1,0 +1,64 @@
+<html><head><title>Schedule for function vex2rcs_prog</title><link rel="stylesheet" type="text/css" href="../../hive.css" />
+<script type="text/javascript" src="../../sched.js" ></script>
+<link rel="stylesheet" type="text/css" href="../../sched.css" />
+</head>
+<body>
+<br><a name="si">Schedule for function vex2rcs_prog.</a><br><br>
+<table cellpadding="2" border="1" cellspacing="0" style="text-align: left;">
+<tbody>
+<tr class="evenrow"><td rowspan=2><code><a name="_cycle_0">0</a></code></td><td><pre><code><a name="label_n100"></a><b>s_imm_u</b><i>:simd0_vlsu0_spsu</i></td><td><pre><code>#@vinput <big><b>to</b></big> <i>simd0_vlsu0_srf0[2]</i>:to:<a href="sched.html#_cycle_1">1</a>-<a href="sched.html#_cycle_3">3</a> <span class="code">12:void vex2rcs_prog() ...ne, vstate</span></td></tr>
+<tr class="evenrow"><td><pre><code><a name="label_n4800"></a><b>s_pass</b><i>:bp_s1_psu</i></td><td><pre><code><i>bp_rf1[1]</i>:from:<a href="sched.html#_cycle_0">0</a> <big><b>to</b></big> <i>bp_rf0[0]</i>:to:<a href="sched.html#_cycle_1">1</a> <span class="code">19:  #else int produ..._read) SYN</span></td></tr></code></pre></td>
+</tr><tr class="oddrow"><td rowspan=2><code><a name="_cycle_1">1</a></code></td><td><pre><code><a name="label_n200"></a><b>v_ldo_1024_i_0</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code><i>simd0_vlsu0_srf0[2]</i>:from:<a href="sched.html#_cycle_0">0</a><b>, </b>#0</td></tr>
+<tr class="oddrow"><td><pre><code><a name="label_n1100"></a><b>s_jmp</b><i>:bp_s0_bru</i></td><td><pre><code><i>bp_rf0[0]</i>:from:<a href="sched.html#_cycle_0">0</a> <big><b>to</b></big> <i>bp_pc[0]</i>:to:<a href="sched.html#_cycle_7">7</a> <span class="code">19:  #else int produ..._read) SYN</span></td></tr></code></pre></td>
+</tr><tr class="evenrow"><td rowspan=2><code><a name="_cycle_2">2</a></code></td><td><pre><code><a name="label_n201"></a><b>v_ldo_1024_i_1</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code></td></tr>
+<tr class="evenrow"><td><pre><code><a name="label_n500"></a><b>v_ldo_1024_i_0</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code><i>simd0_vlsu0_srf0[2]</i>:from:<a href="sched.html#_cycle_0">0</a><b>, </b>#128</td></tr></code></pre></td>
+</tr><tr class="oddrow"><td rowspan=3><code><a name="_cycle_3">3</a></code></td><td><pre><code><a name="label_n202"></a><b>v_ldo_1024_i_2</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code></td></tr>
+<tr class="oddrow"><td><pre><code><a name="label_n501"></a><b>v_ldo_1024_i_1</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code></td></tr>
+<tr class="oddrow"><td><pre><code><a name="label_n700"></a><b>v_ldo_1024_i_0</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code><i>simd0_vlsu0_srf0[2]</i>:from:<a href="sched.html#_cycle_0">0</a><b>, </b>#256</td></tr></code></pre></td>
+</tr><tr class="evenrow"><td rowspan=4><code><a name="_cycle_4">4</a></code></td><td><pre><code><a name="label_n203"></a><b>v_ldo_1024_i_3</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code><big><b>to</b></big> <i>simd0_vlsu0_vrf0[0]</i>:to:<a href="sched.html#_cycle_5">5</a> <span class="code">15:v_xsto_1024_i(Any, 0...nt; i++) </span></td></tr>
+<tr class="evenrow"><td><pre><code><a name="label_n502"></a><b>v_ldo_1024_i_2</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code></td></tr>
+<tr class="evenrow"><td><pre><code><a name="label_n701"></a><b>v_ldo_1024_i_1</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code></td></tr>
+<tr class="evenrow"><td><pre><code><a name="label_n300"></a><b>s_imm</b><i>:simd0_vlsu0_spsu</i></td><td><pre><code>#0 <big><b>to</b></big> <i>simd0_vlsu0_srf0[1]</i>:to:<a href="sched.html#_cycle_5">5</a>-<a href="sched.html#_cycle_7">7</a> <span class="code">12:void vex2rcs_prog() ...ne, vstate</span></td></tr></code></pre></td>
+</tr><tr class="oddrow"><td rowspan=3><code><a name="_cycle_5">5</a></code></td><td><pre><code><a name="label_n503"></a><b>v_ldo_1024_i_3</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code><big><b>to</b></big> <i>simd0_vlsu0_vrf0[1]</i>:to:<a href="sched.html#_cycle_6">6</a> <span class="code">15:v_xsto_1024_i(Any, 0...nt; i++) </span></td></tr>
+<tr class="oddrow"><td><pre><code><a name="label_n702"></a><b>v_ldo_1024_i_2</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code></td></tr>
+<tr class="oddrow"><td><pre><code><a name="label_n400"></a><b>v_xsto_1024_i</b><i>:simd0_vlsu0_vmlsu</i></td><td><pre><code><i>simd0_vlsu0_srf0[1]</i>:from:<a href="sched.html#_cycle_4">4</a><b>, </b>#0<b>, </b><i>simd0_vlsu0_vrf0[0]</i>:from:<a href="sched.html#_cycle_4">4</a></td></tr></code></pre></td>
+</tr><tr class="evenrow"><td rowspan=2><code><a name="_cycle_6">6</a></code></td><td><pre><code><a name="label_n703"></a><b>v_ldo_1024_i_3</b><i>:simd0_vlsu0_vlsu</i></td><td><pre><code><big><b>to</b></big> <i>simd0_vlsu0_vrf0[2]</i>:to:<a href="sched.html#_cycle_7">7</a> <span class="code">15:v_xsto_1024_i(Any, 0...nt; i++) </span></td></tr>
+<tr class="evenrow"><td><pre><code><a name="label_n600"></a><b>v_xsto_1024_i</b><i>:simd0_vlsu0_vmlsu</i></td><td><pre><code><i>simd0_vlsu0_srf0[1]</i>:from:<a href="sched.html#_cycle_4">4</a><b>, </b>#0<b>, </b><i>simd0_vlsu0_vrf0[1]</i>:from:<a href="sched.html#_cycle_5">5</a></td></tr></code></pre></td>
+</tr><tr class="oddrow"><td rowspan=1><code><a name="_cycle_7">7</a></code></td><td><pre><code><a name="label_n800"></a><b>v_xsto_1024_i</b><i>:simd0_vlsu0_vmlsu</i></td><td><pre><code><i>simd0_vlsu0_srf0[1]</i>:from:<a href="sched.html#_cycle_4">4</a><b>, </b>#0<b>, </b><i>simd0_vlsu0_vrf0[2]</i>:from:<a href="sched.html#_cycle_6">6</a></td></tr></code></pre></td>
+</tr></tbody>
+</table>
+<div class="navigator"><a href="../../../vex2rcs_prog_vex2rcs.hive.html#contents"><small>back to contents</small></a></div><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+install_hooks();
+</script>
+</body>
+</html>

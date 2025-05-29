@@ -1,0 +1,126 @@
+table.window
+{
+  width: 100%;
+  height:100%;
+  border-collapse:collapse;
+}
+.resizer {cursor: se-resize;}
+.dragger {cursor: move;}
+.minimizer
+{
+  display: inline;
+  float: right;
+  background-color: #2277FF;
+  border: 2px solid white;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+td#window_top_left
+{
+  width: 2px;
+  height: 20px;
+}
+
+td#window_top_middle
+{
+  height: 20px;
+  background-color: #0055FF;
+  border-top: 1px solid #55AAFF;
+  color: white;
+}
+
+td#window_top_right
+{
+  width: 2px;
+  height: 20px;
+}
+td#window_center_left
+{
+  width: 2px;
+}
+
+td#window_center_right
+{
+  width: 2px;
+}
+td#window_bottom_left
+{
+  width: 2px;
+  height: 2px;
+}
+
+td#window_bottom_middle
+{
+  height: 2px;
+}
+
+td#window_bottom_right
+{
+  display: block;
+  width: 4px;
+  height: 4px;
+  position: relative;
+  top: -4px;
+  left: -4px;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+td#window_center_middle
+{
+  background-color: white;
+  border: 1px solid #AAAABB;
+}
+
+.window_minimized
+{
+  display: none !important;
+}
+
+.window_control_minimized
+{
+  background-color: #0055FF !important;
+}
+.window_control_minimized:hover
+{
+  background-color: #2277FF !important;
+  border: 1px solid #0055FF !important;
+}
+
+div.navigator_bar
+{
+  display: block;
+  width: 100%;
+  background-color: #0022CC;
+  padding: 2px;
+}
+
+div.window_control:hover
+{
+  background-color: #FF7722;
+}
+
+div.window_control
+{
+  display: inline-block;
+  background-color: #FF5500;
+  border: 1px solid white;
+  padding: 2px;
+  margin: 2px;
+  color: white;
+  cursor: pointer;
+}
+
+div.window_content
+{
+  overflow: auto;
+}
+
+div.window
+{
+  display: inline-block;
+  position: static;
+  clear: none;
+  z-index: 0;
+}

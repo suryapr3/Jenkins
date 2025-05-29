@@ -1,0 +1,7 @@
+.v2d_num = 0,
+.apb_num = 0,
+.test_config = 0,
+.in_rate = V2D_SYS_RATE_IQ_P25,
+.out_rate = V2D_SYS_RATE_IQ_P25,
+.drf_clock = 0,
+.pdpd_enable = 0,

@@ -1,0 +1,168 @@
+td {
+  vertical-align:top;
+  font-size: 8pt;
+}
+
+pre.sourceline {
+  background-color: white
+  padding-top: 0.0cm;
+  padding-bottom: 0.0cm;
+  margin-top: 0.0cm;
+  margin-bottom: 0.0cm;
+}
+
+pre[dep="level4"] {
+  background-color: #DDFFFF;
+}
+
+pre[dep="level3"] {
+  background-color: #CCFFFF;
+}
+
+pre[dep="level2"] {
+  background-color: #99FFFF;
+}
+
+pre[dep="level1"] {
+  background-color: #66FFFF;
+}
+
+pre[dep="level0"] {
+  background-color: #00FFFF;
+}
+
+pre[dep="source"] {
+  background-color: #00FFFF;
+}
+
+pre[state="selected"] {
+  background-color: yellow;
+}
+
+td.operation {
+  background-color: #33FF00;
+  height: 1px;
+}
+
+td.operation[guard="true"] {
+  background-color: #00BB88;
+}
+
+td.operation[speculate="true"] {
+  background-color: #00BB88;
+}
+
+td.operation[critical="true"] {
+  background-color: #00BB00;
+}
+
+td.operation[spill="true"] {
+  background-color: #BB8800;
+}
+
+td.operation[dep="level4"] {
+  background-color: #DDFFFF;
+}
+
+td.operation[dep="level3"] {
+  background-color: #CCFFFF;
+}
+
+td.operation[dep="level2"] {
+  background-color: #99FFFF;
+}
+
+td.operation[dep="level1"] {
+  background-color: #66FFFF;
+}
+
+td.operation[dep="level0"] {
+  background-color: #00FFFF;
+}
+
+td.operation[succ="on"] {
+  background-color: #FF00FF;
+  border: outset black
+}
+
+td.operation[dep="source"] {
+  background-color: #00FFFF;
+  border: outset black
+}
+
+td.operation[state="selected"] {
+  background-color: yellow;
+}
+
+td.operation[live="on"] {
+  outline: blue solid 2px;
+}
+
+td.operation[deffed="on"] {
+  outline: red solid 2px;
+}
+
+td.pressure[used="on"] {
+  background-color: #00FF00 !important;
+}
+
+td.pressure[deffed="on"] {
+  background-color: #0000FF !important;
+}
+
+td.pressure[both="on"] {
+  background-color: #00FFFF !important;
+}
+
+td.pressure[overflow="on"] {
+  background-color: #FF0000 !important;
+}
+
+td.pressure[used="on"][overflow="on"] {
+  background-color: #88FF00 !important;
+}
+
+td.pressure[deffed="on"][overflow="on"] {
+  background-color: #8800FF !important;
+}
+
+td.pressure[both="on"][overflow="on"] {
+  background-color: #88FFFF !important;
+}
+
+td.pressure[state="selected"] {
+  background-color: #FFFF00 !important;
+}
+
+
+div.operation[tracing="yes"] {
+  border: outset black
+}
+
+div.tracebox
+{
+  position: absolute;
+  background-color: #87CEEB ;
+  visibility: hidden;
+  height: 500px ;
+  width: 500px ; 
+}
+
+div.traceboxheader
+{
+  background-color: #4682B4;
+  color: blue
+}
+
+div.traceboxframediv
+{
+  height: 480px ;
+  width: 490px ; 
+}
+
+iframe.traceboxframe
+{
+  height: 472px;
+  width: 492px ; 
+}
+

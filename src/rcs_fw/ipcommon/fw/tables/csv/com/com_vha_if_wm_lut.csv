@@ -1,0 +1,27 @@
+Table Name,com_vha_if_wm_lut,,,,,,,,,,,,,,,,,,,,,
+Table Description,"VHA input FIFO watermark setting table.
+This table is indexed by [f_clk][vha_input_rate], here f_clk = e_CLK_983M for operation clock at 1GHz, f_clk = e_CLK_1474M for operation clock at 1.5GHz, vha_input_rate is the valid DL VHA input rates: e_VHA_RATE_P125 to e_VHA_RATE_1",,,,,,,,,,,,,,,,,,,,,
+single entry bitwidth,16*1,,,,,,,,,,,,,,,,,,,,,
+base type bit layout,,,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,,,,
+Bit Field Name,,,res_15,if_wm_p5_us,,,,,,,if_wm_1_us,,,,,,,,,,,
+Bit Field Description,,,reserved,VHA input FIFO watermark for 0.52 us,,,,,,,VHA input FIFO watermark for 1.04us,,,,,,,,,,,
+Unit [string],,,bit,flit,,,,,,,flit,,,,,,,,,,,
+Granularity,,,1,2*,,,,,,,2*,,,,,,,,,,,
+Minimum Value,,,0,8,,,,,,,16,,,,,,,,,,,
+Maximum Value,,,1,96,,,,,,,192,,,,,,,,,,,
+Sign Type,,,unsigned,unsigned,,,,,,,unsigned,,,,,,,,,,,
+Bit Field Width,,,1,7,,,,,,,8,,,,,,,,,,,
+subtable dimension and name,6*1,,TX_VHA_IF_WM_F_1G,,,,,,,,,,,,,,,,f_clk,input_rate,,
+,,,0,4,,,,,,,8,,,,,,,,e_CLK_983M,e_VHA_RATE_P125,,
+,,,0,8,,,,,,,16,,,,,,,,e_CLK_983M,e_VHA_RATE_P25,,
+,,,0,16,,,,,,,32,,,,,,,,e_CLK_983M,e_VHA_RATE_P5,,
+,,,0,32,,,,,,,64,,,,,,,,e_CLK_983M,e_VHA_RATE_1,,1G
+,,,0,64,,,,,,,128,,,,,,,,e_CLK_983M,e_VHA_RATE_2,,2G
+,,,0,128,,,,,,,256,,,,,,,,e_CLK_983M,e_VHA_RATE_4,,4G
+subtable dimension and name,6*1,,TX_VHA_IF_WM_F_1P5G,,,,,,,,,,,,,,,,,,,
+,,,0,6,,,,,,,12,,,,,,,,e_CLK_1474M,e_VHA_RATE_P125,,
+,,,0,12,,,,,,,24,,,,,,,,e_CLK_1474M,e_VHA_RATE_P25,,
+,,,0,24,,,,,,,48,,,,,,,,e_CLK_1474M,e_VHA_RATE_P5,,
+,,,0,48,,,,,,,96,,,,,,,,e_CLK_1474M,e_VHA_RATE_1,,1.5G
+,,,0,96,,,,,,,192,,,,,,,,e_CLK_1474M,e_VHA_RATE_2,,3G
+,,,0,192,,,,,,,384,,,,,,,,e_CLK_1474M,e_VHA_RATE_4,,6G

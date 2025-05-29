@@ -1,0 +1,7 @@
+.v2d_num = 0,
+.apb_num = 0,
+.test_config = 0,
+.in_rate = PDPD_RATE_IQ_P5,
+.out_rate = PDPD_RATE_IQ_P5,
+.drf_clock = 0,
+.pdpd_enable = 1,

@@ -1,0 +1,351 @@
+anfpgafrio068$ python dnrt_jesd_vex_rx_path_usecases_14_12_23.py VEXCNT:,1 NSIPCNT:,1 JESD:,3B
+=============================test starts here========================
+dnrt_jesd_vex_rx_path_usecases_14_12_23
+['VEXCNT:,1', 'NSIPCNT:,1', 'JESD:,3B']
+dnrt_jesd_vex_rx_path_usecases_14_12_23.so
+0
+The block_id is 0x63
+base_address  from read_reg is 0x2800000 and region id is 0
+The block_id is 0x63
+base_address  from read_reg is 0x2800000 and region id is 0
+The block_id is 0x63
+base_address  from read_reg is 0x2800000 and region id is 0
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+0
+there is no error or warning
+========================= test pass =============================
+================================test run completed==============================
+anfpgafrio068$ frioPciWrite -F s5a3 -P 0x20000 0x02
+anfpgafrio068$ frioPciWrite -F s5a1 -P 0x20000 0x90
+anfpgafrio068$ frioPciWrite -F s5b1 -P 0x20000 0x90
+anfpgafrio068$  
+anfpgafrio068$ srpRead 0x08000314 1
+0.0.0.0008000314: 0051c378 
+anfpgafrio068$ 
+anfpgafrio068$ srpRead 0x63.0.0x30000 64
+0.63.0.0000030000: 00610021 00620022 00630023 00640024 
+0.63.0.0000030010: 00650025 00660026 00670027 00680028 
+0.63.0.0000030020: 00690029 006a002a 006b002b 006c002c 
+0.63.0.0000030030: 006d002d 006e002e 006f002f 00700030 
+0.63.0.0000030040: 00710031 00720032 00730033 00740034 
+0.63.0.0000030050: 00750035 00760036 00770037 00780038 
+0.63.0.0000030060: 00790039 007a003a 007b003b 007c003c 
+0.63.0.0000030070: 007d003d 007e003e 007f003f 00800040 
+0.63.0.0000030080: 00410001 00420002 00430003 00440004 
+0.63.0.0000030090: 00450005 00460006 00470007 00480008 
+0.63.0.00000300a0: 00490009 004a000a 004b000b 004c000c 
+0.63.0.00000300b0: 004d000d 004e000e 004f000f 00500010 
+0.63.0.00000300c0: 00510011 00520012 00530013 00540014 
+0.63.0.00000300d0: 00550015 00560016 00570017 00580018 
+0.63.0.00000300e0: 00590019 005a001a 005b001b 005c001c 
+0.63.0.00000300f0: 005d001d 005e001e 005f001f 00600020 
+anfpgafrio068$ srpRead 0x63.0.0x30200 64
+0.63.0.0000030200: 10211001 10221002 10231003 10241004 
+0.63.0.0000030210: 10251005 10261006 10271007 10281008 
+0.63.0.0000030220: 10291009 102a100a 102b100b 102c100c 
+0.63.0.0000030230: 102d100d 102e100e 102f100f 10301010 
+0.63.0.0000030240: 10311011 10321012 10331013 10341014 
+0.63.0.0000030250: 10351015 10361016 10371017 10381018 
+0.63.0.0000030260: 10391019 103a101a 103b101b 103c101c 
+0.63.0.0000030270: 103d101d 103e101e 103f101f 10401020 
+0.63.0.0000030280: 10211001 10221002 10231003 10241004 
+0.63.0.0000030290: 10251005 10261006 10271007 10281008 
+0.63.0.00000302a0: 10291009 102a100a 102b100b 102c100c 
+0.63.0.00000302b0: 102d100d 102e100e 102f100f 10301010 
+0.63.0.00000302c0: 10311011 10321012 10331013 10341014 
+0.63.0.00000302d0: 10351015 10361016 10371017 10381018 
+0.63.0.00000302e0: 10391019 103a101a 103b101b 103c101c 
+0.63.0.00000302f0: 103d101d 103e101e 103f101f 10401020 
+anfpgafrio068$ srpRead 0x63.0.0x30400 64
+0.63.0.0000030400: 20212001 20222002 20232003 20242004 
+0.63.0.0000030410: 20252005 20262006 20272007 20282008 
+0.63.0.0000030420: 20292009 202a200a 202b200b 202c200c 
+0.63.0.0000030430: 202d200d 202e200e 202f200f 20302010 
+0.63.0.0000030440: 20312011 20322012 20332013 20342014 
+0.63.0.0000030450: 20352015 20362016 20372017 20382018 
+0.63.0.0000030460: 20392019 203a201a 203b201b 203c201c 
+0.63.0.0000030470: 203d201d 203e201e 203f201f 20402020 
+0.63.0.0000030480: 20212001 20222002 20232003 20242004 
+0.63.0.0000030490: 20252005 20262006 20272007 20282008 
+0.63.0.00000304a0: 20292009 202a200a 202b200b 202c200c 
+0.63.0.00000304b0: 202d200d 202e200e 202f200f 20302010 
+0.63.0.00000304c0: 20312011 20322012 20332013 20342014 
+0.63.0.00000304d0: 20352015 20362016 20372017 20382018 
+0.63.0.00000304e0: 20392019 203a201a 203b201b 203c201c 
+0.63.0.00000304f0: 203d201d 203e201e 203f201f 20402020 
+anfpgafrio068$ srpRead 0x63.0.0x30600 64
+0.63.0.0000030600: 30213001 30223002 30233003 30243004 
+0.63.0.0000030610: 30253005 30263006 30273007 30283008 
+0.63.0.0000030620: 30293009 302a300a 302b300b 302c300c 
+0.63.0.0000030630: 302d300d 302e300e 302f300f 30303010 
+0.63.0.0000030640: 30313011 30323012 30333013 30343014 
+0.63.0.0000030650: 30353015 30363016 30373017 30383018 
+0.63.0.0000030660: 30393019 303a301a 303b301b 303c301c 
+0.63.0.0000030670: 303d301d 303e301e 303f301f 30403020 
+0.63.0.0000030680: 30213001 30223002 30233003 30243004 
+0.63.0.0000030690: 30253005 30263006 30273007 30283008 
+0.63.0.00000306a0: 30293009 302a300a 302b300b 302c300c 
+0.63.0.00000306b0: 302d300d 302e300e 302f300f 30303010 
+0.63.0.00000306c0: 30313011 30323012 30333013 30343014 
+0.63.0.00000306d0: 30353015 30363016 30373017 30383018 
+0.63.0.00000306e0: 30393019 303a301a 303b301b 303c301c 
+0.63.0.00000306f0: 303d301d 303e301e 303f301f 30403020 
+anfpgafrio068$ srpRead 0x63.0.0x30800 64
+0.63.0.0000030800: 40214001 40224002 40234003 40244004 
+0.63.0.0000030810: 40254005 40264006 40274007 40284008 
+0.63.0.0000030820: 40294009 402a400a 402b400b 402c400c 
+0.63.0.0000030830: 402d400d 402e400e 402f400f 40304010 
+0.63.0.0000030840: 40314011 40324012 40334013 40344014 
+0.63.0.0000030850: 40354015 40364016 40374017 40384018 
+0.63.0.0000030860: 40394019 403a401a 403b401b 403c401c 
+0.63.0.0000030870: 403d401d 403e401e 403f401f 40404020 
+0.63.0.0000030880: 40214001 40224002 40234003 40244004 
+0.63.0.0000030890: 40254005 40264006 40274007 40284008 
+0.63.0.00000308a0: 40294009 402a400a 402b400b 402c400c 
+0.63.0.00000308b0: 402d400d 402e400e 402f400f 40304010 
+0.63.0.00000308c0: 40314011 40324012 40334013 40344014 
+0.63.0.00000308d0: 40354015 40364016 40374017 40384018 
+0.63.0.00000308e0: 40394019 403a401a 403b401b 403c401c 
+0.63.0.00000308f0: 403d401d 403e401e 403f401f 40404020 
+anfpgafrio068$ srpRead 0x63.0.0x31000 64
+0.63.0.0000031000: 50215001 50225002 50235003 50245004 
+0.63.0.0000031010: 50255005 50265006 50275007 50285008 
+0.63.0.0000031020: 50295009 502a500a 502b500b 502c500c 
+0.63.0.0000031030: 502d500d 502e500e 502f500f 50305010 
+0.63.0.0000031040: 50315011 50325012 50335013 50345014 
+0.63.0.0000031050: 50355015 50365016 50375017 50385018 
+0.63.0.0000031060: 50395019 503a501a 503b501b 503c501c 
+0.63.0.0000031070: 503d501d 503e501e 503f501f 50405020 
+0.63.0.0000031080: 50215001 50225002 50235003 50245004 
+0.63.0.0000031090: 50255005 50265006 50275007 50285008 
+0.63.0.00000310a0: 50295009 502a500a 502b500b 502c500c 
+0.63.0.00000310b0: 502d500d 502e500e 502f500f 50305010 
+0.63.0.00000310c0: 50315011 50325012 50335013 50345014 
+0.63.0.00000310d0: 50355015 50365016 50375017 50385018 
+0.63.0.00000310e0: 50395019 503a501a 503b501b 503c501c 
+0.63.0.00000310f0: 503d501d 503e501e 503f501f 50405020 
+anfpgafrio068$ srpRead 0x63.0.0x31200 64
+0.63.0.0000031200: 60216001 60226002 60236003 60246004 
+0.63.0.0000031210: 60256005 60266006 60276007 60286008 
+0.63.0.0000031220: 60296009 602a600a 602b600b 602c600c 
+0.63.0.0000031230: 602d600d 602e600e 602f600f 60306010 
+0.63.0.0000031240: 60316011 60326012 60336013 60346014 
+0.63.0.0000031250: 60356015 60366016 60376017 60386018 
+0.63.0.0000031260: 60396019 603a601a 603b601b 603c601c 
+0.63.0.0000031270: 603d601d 603e601e 603f601f 60406020 
+0.63.0.0000031280: 60216001 60226002 60236003 60246004 
+0.63.0.0000031290: 60256005 60266006 60276007 60286008 
+0.63.0.00000312a0: 60296009 602a600a 602b600b 602c600c 
+0.63.0.00000312b0: 602d600d 602e600e 602f600f 60306010 
+0.63.0.00000312c0: 60316011 60326012 60336013 60346014 
+0.63.0.00000312d0: 60356015 60366016 60376017 60386018 
+0.63.0.00000312e0: 60396019 603a601a 603b601b 603c601c 
+0.63.0.00000312f0: 603d601d 603e601e 603f601f 60406020 
+anfpgafrio068$ srpRead 0x63.0.0x31400 64
+0.63.0.0000031400: 70217001 70227002 70237003 70247004 
+0.63.0.0000031410: 70257005 70267006 70277007 70287008 
+0.63.0.0000031420: 70297009 702a700a 702b700b 702c700c 
+0.63.0.0000031430: 702d700d 702e700e 702f700f 70307010 
+0.63.0.0000031440: 70317011 70327012 70337013 70347014 
+0.63.0.0000031450: 70357015 70367016 70377017 70387018 
+0.63.0.0000031460: 70397019 703a701a 703b701b 703c701c 
+0.63.0.0000031470: 703d701d 703e701e 703f701f 70407020 
+0.63.0.0000031480: 70217001 70227002 70237003 70247004 
+0.63.0.0000031490: 70257005 70267006 70277007 70287008 
+0.63.0.00000314a0: 70297009 702a700a 702b700b 702c700c 
+0.63.0.00000314b0: 702d700d 702e700e 702f700f 70307010 
+0.63.0.00000314c0: 70317011 70327012 70337013 70347014 
+0.63.0.00000314d0: 70357015 70367016 70377017 70387018 
+0.63.0.00000314e0: 70397019 703a701a 703b701b 703c701c 
+0.63.0.00000314f0: 703d701d 703e701e 703f701f 70407020 
+anfpgafrio068$ cd /nfs/site/disks/xne_00001/workspace/hw/latabhax/ABC/ABC_18A_latest_27_11_23/abc_emul-srvrgen4/tests/jesd/jesd_usecase_sh_emb_error_polling_op5_30_11_23
+anfpgafrio068$ python jesd_usecase_sh_emb_error_polling_op5_30_11_23.py
+=============================test starts here========================
+=============================start c firmware execution=======================
+Hello from roshan
+
+
+Before jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x0 
+Before jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x0 
+Before jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x0 
+Before jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0xc 
+
+
+Present value of SH lock of Link0 is 0x3 
+Present value of EMB lock of Link0 is 0x3 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+
+Present value of NSIP_HBI_H2B_MD_CONTROL_TBL0 0x7 
+Present value of NSIP_HBI_INSERT_QUEUE_CSR0_CMD_INSERT_STREAM_EN is 0x0 
+Present value of NSIP_HBI_INSERT_QUEUE_CSR0_CMD_INSERT_CONTROL is 0x0 here 31st bit is for 'insert enable',  
+Present value of NSIP_HBI_INSERT_QUEUE_CSR0_B2H_INSERT_NULL_SAMPLE 0x0 
+Present value of NSIP_HBI_INSERT_QUEUE_CSR0_B2H_INSERT_CSR 0x1000000 
+Present value of NSIP_HBI_B2H_CSR_B2H_INSERT_CONTROL 0x0 
+Present value of NSIP_HBI_DROP_CMD0_CMD_DROP_STREAM_EN 0x0 
+Present value of NSIP_HBI_DROP_CMD0_CMD_DROP_CONTROL 0x0 
+Present value of NSIP_HBI_H2B_DROP_STATE 0x0 
+Present value of NSIP_HBI_APB_BRIDGE_STATUS 0x10000 
+Present value of NSIP_HBI_B2H_FF_B2H_FIFO_STATUS 0xc 
+Present value of NSIP_HBI_H2B_FF_H2B_FIFO_STATUS 0xc 
+Present value of NSIP_HBI_INTR_INT_STATUS 0x0 
+
+
+
+ After Jesd enable value for ICOUNTER_REPORT_LANE0  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE1  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE2  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE3  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE4  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE5  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE6  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE7  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE8  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE9  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE10 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE11 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE12 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE13 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE14 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE15 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE16 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE17 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE18 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE19 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE20 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE21 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE22 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE23 is 0x0 
+ After Jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x0 
+ After Jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x0 
+ After Jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x0 
+ After Jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0xc 
+ 
+previous and current value for JL_N_RX_GB_FULL_REG are 0x0, 0xc
+
+
+
+
+
+
+
+Present value of SH lock of Link0 is 0x3 
+Present value of EMB lock of Link0 is 0x3 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+
+Present value of NSIP_HBI_H2B_MD_CONTROL_TBL0 0x7 
+Present value of NSIP_HBI_INSERT_QUEUE_CSR0_CMD_INSERT_STREAM_EN is 0x0 
+Present value of NSIP_HBI_INSERT_QUEUE_CSR0_CMD_INSERT_CONTROL is 0x0 here 31st bit is for 'insert enable',  
+Present value of NSIP_HBI_INSERT_QUEUE_CSR0_B2H_INSERT_NULL_SAMPLE 0x0 
+Present value of NSIP_HBI_INSERT_QUEUE_CSR0_B2H_INSERT_CSR 0x1000000 
+Present value of NSIP_HBI_B2H_CSR_B2H_INSERT_CONTROL 0x0 
+Present value of NSIP_HBI_DROP_CMD0_CMD_DROP_STREAM_EN 0x0 
+Present value of NSIP_HBI_DROP_CMD0_CMD_DROP_CONTROL 0x0 
+Present value of NSIP_HBI_H2B_DROP_STATE 0x0 
+Present value of NSIP_HBI_APB_BRIDGE_STATUS 0x10000 
+Present value of NSIP_HBI_B2H_FF_B2H_FIFO_STATUS 0xc 
+Present value of NSIP_HBI_H2B_FF_H2B_FIFO_STATUS 0x108 
+Present value of NSIP_HBI_INTR_INT_STATUS 0x0 
+
+
+
+Printing NSIP registers
+Present value of NSIP_HBI_INTR_INT_HIGH_EN 0xfff 
+Present value of NSIP_HBI_INTR_INT_LOW_EN 0xfff 
+Present value of NSIP_HBI_H2B_FF_H2B_FIFO_CONTROL 0x184 
+Present value of NSIP_HBI_H2B_CREDIT_READY_CS 0x30303 
+Present value of NSIP_HBI_H2B_ROUTE_LKUP_TBL0 0x0 
+Present value of NSIP_HBI_H2B_ADDR_LKUP_TBL0 0x80000000 
+Present value of NSIP_HBI_H2B_TK_ADDR_LKUP_TBL0 0x10000 
+Present value of NSIP_HBI_H2B_TK_ROUTE_LKUP_TBL0 0x0 
+Present value of NSIP_HBI_H2B_MD_CONTROL_TBL0 0x7 
+
+
+Printing CSR/CMN IP
+Present value of JESDABC_CMN_CSR_MEM_TX_IP_CLK_CTRL is 0x6 
+Present value of JESDABC_CMN_CSR_MEM_RX_IP_CLK_CTRL is 0x6 
+
+
+Printing RX IP
+Present value of JESD_XIP_204C_RX_MEM_RX_SUBCLASS is 0x1 
+Present value of JESD_XIP_204C_RX_MEM_RX_FEC is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_CRC3_EN is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_CRC12_EN is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_BIT_ORDER is 0x3 
+Present value of JESD_XIP_204C_RX_MEM_RX_E is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_CF is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_HD is 0x1 
+Present value of JESD_XIP_204C_RX_MEM_RX_CMD_EN is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_S is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_CLK_RATIO is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_SONIF is 0x100 
+Present value of JESD_XIP_204C_RX_MEM_RX_N is 0xf 
+Present value of JESD_XIP_204C_RX_MEM_RX_NTOTAL is 0xf 
+Present value of JESD_XIP_204C_RX_MEM_RX_CS is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_TL_TEST_MODE is 0x0 
+Present value of JESD_XIP_204C_RX_MEM_RX_SCR is 0x1 
+Present value of JESD_XIP_204C_RX_MEM_RX_L is 0x1 
+Present value of JESD_XIP_204C_RX_MEM_RX_M is 0xf 
+Present value of JESD_XIP_204C_RX_MEM_RX_F is 0xf 
+Present value of JESD_XIP_204C_RX_MEM_RX_THRESH_EMB_ERR is 0x5 
+Present value of JESD_XIP_204C_RX_MEM_RX_THRESH_SH_ERR is 0x5 
+
+
+Printing RX GLUE
+Present value of JESDABC_RX_GLUE_MEM_WR_MEM_TBL0_OFFSET is 0x0 
+Present value of JESDABC_RX_GLUE_MEM_RD_MEM_TBL0_OFFSET is 0x0 
+Present value of JESDABC_RX_GLUE_MEM_RX_GLUE_SONI is 0x1 
+Present value of JESDABC_RX_GLUE_MEM_STRM_CFG is 0xe8 
+Present value of JESDABC_RX_GLUE_MEM_STREAM_CFG is 0x3f 
+57
+================================test run completed==============================
+there is no error or warning
+========================= test pass =============================
+anfpgafrio068$ 
+anfpgafrio068$ srpRead 0x080052f4 1
+0.0.0.00080052f4: 00000003 

@@ -1,0 +1,39 @@
+Famework updates 18th April 2023
+================================
+1. cli.c
+   o  included srp header files
+   o  read_reg, write_reg, read_write_reg APIs are added, these APIs uses block id, index and offset for initiating any read/write transaction 
+   o  added the block id, index, offset information while logging the mismatch if any
+2. init.c
+   o included srp header files
+   o srp function for opening the controller ( required for initiating any controller read/write transaction using RTE functions)
+3. hw_inc_rte
+   o added the controller header files from RTE
+4. FPGA.env and fpga_setup.config
+   o setup file
+5. tests/temp/temp.py
+   o should be used as reference for developing script for test
+   o updates for naming log file for c test execution
+6. tests/temp/Makefile
+   o should be used as reference for developing script for test
+   o updates for using RTE shared libraries
+   o updates for using RTE header files
+
+
+steps to run tests using framework
+1. checkout the emul validation firmware in the santa clara
+    /p/hdk/bin/cth_psetup -p abc -cfg HWCFE -read_only
+2. copy it to austing using scp command
+3. workspace should be the directory where FPGA.env,fpga_setup.sh is kept
+4. creat rundir
+5. cd into rundir
+6. start the frio
+7. once frio window is popped up, cd to workspace area
+8. switch to bash
+9. if you want to use RTE header files, update python.env ( export RTE_HEADER=1)
+10. source FPGA.env
+11. now setup is ready
+12. create tests in test directory
+13. use tests/temp/temp.py and tests/temp/Makefile as reference for creating your own tests
+
+

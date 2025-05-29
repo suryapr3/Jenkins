@@ -1,0 +1,102 @@
+//  Memory map file to generate linker scripts for programs run on the ISS.
+
+// Customer ID=18477; Build=0xa0693; Copyright (c) 2004-2015 Cadence Design Systems, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+// Additions for -mlocalmems option:
+PLACE SECTIONS(.bss) WITH_SECTION(.dram0.bss)
+PLACE SECTIONS(.data) WITH_SECTION(.dram0.data)
+PLACE SECTIONS(.rodata) WITH_SECTION(.dram0.rodata)
+PLACE SECTIONS(STACK) WITH_SECTION(.dram0.bss)
+PLACE SECTIONS(HEAP) WITH_SECTION(.dram0.bss)
+PLACE SECTIONS(.literal) WITH_SECTION(.iram0.literal)
+PLACE SECTIONS(.text) WITH_SECTION(.iram0.text)
+
+// A memory map is a sequence of memory descriptions and
+// optional parameter assignments.
+//
+// Each memory description has the following format:
+//   BEGIN <name>
+//     <addr> [,<paddr>] : <mem-type> : <mem-name> : <size> [,<psize>]
+//                       : [writable] [,executable] [,device] ;
+//     <segment>*
+//   END <name>
+//
+// where each <segment> description has the following format:
+//     <seg-name> : F|C : <start-addr> - <end-addr> [ : STACK ] [ : HEAP ]
+//                : <section-name>* ;
+//
+// Each parameter assignment is a keyword/value pair in the following format:
+//   <keyword> = <value>                (no spaces in <value>)
+// or
+//   <keyword> = "<value>"              (spaces allowed in <value>)
+//
+// The following primitives are also defined:
+//   PLACE SECTIONS( <section-name>* ) { WITH_SECTION(<section-name>)
+//                                       | IN_SEGMENT(<seg-name>) }
+//
+//   NOLOAD <section-name1> [ <section-name2> ... ]
+//
+// Please refer to the Xtensa LSP Reference Manual for more details.
+//
+BEGIN dram0
+0x10000: dataRam : dram0 : 0x10000 : writable ;
+ // Size 464(0x1d0) bytes
+ dram0_0 : C : 0x10000 - 0x101cf : .ana_ext_info_section;
+ // Size 128(0x80) bytes
+ dram0_1 : C : 0x101d0 - 0x1024f :  .dram0.rb.data;
+ // Size 9920(0x26c0) bytes
+ dram0_2 : C : 0x10250 - 0x1290f:  .dram0.rodata .clib.rodata .rtos.rodata .rodata .clib.data .clib.percpu.data .rtos.percpu.data .rtos.data .dram0.data .data .clib.bss .clib.percpu.bss .rtos.percpu.bss .rtos.bss .dram0.bss .bss;
+ // Size 1008(0x3f0) bytes
+ dram0_3 : C : 0x12910 - 0x12cff :  STACK : HEAP : ;
+ // Size 54016(0xd300) bytes
+ dram0_4: C : 0x12d00 - 0x1ffff :  .dram0_calib_heap;
+END dram0
+
+
+BEGIN iram0
+0x20000: instRam : iram0 : 0x10000 : executable, writable ;
+ iram0_0 : F : 0x20000 - 0x202ff : .ResetVector.text .ResetVector.literal .ResetHandler.literal .ResetHandler.text;
+ iram0_1 : C : 0x20300 - 0x2032f : .MemoryExceptionVector.literal;
+ iram0_2 : F : 0x20330 - 0x204af : .MemoryExceptionVector.text;
+ iram0_3 : C : 0x204b0 - 0x207ff : ;
+ iram0_4 : F : 0x20800 - 0x20977 : .WindowVectors.text;
+ iram0_5 : C : 0x20978 - 0x2097f : .Level2InterruptVector.literal;
+ iram0_6 : F : 0x20980 - 0x209b7 : .Level2InterruptVector.text;
+ iram0_7 : C : 0x209b8 - 0x209bf : .DebugExceptionVector.literal;
+ iram0_8 : F : 0x209c0 - 0x209f7 : .DebugExceptionVector.text;
+ iram0_9 : C : 0x209f8 - 0x209ff : .NMIExceptionVector.literal;
+ iram0_10 : F : 0x20a00 - 0x20a37 : .NMIExceptionVector.text;
+ iram0_11 : C : 0x20a38 - 0x20a3f : .KernelExceptionVector.literal;
+ iram0_12 : F : 0x20a40 - 0x20a77 : .KernelExceptionVector.text;
+ iram0_13 : C : 0x20a78 - 0x20a7f : .UserExceptionVector.literal;
+ iram0_14 : F : 0x20a80 - 0x20ab7 : .UserExceptionVector.text;
+ iram0_15 : C : 0x20ab8 - 0x20aff : .DoubleExceptionVector.literal;
+ iram0_16 : F : 0x20b00 - 0x20b3f : .DoubleExceptionVector.text;
+ iram0_17 : C : 0x20b40 - 0x2ffff : .iram0.literal .iram0.text .literal .rtos.literal .clib.literal .text .clib.text .rtos.text .note.gnu.build-id;
+END iram0
+
+BEGIN sram
+0x30000: sysram : sram : 0x20000 : executable, writable ;
+ sram0 : C : 0x30000 - 0x4ffff : .sram.rodata .sram.literal .sram.text .sram.data __llvm_prf_names .sram.bss;
+END sram

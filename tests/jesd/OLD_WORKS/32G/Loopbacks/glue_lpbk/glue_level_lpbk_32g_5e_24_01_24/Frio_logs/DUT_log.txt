@@ -1,0 +1,44 @@
+anfpgafrio109$ cd /nfs/site/disks/xne_00001/workspace/hw/msbhuvan/ABC/ABC_18A_latest_27_11_23/abc_emul-srvrgen4/tests/jesd/glue_level_lpbk_32g_5e_24_01_24
+anfpgafrio109$ python glue_level_lpbk_32g_5e_24_01_24.py 
+=============================test starts here========================
+=============================start c firmware execution=======================
+Hello from Main
+Before JESD_EN : Enable clock 
+CLOCK Enabled before starting DUT 
+JESD TX IP CONFIG : program_tx_ip_registers 
+########JESD tx path - UC 5E -LMFS -2-16-16-1 
+JESD RX IP CONFIG : program_rx_ip_registers 
+####JESD RX path - UC 5E 32G -LMFS -2-16-16-1 - IQ bandwidth -
+JESD RX GLUE CONFIG : program_rx_glue_registers 
+########JESD RX GLUE CONFIG : usecase-5E 
+JESD CMN CSR CONFIG : program_cmn_csr_registers 
+
+####### configuring cmn_csr for 5E
+JESD TX GLUE CONFIG : program_tx_glue_registers 
+Giving delay of 10 milli seconds 
+JESD CMN CSR CONFIG : program_cmn_csr_registers 
+
+
+Before jesd enable value for JL_N_tx_gb_empty_st_REG --------is 0x0 
+Before jesd enable value for JL_N_tx_gb_full_st_REG ---------is 0x0 
+JESD ENABLE : program_enable_registers 
+After JESD_EN : SYSREF for JESD0 Done
+
+
+ After SYSREF value for JL_N_TX_GB_EMPTY_REG --------is 0x0 
+ After SYSREF value for JL_N_TX_GB_FULL_REG ---------is 0x0 
+ After SYSREF value for JL_N_RX_GB_EMPTY_REG --------is 0x3 
+ After SYSREF value for JL_N_RX_GB_FULL_REG ---------is 0xc 
+
+
+
+
+After SYSREF value of SH lock of Link0 is 0x0 
+After SYSREF value of EMB lock of Link0 is 0x0 
+After SYSREF value of SH lock loss of Link0 is 0x0 
+After SYSREF value of EMB lock loss of Link0 is 0x0 
+53
+================================test run completed==============================
+there is no error or warning
+========================= test pass =============================
+anfpgafrio109$ 

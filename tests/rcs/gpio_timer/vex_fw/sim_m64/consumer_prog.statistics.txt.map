@@ -1,0 +1,55 @@
+/* Statistics file  */
+
+Data Memory Usage:
+memory      address    size       variable
+------------------------------------------
+bp_config   
+                       -------------------
+                       0x0        <total>
+                       0x10000    <unused>
+------------------------------------------
+bp_dmem     
+            0x1C0      0x4        buffer_ra
+            0x40       0x4        count
+            0x180      0x40       consumer_sm_gate
+            0x1C8      0x4        consumer_token_per_request
+            0x1C4      0x4        consumer_max_count
+                       -------------------
+                       0x50       <total>
+                       0x3FB0     <unused>
+------------------------------------------
+simd0_vmem  
+            0x0        0x80       gTimeStampData
+            0x100      0x500      gTimeStampDataCopy
+                       -------------------
+                       0x580      <total>
+                       0xFA80     <unused>
+------------------------------------------
+simd0_lutmem
+                       -------------------
+                       0x0        <total>
+                       0x1000     <unused>
+------------------------------------------
+total memory used: 0x5D0
+
+
+
+Function Usage:
+start    end      function
+------------------------------------------
+0x2        0x6        consumer_prog
+0x0        0x1        consumer_prog_entry
+------------------------------------------
+total number of functions: 2
+
+
+
+View Usage:
+  ve32:
+    width:            386
+    issue slots:      6
+    program words:    7
+    operation stages: 0
+
+total used program words: 7
+

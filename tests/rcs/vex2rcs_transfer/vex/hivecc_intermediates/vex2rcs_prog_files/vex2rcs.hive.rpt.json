@@ -1,0 +1,1581 @@
+{
+  "cell": {
+    "name": "ve32",
+    "rfs": [
+      {
+        "name": "bp_rf0",
+        "size": 32,
+        "special": false
+      },
+      {
+        "name": "bp_rf1",
+        "size": 32,
+        "special": false
+      },
+      {
+        "name": "bp_rf2",
+        "size": 16,
+        "special": false
+      },
+      {
+        "name": "simd0_vlsu0_srf0",
+        "size": 32,
+        "special": false
+      },
+      {
+        "name": "simd0_vlsu1_srf0",
+        "size": 32,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_srf0",
+        "size": 32,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_srf_pcc",
+        "size": 4,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_vrf_pkr",
+        "size": 4,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_rf_prv",
+        "size": 1,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_vrf_xpr",
+        "size": 1,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_srf1",
+        "size": 32,
+        "special": false
+      },
+      {
+        "name": "simd0_vlsu0_vrf0",
+        "size": 16,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_vrf0",
+        "size": 16,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_vrf1",
+        "size": 16,
+        "special": false
+      },
+      {
+        "name": "simd0_vcom0_wrf0",
+        "size": 16,
+        "special": false
+      },
+      {
+        "name": "bp_pc",
+        "size": 1,
+        "special": true
+      },
+      {
+        "name": "bp_cr",
+        "size": 1,
+        "special": true
+      },
+      {
+        "name": "bp_exc",
+        "size": 1,
+        "special": false
+      },
+      {
+        "name": "bp_slc",
+        "size": 1,
+        "special": false
+      },
+      {
+        "name": "bp_clc",
+        "size": 1,
+        "special": false
+      }
+    ],
+    "slots": [
+      {
+        "name": "bp_s0"
+      },
+      {
+        "name": "bp_s1"
+      },
+      {
+        "name": "bp_s2"
+      },
+      {
+        "name": "simd0_vlsu0"
+      },
+      {
+        "name": "simd0_vlsu1"
+      },
+      {
+        "name": "simd0_vcom0"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "functions": [
+        {
+          "blocks": [
+            {
+              "critical": false,
+              "cycles": [
+                {
+                  "cycle": 0,
+                  "ops": [
+                    {
+                      "id": 100,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "sym": "vinput",
+                            "type": "global"
+                          }
+                        ]
+                      ],
+                      "op": "s_imm_u",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 100,
+                            "id": 1,
+                            "reg": {
+                              "n": 2,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 200,
+                            "type": "reg"
+                          },
+                          {
+                            "from": 100,
+                            "id": 2,
+                            "reg": {
+                              "n": 2,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 500,
+                            "type": "reg"
+                          },
+                          {
+                            "from": 100,
+                            "id": 3,
+                            "reg": {
+                              "n": 2,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 700,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [
+                        "crit"
+                      ],
+                      "slot": 3,
+                      "succs": []
+                    },
+                    {
+                      "id": 4800,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": -3,
+                            "id": 0,
+                            "reg": {
+                              "n": 1,
+                              "rf": "bp_rf1"
+                            },
+                            "to": 4800,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "op": "s_pass",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 4800,
+                            "id": 4,
+                            "reg": {
+                              "n": 0,
+                              "res": "bp_s1_op0_BUS->bp_rf0_wp1",
+                              "rf": "bp_rf0"
+                            },
+                            "to": 1100,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 1,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 1,
+                  "ops": [
+                    {
+                      "id": 200,
+                      "in_names": [
+                        "base_addr",
+                        "offset_in"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": 100,
+                            "id": 1,
+                            "reg": {
+                              "n": 2,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 200,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "type": "imm",
+                            "value": 0
+                          }
+                        ]
+                      ],
+                      "op": "v_ldo_1024_i_PIPE_0_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [
+                        "crit"
+                      ],
+                      "slot": 3,
+                      "succs": [
+                        201
+                      ]
+                    },
+                    {
+                      "id": 1100,
+                      "in_names": [
+                        "BA"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": 4800,
+                            "id": 4,
+                            "reg": {
+                              "n": 0,
+                              "res": "bp_s1_op0_BUS->bp_rf0_wp1",
+                              "rf": "bp_rf0"
+                            },
+                            "to": 1100,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "op": "s_jmp",
+                      "out_names": [
+                        "ja"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 1100,
+                            "id": 5,
+                            "reg": {
+                              "n": 0,
+                              "res": "bp_s0_pc_BUS->bp_pc_wp",
+                              "rf": "bp_pc"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 0,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 2,
+                  "ops": [
+                    {
+                      "id": 201,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_1_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [
+                        "crit"
+                      ],
+                      "slot": 3,
+                      "succs": [
+                        202
+                      ]
+                    },
+                    {
+                      "id": 500,
+                      "in_names": [
+                        "base_addr",
+                        "offset_in"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": 100,
+                            "id": 2,
+                            "reg": {
+                              "n": 2,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 500,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "type": "imm",
+                            "value": 128
+                          }
+                        ]
+                      ],
+                      "op": "v_ldo_1024_i_PIPE_0_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [],
+                      "slot": 3,
+                      "succs": [
+                        501
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "cycle": 3,
+                  "ops": [
+                    {
+                      "id": 202,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_2_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [
+                        "crit"
+                      ],
+                      "slot": 3,
+                      "succs": [
+                        203
+                      ]
+                    },
+                    {
+                      "id": 501,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_1_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [],
+                      "slot": 3,
+                      "succs": [
+                        502
+                      ]
+                    },
+                    {
+                      "id": 700,
+                      "in_names": [
+                        "base_addr",
+                        "offset_in"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": 100,
+                            "id": 3,
+                            "reg": {
+                              "n": 2,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 700,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "type": "imm",
+                            "value": 256
+                          }
+                        ]
+                      ],
+                      "op": "v_ldo_1024_i_PIPE_0_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [],
+                      "slot": 3,
+                      "succs": [
+                        701
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "cycle": 4,
+                  "ops": [
+                    {
+                      "id": 203,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_3_3",
+                      "out_names": [
+                        "vout0"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 203,
+                            "id": 6,
+                            "reg": {
+                              "n": 0,
+                              "res": "simd0_vlsu0_vop0_BUS->simd0_vlsu0_vrf0_ip1",
+                              "rf": "simd0_vlsu0_vrf0"
+                            },
+                            "to": 400,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [
+                        "crit"
+                      ],
+                      "slot": 3,
+                      "succs": []
+                    },
+                    {
+                      "id": 502,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_2_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [],
+                      "slot": 3,
+                      "succs": [
+                        503
+                      ]
+                    },
+                    {
+                      "id": 701,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_1_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [],
+                      "slot": 3,
+                      "succs": [
+                        702
+                      ]
+                    },
+                    {
+                      "id": 300,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "type": "imm",
+                            "value": 0
+                          }
+                        ]
+                      ],
+                      "op": "s_imm",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 300,
+                            "id": 7,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 400,
+                            "type": "reg"
+                          },
+                          {
+                            "from": 300,
+                            "id": 8,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 600,
+                            "type": "reg"
+                          },
+                          {
+                            "from": 300,
+                            "id": 9,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 800,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 3,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 5,
+                  "ops": [
+                    {
+                      "id": 503,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_3_3",
+                      "out_names": [
+                        "vout0"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 503,
+                            "id": 10,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd0_vlsu0_vop0_BUS->simd0_vlsu0_vrf0_ip1",
+                              "rf": "simd0_vlsu0_vrf0"
+                            },
+                            "to": 600,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 3,
+                      "succs": []
+                    },
+                    {
+                      "id": 702,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_2_3",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [],
+                      "slot": 3,
+                      "succs": [
+                        703
+                      ]
+                    },
+                    {
+                      "id": 400,
+                      "in_names": [
+                        "g",
+                        "A",
+                        "B",
+                        "D0"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": -3,
+                            "id": 4294967295,
+                            "reg": {
+                              "n": 6,
+                              "rf": "bp_rf1"
+                            },
+                            "to": 400,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "from": 300,
+                            "id": 7,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 400,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "type": "imm",
+                            "value": 0
+                          }
+                        ],
+                        [
+                          {
+                            "from": 203,
+                            "id": 6,
+                            "reg": {
+                              "n": 0,
+                              "res": "simd0_vlsu0_vop0_BUS->simd0_vlsu0_vrf0_ip1",
+                              "rf": "simd0_vlsu0_vrf0"
+                            },
+                            "to": 400,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "op": "v_xsto_1024_i",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [
+                        "crit",
+                        "trueguard"
+                      ],
+                      "slot": 3,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 6,
+                  "ops": [
+                    {
+                      "id": 703,
+                      "in_names": [],
+                      "ins": [],
+                      "op": "v_ldo_1024_i_PIPE_3_3",
+                      "out_names": [
+                        "vout0"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 703,
+                            "id": 11,
+                            "reg": {
+                              "n": 2,
+                              "res": "simd0_vlsu0_vop0_BUS->simd0_vlsu0_vrf0_ip1",
+                              "rf": "simd0_vlsu0_vrf0"
+                            },
+                            "to": 800,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 3,
+                      "succs": []
+                    },
+                    {
+                      "id": 600,
+                      "in_names": [
+                        "g",
+                        "A",
+                        "B",
+                        "D0"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": -3,
+                            "id": 4294967295,
+                            "reg": {
+                              "n": 6,
+                              "rf": "bp_rf1"
+                            },
+                            "to": 600,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "from": 300,
+                            "id": 8,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 600,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "type": "imm",
+                            "value": 0
+                          }
+                        ],
+                        [
+                          {
+                            "from": 503,
+                            "id": 10,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd0_vlsu0_vop0_BUS->simd0_vlsu0_vrf0_ip1",
+                              "rf": "simd0_vlsu0_vrf0"
+                            },
+                            "to": 600,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "op": "v_xsto_1024_i",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [
+                        "crit",
+                        "trueguard"
+                      ],
+                      "slot": 3,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 7,
+                  "ops": [
+                    {
+                      "id": 900,
+                      "in_names": [],
+                      "ins": [
+                        [
+                          {
+                            "str": "",
+                            "type": "str"
+                          }
+                        ]
+                      ],
+                      "op": "%PRINTSTRING<S:32:1>",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [],
+                      "slot": -1,
+                      "succs": []
+                    },
+                    {
+                      "id": 1000,
+                      "in_names": [],
+                      "ins": [
+                        [
+                          {
+                            "str": "",
+                            "type": "str"
+                          }
+                        ]
+                      ],
+                      "op": "%PRINTSTRING<S:32:1>",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [],
+                      "slot": -1,
+                      "succs": []
+                    },
+                    {
+                      "id": 800,
+                      "in_names": [
+                        "g",
+                        "A",
+                        "B",
+                        "D0"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": -3,
+                            "id": 4294967295,
+                            "reg": {
+                              "n": 6,
+                              "rf": "bp_rf1"
+                            },
+                            "to": 800,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "from": 300,
+                            "id": 9,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd0_vlsu0_op0_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": 800,
+                            "type": "reg"
+                          }
+                        ],
+                        [
+                          {
+                            "type": "imm",
+                            "value": 0
+                          }
+                        ],
+                        [
+                          {
+                            "from": 703,
+                            "id": 11,
+                            "reg": {
+                              "n": 2,
+                              "res": "simd0_vlsu0_vop0_BUS->simd0_vlsu0_vrf0_ip1",
+                              "rf": "simd0_vlsu0_vrf0"
+                            },
+                            "to": 800,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "op": "v_xsto_1024_i",
+                      "out_names": [],
+                      "outs": [],
+                      "props": [
+                        "crit",
+                        "trueguard"
+                      ],
+                      "slot": 3,
+                      "succs": []
+                    }
+                  ]
+                }
+              ],
+              "epilog": false,
+              "kernel": false,
+              "name": "vex2rcs_prog.0",
+              "num": 0,
+              "prolog": false,
+              "succs": []
+            }
+          ],
+          "loops": [],
+          "name": "vex2rcs_prog"
+        },
+        {
+          "blocks": [
+            {
+              "critical": false,
+              "cycles": [
+                {
+                  "cycle": 0,
+                  "ops": [
+                    {
+                      "id": 8300,
+                      "in_names": [
+                        "BA"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "sym": "vex2rcs_prog",
+                            "type": "global"
+                          }
+                        ]
+                      ],
+                      "op": "s_jmp_i",
+                      "out_names": [
+                        "ja"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 8300,
+                            "id": 12,
+                            "reg": {
+                              "n": 0,
+                              "res": "bp_s0_pc_BUS->bp_pc_wp",
+                              "rf": "bp_pc"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [
+                        "crit"
+                      ],
+                      "slot": 0,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 1,
+                  "ops": []
+                },
+                {
+                  "cycle": 2,
+                  "ops": []
+                },
+                {
+                  "cycle": 3,
+                  "ops": []
+                },
+                {
+                  "cycle": 4,
+                  "ops": [
+                    {
+                      "id": 10700,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "type": "imm",
+                            "value": 1
+                          }
+                        ]
+                      ],
+                      "op": "s_imm_u",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 10700,
+                            "id": 13,
+                            "reg": {
+                              "n": 0,
+                              "res": "bp_2_simd_op0_BUS->simd0_vlsu1_srf0_ip1",
+                              "rf": "simd0_vlsu1_srf0"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 0,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 5,
+                  "ops": [
+                    {
+                      "id": 11000,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "type": "imm",
+                            "value": 16384
+                          }
+                        ]
+                      ],
+                      "op": "s_imm_u",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 11000,
+                            "id": 14,
+                            "reg": {
+                              "n": 0,
+                              "res": "bp_s1_op0_BUS->bp_rf1_wp1",
+                              "rf": "bp_rf1"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 1,
+                      "succs": []
+                    },
+                    {
+                      "id": 10400,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "type": "imm",
+                            "value": 1
+                          }
+                        ]
+                      ],
+                      "op": "s_imm_u",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 10400,
+                            "id": 15,
+                            "reg": {
+                              "n": 3,
+                              "res": "bp_2_simd_op0_BUS->simd0_vlsu0_srf0_ip1",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 0,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 6,
+                  "ops": [
+                    {
+                      "id": 11300,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "type": "imm",
+                            "value": 65536
+                          }
+                        ]
+                      ],
+                      "op": "s_imm_u",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 11300,
+                            "id": 16,
+                            "reg": {
+                              "n": 0,
+                              "res": "bp_2_simd_op1_BUS->simd0_vlsu0_srf0_ip0",
+                              "rf": "simd0_vlsu0_srf0"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 1,
+                      "succs": []
+                    },
+                    {
+                      "id": 10100,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "type": "imm",
+                            "value": 1
+                          }
+                        ]
+                      ],
+                      "op": "s_imm_u",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 10100,
+                            "id": 17,
+                            "reg": {
+                              "n": 6,
+                              "res": "bp_s0_op0_BUS->bp_rf1_wp1",
+                              "rf": "bp_rf1"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 0,
+                      "succs": []
+                    },
+                    {
+                      "id": 8100,
+                      "in_names": [
+                        "A"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "id": 1,
+                            "type": "bb"
+                          }
+                        ]
+                      ],
+                      "op": "s_imm_u",
+                      "out_names": [
+                        "R"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 8100,
+                            "id": 18,
+                            "reg": {
+                              "n": 1,
+                              "res": "simd_2_bp_op0_BUS->bp_rf1_wp0",
+                              "rf": "bp_rf1"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [],
+                      "slot": 5,
+                      "succs": []
+                    }
+                  ]
+                }
+              ],
+              "epilog": false,
+              "kernel": false,
+              "name": "vex2rcs_prog_entry.0",
+              "num": 0,
+              "prolog": false,
+              "succs": [
+                1
+              ]
+            },
+            {
+              "critical": false,
+              "cycles": [
+                {
+                  "cycle": 7,
+                  "ops": [
+                    {
+                      "id": 8500,
+                      "in_names": [
+                        "SR"
+                      ],
+                      "ins": [
+                        [
+                          {
+                            "from": -3,
+                            "id": 19,
+                            "reg": {
+                              "n": 0,
+                              "rf": "bp_cr"
+                            },
+                            "to": 8500,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "op": "s_idle",
+                      "out_names": [
+                        "usw"
+                      ],
+                      "outs": [
+                        [
+                          {
+                            "from": 8500,
+                            "id": 20,
+                            "reg": {
+                              "n": 0,
+                              "res": "bp_s0_cr_BUS->bp_cr_wp",
+                              "rf": "bp_cr"
+                            },
+                            "to": -4,
+                            "type": "reg"
+                          }
+                        ]
+                      ],
+                      "props": [
+                        "crit"
+                      ],
+                      "slot": 0,
+                      "succs": []
+                    }
+                  ]
+                },
+                {
+                  "cycle": 8,
+                  "ops": []
+                },
+                {
+                  "cycle": 9,
+                  "ops": []
+                },
+                {
+                  "cycle": 10,
+                  "ops": []
+                },
+                {
+                  "cycle": 11,
+                  "ops": []
+                },
+                {
+                  "cycle": 12,
+                  "ops": []
+                },
+                {
+                  "cycle": 13,
+                  "ops": []
+                }
+              ],
+              "epilog": false,
+              "kernel": false,
+              "name": "vex2rcs_prog_entry.1",
+              "num": 1,
+              "prolog": false,
+              "succs": []
+            }
+          ],
+          "loops": [],
+          "name": "vex2rcs_prog_entry"
+        }
+      ],
+      "name": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+    }
+  ],
+  "name": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c",
+  "source_info": {
+    "locations": [
+      {
+        "col": 0,
+        "id": 0,
+        "line": 12,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 1000,
+        "id": 1,
+        "line": 12,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 0,
+        "id": 2,
+        "line": 13,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 1000,
+        "id": 3,
+        "line": 13,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 0,
+        "id": 4,
+        "line": 15,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 2,
+        "id": 5,
+        "line": 15,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 1000,
+        "id": 6,
+        "line": 15,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 3,
+        "id": 7,
+        "line": 17,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 1000,
+        "id": 8,
+        "line": 17,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 3,
+        "id": 9,
+        "line": 18,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 1000,
+        "id": 10,
+        "line": 18,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 1,
+        "id": 11,
+        "line": 19,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      },
+      {
+        "col": 1000,
+        "id": 12,
+        "line": 19,
+        "src_file": "/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c"
+      }
+    ],
+    "regions": [
+      {
+        "begin": 0,
+        "end": 1,
+        "nodes": [
+          {
+            "name": "vex2rcs_prog",
+            "type": "function"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 100,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 300,
+            "type": "operation"
+          },
+          {
+            "name": "vex2rcs_prog_entry",
+            "type": "function"
+          }
+        ]
+      },
+      {
+        "begin": 2,
+        "end": 3,
+        "nodes": [
+          {
+            "function": "vex2rcs_prog_entry",
+            "name": "vex2rcs_prog_entry.0",
+            "type": "block"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "name": "vex2rcs_prog_entry.1",
+            "type": "block"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "id": 8300,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "id": 10700,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "id": 11000,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "id": 10400,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "id": 11300,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "id": 10100,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "id": 8100,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog_entry",
+            "id": 8500,
+            "type": "operation"
+          }
+        ]
+      },
+      {
+        "begin": 4,
+        "end": 12,
+        "nodes": [
+          {
+            "function": "vex2rcs_prog",
+            "name": "vex2rcs_prog.0",
+            "type": "block"
+          }
+        ]
+      },
+      {
+        "begin": 5,
+        "end": 6,
+        "nodes": [
+          {
+            "function": "vex2rcs_prog",
+            "id": 200,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 201,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 500,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 202,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 501,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 700,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 203,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 502,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 701,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 503,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 702,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 400,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 703,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 600,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 800,
+            "type": "operation"
+          }
+        ]
+      },
+      {
+        "begin": 7,
+        "end": 8,
+        "nodes": [
+          {
+            "function": "vex2rcs_prog",
+            "id": 900,
+            "type": "operation"
+          }
+        ]
+      },
+      {
+        "begin": 9,
+        "end": 10,
+        "nodes": [
+          {
+            "function": "vex2rcs_prog",
+            "id": 1000,
+            "type": "operation"
+          }
+        ]
+      },
+      {
+        "begin": 11,
+        "end": 12,
+        "nodes": [
+          {
+            "function": "vex2rcs_prog",
+            "id": 4800,
+            "type": "operation"
+          },
+          {
+            "function": "vex2rcs_prog",
+            "id": 1100,
+            "type": "operation"
+          }
+        ]
+      }
+    ]
+  }
+}

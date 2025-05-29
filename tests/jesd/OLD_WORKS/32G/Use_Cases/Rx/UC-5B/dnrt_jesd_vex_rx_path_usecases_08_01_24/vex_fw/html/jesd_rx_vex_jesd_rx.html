@@ -1,0 +1,172 @@
+<html><head><title>Module: jesd_rx_vex_jesd_rx</title><link rel="stylesheet" type="text/css" href="html/hive.css" />
+</head>
+<body>
+<a name="top"></a><a name="contents"></a><ul>
+<li>Function jesd_rx</li><ul>
+<li><a href="html/jesd_rx_vex_jesd_rx/jesd_rx/issued.html">issued operations</a></li>
+<li><a href="html/jesd_rx_vex_jesd_rx/jesd_rx/resources.html">resource utilization</a></li>
+<li><a href="html/jesd_rx_vex_jesd_rx/jesd_rx/sched.html">schedule information</a></li>
+</ul><br>
+<li>Function jesd_rx_entry</li><ul>
+<li><a href="html/jesd_rx_vex_jesd_rx/jesd_rx_entry/issued.html">issued operations</a></li>
+<li><a href="html/jesd_rx_vex_jesd_rx/jesd_rx_entry/resources.html">resource utilization</a></li>
+<li><a href="html/jesd_rx_vex_jesd_rx/jesd_rx_entry/sched.html">schedule information</a></li>
+</ul><br>
+<li><a href="#sources">Sources</a></li></ul><br><hr>
+<a name="sources"</a><br><big>/nfs/site/disks/zsc14.xne_abc_fe_001/users/vpaidi/check_in/vex-trunk/vex_core/vex/applications/ve32/examples/jesd_vex_dnrt_usecase/vex_fw/vex_jesd_rx.c</big><br>
+<pre class="sourceline" name="vex_jesd_rx.c:1"><a name="vex_jesd_rx.c:1"/>  1: /**********************************************************************************************
+</pre><pre class="sourceline" name="vex_jesd_rx.c:2"><a name="vex_jesd_rx.c:2"/>  2:  *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:3"><a name="vex_jesd_rx.c:3"/>  3:  * INTEL CONFIDENTIAL
+</pre><pre class="sourceline" name="vex_jesd_rx.c:4"><a name="vex_jesd_rx.c:4"/>  4:  *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:5"><a name="vex_jesd_rx.c:5"/>  5:  * Copyright (C) 2022 Intel Corporation
+</pre><pre class="sourceline" name="vex_jesd_rx.c:6"><a name="vex_jesd_rx.c:6"/>  6:  *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:7"><a name="vex_jesd_rx.c:7"/>  7:  * This software and the related documents ("Material") are Intel copyrighted materials,
+</pre><pre class="sourceline" name="vex_jesd_rx.c:8"><a name="vex_jesd_rx.c:8"/>  8:  * and your use of them is governed by the express license under which they were provided
+</pre><pre class="sourceline" name="vex_jesd_rx.c:9"><a name="vex_jesd_rx.c:9"/>  9:  * to you ("License"). Unless the License provides otherwise, you may not use, modify,
+</pre><pre class="sourceline" name="vex_jesd_rx.c:10"><a name="vex_jesd_rx.c:10"/> 10:  * copy, publish, distribute, disclose or transmit this software or the related documents
+</pre><pre class="sourceline" name="vex_jesd_rx.c:11"><a name="vex_jesd_rx.c:11"/> 11:  * without Intel's prior written permission.
+</pre><pre class="sourceline" name="vex_jesd_rx.c:12"><a name="vex_jesd_rx.c:12"/> 12:  * This software and the related documents are provided as is, with no express or implied
+</pre><pre class="sourceline" name="vex_jesd_rx.c:13"><a name="vex_jesd_rx.c:13"/> 13:  * warranties, other than those that are expressly stated in the License.
+</pre><pre class="sourceline" name="vex_jesd_rx.c:14"><a name="vex_jesd_rx.c:14"/> 14:  * No license under any patent, copyright, trade secret or other intellectual property
+</pre><pre class="sourceline" name="vex_jesd_rx.c:15"><a name="vex_jesd_rx.c:15"/> 15:  * right is granted to or conferred upon you by disclosure or delivery of the Materials,
+</pre><pre class="sourceline" name="vex_jesd_rx.c:16"><a name="vex_jesd_rx.c:16"/> 16:  * either expressly, by implication, inducement, estoppel or otherwise. Any license under
+</pre><pre class="sourceline" name="vex_jesd_rx.c:17"><a name="vex_jesd_rx.c:17"/> 17:  * such intellectual property rights must be expressed and approved by Intel in writing.
+</pre><pre class="sourceline" name="vex_jesd_rx.c:18"><a name="vex_jesd_rx.c:18"/> 18:  *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:19"><a name="vex_jesd_rx.c:19"/> 19:  *********************************************************************************************/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:20"><a name="vex_jesd_rx.c:20"/> 20: /**
+</pre><pre class="sourceline" name="vex_jesd_rx.c:21"><a name="vex_jesd_rx.c:21"/> 21:  * @file    vex_jesd_tx.c
+</pre><pre class="sourceline" name="vex_jesd_rx.c:22"><a name="vex_jesd_rx.c:22"/> 22:  * @brief   Vex FW code to validate VEX -> JESD -> DNRT rx.
+</pre><pre class="sourceline" name="vex_jesd_rx.c:23"><a name="vex_jesd_rx.c:23"/> 23:  * @details 1. VEX will wait on the host indication.
+</pre><pre class="sourceline" name="vex_jesd_rx.c:24"><a name="vex_jesd_rx.c:24"/> 24:  *          2. After the host indication was received for every 2048 cycles 2 number of
+</pre><pre class="sourceline" name="vex_jesd_rx.c:25"><a name="vex_jesd_rx.c:25"/> 25:  *             vectors will be sent to CM (JESD 0/1) per stream of total 8 streams forever kill host exits app
+</pre><pre class="sourceline" name="vex_jesd_rx.c:26"><a name="vex_jesd_rx.c:26"/> 26:  *             via modifying g_vex_exit to non zero value ...
+</pre><pre class="sourceline" name="vex_jesd_rx.c:27"><a name="vex_jesd_rx.c:27"/> 27: **/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:28"><a name="vex_jesd_rx.c:28"/> 28: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:29"><a name="vex_jesd_rx.c:29"/> 29: /***********************************************
+</pre><pre class="sourceline" name="vex_jesd_rx.c:30"><a name="vex_jesd_rx.c:30"/> 30:  * LOCAL INCLUDE STATEMENTS                    *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:31"><a name="vex_jesd_rx.c:31"/> 31:  ***********************************************/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:32"><a name="vex_jesd_rx.c:32"/> 32: #include &lt;common_macros.h>
+</pre><pre class="sourceline" name="vex_jesd_rx.c:33"><a name="vex_jesd_rx.c:33"/> 33: #include "ve32_appl_target.h"
+</pre><pre class="sourceline" name="vex_jesd_rx.c:34"><a name="vex_jesd_rx.c:34"/> 34: #include &lt;hive/support.h>
+</pre><pre class="sourceline" name="vex_jesd_rx.c:35"><a name="vex_jesd_rx.c:35"/> 35: #include "defines.h"
+</pre><pre class="sourceline" name="vex_jesd_rx.c:36"><a name="vex_jesd_rx.c:36"/> 36: #include "cir_buf.hive.h"
+</pre><pre class="sourceline" name="vex_jesd_rx.c:37"><a name="vex_jesd_rx.c:37"/> 37: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:38"><a name="vex_jesd_rx.c:38"/> 38: /***********************************************
+</pre><pre class="sourceline" name="vex_jesd_rx.c:39"><a name="vex_jesd_rx.c:39"/> 39:  * LOCAL/PRIVATE MACROS AND DEFINES            *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:40"><a name="vex_jesd_rx.c:40"/> 40:  ***********************************************/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:41"><a name="vex_jesd_rx.c:41"/> 41: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:42"><a name="vex_jesd_rx.c:42"/> 42: #define TIMER_NOTIF_LOCATION (0x28)
+</pre><pre class="sourceline" name="vex_jesd_rx.c:43"><a name="vex_jesd_rx.c:43"/> 43: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:44"><a name="vex_jesd_rx.c:44"/> 44: /***********************************************
+</pre><pre class="sourceline" name="vex_jesd_rx.c:45"><a name="vex_jesd_rx.c:45"/> 45:  * LOCAL/PRIVATE TYPEDEFS (structs, enums)     *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:46"><a name="vex_jesd_rx.c:46"/> 46:  ***********************************************/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:47"><a name="vex_jesd_rx.c:47"/> 47: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:48"><a name="vex_jesd_rx.c:48"/> 48: /***********************************************
+</pre><pre class="sourceline" name="vex_jesd_rx.c:49"><a name="vex_jesd_rx.c:49"/> 49:  * GLOBAL DATA DEFINITIONS (consts, vars)      *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:50"><a name="vex_jesd_rx.c:50"/> 50:  ***********************************************/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:51"><a name="vex_jesd_rx.c:51"/> 51: vec32i32 AT(0x0)    vbuffer_0[NUM_TOTAL_VEC_PER_STREAM];
+</pre><pre class="sourceline" name="vex_jesd_rx.c:52"><a name="vex_jesd_rx.c:52"/> 52: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:53"><a name="vex_jesd_rx.c:53"/> 53: vec32i32 AT(0xc000) vbuffer_7[NUM_TOTAL_VEC_PER_STREAM*2];
+</pre><pre class="sourceline" name="vex_jesd_rx.c:54"><a name="vex_jesd_rx.c:54"/> 54: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:55"><a name="vex_jesd_rx.c:55"/> 55: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:56"><a name="vex_jesd_rx.c:56"/> 56: //vec32i32 AT(0) vbuffer[VEX_IN_BUF_SIZE];
+</pre><pre class="sourceline" name="vex_jesd_rx.c:57"><a name="vex_jesd_rx.c:57"/> 57: vec32i32 AT(0x4000) vbuffer_out[VEX_DEST_BUF_SIZE];
+</pre><pre class="sourceline" name="vex_jesd_rx.c:58"><a name="vex_jesd_rx.c:58"/> 58: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:59"><a name="vex_jesd_rx.c:59"/> 59: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:60"><a name="vex_jesd_rx.c:60"/> 60: volatile int ALIGNED(128) consumer_sm_gate[16]; // write pointer @ consumer core -> producer core will write here
+</pre><pre class="sourceline" name="vex_jesd_rx.c:61"><a name="vex_jesd_rx.c:61"/> 61: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:62"><a name="vex_jesd_rx.c:62"/> 62: volatile int AT(0xC) g_num_vecs_in;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:63"><a name="vex_jesd_rx.c:63"/> 63: volatile int AT(0x14) g_tbs_in_blk;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:64"><a name="vex_jesd_rx.c:64"/> 64: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:65"><a name="vex_jesd_rx.c:65"/> 65: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:66"><a name="vex_jesd_rx.c:66"/> 66: volatile int AT(0x20) g_host_indicator;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:67"><a name="vex_jesd_rx.c:67"/> 67: volatile int AT(0x24) g_vex_exit;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:68"><a name="vex_jesd_rx.c:68"/> 68: volatile int AT(TIMER_NOTIF_LOCATION) g_timer_debug;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:69"><a name="vex_jesd_rx.c:69"/> 69: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:70"><a name="vex_jesd_rx.c:70"/> 70: /***********************************************
+</pre><pre class="sourceline" name="vex_jesd_rx.c:71"><a name="vex_jesd_rx.c:71"/> 71:  * STATIC FUNCTION PROTOTYPES                  *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:72"><a name="vex_jesd_rx.c:72"/> 72:  ***********************************************/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:73"><a name="vex_jesd_rx.c:73"/> 73: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:74"><a name="vex_jesd_rx.c:74"/> 74: /***********************************************
+</pre><pre class="sourceline" name="vex_jesd_rx.c:75"><a name="vex_jesd_rx.c:75"/> 75:  * GLOBAL FUNCTION DEFINITIONS                 *
+</pre><pre class="sourceline" name="vex_jesd_rx.c:76"><a name="vex_jesd_rx.c:76"/> 76:  ***********************************************/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:77"><a name="vex_jesd_rx.c:77"/> 77: /**
+</pre><pre class="sourceline" name="vex_jesd_rx.c:78"><a name="vex_jesd_rx.c:78"/> 78:  * @brief           Function Initialzing the timer with required number
+</pre><pre class="sourceline" name="vex_jesd_rx.c:79"><a name="vex_jesd_rx.c:79"/> 79:  *                  of clock cycles in continuous watchdog mode
+</pre><pre class="sourceline" name="vex_jesd_rx.c:80"><a name="vex_jesd_rx.c:80"/> 80:  * @param [in]      num of cycles
+</pre><pre class="sourceline" name="vex_jesd_rx.c:81"><a name="vex_jesd_rx.c:81"/> 81:  * @return          none
+</pre><pre class="sourceline" name="vex_jesd_rx.c:82"><a name="vex_jesd_rx.c:82"/> 82:  */
+</pre><pre class="sourceline" name="vex_jesd_rx.c:83"><a name="vex_jesd_rx.c:83"/> 83: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:84"><a name="vex_jesd_rx.c:84"/> 84: inline void init_timer(int cycles)
+</pre><pre class="sourceline" name="vex_jesd_rx.c:85"><a name="vex_jesd_rx.c:85"/> 85: {
+</pre><pre class="sourceline" name="vex_jesd_rx.c:86"><a name="vex_jesd_rx.c:86"/> 86:     // set reg_timer_tmdcfgr0, continuous watchdog
+</pre><pre class="sourceline" name="vex_jesd_rx.c:87"><a name="vex_jesd_rx.c:87"/> 87:     s_xsto_32(Any, 0, TIMER_TMDCFGR0, TMD_CONTINUOUS_WATCHDOG);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:88"><a name="vex_jesd_rx.c:88"/> 88:     // set reg_timer_tmdinitr0, set the timeout val
+</pre><pre class="sourceline" name="vex_jesd_rx.c:89"><a name="vex_jesd_rx.c:89"/> 89:     s_xsto_32(Any, 0, TIMER_TMDINITR0, cycles);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:90"><a name="vex_jesd_rx.c:90"/> 90:     // set reg_timer_tmdwdnotr0, enable notif
+</pre><pre class="sourceline" name="vex_jesd_rx.c:91"><a name="vex_jesd_rx.c:91"/> 91:     s_xsto_32(Any, 0, TIMER_TMDWDNOTR0, 0x1);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:92"><a name="vex_jesd_rx.c:92"/> 92:     // set reg_timer_tmdwdaddrr0, 0x4000 is mapped to DRAM start
+</pre><pre class="sourceline" name="vex_jesd_rx.c:93"><a name="vex_jesd_rx.c:93"/> 93:     s_xsto_32(Any, 0, TIMER_TMDWDADDRR0, 0x4000 + TIMER_NOTIF_LOCATION);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:94"><a name="vex_jesd_rx.c:94"/> 94:     // set reg_timer_tmdwddatar0, data will be written to above address
+</pre><pre class="sourceline" name="vex_jesd_rx.c:95"><a name="vex_jesd_rx.c:95"/> 95:     s_xsto_32(Any, 0, TIMER_TMDWDDATAR0, 0xdeadbeef);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:96"><a name="vex_jesd_rx.c:96"/> 96: }
+</pre><pre class="sourceline" name="vex_jesd_rx.c:97"><a name="vex_jesd_rx.c:97"/> 97: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:98"><a name="vex_jesd_rx.c:98"/> 98: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:99"><a name="vex_jesd_rx.c:99"/> 99: /**
+</pre><pre class="sourceline" name="vex_jesd_rx.c:100"><a name="vex_jesd_rx.c:100"/> 100:  * @brief           Function sending pre defined blocks of data to JESD
+</pre><pre class="sourceline" name="vex_jesd_rx.c:101"><a name="vex_jesd_rx.c:101"/> 101:  * @param [in]      none
+</pre><pre class="sourceline" name="vex_jesd_rx.c:102"><a name="vex_jesd_rx.c:102"/> 102:  * @return          none
+</pre><pre class="sourceline" name="vex_jesd_rx.c:103"><a name="vex_jesd_rx.c:103"/> 103:  */
+</pre><pre class="sourceline" name="vex_jesd_rx.c:104"><a name="vex_jesd_rx.c:104"/> 104: void jesd_rx() ENTRY
+</pre><pre class="sourceline" name="vex_jesd_rx.c:105"><a name="vex_jesd_rx.c:105"/> 105: {
+</pre><pre class="sourceline" name="vex_jesd_rx.c:106"><a name="vex_jesd_rx.c:106"/> 106:     int iter_max = g_num_vecs_in;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:107"><a name="vex_jesd_rx.c:107"/> 107:     int sm_ch = CONSUMER_SM_BUF_ID;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:108"><a name="vex_jesd_rx.c:108"/> 108:     int vex_dest_buffer = 0x4000;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:109"><a name="vex_jesd_rx.c:109"/> 109:     int compare_offset = 0x0;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:110"><a name="vex_jesd_rx.c:110"/> 110: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:111"><a name="vex_jesd_rx.c:111"/> 111:     g_vex_exit = 0;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:112"><a name="vex_jesd_rx.c:112"/> 112: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:113"><a name="vex_jesd_rx.c:113"/> 113:     OP___printstring("jesd_tx : start \n");
+</pre><pre class="sourceline" name="vex_jesd_rx.c:114"><a name="vex_jesd_rx.c:114"/> 114:     
+</pre><pre class="sourceline" name="vex_jesd_rx.c:115"><a name="vex_jesd_rx.c:115"/> 115:     semaphore_gate_init();
+</pre><pre class="sourceline" name="vex_jesd_rx.c:116"><a name="vex_jesd_rx.c:116"/> 116:     /*-------------------------------------------------------------------------*/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:117"><a name="vex_jesd_rx.c:117"/> 117:     /* Initialize consumer(Buffer):                                            */
+</pre><pre class="sourceline" name="vex_jesd_rx.c:118"><a name="vex_jesd_rx.c:118"/> 118:     /* g_tbs_in_blk :token buffer size for buffer                                */
+</pre><pre class="sourceline" name="vex_jesd_rx.c:119"><a name="vex_jesd_rx.c:119"/> 119:     /* consumer_token_per_request : tokens processed per request and ready     */
+</pre><pre class="sourceline" name="vex_jesd_rx.c:120"><a name="vex_jesd_rx.c:120"/> 120:     /* IS_CONS : the channel is configured as consumer                         */
+</pre><pre class="sourceline" name="vex_jesd_rx.c:121"><a name="vex_jesd_rx.c:121"/> 121:     /* 0 intial value for local pointer @ consumer                             */
+</pre><pre class="sourceline" name="vex_jesd_rx.c:122"><a name="vex_jesd_rx.c:122"/> 122:     /* sm_ch - index of Semaphore used                                         */
+</pre><pre class="sourceline" name="vex_jesd_rx.c:123"><a name="vex_jesd_rx.c:123"/> 123:     /*-------------------------------------------------------------------------*/
+</pre><pre class="sourceline" name="vex_jesd_rx.c:124"><a name="vex_jesd_rx.c:124"/> 124: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:125"><a name="vex_jesd_rx.c:125"/> 125:     circ_buff_init( IS_CONS, g_tbs_in_blk, CONSUMER_TOKEN_PER_REQUEST, 0, sm_ch);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:126"><a name="vex_jesd_rx.c:126"/> 126:     
+</pre><pre class="sourceline" name="vex_jesd_rx.c:127"><a name="vex_jesd_rx.c:127"/> 127: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:128"><a name="vex_jesd_rx.c:128"/> 128:     while(g_vex_exit == 0)
+</pre><pre class="sourceline" name="vex_jesd_rx.c:129"><a name="vex_jesd_rx.c:129"/> 129:     {
+</pre><pre class="sourceline" name="vex_jesd_rx.c:130"><a name="vex_jesd_rx.c:130"/> 130: 		int index = 0;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:131"><a name="vex_jesd_rx.c:131"/> 131: 		unsigned int is_data_ready, idx, ptr;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:132"><a name="vex_jesd_rx.c:132"/> 132: 		
+</pre><pre class="sourceline" name="vex_jesd_rx.c:133"><a name="vex_jesd_rx.c:133"/> 133:         mc_request( Any, 1, sm_ch, is_data_ready, idx)  SYNC(buffer_read);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:134"><a name="vex_jesd_rx.c:134"/> 134:         
+</pre><pre class="sourceline" name="vex_jesd_rx.c:135"><a name="vex_jesd_rx.c:135"/> 135:         for (int i = 0; i &lt; iter_max; i++)
+</pre><pre class="sourceline" name="vex_jesd_rx.c:136"><a name="vex_jesd_rx.c:136"/> 136:         {
+</pre><pre class="sourceline" name="vex_jesd_rx.c:137"><a name="vex_jesd_rx.c:137"/> 137: 		  vec32i32 vout UNINIT;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:138"><a name="vex_jesd_rx.c:138"/> 138: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:139"><a name="vex_jesd_rx.c:139"/> 139:           v_ldoi_1024_circ(Any, vex_dest_buffer , compare_offset, LD_CTL1, LD_CTL2, vout, compare_offset) NO_ALIAS SYNC_WITH(buffer_read);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:140"><a name="vex_jesd_rx.c:140"/> 140:           
+</pre><pre class="sourceline" name="vex_jesd_rx.c:141"><a name="vex_jesd_rx.c:141"/> 141:           vbuffer_7[index%(NUM_TOTAL_VEC_PER_STREAM*2)]= vout;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:142"><a name="vex_jesd_rx.c:142"/> 142: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:143"><a name="vex_jesd_rx.c:143"/> 143: 		}
+</pre><pre class="sourceline" name="vex_jesd_rx.c:144"><a name="vex_jesd_rx.c:144"/> 144: 		index++;
+</pre><pre class="sourceline" name="vex_jesd_rx.c:145"><a name="vex_jesd_rx.c:145"/> 145: 		mc_complete( Any, sm_ch, ptr);
+</pre><pre class="sourceline" name="vex_jesd_rx.c:146"><a name="vex_jesd_rx.c:146"/> 146: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:147"><a name="vex_jesd_rx.c:147"/> 147:     }
+</pre><pre class="sourceline" name="vex_jesd_rx.c:148"><a name="vex_jesd_rx.c:148"/> 148:     
+</pre><pre class="sourceline" name="vex_jesd_rx.c:149"><a name="vex_jesd_rx.c:149"/> 149:     //s_xsto_32(Any, 0, TIMER_TMDCMDR0, TMD_COMMAND_STOP);           // stop the timer
+</pre><pre class="sourceline" name="vex_jesd_rx.c:150"><a name="vex_jesd_rx.c:150"/> 150: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:151"><a name="vex_jesd_rx.c:151"/> 151: } // jesd_rx() ends
+</pre><pre class="sourceline" name="vex_jesd_rx.c:152"><a name="vex_jesd_rx.c:152"/> 152: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:153"><a name="vex_jesd_rx.c:153"/> 153: 
+</pre><pre class="sourceline" name="vex_jesd_rx.c:154"><a name="vex_jesd_rx.c:154"/> 154: 
+</pre><div class="navigator"><a href="#contents"><small>back to contents</small></a></div></body>
+</html>

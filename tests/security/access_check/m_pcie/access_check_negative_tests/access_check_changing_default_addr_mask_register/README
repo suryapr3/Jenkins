@@ -1,0 +1,30 @@
+/*********************************************************************
+*                                                                    *
+* Project     : ABC                                                  *
+* Author      : Sneha Singh                                          *
+* Date        : 18 July 2024                                         *
+* Test        : access check changing default addr mask register     *
+*                                                                    *
+*********************************************************************/
+
+This is a negative test case where pcie host is made to access the NoC targets after modifying the default address mask
+register corresponding to that target in the RBM register space of the m_pcie bridge. By default, the address mask register
+contains a value which decides the address range of the target. So, the address mask register is corrupted such that the
+the m_pcie bridge access is denied to the last register address of the target.
+
+How to run the test ?
+    From any ABC FRIO bash terminal, execute the following.
+    python access_check_changing_default_addr_mask_register.py <rcs_core> <pattern>
+
+    @input arguments
+        <rcs_core>    : This is the RCS core number who'll initiate access via m_rcs_0 port.
+                        This argument can take values 0 or 1 or 2 for LX7 Ax or LX7 Rx or LX7 Tx respectively.
+        <pattern>     : This the input pattern the pcie host writes to the target registers
+
+How to check the output ?
+    Upon completion of the test, PASS/FAIL status will be displayed in the bash terminal.
+    Additionally, the same can be confirmed from the log file generated from the serial console.
+
+Errors if any ?
+    Take a look at the serial log so generated and grep for string "ERROR". Triage it depending upon the
+    nature of the ERROR logged.

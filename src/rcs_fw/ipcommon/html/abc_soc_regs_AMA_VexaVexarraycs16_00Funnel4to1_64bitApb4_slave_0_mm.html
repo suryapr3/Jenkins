@@ -1,0 +1,5003 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/vexa/vexarraycs16_00/funnel4to1_64bit/APB4_Slave_0_MM</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/vexa/vexarraycs16_00/funnel4to1_64bit/APB4_Slave_0_MM</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">AddressMap abc_soc_top/vexa/vexarraycs16_00/funnel4to1_64bit/APB4_Slave_0_MM</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/vexa/vexarraycs16_00/funnel4to1_64bit/APB4_Slave_0_MM -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2D7A624057EBBA37">FUNNELCONTROL</a>  </b></td>
+        <td class="unboxed sdescmap">Funnel Control register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_10B04DE217E5C7DF">PRIORITYCONTROL</a>  </b></td>
+        <td class="unboxed sdescmap">Priority Control register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr">0x00000eeb</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000eec</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_E194F4EC96A9CBCA">ITATBDATA0</a>  </b></td>
+        <td class="unboxed sdescmap">Integration test data register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000ef0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_6AAF5117FAAC2FAC">ITATBCTR3</a>  </b></td>
+        <td class="unboxed sdescmap">Integration test control register 3</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000ef4</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_0F7E9950F3CC701F">ITATBCTR2</a>  </b></td>
+        <td class="unboxed sdescmap">Integration test control register 2</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000ef8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C08AFF7D8DADF7D3">ITATBCTR1</a>  </b></td>
+        <td class="unboxed sdescmap">Integration test control register 1</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000efc</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_A3B94D3F6949CADB">ITATBCTR0</a>  </b></td>
+        <td class="unboxed sdescmap">Integration test control register 0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000f00</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5AC16488956AF1BD">ITCTRL</a>  </b></td>
+        <td class="unboxed sdescmap">Integration Mode Control Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000f04</td>
+        <td class="unboxed addr">0x00000f9f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fa0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_555429B48CD6D423">CLAIMSET</a>  </b></td>
+        <td class="unboxed sdescmap">Claim Tag Set Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fa4</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_1D9C08953D505651">CLAIMCLR</a>  </b></td>
+        <td class="unboxed sdescmap">Claim Tag Clear Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fa8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_48497A630675F1C9">DEVAFF0</a>  </b></td>
+        <td class="unboxed sdescmap">Device Affinity register 0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fac</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_E46984CD7940A017">DEVAFF1</a>  </b></td>
+        <td class="unboxed sdescmap">Device Affinity register 1</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000fb0</td>
+        <td class="unboxed addr">0x00000fb7</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fb8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_3B29CD04C396A107">AUTHSTATUS</a>  </b></td>
+        <td class="unboxed sdescmap">Authentication Status Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fbc</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_54BCFE03B974F82F">DEVARCH</a>  </b></td>
+        <td class="unboxed sdescmap">Device Architecture Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fc0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_A7ECA7052024F5C3">DEVID2</a>  </b></td>
+        <td class="unboxed sdescmap">Device Configuration Register 2</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fc4</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D9E5A5AD6FC6CE10">DEVID1</a>  </b></td>
+        <td class="unboxed sdescmap">Device Configuration Register 1</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fc8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_54DF4A4DB23F74C1">DEVID</a>  </b></td>
+        <td class="unboxed sdescmap">Device Configuration Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fcc</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_AF7847A9C3E6B165">DEVTYPE</a>  </b></td>
+        <td class="unboxed sdescmap">Device Type Identifier Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fd0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_6277F8D5CAA4FA1C">PIDR4</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral Identification Register 4</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fd4</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_83707537B57C4A9F">PIDR5</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral Identification Register 5</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fd8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_75713A154732392C">PIDR6</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral Identification Register 6</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fdc</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4A8A705D9A6CE256">PIDR7</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral Identification Register 7</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fe0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_76F534C72EF47423">PIDR0</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral Identification Register 0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fe4</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_55347767BB1B8B6D">PIDR1</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral Identification Register 1</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fe8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_9E5EF7C08F2EB8A1">PIDR2</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral Identification Register 2</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000fec</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_270BE7CA2D60A7D9">PIDR3</a>  </b></td>
+        <td class="unboxed sdescmap">Peripheral Identification Register 3</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000ff0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_EAE5861D0A2322D2">CIDR0</a>  </b></td>
+        <td class="unboxed sdescmap">Component Identification Register 0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000ff4</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F10D8801EC04C8D3">CIDR1</a>  </b></td>
+        <td class="unboxed sdescmap">Component Identification Register 1</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000ff8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C15A47E57984ABBF">CIDR2</a>  </b></td>
+        <td class="unboxed sdescmap">Component Identification Register 2</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000ffc</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2D1E2B40D696003C">CIDR3</a>  </b></td>
+        <td class="unboxed sdescmap">Component Identification Register 3</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/vexa/vexarraycs16_00/funnel4to1_64bit/APB4_Slave_0_MM</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_2D7A624057EBBA37" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) FUNNELCONTROL</span><br/>
+      <span class="sdescdet">Funnel Control register</span><br/>
+      <span class="ldescdet">The FUNNELCONTROL register enables each of the trace sources and controls the hold time for switching between them.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020000</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000300</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="19">RES0_0</td>
+        <td class="fldnorm" colspan="1">FLUSH_NORMAL</td>
+        <td class="fldnorm" colspan="4">HT</td>
+        <td class="fldnorm" colspan="1">ENS7</td>
+        <td class="fldnorm" colspan="1">ENS6</td>
+        <td class="fldnorm" colspan="1">ENS5</td>
+        <td class="fldnorm" colspan="1">ENS4</td>
+        <td class="fldnorm" colspan="1">ENS3</td>
+        <td class="fldnorm" colspan="1">ENS2</td>
+        <td class="fldnorm" colspan="1">ENS1</td>
+        <td class="fldnorm" colspan="1">ENS0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="19">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="1">RO</td>
+        <td class="accno" colspan="1">RO</td>
+        <td class="accno" colspan="1">RO</td>
+        <td class="accno" colspan="1">RO</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:13]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x00000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FLUSH_NORMAL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This bit, when clear, allows slave ports that are already flushed to receive further data even if there are other ports that have not completed flush. If set, a port that has completed flush is not be allowed to receive further data until all ports have completed flush.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Hold time. Value sets the minimum hold time before switching trace sources (funnel inputs) based on the ID. Value used is programmed value + 1.</span></p>
+          <p><b>Reset: </b>hex:0x3;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>1 transaction hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>2 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>3 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>4 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_4</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>5 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_5</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap"><br/>6 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_6</td>
+          <td class="unboxed addr">0x6</td>
+          <td class="unboxed scdescmap"><br/>7 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_7</td>
+          <td class="unboxed addr">0x7</td>
+          <td class="unboxed scdescmap"><br/>8 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_8</td>
+          <td class="unboxed addr">0x08</td>
+          <td class="unboxed scdescmap"><br/>9 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_9</td>
+          <td class="unboxed addr">0x09</td>
+          <td class="unboxed scdescmap"><br/>10 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_10</td>
+          <td class="unboxed addr">0x0a</td>
+          <td class="unboxed scdescmap"><br/>11 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_11</td>
+          <td class="unboxed addr">0x0b</td>
+          <td class="unboxed scdescmap"><br/>12 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_12</td>
+          <td class="unboxed addr">0x0c</td>
+          <td class="unboxed scdescmap"><br/>13 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_13</td>
+          <td class="unboxed addr">0x0d</td>
+          <td class="unboxed scdescmap"><br/>14 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_14</td>
+          <td class="unboxed addr">0x0e</td>
+          <td class="unboxed scdescmap"><br/>15 transactions hold time</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_15</td>
+          <td class="unboxed addr">0x0f</td>
+          <td class="unboxed scdescmap"><br/>Reserved</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENS7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable slave interface 7. Field is RES0 if slave interface 7 is not implemented.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENS6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable slave interface 6. Field is RES0 if slave interface 6 is not implemented.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENS5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable slave interface 5. Field is RES0 if slave interface 5 is not implemented.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENS4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable slave interface 4. Field is RES0 if slave interface 4 is not implemented.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENS3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable slave interface 3. Field is RES0 if slave interface 3 is not implemented.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Slave interface disabled</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Slave interface enabled</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENS2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable slave interface 2. Field is RES0 if slave interface 2 is not implemented.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Slave interface disabled</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Slave interface enabled</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENS1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable slave interface 1. Field is RES0 if slave interface 1 is not implemented.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Slave interface disabled</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Slave interface enabled</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENS0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable slave interface 0. Field is RES0 if slave interface 0 is not implemented.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Slave interface disabled</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Slave interface enabled</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_10B04DE217E5C7DF" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) PRIORITYCONTROL</span><br/>
+      <span class="sdescdet">Priority Control register</span><br/>
+      <span class="ldescdet">The PRIORITYCONTROL register sets the priority of each port (slave interface) of the funnel. The programming software requires that the ports are all disabled before the priority control register contents are changed. Changing the port priorities in real time is not supported. If the priority control register is written when one or more of the ports are enabled, then the write is silently rejected and the value in the priority control register remains unchanged. The lower the priority value, the higher is its priority when selecting the next port to be serviced. If two or more ports have the same priority value, then the lowest numbered port is serviced first. 
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020004</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">RES0_0</td>
+        <td class="fldnorm" colspan="3">PRIPORT7</td>
+        <td class="fldnorm" colspan="3">PRIPORT6</td>
+        <td class="fldnorm" colspan="3">PRIPORT5</td>
+        <td class="fldnorm" colspan="3">PRIPORT4</td>
+        <td class="fldnorm" colspan="3">PRIPORT3</td>
+        <td class="fldnorm" colspan="3">PRIPORT2</td>
+        <td class="fldnorm" colspan="3">PRIPORT1</td>
+        <td class="fldnorm" colspan="3">PRIPORT0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="3">RO</td>
+        <td class="accno" colspan="3">RO</td>
+        <td class="accno" colspan="3">RO</td>
+        <td class="accno" colspan="3">RO</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:21]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRIPORT7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Priority value for port 7. Field is RES0 if port 7 is not implemented. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:18]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRIPORT6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Priority value for port 6. Field is RES0 if port 6 is not implemented. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:15]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRIPORT5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Priority value for port 5. Field is RES0 if port 5 is not implemented. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:12]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRIPORT4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Priority value for port 4. Field is RES0 if port 4 is not implemented. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRIPORT3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Priority value for port 3. Field is RES0 if port 3 is not implemented. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRIPORT2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Priority value for port 2. Field is RES0 if port 2 is not implemented. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRIPORT1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Priority value for port 1. Field is RES0 if port 1 is not implemented. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRIPORT0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Priority value for port 0. Field is RES0 if port 0 is not implemented. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_E194F4EC96A9CBCA" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000eec</span> Register(32 bit) ITATBDATA0</span><br/>
+      <span class="sdescdet">Integration test data register</span><br/>
+      <span class="ldescdet">The ITATBDATA0 register allows observability and controllability of the ATDATA buses into and out of the funnel. For slave signals coming into the funnel, the register views the ports that are selected through the funnel control register. Only one port must be selected for integration test.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020eec</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="15">RES0_0</td>
+        <td class="fldnorm" colspan="1">ATDATA127</td>
+        <td class="fldnorm" colspan="1">ATDATA119</td>
+        <td class="fldnorm" colspan="1">ATDATA111</td>
+        <td class="fldnorm" colspan="1">ATDATA103</td>
+        <td class="fldnorm" colspan="1">ATDATA95</td>
+        <td class="fldnorm" colspan="1">ATDATA87</td>
+        <td class="fldnorm" colspan="1">ATDATA79</td>
+        <td class="fldnorm" colspan="1">ATDATA71</td>
+        <td class="fldnorm" colspan="1">ATDATA63</td>
+        <td class="fldnorm" colspan="1">ATDATA55</td>
+        <td class="fldnorm" colspan="1">ATDATA47</td>
+        <td class="fldnorm" colspan="1">ATDATA39</td>
+        <td class="fldnorm" colspan="1">ATDATA31</td>
+        <td class="fldnorm" colspan="1">ATDATA23</td>
+        <td class="fldnorm" colspan="1">ATDATA15</td>
+        <td class="fldnorm" colspan="1">ATDATA7</td>
+        <td class="fldnorm" colspan="1">ATDATA0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="15">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA127</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[127] and writes atdata_m[127]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[127] is 0. On writes, sets atdata_m[127] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[127] is 1. On writes, sets atdata_m[127] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA119</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[119] and writes atdata_m[119]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[119] is 0. On writes, sets atdata_m[119] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[119] is 1. On writes, sets atdata_m[119] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA111</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[111] and writes atdata_m[111]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[111] is 0. On writes, sets atdata_m[111] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[111] is 1. On writes, sets atdata_m[111] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:13]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA103</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[103] and writes atdata_m[103]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[103] is 0. On writes, sets atdata_m[103] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[103] is 1. On writes, sets atdata_m[103] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA95</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[95] and writes atdata_m[95]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[95] is 0. On writes, sets atdata_m[95] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[95] is 1. On writes, sets atdata_m[95] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA87</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[87] and writes atdata_m[87]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[87] is 0. On writes, sets atdata_m[87] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[87] is 1. On writes, sets atdata_m[87] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA79</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[79] and writes atdata_m[79]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[79] is 0. On writes, sets atdata_m[79] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[79] is 1. On writes, sets atdata_m[79] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA71</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[71] and writes atdata_m[71]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[71] is 0. On writes, sets atdata_m[71] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[71] is 1. On writes, sets atdata_m[71] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA63</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[63] and writes atdata_m[63]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[63] is 0. On writes, sets atdata_m[63] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[63] is 1. On writes, sets atdata_m[63] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA55</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[55] and writes atdata_m[55]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[55] is 0. On writes, sets atdata_m[55] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[55] is 1. On writes, sets atdata_m[55] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA47</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[47] and writes atdata_m[47]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[47] is 0. On writes, sets atdata_m[47] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[47] is 1. On writes, sets atdata_m[47] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA39</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[39] and writes atdata_m[39]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[39] is 0. On writes, sets atdata_m[39] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[39] is 1. On writes, sets atdata_m[39] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA31</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[31] and writes atdata_m[31]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[31] is 0. On writes, sets atdata_m[31] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[31] is 1. On writes, sets atdata_m[31] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA23</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[23] and writes atdata_m[23]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[23] is 0. On writes, sets atdata_m[23] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[23] is 1. On writes, sets atdata_m[23] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA15</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[15] and writes atdata_m[15]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[15] is 0. On writes, sets atdata_m[15] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[15] is 1. On writes, sets atdata_m[15] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[7] and writes atdata_m[7]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[7] is 0. On writes, sets atdata_m[7] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[7] is 1. On writes, sets atdata_m[7] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATDATA0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads atdata_s[0] and writes atdata_m[0]:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[0] is 0. On writes, sets atdata_m[0] to 0</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads, the value of atdata_s[0] is 1. On writes, sets atdata_m[0] to 1</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_6AAF5117FAAC2FAC" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000ef0</span> Register(32 bit) ITATBCTR3</span><br/>
+      <span class="sdescdet">Integration test control register 3</span><br/>
+      <span class="ldescdet">The ITATBCTR3 register enables you to observe and control the SYNCREQ signals into and out of the funnel. Only one slave interface must be selected for integration test. The syncreq receiver on the master interface has a latching function to capture a pulse arriving on that input. The arrival of a pulse sets the latch so that the value can be read. Reading the register clears the latch. Reading a 1 indicates that a syncreq_m pulse arrived since the last read. Reading a 0 indicates that no syncreq_m pulse has arrived. Writing a 1 to the register causes a syncreq_s pulse to be generated to the upstream component.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020ef0</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="31">RES0_0</td>
+        <td class="fldnorm" colspan="1">SYNCREQ</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="31">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SYNCREQ</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads and controls the SYNCREQ signals into, and out of, the funnel. Reading clears the latch.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads: no syncreq_m pulse has arrived. On writes: no effect.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads: a syncreq_m pulse arrived since the last read. On writes: generates a syncreq_s pulse to the upstream component.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_0F7E9950F3CC701F" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000ef4</span> Register(32 bit) ITATBCTR2</span><br/>
+      <span class="sdescdet">Integration test control register 2</span><br/>
+      <span class="ldescdet">The ITATBCTR2 register enables you to observe and control the afvalid and atready signals into and out of the funnel. For slave signals coming into the funnel, the register views the ports that are selected through the FUNNELCONTROL register. Only one port must be selected for integration test.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020ef4</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="30">RES0_0</td>
+        <td class="fldnorm" colspan="1">AFVALID</td>
+        <td class="fldnorm" colspan="1">ATREADY</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="30">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">AFVALID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads and controls the afvalid signals into, and out of, the funnel:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads: afvalid_m is LOW. On writes: sets afvalid_s LOW.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads: afvalid_m is HIGH. On writes: sets afvalid_s HIGH.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATREADY</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads and controls the atready signal into, and out of, the funnel:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads: atready_m is LOW. On writes: sets atready_s LOW.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads: atready_m is HIGH. On writes: sets atready_s HIGH.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C08AFF7D8DADF7D3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000ef8</span> Register(32 bit) ITATBCTR1</span><br/>
+      <span class="sdescdet">Integration test control register 1</span><br/>
+      <span class="ldescdet">The ITATBCTR1 register enables you to observe and control the ATID buses into and out of the funnel. For slave signals coming into the funnel, the register views the ports that are selected through the FUNNELCONTROL register. Only one port must be selected for integration test. 
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020ef8</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="25">RES0_0</td>
+        <td class="fldnorm" colspan="7">ATID</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="25">RW</td>
+        <td class="accno" colspan="7">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x0000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When read returns the value on atid_s, when written drives the value on atid_m</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_A3B94D3F6949CADB" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000efc</span> Register(32 bit) ITATBCTR0</span><br/>
+      <span class="sdescdet">Integration test control register 0</span><br/>
+      <span class="ldescdet">The ITATBCTR0 register enables you to observabe and control the ATBYTES buses, and the AFREADY and ATVALID signals into and out of the funnel. For slave signals coming into the funnel, the register views the ports that are selected through the FUNNELCONTROL register. Only one port must be selected for integration test.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020efc</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="22">RES0_1</td>
+        <td class="fldnorm" colspan="2">ATBYTES</td>
+        <td class="fldnorm" colspan="6">RES0_0</td>
+        <td class="fldnorm" colspan="1">AFREADY</td>
+        <td class="fldnorm" colspan="1">ATVALID</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="22">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="6">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATBYTES</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads the value on atbytes_s[1:0] and writes the values on atbytes_m[1:0]</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">AFREADY</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads and controls the afready signals into, and out of, the funnel:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads: afready_s is LOW. On writes: sets afready_m LOW.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads: afready_s is HIGH. On writes: sets afready_m HIGH.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATVALID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reads and controls the atvalid signals into, and out of, the funnel:</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>On reads: atvalid_s is LOW. On writes: sets atvalid_m LOW.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>On reads: atvalid_s is HIGH. On writes: sets atvalid_m HIGH.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5AC16488956AF1BD" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000f00</span> Register(32 bit) ITCTRL</span><br/>
+      <span class="sdescdet">Integration Mode Control Register</span><br/>
+      <span class="ldescdet">The Integration Mode Control register is used to enable topology detection.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020f00</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="31">RES0_0</td>
+        <td class="fldnorm" colspan="1">IME</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="31">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">IME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Integration Mode Enable. When set, the component enters integration mode, enabling topology detection or integration testing to be performed.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_555429B48CD6D423" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fa0</span> Register(32 bit) CLAIMSET</span><br/>
+      <span class="sdescdet">Claim Tag Set Register</span><br/>
+      <span class="ldescdet">This register forms one half of the claim tag value. On writes, this location enables individual bits to be set. On reads, it returns the number of bits that can be set.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fa0</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x0000000f</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="28">RAZWI_0</td>
+        <td class="fldnorm" colspan="4">SET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="28">RW</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RAZWI_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">RAZ/WI</span></p>
+          <p><b>Reset: </b>hex:0x0000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">A bit-programmable register bank that sets the claim tag value. A read returns a logic 1 for all implemented locations.</span></p>
+          <p><b>Reset: </b>hex:0xf;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_1D9C08953D505651" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fa4</span> Register(32 bit) CLAIMCLR</span><br/>
+      <span class="sdescdet">Claim Tag Clear Register</span><br/>
+      <span class="ldescdet">This register forms one half of the claim tag value. On writes, this location enables individual bits to be cleared. On reads, it returns the current claim tag value.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fa4</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="28">RAZWI_0</td>
+        <td class="fldnorm" colspan="4">CLR</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="28">RW</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RAZWI_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">RAZ/WI</span></p>
+          <p><b>Reset: </b>hex:0x0000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CLR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">A bit-programmable register bank that clears the claim tag value. It is zero at reset. It is used by software agents to signal to each other ownership of the hardware. It has no direct effect on the hardware itself.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_48497A630675F1C9" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fa8</span> Register(32 bit) DEVAFF0</span><br/>
+      <span class="sdescdet">Device Affinity register 0</span><br/>
+      <span class="ldescdet">Enables a debugger to determine if two components have an affinity with each other.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fa8</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DEVAFF0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEVAFF0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This field is RAZ.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_E46984CD7940A017" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fac</span> Register(32 bit) DEVAFF1</span><br/>
+      <span class="sdescdet">Device Affinity register 1</span><br/>
+      <span class="ldescdet">Enables a debugger to determine if two components have an affinity with each other.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fac</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DEVAFF1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEVAFF1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This field is RAZ.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_3B29CD04C396A107" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fb8</span> Register(32 bit) AUTHSTATUS</span><br/>
+      <span class="sdescdet">Authentication Status Register</span><br/>
+      <span class="ldescdet">Reports the current status of the authentication control signals.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fb8</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="20">RES0_0</td>
+        <td class="fldnorm" colspan="2">HNID</td>
+        <td class="fldnorm" colspan="2">HID</td>
+        <td class="fldnorm" colspan="2">SNID</td>
+        <td class="fldnorm" colspan="2">SID</td>
+        <td class="fldnorm" colspan="2">NSNID</td>
+        <td class="fldnorm" colspan="2">NSID</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="20">RO</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="2">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:12]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x00000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HNID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Hypervisor non-invasive debug.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Functionality not implemented or controlled elsewhere.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Reserved.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Functionality disabled.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Functionality enabled.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Hypervisor invasive debug.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Functionality not implemented or controlled elsewhere.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Reserved.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Functionality disabled.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Functionality enabled.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SNID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Secure non-invasive debug.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Functionality not implemented or controlled elsewhere.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Reserved.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Functionality disabled.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Functionality enabled.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Secure invasive debug.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Functionality not implemented or controlled elsewhere.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Reserved.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Functionality disabled.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Functionality enabled.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">NSNID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Non-secure non-invasive debug.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Functionality not implemented or controlled elsewhere.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Reserved.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Functionality disabled.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Functionality enabled.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">NSID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Non-secure invasive debug.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Enum_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Functionality not implemented or controlled elsewhere.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Reserved.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Functionality disabled.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Enum_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Functionality enabled.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_54BCFE03B974F82F" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fbc</span> Register(32 bit) DEVARCH</span><br/>
+      <span class="sdescdet">Device Architecture Register</span><br/>
+      <span class="ldescdet">Identifies the architect and architecture of a CoreSight component. The architect might differ from the designer of a component, for example Arm defines the architecture but another company designs and implements the component.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fbc</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="11">ARCHITECT</td>
+        <td class="fldnorm" colspan="1">PRESENT</td>
+        <td class="fldnorm" colspan="4">REVISION</td>
+        <td class="fldnorm" colspan="16">ARCHID</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="11">RO</td>
+        <td class="accno" colspan="1">RO</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="16">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:21]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ARCHITECT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Returns 0.</span></p>
+          <p><b>Reset: </b>hex:0x000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:20]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRESENT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Returns 0, indicating that the DEVARCH register is not present.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:16]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">REVISION</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Returns 0</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ARCHID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Returns 0.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_A7ECA7052024F5C3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fc0</span> Register(32 bit) DEVID2</span><br/>
+      <span class="sdescdet">Device Configuration Register 2</span><br/>
+      <span class="ldescdet">Contains an IMPLEMENTATION DEFINED value.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fc0</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DEVID2</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEVID2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This field is RAZ.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D9E5A5AD6FC6CE10" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fc4</span> Register(32 bit) DEVID1</span><br/>
+      <span class="sdescdet">Device Configuration Register 1</span><br/>
+      <span class="ldescdet">Contains an IMPLEMENTATION DEFINED value.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fc4</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DEVID1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEVID1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This field is RAZ.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_54DF4A4DB23F74C1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fc8</span> Register(32 bit) DEVID</span><br/>
+      <span class="sdescdet">Device Configuration Register</span><br/>
+      <span class="ldescdet">This register is IMPLEMENTATION DEFINED for each Part Number and Designer. The register indicates the capabilities of the component.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fc8</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000034</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="4">SCHEME</td>
+        <td class="fldnorm" colspan="4">PORTCOUNT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="4">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SCHEME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates priority scheme implemented. Input priority is controlled by the PRIORITYCONTROL register.</span></p>
+          <p><b>Reset: </b>hex:0x3;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PORTCOUNT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates the number of input ports connected</span></p>
+          <p><b>Reset: </b>hex:0x4;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_AF7847A9C3E6B165" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fcc</span> Register(32 bit) DEVTYPE</span><br/>
+      <span class="sdescdet">Device Type Identifier Register</span><br/>
+      <span class="ldescdet">A debugger can use this register to get information about a component that has an unrecognized Part number.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fcc</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000012</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="4">SUB</td>
+        <td class="fldnorm" colspan="4">MAJOR</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="4">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SUB</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Minor classification. Returns 0x1, indicating this component is a Funnel/Router.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MAJOR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Major classification. Returns 0x2, indicating this component is a Trace Link.</span></p>
+          <p><b>Reset: </b>hex:0x2;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_6277F8D5CAA4FA1C" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fd0</span> Register(32 bit) PIDR4</span><br/>
+      <span class="sdescdet">Peripheral Identification Register 4</span><br/>
+      <span class="ldescdet">The PIDR4 register is part of the set of peripheral identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fd0</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000004</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="4">SIZE</td>
+        <td class="fldnorm" colspan="4">DES_2</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="4">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SIZE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates the memory size that is used by this component. Returns 0 indicating that the component uses an UNKNOWN number of 4KB blocks. Using the SIZE field to indicate the size of the component is deprecated.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DES_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">JEP106 continuation code. Together, with PIDR2.DES_1 and PIDR1.DES_0, they indicate the designer of the component and not the implementer, except where the two are the same.</span></p>
+          <p><b>Reset: </b>hex:0x4;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_83707537B57C4A9F" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fd4</span> Register(32 bit) PIDR5</span><br/>
+      <span class="sdescdet">Peripheral Identification Register 5</span><br/>
+      <span class="ldescdet">The PIDR5 register is part of the set of peripheral identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fd4</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="8">PIDR5</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="8">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PIDR5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_75713A154732392C" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fd8</span> Register(32 bit) PIDR6</span><br/>
+      <span class="sdescdet">Peripheral Identification Register 6</span><br/>
+      <span class="ldescdet">The PIDR6 register is part of the set of peripheral identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fd8</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="8">PIDR6</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="8">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PIDR6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_4A8A705D9A6CE256" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fdc</span> Register(32 bit) PIDR7</span><br/>
+      <span class="sdescdet">Peripheral Identification Register 7</span><br/>
+      <span class="ldescdet">The PIDR7 register is part of the set of peripheral identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fdc</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="8">PIDR7</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="8">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PIDR7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_76F534C72EF47423" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fe0</span> Register(32 bit) PIDR0</span><br/>
+      <span class="sdescdet">Peripheral Identification Register 0</span><br/>
+      <span class="ldescdet">The PIDR0 register is part of the set of peripheral identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fe0</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x000000eb</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="8">PART_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="8">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PART_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part number, bits[7:0]. Taken together with PIDR1.PART_1 it indicates the component. The Part Number is selected by the designer of the component.</span></p>
+          <p><b>Reset: </b>hex:0xeb;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_55347767BB1B8B6D" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fe4</span> Register(32 bit) PIDR1</span><br/>
+      <span class="sdescdet">Peripheral Identification Register 1</span><br/>
+      <span class="ldescdet">The PIDR1 register is part of the set of peripheral identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fe4</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x000000b9</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="4">DES_0</td>
+        <td class="fldnorm" colspan="4">PART_1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="4">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DES_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">JEP106 identification code, bits[3:0]. Together, with PIDR4.DES_2 and PIDR2.DES_1, they indicate the designer of the component and not the implementer, except where the two are the same.</span></p>
+          <p><b>Reset: </b>hex:0xb;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PART_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Part number, bits[11:8]. Taken together with PIDR0.PART_0 it indicates the component. The Part Number is selected by the designer of the component.</span></p>
+          <p><b>Reset: </b>hex:0x9;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_9E5EF7C08F2EB8A1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fe8</span> Register(32 bit) PIDR2</span><br/>
+      <span class="sdescdet">Peripheral Identification Register 2</span><br/>
+      <span class="ldescdet">The PIDR2 register is part of the set of peripheral identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fe8</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x0000003b</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="4">REVISION</td>
+        <td class="fldnorm" colspan="1">JEDEC</td>
+        <td class="fldnorm" colspan="3">DES_1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="1">RO</td>
+        <td class="accno" colspan="3">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">REVISION</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Revision. It is an incremental value starting at 0x0 for the first design of a component. See the Component list in Chapter 1 for information on the RTL revision of the component.</span></p>
+          <p><b>Reset: </b>hex:0x3;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">JEDEC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">1 - Always set. Indicates that a JEDEC assigned value is used.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DES_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">JEP106 identification code, bits[6:4]. Together, with PIDR4.DES_2 and PIDR1.DES_0, they indicate the designer of the component and not the implementer, except where the two are the same.</span></p>
+          <p><b>Reset: </b>hex:0x3;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_270BE7CA2D60A7D9" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000fec</span> Register(32 bit) PIDR3</span><br/>
+      <span class="sdescdet">Peripheral Identification Register 3</span><br/>
+      <span class="ldescdet">The PIDR3 register is part of the set of peripheral identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020fec</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="4">REVAND</td>
+        <td class="fldnorm" colspan="4">CMOD</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="4">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">REVAND</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This field indicates minor errata fixes specific to this design, for example metal fixes after implementation. In most cases this field is 0x0.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CMOD</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Customer Modified. Where the component is reusable IP, this value indicates if the customer has modified the behavior of the component. In most cases this field is 0x0.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_EAE5861D0A2322D2" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000ff0</span> Register(32 bit) CIDR0</span><br/>
+      <span class="sdescdet">Component Identification Register 0</span><br/>
+      <span class="ldescdet">The CIDR0 register is part of the set of component identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020ff0</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x0000000d</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="8">PRMBL_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="8">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRMBL_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Preamble. Returns 0x0D.</span></p>
+          <p><b>Reset: </b>hex:0x0d;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F10D8801EC04C8D3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000ff4</span> Register(32 bit) CIDR1</span><br/>
+      <span class="sdescdet">Component Identification Register 1</span><br/>
+      <span class="ldescdet">The CIDR1 register is part of the set of component identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020ff4</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000090</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="4">CLASS</td>
+        <td class="fldnorm" colspan="4">PRMBL_1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="4">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CLASS</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Component class. Returns 0x9, indicating this is a CoreSight component.</span></p>
+          <p><b>Reset: </b>hex:0x9;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRMBL_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Preamble. Returns 0x0.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C15A47E57984ABBF" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000ff8</span> Register(32 bit) CIDR2</span><br/>
+      <span class="sdescdet">Component Identification Register 2</span><br/>
+      <span class="ldescdet">The CIDR2 register is part of the set of component identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020ff8</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000005</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="8">PRMBL_2</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="8">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRMBL_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Preamble. Returns 0x05.</span></p>
+          <p><b>Reset: </b>hex:0x05;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2D1E2B40D696003C" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000ffc</span> Register(32 bit) CIDR3</span><br/>
+      <span class="sdescdet">Component Identification Register 3</span><br/>
+      <span class="ldescdet">The CIDR3 register is part of the set of component identification registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0a020ffc</span> at NOC.coresight (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x000000b1</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="24">RES0_0</td>
+        <td class="fldnorm" colspan="8">PRMBL_3</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="24">RO</td>
+        <td class="accno" colspan="8">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:08]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RES0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Reserved bit or field with SBZP behavior</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PRMBL_3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Preamble. Returns 0xB1.</span></p>
+          <p><b>Reset: </b>hex:0xb1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_vexa_vexarraycs16_00_funnel4to1_64bit_APB4_Slave_0_MM">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

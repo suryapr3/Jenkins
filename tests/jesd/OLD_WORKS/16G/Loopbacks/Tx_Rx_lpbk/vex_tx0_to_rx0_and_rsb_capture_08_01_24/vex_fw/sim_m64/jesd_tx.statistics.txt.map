@@ -1,0 +1,64 @@
+/* Statistics file  */
+
+Data Memory Usage:
+memory      address    size       variable
+------------------------------------------
+bp_config   
+                       -------------------
+                       0x0        <total>
+                       0x10000    <unused>
+------------------------------------------
+bp_dmem     
+            0x18       0x4        g_dest_buffer6_base
+            0x24       0x4        g_vex_exit
+            0x20       0x4        g_host_indicator
+            0x10       0x4        g_dest_buffer4_base
+            0x14       0x4        g_dest_buffer5_base
+            0x4        0x4        g_dest_buffer1_base
+            0x0        0x4        g_dest_buffer0_base
+            0x1C       0x4        g_dest_buffer7_base
+            0x30       0x4        g_timeout_cycles
+            0xC        0x4        g_dest_buffer3_base
+            0x28       0x4        g_timer_debug
+            0x8        0x4        g_dest_buffer2_base
+            0x2C       0x4        g_debug
+                       -------------------
+                       0x34       <total>
+                       0x3FCC     <unused>
+------------------------------------------
+simd0_vmem  
+            0xE000     0x2000     vbuffer_7
+            0x4000     0x2000     vbuffer_2
+            0x2000     0x2000     vbuffer_1
+            0x6000     0x2000     vbuffer_3
+            0x8000     0x2000     vbuffer_4
+            0xA000     0x2000     vbuffer_5
+            0x0        0x2000     vbuffer_0
+            0xC000     0x2000     vbuffer_6
+                       -------------------
+                       0x10000    <total>
+                       0x0        <unused>
+------------------------------------------
+total memory used: 0x10034
+
+
+
+Function Usage:
+start    end      function
+------------------------------------------
+0x0        0x7        jesd_tx_entry
+0x8        0x5D       jesd_tx
+------------------------------------------
+total number of functions: 2
+
+
+
+View Usage:
+  ve32:
+    width:            376
+    issue slots:      6
+    program words:    94
+    operation stages: 0
+
+total used program words: 94
+

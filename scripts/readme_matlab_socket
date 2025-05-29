@@ -1,0 +1,19 @@
+This readme expains the process For opening a socket from matlab reading and writing register/memory content from hawkcrest model downloaded in FRIO
+
+scripts used in FRIO env 
+    -  server.py
+scripts sourced in matlab
+    - open_tcp_socket.m
+    - frio_readreg.m
+    - frio_writereg.m
+
+flow
+   1. Download the design in FRIO
+   2. source srp
+   3. start the server in austin on host connected to FRIO (python3 server.py)
+   4. note down the server ip addr and port no
+   5. start the matlab on your laptop/Santa Clara, where matlab licence is available 
+   6. open the socket using open_tcp_socket ( use the ip addr, and port no which you noted in step 4)
+   7. use the frio_readreg, frio_readwrite functions for reading/writing the memory register in 4 bytes chunks
+    
+

@@ -1,0 +1,190 @@
+/**********************************************************************************************
+ *
+ * INTEL CONFIDENTIAL
+ *
+ * Copyright (C) 2022 Intel Corporation
+ *
+ * This software and the related documents ("Material") are Intel copyrighted materials,
+ * and your use of them is governed by the express license under which they were provided
+ * to you ("License"). Unless the License provides otherwise, you may not use, modify,
+ * copy, publish, distribute, disclose or transmit this software or the related documents
+ * without Intel's prior written permission.
+ * This software and the related documents are provided as is, with no express or implied
+ * warranties, other than those that are expressly stated in the License.
+ * No license under any patent, copyright, trade secret or other intellectual property
+ * right is granted to or conferred upon you by disclosure or delivery of the Materials,
+ * either expressly, by implication, inducement, estoppel or otherwise. Any license under
+ * such intellectual property rights must be expressed and approved by Intel in writing.
+ *
+ *********************************************************************************************/
+
+/**
+ * @file    tx_idma.c
+ * @brief   idma test
+ * @details Detailed description if necessary.
+ * @todo    Write documentation for source file sample_source.c
+ */
+
+#if (CPU_AX)
+#else
+#error "Not AX CPU"
+#endif
+
+#include <string.h>
+
+/***********************************************
+ * LOCAL INCLUDE STATEMENTS                    *
+ ***********************************************/
+#include "com_shared_memory_def.h"
+#include "com_shared_memory.h"
+#include "com_print.h"
+#include "com_idma.h"
+#include "txg.h"
+#include "sys_ctrl.h"
+
+/***********************************************
+ * LOCAL/PRIVATE MACROS AND DEFINES            *
+ ***********************************************/
+#define IDMA_TEST_BUFF_SIZE 1024
+
+/***********************************************
+ * LOCAL/PRIVATE TYPEDEFS (structs, enums)     *
+ ***********************************************/
+static idma_desc2d_t idma_desc2d[4] __attribute__ ((__aligned__ (8))) __attribute__ ((section (".dram0.data")));
+
+/***********************************************
+ * STATIC VARIABLES                            *
+ ***********************************************/
+static uint8_t buff_src[IDMA_TEST_BUFF_SIZE] __attribute__ ((section (".dram0.data")));
+static uint8_t buff_dst[IDMA_TEST_BUFF_SIZE] __attribute__ ((section (".dram0.data")));
+
+struct tx_gain_t
+{
+    txg_step_size_shdw_reg_t step_reg;
+    txg_gain_ramp_value_shdw_reg_t ramp_reg;
+    txg_phase_value_shdw_reg_t phase_reg;
+};
+
+static struct tx_gain_t broadcast_gain_table __attribute__ ((section (".dram0.data")));
+static struct tx_gain_t calibrated_gain_table[16] __attribute__ ((section (".dram0.data")));
+
+/***********************************************
+ * GLOBAL DATA DEFINITIONS (consts, vars)      *
+ ***********************************************/
+
+/***********************************************
+ * STATIC FUNCTION PROTOTYPES                  *
+ ***********************************************/
+
+void broadcast_to_txg_test (void)
+{
+    sys_ctrl_reset_control_reg_t adc_cpu_reset_reg = {.value = SYS_CTRL_RESET_CONTROL_DEFAULT};
+    adc_cpu_reset_reg.RESET_DRF_SUBFC = 0x3;
+    adc_cpu_reset_reg.RESET_VEX_SUBFC = 0x1;
+    SYS_CTRL_RESET_CONTROL_REG->value = SYS_CTRL_RESET_CONTROL_REG->value | adc_cpu_reset_reg.value;
+
+    void const *txg0_addr = (void const *)TXG_STEP_SIZE_SHDW_ADR (TRX_SYS0_TXG0_BASE);
+    uint32_t txg_addr_step = TRX_SYS0_TXG1_BASE - TRX_SYS0_TXG0_BASE;
+
+    broadcast_gain_table.step_reg.value = 0x12345678;
+    broadcast_gain_table.ramp_reg.value = 0xFF00FF00;
+    broadcast_gain_table.phase_reg.value = 0xA5A5A5A5;
+
+    // N-to-N.
+    for (int i = 0; i < 15; i++)
+    {
+        calibrated_gain_table[i].step_reg.value = 0xF0F00000 + i;
+        calibrated_gain_table[i].ramp_reg.value = 0xE1E10000 + i;
+        calibrated_gain_table[i].phase_reg.value = 0xD2D20000 + i;
+    }
+
+    //  Attempt several transfers for looking at transfer timings in RTL.  1, 2, 3 word transfers.   Broadcast and individual.
+    com_idma_trans_2d (txg0_addr, (void const *const)calibrated_gain_table, 4, 16, 12, txg_addr_step, NULL);
+    com_idma_trans_2d (txg0_addr, (void const *const)calibrated_gain_table, 8, 16, 12, txg_addr_step, NULL);
+    com_idma_trans_2d (txg0_addr, (void const *const)&broadcast_gain_table, 12, 16, 0, txg_addr_step, NULL);
+    com_idma_trans_2d (txg0_addr, (void const *const)calibrated_gain_table, 12, 16, 12, txg_addr_step, NULL);
+
+    // Attempt similar transfers, but in a descriptor chain.
+    idma_desc2d[0].src = U32 (calibrated_gain_table);
+    idma_desc2d[0].dst = U32 (txg0_addr);
+    idma_desc2d[0].row_bytes = 4;
+    idma_desc2d[0].rows = 16;
+    idma_desc2d[0].src_pitch = 12;
+    idma_desc2d[0].dst_pitch = txg_addr_step;
+
+    idma_desc2d[1].src = U32 (calibrated_gain_table);
+    idma_desc2d[1].dst = U32 (txg0_addr);
+    idma_desc2d[1].row_bytes = 8;
+    idma_desc2d[1].rows = 16;
+    idma_desc2d[1].src_pitch = 12;
+    idma_desc2d[1].dst_pitch = txg_addr_step;
+
+    idma_desc2d[2].src = U32 (calibrated_gain_table);
+    idma_desc2d[2].dst = U32 (txg0_addr);
+    idma_desc2d[2].row_bytes = 12;
+    idma_desc2d[2].rows = 16;
+    idma_desc2d[2].src_pitch = 12;
+    idma_desc2d[2].dst_pitch = txg_addr_step;
+
+    com_idma_fill_ctrl (idma_desc2d, 3, E_IDMA_DESC_TYPE_2D, NULL);
+    com_idma_trans_desc (idma_desc2d, 3, NULL);
+
+    com_idma_wait_done ();
+
+    // Now just one Quad.
+    idma_desc2d[0].rows = 4;
+    idma_desc2d[1].rows = 4;
+    idma_desc2d[2].rows = 4;
+    com_idma_fill_ctrl (idma_desc2d, 3, E_IDMA_DESC_TYPE_2D, NULL);
+    com_idma_trans_desc (idma_desc2d, 3, NULL);
+}
+
+/***********************************************
+ * GLOBAL FUNCTION DEFINITIONS                 *
+ ***********************************************/
+int main (int argc, char **argv)
+{
+    if (!com_shared_mem_wait_for_ready ())
+        FW_PRINT (FW_WARN, "RSM Not ready.");
+    FW_PRINT (FW_INFO, "IDMA started");
+
+    sys_ctrl_system_control_reg_t sys_ctrl_reg = {.value = SYS_CTRL_SYSTEM_CONTROL_DEFAULT};
+    sys_ctrl_reg.REF_CLK_SELECT = 1;
+    SYS_CTRL_SYSTEM_CONTROL_REG->value = sys_ctrl_reg.value;
+
+    memset (buff_src, 0xFF, IDMA_TEST_BUFF_SIZE);
+    memset (buff_dst, 0x00, IDMA_TEST_BUFF_SIZE);
+    com_idma_init ();
+    com_idma_trans_1d (buff_dst, buff_src, IDMA_TEST_BUFF_SIZE, NULL);
+
+    uint32_t const idma_err = com_idma_wait_done ();
+    if (idma_err == ERR_IDMA_OK)
+    {
+        if (memcmp (buff_src, buff_dst, IDMA_TEST_BUFF_SIZE) != 0)
+        {
+            FW_PRINT (FW_INFO, "IDMA mem compare fail");
+        }
+        else
+        {
+            FW_PRINT (FW_INFO, "IDMA test passed");
+        }
+    }
+    else
+    {
+        FW_PRINT (FW_INFO, "--idma transfer error = 0x%x --", idma_err); // replace this when remote is available
+        FW_PRINT (FW_INFO, "IDMA Test fail");
+    }
+
+    // Broadcast.
+    broadcast_to_txg_test ();
+
+    while (1) { INTRINSIC_WAIT_FOR_IRQ; }
+    return (0);
+}
+
+// cmd rcs
+// ../../repo/arborcrest/test_tgt/rtl/run_rcs.sh -uax idma -b sim -dpi "-w"
+// cmd soc
+// ../../repo/arborcrest/test_tgt/rtl/run_soc.sh -uax idma -b sim -p tx -d abcn5a0_unvex -m abc_lite_unvex -s 32G -args -w -r 450
+// cmd rcs 18A
+// ../../repo/arborcrest/test_tgt/rtl/run_rcs.sh -uax idma -b sim -p tx -v latest (as of 20230818 we need -v latest, later we may not need)

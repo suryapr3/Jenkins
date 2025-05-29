@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/hub_chnl/HUB_CHNL_APB/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/hub_chnl/HUB_CHNL_APB/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_hub_chnl_HUB_CHNL_APB_reg">AddressMap abc_soc_top/hub_chnl/HUB_CHNL_APB/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/hub_chnl/HUB_CHNL_APB/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_14AE9F9A02928759">Scratch</a>  </b></td>
+        <td class="unboxed sdescmap">SYSCON Control scratchpad register.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_955DB00202E54972">CLK_EN</a>  </b></td>
+        <td class="unboxed sdescmap">Clock Enables</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr">0x0000000f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000010</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_AE0AF277B74FBCB2">DIG_VIEWPIN_MUX_CTRL</a>  </b></td>
+        <td class="unboxed sdescmap">Digital Viewpin Mux Control Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000014</td>
+        <td class="unboxed addr">0x0000001f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000020</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_B2C4ACE50CA52C84">DIG_VIEWPIN_CTRL</a>  </b></td>
+        <td class="unboxed sdescmap">Digital Viewpin Basic Control Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000024</td>
+        <td class="unboxed addr">0x0000002f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000030</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C8A94F41312E90A6">DIG_VIEWPIN_EQ_CTRL</a>  </b></td>
+        <td class="unboxed sdescmap">Digital Viewpin Equalization Control Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000034</td>
+        <td class="unboxed addr">0x0000003f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000040</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_21C5F3CFD7729445">ANA_VIEWPIN_CTRL</a>  </b></td>
+        <td class="unboxed sdescmap">Analog Viewpin Control Register</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/hub_chnl/HUB_CHNL_APB/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_14AE9F9A02928759" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) Scratch</span><br/>
+      <span class="sdescdet">SYSCON Control scratchpad register.</span><br/>
+      <span class="ldescdet">Scratch read/write register.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b00000</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUpSticky</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="16">SCRATCHPAD_H</td>
+        <td class="fldnorm" colspan="8">SCRATCHPAD_M</td>
+        <td class="fldnorm" colspan="8">SCRATCHPAD_L</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="16">RW/P</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:16]</b><br/>RW/P</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SCRATCHPAD_H</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Scratchpad high (sticky, power-up reset)</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SCRATCHPAD_M</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Scratchpad low (cold reset)</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SCRATCHPAD_L</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Scratchpad low (warm reset)</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_hub_chnl_HUB_CHNL_APB_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_955DB00202E54972" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) CLK_EN</span><br/>
+      <span class="sdescdet">Clock Enables</span><br/>
+      <span class="ldescdet">Active High enables associated clock
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b00004</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00001777</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffe888</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffe888</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="19">-</td>
+        <td class="fldnorm" colspan="1">dft_dlnk</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="1">cs_dbg</td>
+        <td class="fldnorm" colspan="1">cs_apb</td>
+        <td class="fldnorm" colspan="1">cs_atb</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="1">vha_1p5g</td>
+        <td class="fldnorm" colspan="1">jesd_1p5g</td>
+        <td class="fldnorm" colspan="1">jesd_1g</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="1">drf</td>
+        <td class="fldnorm" colspan="1">crux</td>
+        <td class="fldnorm" colspan="1">vex</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="19">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[12:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">dft_dlnk</span><br/>
+          <span class="sdescdet">Enable clk_dft_dlnk</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cs_dbg</span><br/>
+          <span class="sdescdet">Enable clk_cs_dbg</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cs_apb</span><br/>
+          <span class="sdescdet">Enable clk_cs_apb</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">cs_atb</span><br/>
+          <span class="sdescdet">Enable clk_cs_atb</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">vha_1p5g</span><br/>
+          <span class="sdescdet">Enable clk_vha_1p5g</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">jesd_1p5g</span><br/>
+          <span class="sdescdet">Enable clk_jesd_1p5g</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">jesd_1g</span><br/>
+          <span class="sdescdet">Enable clk_jesd_1g</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">drf</span><br/>
+          <span class="sdescdet">Enable clk_drf</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">crux</span><br/>
+          <span class="sdescdet">Enable clk_crux</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">vex</span><br/>
+          <span class="sdescdet">Enable clk_vex</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_hub_chnl_HUB_CHNL_APB_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_AE0AF277B74FBCB2" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000010</span> Register(32 bit) DIG_VIEWPIN_MUX_CTRL</span><br/>
+      <span class="sdescdet">Digital Viewpin Mux Control Register</span><br/>
+      <span class="ldescdet">This register provides controls for the two socviewpin_8to1digimux and one socviewpin_4to1digimux IP instances. The number suffix indicates the instance.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b00010</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffff400</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffff400</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="20">-</td>
+        <td class="fldnorm" colspan="1">MUX_EN_2</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="2">MUX_SEL_2</td>
+        <td class="fldnorm" colspan="1">MUX_EN_1</td>
+        <td class="fldnorm" colspan="3">MUX_SEL_1</td>
+        <td class="fldnorm" colspan="1">MUX_EN_0</td>
+        <td class="fldnorm" colspan="3">MUX_SEL_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="20">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_EN_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">MUX enable. 1=enable the mux.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_SEL_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This controls the 4 to 1 mux to select one of the 4 digital inputs.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Select input[0].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Select input[1].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Select input[2].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Select input[3].</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_EN_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">MUX enable. 1=enable the mux.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_SEL_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This controls the 8 to 1 mux to select one of the 5 digital inputs.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Select input[0].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Select input[1].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Select input[2].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Select input[3].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_4</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>Select input[4].</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_EN_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">MUX enable. 1=enable the mux.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_SEL_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This controls the 8 to 1 mux to select one of the 5 digital inputs.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Select input[0].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Select input[1].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Select input[2].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Select input[3].</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_input_4</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>Select input[4].</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_hub_chnl_HUB_CHNL_APB_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_B2C4ACE50CA52C84" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000020</span> Register(32 bit) DIG_VIEWPIN_CTRL</span><br/>
+      <span class="sdescdet">Digital Viewpin Basic Control Register</span><br/>
+      <span class="ldescdet">This register provides basic controls for the two socviewpin_hsdigdrvhip IP instances. The number suffix indicates the instance.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b00020</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x04840484</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0x60606060</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0x60606060</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">DRIVE_EN_1</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="5">RCOMP_BINP_1</td>
+        <td class="fldnorm" colspan="1">MODE_SEL_1</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="5">RCOMP_BINN_1</td>
+        <td class="fldnorm" colspan="1">DRIVE_EN_0</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="5">RCOMP_BINP_0</td>
+        <td class="fldnorm" colspan="1">MODE_SEL_0</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="5">RCOMP_BINN_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="5">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DRIVE_EN_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX enable. When high, enables viewpin outputs.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RCOMP_BINP_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Pull up RCOMP code.</span></p>
+          <p><b>Reset: </b>hex:0x04;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:23]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MODE_SEL_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Differential vs Single ended mode select. 1=Single ended mode, 0=Differential mode.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RCOMP_BINN_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Pull down RCOMP code.</span></p>
+          <p><b>Reset: </b>hex:0x04;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DRIVE_EN_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX enable. When high, enables viewpin outputs.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RCOMP_BINP_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Pull up RCOMP code.</span></p>
+          <p><b>Reset: </b>hex:0x04;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MODE_SEL_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Differential vs Single ended mode select. 1=Single ended mode, 0=Differential mode.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RCOMP_BINN_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Pull down RCOMP code.</span></p>
+          <p><b>Reset: </b>hex:0x04;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_hub_chnl_HUB_CHNL_APB_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C8A94F41312E90A6" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000030</span> Register(32 bit) DIG_VIEWPIN_EQ_CTRL</span><br/>
+      <span class="sdescdet">Digital Viewpin Equalization Control Register</span><br/>
+      <span class="ldescdet">This register provides equalization controls for the two socviewpin_hsdigdrvhip IP instances. The number suffix indicates the instance.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b00030</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x01000100</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfe00fe00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfe00fe00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="7">-</td>
+        <td class="fldnorm" colspan="1">EQ_MUTE_1</td>
+        <td class="fldnorm" colspan="4">EQ_CTRL1_1</td>
+        <td class="fldnorm" colspan="4">EQ_CTRL0_1</td>
+        <td class="fldgap" colspan="7">-</td>
+        <td class="fldnorm" colspan="1">EQ_MUTE_0</td>
+        <td class="fldnorm" colspan="4">EQ_CTRL1_0</td>
+        <td class="fldnorm" colspan="4">EQ_CTRL0_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="7">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="fldgap" colspan="7">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[24:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EQ_MUTE_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Equalization control_1 bits.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:20]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EQ_CTRL1_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Equalization control_1 bits.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EQ_CTRL0_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Equalization control_0 bits.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EQ_MUTE_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Equalization control_1 bits.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EQ_CTRL1_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Equalization control_1 bits.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EQ_CTRL0_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Equalization control_0 bits.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_hub_chnl_HUB_CHNL_APB_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_21C5F3CFD7729445" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000040</span> Register(32 bit) ANA_VIEWPIN_CTRL</span><br/>
+      <span class="sdescdet">Analog Viewpin Control Register</span><br/>
+      <span class="ldescdet">This register provides controls for the two socviewpin_anadrvldohip IP instances. The number suffix indicates the instance.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b00040</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000808</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffc8080</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffc8080</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="fldnorm" colspan="1">MUX_EN_1</td>
+        <td class="fldnorm" colspan="1">MUX_EN_0</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">MUX_CTRL_1</td>
+        <td class="fldnorm" colspan="1">PWRGATE_ENB_1</td>
+        <td class="fldnorm" colspan="1">OB_EN_1</td>
+        <td class="fldnorm" colspan="1">BYP_EN_1</td>
+        <td class="fldnorm" colspan="1">DIGPWRGOOD_1</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">MUX_CTRL_0</td>
+        <td class="fldnorm" colspan="1">PWRGATE_ENB_0</td>
+        <td class="fldnorm" colspan="1">OB_EN_0</td>
+        <td class="fldnorm" colspan="1">BYP_EN_0</td>
+        <td class="fldnorm" colspan="1">DIGPWRGOOD_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[17:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_EN_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Input analog mux enable. 1=Enable the mux.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_EN_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Input analog mux enable. 1=Enable the mux.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_CTRL_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This controls the analog mux to select one of the 5 analog inputs.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_eq_a</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Select ana_eq_a input.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_in0_a</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Select ana_in0_a input.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_in1_a</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Select ana_in1_a input.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_in2_a</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Select ana_in2_a input.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_lya_a</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>Select ana_lya_a input.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PWRGATE_ENB_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">LDO enable. 0=Enable internal LDO.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OB_EN_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable Unity Gain Buffer. 1=Enable UGB.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BYP_EN_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bypass Unity Gain Buffer. 1=Bypass enable.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DIGPWRGOOD_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Digital power supply power good. 1=digital power good.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MUX_CTRL_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This controls the analog mux to select one of the 5 analog inputs.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_eq_a</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Select ana_eq_a input.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_in0_a</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Select ana_in0_a input.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_in1_a</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Select ana_in1_a input.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_in2_a</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Select ana_in2_a input.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">SEL_ana_lya_a</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>Select ana_lya_a input.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PWRGATE_ENB_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">LDO enable. 0=Enable internal LDO.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OB_EN_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable Unity Gain Buffer. 1=Enable UGB.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BYP_EN_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bypass Unity Gain Buffer. 1=Bypass enable.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DIGPWRGOOD_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Digital power supply power good. 1=digital power good.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_hub_chnl_HUB_CHNL_APB_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

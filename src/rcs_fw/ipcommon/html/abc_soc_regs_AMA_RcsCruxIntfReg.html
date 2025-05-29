@@ -1,0 +1,5745 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/rcs/crux/intf/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/rcs/crux/intf/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_rcs_crux_intf_reg">AddressMap abc_soc_top/rcs/crux/intf/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/rcs/crux/intf/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_131528E7758AD5A1">CRUX_WDATA0_r</a>  </b></td>
+        <td class="unboxed sdescmap">Bits [127:0] of Crux Data word</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000010</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_57A6E33F5FC69C6D">CRUX_WDATA1_r</a>  </b></td>
+        <td class="unboxed sdescmap">Bits [255:128] of Crux Data word</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000020</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_0C09488C5A57BAA1">CRUX_WDATA2_r</a>  </b></td>
+        <td class="unboxed sdescmap">Bits [383:256] of Crux Data word</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000030</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8B1263F76D872BB4">CRUX_WDATA3_r</a>  </b></td>
+        <td class="unboxed sdescmap">Bits [511:384] of Crux Data word</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000040</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D5F1CE297B48F005">CRUX_WROUTING_DATA_r</a>  </b></td>
+        <td class="unboxed sdescmap">Routing data for the data.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000050</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_86F0094EDEA08706">CRUX_TX_PUSH</a>  </b></td>
+        <td class="unboxed sdescmap">Push tx data to a fifo.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000060</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_6B9DA962013B4923">CRUX_TX_FIFO_WM</a>  </b></td>
+        <td class="unboxed sdescmap">Watermarks for fifo of depth 4 between Cores and tx arbitor for the nsib_hbi</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000070</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_9AE1EF3ECDDFF2E1">CRUX_INTF_MASKS</a>  </b></td>
+        <td class="unboxed sdescmap">Masks for interrupts</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000080</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_CCDED0DE12B6C77F">CRUX_FIFO_SW_RST</a>  </b></td>
+        <td class="unboxed sdescmap">Fifo software resets</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000090</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D8228B87B71930D3">CRUX_RX_POP</a>  </b></td>
+        <td class="unboxed sdescmap">POP rx data from Common module fifo.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000000a0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5B4176BC1A4EB10C">CRUX_RDATA0_r</a>  </b></td>
+        <td class="unboxed sdescmap">Bits [127:0] of Crux RX Data word</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000000b0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DE5623B47A6A16C8">CRUX_RDATA1_r</a>  </b></td>
+        <td class="unboxed sdescmap">Bits [255:128] of Crux RX Data word</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000000c0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_067BF3EC83BA18CE">CRUX_RDATA2_r</a>  </b></td>
+        <td class="unboxed sdescmap">Bits [383:256] of Crux RX Data word</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000000d0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_9D59F1167FE42C89">CRUX_RDATA3_r</a>  </b></td>
+        <td class="unboxed sdescmap">Bits [511:384] of Crux RX Data word</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000000e0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_A68A7DB76F47DDAB">CRUX_RROUTING_DATA_r</a>  </b></td>
+        <td class="unboxed sdescmap">Routing data for the rx data.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000000f0</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F0537117748ABCE2">CRUX_FIFO_STATUS</a>  </b></td>
+        <td class="unboxed sdescmap">Status bits for the two fifos in the rcs_crux_interface</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/rcs/crux/intf/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_131528E7758AD5A1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(128 bit) CRUX_WDATA0_r</span><br/>
+      <span class="sdescdet">Bits [127:0] of Crux Data word</span><br/>
+      <span class="ldescdet">This register stores the first 128 bits of a 512 data word to be sent to the vex arrary.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278000</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="128">DATA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="128">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[127:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">128 bits of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000000000000000000000000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_57A6E33F5FC69C6D" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000010</span> Register(128 bit) CRUX_WDATA1_r</span><br/>
+      <span class="sdescdet">Bits [255:128] of Crux Data word</span><br/>
+      <span class="ldescdet">This register stores the second 128 bits of a 512 data word to be sent to the vex arrary.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278010</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="128">DATA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="128">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[127:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">128 bits of a 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000000000000000000000000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_0C09488C5A57BAA1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000020</span> Register(128 bit) CRUX_WDATA2_r</span><br/>
+      <span class="sdescdet">Bits [383:256] of Crux Data word</span><br/>
+      <span class="ldescdet">This register stores the 3rd 128 bits of a 512 data word to be sent to the vex arrary.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278020</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="128">DATA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="128">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[127:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">128 bits of a 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000000000000000000000000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_8B1263F76D872BB4" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000030</span> Register(128 bit) CRUX_WDATA3_r</span><br/>
+      <span class="sdescdet">Bits [511:384] of Crux Data word</span><br/>
+      <span class="ldescdet">This register stores the 4th 128 bits of a 512 data word to be sent to the vex arrary.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278030</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="128">DATA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="128">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[127:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">128 bits of a 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000000000000000000000000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D5F1CE297B48F005" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000040</span> Register(128 bit) CRUX_WROUTING_DATA_r</span><br/>
+      <span class="sdescdet">Routing data for the data.</span><br/>
+      <span class="ldescdet">This register specifies the routing meta-data needed to determine the destination of the message.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278040</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x000000000000000000000000004000c0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffffffffffffc000000ff800000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffffffffffffc000000ff800000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="70">-</td>
+        <td class="fldnorm" colspan="26">ADDRESS</td>
+        <td class="fldgap" colspan="9">-</td>
+        <td class="fldnorm" colspan="1">BYPASS</td>
+        <td class="fldnorm" colspan="11">HOST_ID</td>
+        <td class="fldnorm" colspan="3">INTF_ID</td>
+        <td class="fldnorm" colspan="1">SOP</td>
+        <td class="fldnorm" colspan="1">EOP</td>
+        <td class="fldnorm" colspan="3">LEN</td>
+        <td class="fldnorm" colspan="3">FLIT_TYPE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="70">-</td>
+        <td class="accno" colspan="26">RW</td>
+        <td class="fldgap" colspan="9">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="11">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[57:32]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ADDRESS</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Address of the destination of the packet.</span></p>
+          <p><b>Reset: </b>hex:0x0000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[22:22]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BYPASS</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bypass mode.  This bit should always be set to 1, it indicates that the routing data will be given directly to the common module and that it does not need to calculate it.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HOST_ID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is the Host ID associated with the packet.</span></p>
+          <p><b>Reset: </b>hex:0x000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">INTF_ID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is the interface ID associated with the packet.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SOP</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SOP, this bit indicates if the FLIT is the first in a packet.  For RCS traffic, all packets should be of len 1, so this should always be set to 1.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EOP</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">EOP, this bit indicates if the FLIT is the last in a packet.  For RCS traffic, all packets should be of len 1, so this should always be set to 1.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">LEN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The Len field indicates the length of the packet (length is this value + 1).  To gurrentee correct operation, in RCS, this should always be set to 0 (indicating a one FLIT packet).  Otherwise packets from the timestamp module might be intermixed.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FLIT_TYPE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The Type field indicates the number of valid bytes contained in the streaming word format.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">one</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">1 Byte<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">two</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">2 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">four</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">4 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">eight</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">8 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">sixteen</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap">16 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">thirtytwo</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap">32 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">sixtyfour</td>
+          <td class="unboxed addr">0x6</td>
+          <td class="unboxed scdescmap">64 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">invalid</td>
+          <td class="unboxed addr">0x7</td>
+          <td class="unboxed scdescmap">128 Bytes, not used<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_86F0094EDEA08706" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000050</span> Register(128 bit) CRUX_TX_PUSH</span><br/>
+      <span class="sdescdet">Push tx data to a fifo.</span><br/>
+      <span class="ldescdet">Writing a 1 to the PUSH bit will cause the contents of the CRUX_WDAT0-3 and CRUX_WROUTING_DATA to be pushed to a fifo as a unit, so it can be streamed out.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278050</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/AC</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffffffffe</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffffffffe</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="127">-</td>
+        <td class="fldnorm" colspan="1">PUSH</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="127">-</td>
+        <td class="accno" colspan="1">RW/AC</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[00:00]</b><br/>RW/AC</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PUSH</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When this bit is set to 1, the contents of the above 5 registers will be pushed as a single unit to a wide fifo so that it can be streamed out to the vex array.  The bit is self-clearing.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_6B9DA962013B4923" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000060</span> Register(128 bit) CRUX_TX_FIFO_WM</span><br/>
+      <span class="sdescdet">Watermarks for fifo of depth 4 between Cores and tx arbitor for the nsib_hbi</span><br/>
+      <span class="ldescdet">Watermarks to determine when fifo_afull and fifo_aempty are asserted.  Since there is another fifo in the nsip_hbi before data is streamed out, it should not be necessary to use the fifo_aempty for this fifo.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278060</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x0000000000000000000000000000000b</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffffffffffffffffffffffffffffc0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffffffffffffffffffffffffffffc0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="122">-</td>
+        <td class="fldnorm" colspan="3">low_wm</td>
+        <td class="fldnorm" colspan="3">high_wm</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="122">-</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[05:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">low_wm</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Low watermark.  Depth of fifo to trigger the fifo_aempty status.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">high_wm</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">High watermark.  Depth of fifo to trigger the fifo_afull status.</span></p>
+          <p><b>Reset: </b>hex:0x3;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_9AE1EF3ECDDFF2E1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000070</span> Register(128 bit) CRUX_INTF_MASKS</span><br/>
+      <span class="sdescdet">Masks for interrupts</span><br/>
+      <span class="ldescdet">Masks for interrupts from the crux interface.  Setting the bit to 1 will disable/mask the interrupt.  Note, the nsib_hbi has its own interrupt and masks available via APB registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278070</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffffffff8</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffffffff8</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="125">-</td>
+        <td class="fldnorm" colspan="1">h2b_ts_fifo_overflow_mask</td>
+        <td class="fldnorm" colspan="1">h2b_tx_fifo_overflow_mask</td>
+        <td class="fldnorm" colspan="1">b2h_rx_fifo_nempty_mask</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="125">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">h2b_ts_fifo_overflow_mask</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">H2B Timestamp fifo overflow.  There is a 16 deep fifo prior to the tx arbitor.  This masks the interrupt for the timestamp fifo overflow.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">h2b_tx_fifo_overflow_mask</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">H2B Timestamp fifo overflow.  There is a 4 deep fifo prior to the tx arbitor for storing TX messages.  This masks the interrupt for this fifo overflow.  NOTE: this interface has been designed such that it should not be possible to overflow this FIFO.  This interrupt should never happen.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">b2h_rx_fifo_nempty_mask</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">B2H RX fifo not empty.  This indicates data is available to read from B2H rx fifo, and a pop operation can be done.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_CCDED0DE12B6C77F" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000080</span> Register(128 bit) CRUX_FIFO_SW_RST</span><br/>
+      <span class="sdescdet">Fifo software resets</span><br/>
+      <span class="ldescdet">If an overflow or underflow conditions occur in the fifos' status registers will get stuck, so software resets are presented to allow recovery without need of a hardware reset.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278080</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/AC</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffffffffc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffffffffc</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="126">-</td>
+        <td class="fldnorm" colspan="1">ts_fifo_sw_rst</td>
+        <td class="fldnorm" colspan="1">tx_fifo_sw_rst</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="126">-</td>
+        <td class="accno" colspan="1">RW/AC</td>
+        <td class="accno" colspan="1">RW/AC</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[01:01]</b><br/>RW/AC</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ts_fifo_sw_rst</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This bit resets the H2B timestamp fifo before the tx arbitor in the rcs crux interface.  It will also have the effect of clearing the status bits for this fifo.  It is self clearing.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW/AC</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">tx_fifo_sw_rst</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This bit resets the H2B tx fifo before the tx arbitor in the rcs crux interface.  It will also have the effect of clearing the status bits for this fifo.  It is self clearing.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D8228B87B71930D3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000090</span> Register(128 bit) CRUX_RX_POP</span><br/>
+      <span class="sdescdet">POP rx data from Common module fifo.</span><br/>
+      <span class="ldescdet">When this register is read, it will cause a pop of the B2H (rx) fifo in the nsip_hbi.  It is set to do this on read to avoid the situation where a pop cant be done because writes are blocked on AXI interface due to a full TX fifo.  This register will always read back as 0.  The contents will be stored in CRUX_RDATA0-3, CRUX_RROUTING_DATA.  Poping when the B2H fifo is empty will cause an error.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00278090</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffffffffe</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffffffffe</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="127">-</td>
+        <td class="fldnorm" colspan="1">POP</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="127">-</td>
+        <td class="accno" colspan="1">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[00:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">POP</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When this register is read, it will cause a pop of the B2H (rx) fifo in the nsip_hbi.  It is set to do this on read to avoid the situation where a pop cant be done because writes are blocked on AXI interface due to a full TX fifo.  This register will always read back as 0.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5B4176BC1A4EB10C" class="boxed tabrb"><span class="regname">+<span class="addr">0x000000a0</span> Register(128 bit) CRUX_RDATA0_r</span><br/>
+      <span class="sdescdet">Bits [127:0] of Crux RX Data word</span><br/>
+      <span class="ldescdet">This register stores the first 128 bits of a 512 data word received from the vex arrary.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x002780a0</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DATA3</td>
+        <td class="fldnorm" colspan="32">DATA2</td>
+        <td class="fldnorm" colspan="32">DATA1</td>
+        <td class="fldnorm" colspan="32">DATA0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[127:96]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [127:96] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[95:64]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [95:64] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[63:32]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [63:32] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits 32:0 of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DE5623B47A6A16C8" class="boxed tabrb"><span class="regname">+<span class="addr">0x000000b0</span> Register(128 bit) CRUX_RDATA1_r</span><br/>
+      <span class="sdescdet">Bits [255:128] of Crux RX Data word</span><br/>
+      <span class="ldescdet">This register stores the 2nd 128 bits of a 512 data word received from the vex arrary.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x002780b0</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DATA3</td>
+        <td class="fldnorm" colspan="32">DATA2</td>
+        <td class="fldnorm" colspan="32">DATA1</td>
+        <td class="fldnorm" colspan="32">DATA0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[127:96]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [255:224] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[95:64]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [224:192] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[63:32]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [191:160] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [159:128] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_067BF3EC83BA18CE" class="boxed tabrb"><span class="regname">+<span class="addr">0x000000c0</span> Register(128 bit) CRUX_RDATA2_r</span><br/>
+      <span class="sdescdet">Bits [383:256] of Crux RX Data word</span><br/>
+      <span class="ldescdet">This register stores the 3rd 128 bits of a 512 data word received from the vex arrary.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x002780c0</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DATA3</td>
+        <td class="fldnorm" colspan="32">DATA2</td>
+        <td class="fldnorm" colspan="32">DATA1</td>
+        <td class="fldnorm" colspan="32">DATA0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[127:96]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [383:352] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[95:64]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [351:320] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[63:32]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [319:288] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [287:256] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_9D59F1167FE42C89" class="boxed tabrb"><span class="regname">+<span class="addr">0x000000d0</span> Register(128 bit) CRUX_RDATA3_r</span><br/>
+      <span class="sdescdet">Bits [511:384] of Crux RX Data word</span><br/>
+      <span class="ldescdet">This register stores the 4th 128 bits of a 512 data word received from the vex arrary.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x002780d0</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000000000000000000000000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DATA3</td>
+        <td class="fldnorm" colspan="32">DATA2</td>
+        <td class="fldnorm" colspan="32">DATA1</td>
+        <td class="fldnorm" colspan="32">DATA0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[127:96]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [511:480] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[95:64]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [479:448] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[63:32]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [447:416] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DATA0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [415:384] of 512 bit data word.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_A68A7DB76F47DDAB" class="boxed tabrb"><span class="regname">+<span class="addr">0x000000e0</span> Register(128 bit) CRUX_RROUTING_DATA_r</span><br/>
+      <span class="sdescdet">Routing data for the rx data.</span><br/>
+      <span class="ldescdet">This register specifies the routing meta-data needed to determine the source of the message.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x002780e0</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000000000002000000000000300</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffffffffffffffc0000000fffffc00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffffffffffffffc0000000fffffc00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="66">-</td>
+        <td class="fldnorm" colspan="1">BYPASS</td>
+        <td class="fldnorm" colspan="3">FLIT_TYPE</td>
+        <td class="fldnorm" colspan="26">ADDRESS</td>
+        <td class="fldgap" colspan="22">-</td>
+        <td class="fldnorm" colspan="1">SOP</td>
+        <td class="fldnorm" colspan="1">EOP</td>
+        <td class="fldnorm" colspan="3">LEN</td>
+        <td class="fldnorm" colspan="5">STREAM_ID</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="66">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="26">RO/V</td>
+        <td class="fldgap" colspan="22">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="5">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[61:61]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BYPASS</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bypass mode.  This bit should always be set to 1, it indicates that the routing data will be given directly to the common module and that it does not need to calculate it.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[60:58]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FLIT_TYPE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The Type field indicates the number of valid bytes contained in the streaming word format.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">one</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">1 Byte<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">two</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">2 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">four</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">4 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">eight</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">8 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">sixteen</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap">16 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">thirtytwo</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap">32 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">sixtyfour</td>
+          <td class="unboxed addr">0x6</td>
+          <td class="unboxed scdescmap">64 Bytes<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">invalid</td>
+          <td class="unboxed addr">0x7</td>
+          <td class="unboxed scdescmap">128 Bytes, not used<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[57:32]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ADDRESS</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Address of the destination of the packet.</span></p>
+          <p><b>Reset: </b>hex:0x0000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SOP</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SOP, this bit indicates if the FLIT is the first in a packet.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EOP</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">EOP, this bit indicates if the FLIT is the last in a packet.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:05]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">LEN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The Len field indicates the length of the packet (length is this value + 1). </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">STREAM_ID</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is the streaming ID for the packet</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F0537117748ABCE2" class="boxed tabrb"><span class="regname">+<span class="addr">0x000000f0</span> Register(128 bit) CRUX_FIFO_STATUS</span><br/>
+      <span class="sdescdet">Status bits for the two fifos in the rcs_crux_interface</span><br/>
+      <span class="ldescdet">This register contains the status bits for the two fifo's in the rcs_crux_interface.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x002780f0</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x000000000000000000000000000c000c</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffe00f800</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffffffffffffffffffffe00f800</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>127</td>
+        <td>126</td>
+        <td>125</td>
+        <td>124</td>
+        <td>123</td>
+        <td>122</td>
+        <td>121</td>
+        <td>120</td>
+        <td>119</td>
+        <td>118</td>
+        <td>117</td>
+        <td>116</td>
+        <td>115</td>
+        <td>114</td>
+        <td>113</td>
+        <td>112</td>
+        <td>111</td>
+        <td>110</td>
+        <td>109</td>
+        <td>108</td>
+        <td>107</td>
+        <td>106</td>
+        <td>105</td>
+        <td>104</td>
+        <td>103</td>
+        <td>102</td>
+        <td>101</td>
+        <td>100</td>
+        <td>99</td>
+        <td>98</td>
+        <td>97</td>
+        <td>96</td>
+        <td>95</td>
+        <td>94</td>
+        <td>93</td>
+        <td>92</td>
+        <td>91</td>
+        <td>90</td>
+        <td>89</td>
+        <td>88</td>
+        <td>87</td>
+        <td>86</td>
+        <td>85</td>
+        <td>84</td>
+        <td>83</td>
+        <td>82</td>
+        <td>81</td>
+        <td>80</td>
+        <td>79</td>
+        <td>78</td>
+        <td>77</td>
+        <td>76</td>
+        <td>75</td>
+        <td>74</td>
+        <td>73</td>
+        <td>72</td>
+        <td>71</td>
+        <td>70</td>
+        <td>69</td>
+        <td>68</td>
+        <td>67</td>
+        <td>66</td>
+        <td>65</td>
+        <td>64</td>
+        <td>63</td>
+        <td>62</td>
+        <td>61</td>
+        <td>60</td>
+        <td>59</td>
+        <td>58</td>
+        <td>57</td>
+        <td>56</td>
+        <td>55</td>
+        <td>54</td>
+        <td>53</td>
+        <td>52</td>
+        <td>51</td>
+        <td>50</td>
+        <td>49</td>
+        <td>48</td>
+        <td>47</td>
+        <td>46</td>
+        <td>45</td>
+        <td>44</td>
+        <td>43</td>
+        <td>42</td>
+        <td>41</td>
+        <td>40</td>
+        <td>39</td>
+        <td>38</td>
+        <td>37</td>
+        <td>36</td>
+        <td>35</td>
+        <td>34</td>
+        <td>33</td>
+        <td>32</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="103">-</td>
+        <td class="fldnorm" colspan="3">TX_FIFO_DEPTH</td>
+        <td class="fldnorm" colspan="1">TX_FIFO_FULL</td>
+        <td class="fldnorm" colspan="1">TX_FIFO_ALMOST_FULL</td>
+        <td class="fldnorm" colspan="1">TX_FIFO_ALMOST_EMPTY</td>
+        <td class="fldnorm" colspan="1">TX_FIFO_EMPTY</td>
+        <td class="fldnorm" colspan="1">TX_FIFO_OVERFLOW</td>
+        <td class="fldnorm" colspan="1">TX_FIFO_UNDERFLOW</td>
+        <td class="fldgap" colspan="5">-</td>
+        <td class="fldnorm" colspan="5">TS_FIFO_DEPTH</td>
+        <td class="fldnorm" colspan="1">TS_FIFO_FULL</td>
+        <td class="fldnorm" colspan="1">TS_FIFO_ALMOST_FULL</td>
+        <td class="fldnorm" colspan="1">TS_FIFO_ALMOST_EMPTY</td>
+        <td class="fldnorm" colspan="1">TS_FIFO_EMPTY</td>
+        <td class="fldnorm" colspan="1">TS_FIFO_OVERFLOW</td>
+        <td class="fldnorm" colspan="1">TS_FIFO_UNDERFLOW</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="103">-</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="fldgap" colspan="5">-</td>
+        <td class="accno" colspan="5">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[24:22]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TX_FIFO_DEPTH</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX buffer FIFO Depth (0-4)</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:21]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TX_FIFO_FULL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX buffer FIFO Full</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:20]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TX_FIFO_ALMOST_FULL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX buffer FIFO Almost Full</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:19]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TX_FIFO_ALMOST_EMPTY</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX buffer FIFO Almost Empty</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:18]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TX_FIFO_EMPTY</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX buffer FIFO Empty</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:17]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TX_FIFO_OVERFLOW</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX buffer FIFO Overflow</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TX_FIFO_UNDERFLOW</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">TX buffer FIFO Underflow</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:06]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_FIFO_DEPTH</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Timestamp FIFO Depth (0-16)</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_FIFO_FULL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Timestamp FIFO Full</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_FIFO_ALMOST_FULL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Timestamp FIFO Almost Full</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_FIFO_ALMOST_EMPTY</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Timestamp FIFO Almost Empty</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_FIFO_EMPTY</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Timestamp FIFO Empty</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_FIFO_OVERFLOW</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Timestamp FIFO Overflow</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_FIFO_UNDERFLOW</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Timestamp FIFO Underflow</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_crux_intf_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

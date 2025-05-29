@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/rcs/timer/timestamp/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/rcs/timer/timestamp/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_rcs_timer_timestamp_reg">AddressMap abc_soc_top/rcs/timer/timestamp/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/rcs/timer/timestamp/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000000[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_974C8893AA618AF3">ec_gpio_select[16]</a>  </b></td>
+        <td class="unboxed sdescmap">Event Channel Select</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000040</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_22183DFCA4504859">ec_group_select</a>  </b></td>
+        <td class="unboxed sdescmap">Event Channel Group Select</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000044</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_A0C97B0E63737C75">ec_enable</a>  </b></td>
+        <td class="unboxed sdescmap">Event Channel Enable</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000048</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_6CBB6C4BEC553DB0">window_start</a>  </b></td>
+        <td class="unboxed sdescmap">Capture Window Start Time</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000004c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_51582D18FCABB893">timestamp_setup</a>  </b></td>
+        <td class="unboxed sdescmap">Timestamp Seutp</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000050</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C69559BB81B99B68">gpiogrp_debounce_7_0</a>  </b></td>
+        <td class="unboxed sdescmap">EC GPIO Group Debounce</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000054</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2D8E1EE1E99311DD">gpiogrp_debounce_15_8</a>  </b></td>
+        <td class="unboxed sdescmap">EC GPIO Group Debounce</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000058</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_199249C2BF74BE34">ec_ov_err_mask_r</a>  </b></td>
+        <td class="unboxed sdescmap">Mask for EC event overflow error</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000005c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2179F710EE4BECB4">ec_ov_err_status_r</a>  </b></td>
+        <td class="unboxed sdescmap">Status for EC event overflow error</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000060</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_0E282BF2E8D07657">timestamp_status_r</a>  </b></td>
+        <td class="unboxed sdescmap">Timestamp Status</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/rcs/timer/timestamp/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_974C8893AA618AF3" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000000[+=0x4]</span> Register(32 bit) ec_gpio_select[16]</span><br/>
+      <span class="sdescdet">Event Channel Select</span><br/>
+      <span class="ldescdet">Configure which GPIO contribute to an Event Channel.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=16, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00269000[+=0x4]</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">EC_GPIO_SELECT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EC_GPIO_SELECT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Configures which of the 32 GPIO selected by EC_GROUP_SELECT contributes to the Event Channel. A maximum of 8 bits in this register can be configured, and thus a maximum of 8 GPIO can be assigned to an Event Channel. Set to 1 to enable the specified GPIO bit to contribute to the Event Channel.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_22183DFCA4504859" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000040</span> Register(32 bit) ec_group_select</span><br/>
+      <span class="sdescdet">Event Channel Group Select</span><br/>
+      <span class="ldescdet">Configure which GPIO group contribute to an Event Channel. Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00269040</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="16">EC_GROUP_SELECT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EC_GROUP_SELECT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Configures which group of GPIO an Event Channel can use to select its contributors. Each bit corresponds to an Event Channel. Set to 0 to allow the Event Channel to select from GPIO group#0. Set to 1 to allow the Event Channel to select from GPIO group#1.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_A0C97B0E63737C75" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000044</span> Register(32 bit) ec_enable</span><br/>
+      <span class="sdescdet">Event Channel Enable</span><br/>
+      <span class="ldescdet">Enables individual Event Channels.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00269044</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="16">EC_ENABLE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EC_ENABLE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enable an Event Channel. After configuration of the EC_GPIO_SELECT and EC_GROUP_SELECT registers, the Event Channel needs to be enabled. Each bit in this register corresponds to an Event Channel, with a value of 1 enabling the specific Channel.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_6CBB6C4BEC553DB0" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000048</span> Register(32 bit) window_start</span><br/>
+      <span class="sdescdet">Capture Window Start Time</span><br/>
+      <span class="ldescdet">Configures when to start a specific capture window
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00269048</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0xffffffff</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">TS_WINDOW</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TS_WINDOW</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Time of the first processing window specified in BFN time units. </span></p>
+          <p><b>Reset: </b>hex:0xffffffff;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_51582D18FCABB893" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000004c</span> Register(32 bit) timestamp_setup</span><br/>
+      <span class="sdescdet">Timestamp Seutp</span><br/>
+      <span class="ldescdet">Configures various timestamp block settings.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0026904c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x000001ec</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff3000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff3000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="1">GLOBAL_DISABLE</td>
+        <td class="fldnorm" colspan="1">RESTART</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="12">DURATION</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="12">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GLOBAL_DISABLE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This bit will globally disable the entire timestamp opperation and overrides the individual EC_ENABLE bits.  It will only take effect at the end of the current window (if active).  While globally disabled if the RESTART bit is set when it finishes the current window then the event channel operation will not restart until both the GLOBAL_DISABLE is 0 and the BFN counter matches the value in WINDOW_START.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESTART</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">If this bit is set, then the timestamp will finish with the current window, and send out its results.  It will then stop capturing event channel events.  It will wait until the next time the 32 LSB of the BFN counter match the value stored in WINDOW_START register.  This bit only takes effect if the GLOBAL_DISABLE bit is set.  When the timestamp restarts, the SEQ_NUM counter will reset to 0.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DURATION</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Duration of the processing window.  The value should be set to the number of BFN clocks (983Mhz) for the window to last.  Ideally this should be set to be either 0.25us, 0.5us or 1us in duration.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.</span></p>
+          <p><b>Reset: </b>hex:0x1ec;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C69559BB81B99B68" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000050</span> Register(32 bit) gpiogrp_debounce_7_0</span><br/>
+      <span class="sdescdet">EC GPIO Group Debounce</span><br/>
+      <span class="ldescdet">Configure the number of clk_bfn (983Mhz) cycles all members of EC GPIO group need to be static before change is detected.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00269050</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_7</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_6</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_5</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_4</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_3</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_2</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_1</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:21]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:18]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2D8E1EE1E99311DD" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000054</span> Register(32 bit) gpiogrp_debounce_15_8</span><br/>
+      <span class="sdescdet">EC GPIO Group Debounce</span><br/>
+      <span class="ldescdet">Configure the number of clk_bfn (983Mhz) cycles all members of EC GPIO group need to be static before change is detected.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00269054</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_7</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_6</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_5</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_4</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_3</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_2</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_1</td>
+        <td class="fldnorm" colspan="3">grp_dbnce_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:21]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:18]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">grp_dbnce_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">0 - Change is immediate. 1 - Change stable for 2 cycles. 2 - Change stable for 4 cycles. 3 - Change stable for 8 cycles. 4 - Change stable for 16 cycles.  5 - Change stable for 32 cycles, 6-7 - reserved.  Internally the value will only be updated either before the first window starts or at the start of a new window.  Thus, this value is constant across a timestamp window.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_199249C2BF74BE34" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000058</span> Register(32 bit) ec_ov_err_mask_r</span><br/>
+      <span class="sdescdet">Mask for EC event overflow error</span><br/>
+      <span class="ldescdet">Mask off the error interrupt which indicates if a given event channel has had more then 15 events during a time window.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00269058</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x0000ffff</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="16">EC_OV_ERR_MASK</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EC_OV_ERR_MASK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Mask an Event Channel. Each bit in this register corresponds to an Event Channel, with a value of 1 masking event overflow error interrupt for the specific Channel. </span></p>
+          <p><b>Reset: </b>hex:0xffff;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2179F710EE4BECB4" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000005c</span> Register(32 bit) ec_ov_err_status_r</span><br/>
+      <span class="sdescdet">Status for EC event overflow error</span><br/>
+      <span class="ldescdet">Error interrupt status which indicates if a given event channel has had more then 15 events during a time window.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0026905c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/C/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="16">EC_OV_ERR_STATUS</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RO/C/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RO/C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">EC_OV_ERR_STATUS</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Overflow status of an Event Channel. Each bit in this register corresponds to an Event Channel, with a value of 1 indicating an event overflow error occured for that channel (more then 15 events occurend during the window).  This is a clear on read register. </span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_0E282BF2E8D07657" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000060</span> Register(32 bit) timestamp_status_r</span><br/>
+      <span class="sdescdet">Timestamp Status</span><br/>
+      <span class="ldescdet">Current status of timestamp logic
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00269060</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xf8000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xf8000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="5">-</td>
+        <td class="fldnorm" colspan="3">TIMESTAMP_FSM</td>
+        <td class="fldnorm" colspan="8">SEQ_NUM</td>
+        <td class="fldnorm" colspan="16">INDEX</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="5">-</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="16">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[26:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMESTAMP_FSM</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Current value of timestamp FSM</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">WAIT_FOR_START</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Waiting for start of first window<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CAP_A_STRM_B</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Capturing events in buffer A, and streaming out from buffer B.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">INIT_A</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Start of new window, preparring buffer A for streaming, and buffer B for capturing<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">FLUSH_A</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Flush out the events in buffer A, as the window is being aborted.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">CAP_B_STRM_A</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap">Capturing events in buffer B, and streaming out from buffer A.<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">INIT_B</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap">Start of new window, preparring buffer B for streaming, and buffer A for capturing<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">FLUSH_B</td>
+          <td class="unboxed addr">0x6</td>
+          <td class="unboxed scdescmap">Flush out the events in buffer B, as the window is being aborted.<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:16]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SEQ_NUM</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Current window number.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">INDEX</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Current Index count for current window. This value will never be larger than DURATION </span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_timestamp_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

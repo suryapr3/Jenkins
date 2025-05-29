@@ -1,0 +1,526 @@
+make[2]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw'
+make[2]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule.
+skip format code
+make -C ana TARGET=sim
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/ana'
+---- ana Compiling C ../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/ana/sim/com_print.o
+---- ana Compiling C ../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/ana/sim/com_assert.o
+---- ana Compiling C src/ana_main.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/ana/sim/ana_main.o
+---- ana LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/ana_sim.elf  (hwc_adc_lx7)
+   text	   data	    bss	    dec	    hex	filename
+   7801	    636	    288	   8725	   2215	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/ana_sim.elf
+/nfs/site/disks/xne_abc_fe_002/fw_tools/RI-2022.9-linux/XtensaTools/bin/xtensa-elf-objdump: /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/ana_sim.elf: warning: Xtensa configuration may be incompatible (configuration ID does not match)
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/ana'
+make -C ana TARGET=hw
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/ana'
+---- ana Compiling C ../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/ana/hw/com_print.o
+---- ana Compiling C ../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/ana/hw/com_assert.o
+---- ana Compiling C src/ana_main.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/ana/hw/ana_main.o
+---- ana LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/ana_hw.elf  (hwc_adc_lx7)
+   text	   data	    bss	    dec	    hex	filename
+   6908	    644	    288	   7840	   1ea0	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/ana_hw.elf
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/ana'
+scripts/table_utils/table_utils.sh --c2h rcs/tables/com -d rcs/tables/inc -m table_access_macros.h -s .dram0.com_tables.data -l 0xD000 --no_test --table_init rcs/com/src/com_tables.c
+Generated  [92m/tmp/tmp04917bio.xlsx[00m from [92m2 .csv files[00m
+Generating header files from [92m/tmp/tmp04917bio.xlsx[00m
+porcessing sheet [92maddress_size_layout[00m
+Generated bit-field struct  [92mcom_fw_config_lut_bf_t[00m
+Generated header file [92mcom_static_data_bitfield.h[00m
+Generated header file [92mcom_static_data_const.h[00m
+Generated header file [92mcom_static_data_data.h[00m
+Generated header file [92mrcs/tables/inc/table_access_macros.h[00m
+Generated table struct: [92mcom_fw_config_lut_t[00m
+Generated header file [92mcom_static_data_table.h[00m
+Generated table init file [92mrcs/com/src/com_tables.c[00m
+scripts/table_utils/table_utils.sh --c2h rcs/tables/rx/static -d rcs/tables/inc -m table_access_macros.h -s .dram0.rx_tables.data -l 0xD000 --no_test --table_init rcs/rx/src/rx_tables.c
+Generated  [92m/tmp/tmpq9vjrvx0.xlsx[00m from [92m3 .csv files[00m
+Generating header files from [92m/tmp/tmpq9vjrvx0.xlsx[00m
+porcessing sheet [92maddress_size_layout[00m
+Generated bit-field struct  [92mrx_print_config_lut_bf_t[00m
+Generated bit-field struct  [92mrx_hwa_ant_meta_mapping_lut_bf_t[00m
+Generated header file [92mrx_static_data_bitfield.h[00m
+Generated header file [92mrx_static_data_const.h[00m
+Generated header file [92mrx_static_data_data.h[00m
+Generated header file [92mrcs/tables/inc/table_access_macros.h[00m
+Generated table struct: [92mrx_hwa_ant_meta_mapping_lut_t[00m
+Generated table struct: [92mrx_print_config_lut_t[00m
+Generated header file [92mrx_static_data_table.h[00m
+Generated table init file [92mrcs/rx/src/rx_tables.c[00m
+scripts/table_utils/table_utils.sh --c2h rcs/tables/tx/static -d rcs/tables/inc -m table_access_macros.h -s .dram0.tx_tables.data -l 0xD000 --no_test --table_init rcs/tx/src/tx_tables.c
+Generated  [92m/tmp/tmpvh8b2x5h.xlsx[00m from [92m4 .csv files[00m
+Generating header files from [92m/tmp/tmpvh8b2x5h.xlsx[00m
+porcessing sheet [92maddress_size_layout[00m
+Generated bit-field struct  [92mtx_jesd_ant_meta_mapping_lut_bf_t[00m
+Generated bit-field struct  [92mtx_print_config_lut_bf_t[00m
+Generated bit-field struct  [92mtx_hwa_ant_meta_mapping_lut_bf_t[00m
+Generated header file [92mtx_static_data_bitfield.h[00m
+Generated header file [92mtx_static_data_const.h[00m
+Generated header file [92mtx_static_data_data.h[00m
+Generated header file [92mrcs/tables/inc/table_access_macros.h[00m
+Generated table struct: [92mtx_jesd_ant_meta_mapping_lut_t[00m
+Generated table struct: [92mtx_hwa_ant_meta_mapping_lut_t[00m
+Generated table struct: [92mtx_print_config_lut_t[00m
+Generated header file [92mtx_static_data_table.h[00m
+Generated table init file [92mrcs/tx/src/tx_tables.c[00m
+scripts/table_utils/table_utils.sh --c2h rcs/tables/cal -d rcs/tables/inc -m table_access_macros.h -s .dram0.cal_tables.data -l 0xD000 --no_test --table_init rcs/cal/src/cal_tables.c
+Generated  [92m/tmp/tmpgaxp3h5n.xlsx[00m from [92m3 .csv files[00m
+Generating header files from [92m/tmp/tmpgaxp3h5n.xlsx[00m
+porcessing sheet [92maddress_size_layout[00m
+Generated bit-field struct  [92mrf_calib_control_lut_bf_t[00m
+Generated bit-field struct  [92mcal_print_config_lut_bf_t[00m
+Generated header file [92mrf_calib_static_data_bitfield.h[00m
+Generated header file [92mrf_calib_static_data_const.h[00m
+Generated header file [92mrf_calib_static_data_data.h[00m
+Generated header file [92mrcs/tables/inc/table_access_macros.h[00m
+Generated table struct: [92mrf_calib_control_lut_t[00m
+Generated table struct: [92mcal_print_config_lut_t[00m
+Generated header file [92mrf_calib_static_data_table.h[00m
+Generated table init file [92mrcs/cal/src/cal_tables.c[00m
+scripts/table_utils/table_utils.sh --c2h rcs/msgs -d rcs/msgs/inc --msg dl_req
+Generated  [92m/tmp/tmpvvu5xjgu.xlsx[00m from [92m3 .csv files[00m
+Generating header files from [92m/tmp/tmpvvu5xjgu.xlsx[00m
+Generated bit-field struct  [92mdl_on_bf_t[00m
+Generated bit-field struct  [92mdl_off_bf_t[00m
+Generated bit-field struct  [92mdl_config_bf_t[00m
+Generated header file [92mdl_req_msg.h[00m
+make -C rcs/rx TARGET=sim
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/rx'
+---- rx Compiling C ../../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_print.o
+---- rx Compiling C ../../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_assert.o
+---- rx Compiling C ../com/src/com_trax.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_trax.o
+---- rx Compiling C ../com/src/com_isr.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_isr.o
+---- rx Compiling C ../com/src/com_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_tables.o
+---- rx Compiling C ../com/src/com_bfn.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_bfn.o
+---- rx Compiling C ../com/src/com_lock.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_lock.o
+---- rx Compiling C ../com/src/com_timing.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_timing.o
+---- rx Compiling C ../com/src/com_idma.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_idma.o
+---- rx Compiling C ../com/src/com_exception.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_exception.o
+---- rx Compiling C ../com/src/com_event.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_event.o
+---- rx Compiling C ../com/src/com_queue.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_queue.o
+---- rx Compiling C ../com/src/com_msg_handler_utils.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_msg_handler_utils.o
+---- rx Compiling C ../com/src/com_shared_memory.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_shared_memory.o
+---- rx Compiling C src/rx_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/rx_tables.o
+---- rx Compiling C src/rx_main.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/rx_main.o
+---- rx Assembling ../com/src/com_bootrom.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/com_bootrom.o
+---- rx Assembling ../com/xtensa/custom_vectors.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/sim/custom_vectors.o
+---- rx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/rx_sim.elf  (HWC_RCS_LX7)
+   text	   data	    bss	    dec	    hex	filename
+  24800	   4004	   3008	  31812	   7c44	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/rx_sim.elf
+/nfs/site/disks/xne_abc_fe_002/fw_tools/RI-2022.9-linux/XtensaTools/bin/xtensa-elf-objdump: /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/rx_sim.elf: warning: Xtensa configuration may be incompatible (configuration ID does not match)
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/rx'
+make -C rcs/rx TARGET=hw
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/rx'
+---- rx Compiling C ../../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_print.o
+---- rx Compiling C ../../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_assert.o
+---- rx Compiling C ../com/src/com_trax.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_trax.o
+---- rx Compiling C ../com/src/com_isr.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_isr.o
+---- rx Compiling C ../com/src/com_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_tables.o
+---- rx Compiling C ../com/src/com_bfn.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_bfn.o
+---- rx Compiling C ../com/src/com_lock.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_lock.o
+---- rx Compiling C ../com/src/com_timing.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_timing.o
+---- rx Compiling C ../com/src/com_idma.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_idma.o
+---- rx Compiling C ../com/src/com_exception.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_exception.o
+---- rx Compiling C ../com/src/com_event.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_event.o
+---- rx Compiling C ../com/src/com_queue.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_queue.o
+---- rx Compiling C ../com/src/com_msg_handler_utils.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_msg_handler_utils.o
+---- rx Compiling C ../com/src/com_shared_memory.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_shared_memory.o
+---- rx Compiling C src/rx_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/rx_tables.o
+---- rx Compiling C src/rx_main.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/rx_main.o
+---- rx Assembling ../com/src/com_bootrom.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/com_bootrom.o
+---- rx Assembling ../com/xtensa/custom_vectors.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/rx/hw/custom_vectors.o
+---- rx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/rx_hw.elf  (HWC_RCS_LX7)
+   text	   data	    bss	    dec	    hex	filename
+  12988	   3948	   2736	  19672	   4cd8	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/rx_hw.elf
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/rx'
+make -C rcs/tx TARGET=sim
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/tx'
+---- tx Compiling C ../../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_print.o
+---- tx Compiling C ../../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_assert.o
+---- tx Compiling C ../com/src/com_trax.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_trax.o
+---- tx Compiling C ../com/src/com_isr.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_isr.o
+---- tx Compiling C ../com/src/com_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_tables.o
+---- tx Compiling C ../com/src/com_bfn.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_bfn.o
+---- tx Compiling C ../com/src/com_lock.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_lock.o
+---- tx Compiling C ../com/src/com_timing.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_timing.o
+---- tx Compiling C ../com/src/com_idma.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_idma.o
+---- tx Compiling C ../com/src/com_exception.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_exception.o
+---- tx Compiling C ../com/src/com_event.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_event.o
+---- tx Compiling C ../com/src/com_queue.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_queue.o
+---- tx Compiling C ../com/src/com_msg_handler_utils.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_msg_handler_utils.o
+---- tx Compiling C ../com/src/com_shared_memory.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_shared_memory.o
+---- tx Compiling C src/tx_msg_handler.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/tx_msg_handler.o
+---- tx Compiling C src/tx_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/tx_tables.o
+---- tx Compiling C src/tx_tests.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/tx_tests.o
+src/tx_tests.c:45:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+src/tx_tests.c:47:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:50:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:52:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:55:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:57:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:59:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:62:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:64:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:66:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:69:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:71:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:76:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+13 warnings generated.
+---- tx Compiling C src/tx_main.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/tx_main.o
+---- tx Assembling ../com/src/com_bootrom.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/com_bootrom.o
+---- tx Assembling ../com/xtensa/custom_vectors.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/sim/custom_vectors.o
+---- tx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/tx_sim.elf  (HWC_RCS_LX7)
+   text	   data	    bss	    dec	    hex	filename
+  26260	   4104	   3008	  33372	   825c	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/tx_sim.elf
+/nfs/site/disks/xne_abc_fe_002/fw_tools/RI-2022.9-linux/XtensaTools/bin/xtensa-elf-objdump: /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/tx_sim.elf: warning: Xtensa configuration may be incompatible (configuration ID does not match)
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/tx'
+make -C rcs/tx TARGET=hw
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/tx'
+---- tx Compiling C ../../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_print.o
+---- tx Compiling C ../../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_assert.o
+---- tx Compiling C ../com/src/com_trax.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_trax.o
+---- tx Compiling C ../com/src/com_isr.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_isr.o
+---- tx Compiling C ../com/src/com_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_tables.o
+---- tx Compiling C ../com/src/com_bfn.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_bfn.o
+---- tx Compiling C ../com/src/com_lock.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_lock.o
+---- tx Compiling C ../com/src/com_timing.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_timing.o
+---- tx Compiling C ../com/src/com_idma.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_idma.o
+---- tx Compiling C ../com/src/com_exception.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_exception.o
+---- tx Compiling C ../com/src/com_event.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_event.o
+---- tx Compiling C ../com/src/com_queue.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_queue.o
+---- tx Compiling C ../com/src/com_msg_handler_utils.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_msg_handler_utils.o
+---- tx Compiling C ../com/src/com_shared_memory.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_shared_memory.o
+---- tx Compiling C src/tx_msg_handler.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/tx_msg_handler.o
+---- tx Compiling C src/tx_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/tx_tables.o
+---- tx Compiling C src/tx_tests.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/tx_tests.o
+src/tx_tests.c:45:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+src/tx_tests.c:47:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:50:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:52:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:55:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:57:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:59:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:62:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:64:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:66:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:69:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:71:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:76:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+13 warnings generated.
+---- tx Compiling C src/tx_main.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/tx_main.o
+---- tx Assembling ../com/src/com_bootrom.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/com_bootrom.o
+---- tx Assembling ../com/xtensa/custom_vectors.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/tx/hw/custom_vectors.o
+---- tx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/tx_hw.elf  (HWC_RCS_LX7)
+   text	   data	    bss	    dec	    hex	filename
+  13312	   4048	   2736	  20096	   4e80	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/tx_hw.elf
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/tx'
+make -C rcs/cal TARGET=sim
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/cal'
+---- cal Compiling C ../../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_print.o
+---- cal Compiling C ../../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_assert.o
+---- cal Compiling C ../com/src/com_trax.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_trax.o
+---- cal Compiling C ../com/src/com_isr.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_isr.o
+---- cal Compiling C ../com/src/com_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_tables.o
+---- cal Compiling C ../com/src/com_bfn.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_bfn.o
+---- cal Compiling C ../com/src/com_lock.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_lock.o
+---- cal Compiling C ../com/src/com_timing.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_timing.o
+---- cal Compiling C ../com/src/com_idma.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_idma.o
+---- cal Compiling C ../com/src/com_exception.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_exception.o
+---- cal Compiling C ../com/src/com_event.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_event.o
+---- cal Compiling C ../com/src/com_queue.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_queue.o
+---- cal Compiling C ../com/src/com_msg_handler_utils.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_msg_handler_utils.o
+---- cal Compiling C ../com/src/com_shared_memory.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_shared_memory.o
+---- cal Compiling C src/cal_main.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/cal_main.o
+---- cal Compiling C src/cal_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/cal_tables.o
+---- cal Compiling CPP src/rf_calib_com_malloc.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_com_malloc.o
+---- cal Compiling CPP src/rf_calib_com_free.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_com_free.o
+---- cal Compiling CPP src/rf_calib_com_heap.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_com_heap.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_save_inv_T_suffix_j_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_save_inv_T_suffix_j_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_L_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_L_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_read_matlab_nleq_coeffs_to_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_read_matlab_nleq_coeffs_to_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_Rh_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_Rh_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_driver.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_driver.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_x_suffix_NT_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_x_suffix_NT_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_qua_comp_exp_obt_diff.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_qua_comp_exp_obt_diff.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_fir_f32_opt.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_fir_f32_opt.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ftl_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_ftl_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_print_simulation_result.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_print_simulation_result.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_q_j_update_q_j_1_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_q_j_update_q_j_1_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_map_to_float_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_convert_map_to_float_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_inv_S_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_inv_S_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_S_j_update_S_j_1_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_S_j_update_S_j_1_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_read_observed_and_target_signals_to_map.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_read_observed_and_target_signals_to_map.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_signal_periodic.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_convert_signal_periodic.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_F_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_F_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_ltl_to_full_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_convert_ltl_to_full_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_add_Rh_to_ftf_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_add_Rh_to_ftf_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_query_log_file_name.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_query_log_file_name.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_interpolate.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_interpolate.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_dot_product_optimized.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_dot_product_optimized.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ftf_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_ftf_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ltl_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_ltl_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_x_suffix_l_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_x_suffix_l_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_add_Rg_to_S_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_add_Rg_to_S_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_print_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_print_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ft_r_mi_x_lt_r_min_x_mat.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_gen_ft_r_mi_x_lt_r_min_x_mat.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_inverse_ftf_plus_Rh_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/rf_calib_nleq_inverse_ftf_plus_Rh_matrix.o
+---- cal Assembling ../com/src/com_bootrom.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/com_bootrom.o
+---- cal Assembling ../com/xtensa/custom_vectors.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/sim/custom_vectors.o
+---- cal LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/cal_sim.elf  (HWC_RCS_KP1)
+   text	   data	    bss	    dec	    hex	filename
+ 160276	 158052	   3792	 322120	  4ea48	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/cal_sim.elf
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/cal'
+make -C rcs/cal TARGET=hw
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/cal'
+---- cal Compiling C ../../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_print.o
+---- cal Compiling C ../../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_assert.o
+---- cal Compiling C ../com/src/com_trax.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_trax.o
+---- cal Compiling C ../com/src/com_isr.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_isr.o
+---- cal Compiling C ../com/src/com_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_tables.o
+---- cal Compiling C ../com/src/com_bfn.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_bfn.o
+---- cal Compiling C ../com/src/com_lock.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_lock.o
+---- cal Compiling C ../com/src/com_timing.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_timing.o
+---- cal Compiling C ../com/src/com_idma.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_idma.o
+---- cal Compiling C ../com/src/com_exception.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_exception.o
+---- cal Compiling C ../com/src/com_event.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_event.o
+---- cal Compiling C ../com/src/com_queue.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_queue.o
+---- cal Compiling C ../com/src/com_msg_handler_utils.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_msg_handler_utils.o
+---- cal Compiling C ../com/src/com_shared_memory.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_shared_memory.o
+---- cal Compiling C src/cal_main.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/cal_main.o
+---- cal Compiling C src/cal_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/cal_tables.o
+---- cal Compiling CPP src/rf_calib_com_malloc.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_com_malloc.o
+---- cal Compiling CPP src/rf_calib_com_free.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_com_free.o
+---- cal Compiling CPP src/rf_calib_com_heap.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_com_heap.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_save_inv_T_suffix_j_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_save_inv_T_suffix_j_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_L_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_L_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_read_matlab_nleq_coeffs_to_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_read_matlab_nleq_coeffs_to_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_Rh_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_Rh_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_driver.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_driver.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_x_suffix_NT_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_x_suffix_NT_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_qua_comp_exp_obt_diff.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_qua_comp_exp_obt_diff.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_fir_f32_opt.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_fir_f32_opt.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ftl_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_ftl_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_print_simulation_result.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_print_simulation_result.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_q_j_update_q_j_1_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_q_j_update_q_j_1_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_map_to_float_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_convert_map_to_float_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_inv_S_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_inv_S_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_S_j_update_S_j_1_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_S_j_update_S_j_1_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_read_observed_and_target_signals_to_map.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_read_observed_and_target_signals_to_map.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_signal_periodic.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_convert_signal_periodic.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_F_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_F_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_ltl_to_full_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_convert_ltl_to_full_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_add_Rh_to_ftf_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_add_Rh_to_ftf_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_query_log_file_name.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_query_log_file_name.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_interpolate.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_interpolate.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_dot_product_optimized.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_dot_product_optimized.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ftf_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_ftf_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ltl_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_ltl_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_x_suffix_l_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_x_suffix_l_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_add_Rg_to_S_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_add_Rg_to_S_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_print_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_print_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ft_r_mi_x_lt_r_min_x_mat.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_gen_ft_r_mi_x_lt_r_min_x_mat.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_inverse_ftf_plus_Rh_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/rf_calib_nleq_inverse_ftf_plus_Rh_matrix.o
+---- cal Assembling ../com/src/com_bootrom.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/com_bootrom.o
+---- cal Assembling ../com/xtensa/custom_vectors.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/cal/hw/custom_vectors.o
+---- cal LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/cal_hw.elf  (HWC_RCS_KP1)
+   text	   data	    bss	    dec	    hex	filename
+ 154400	 158052	   3792	 316244	  4d354	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/cal_hw.elf
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/cal'
+#make -C ana unit UNIT=1
+make -C rcs/com unit UNIT=1
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/com'
+---- tx Compiling C ../../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_print.o
+---- tx Compiling C ../../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_assert.o
+---- tx Compiling C src/com_trax.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_trax.o
+---- tx Compiling C src/com_isr.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_isr.o
+---- tx Compiling C src/com_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_tables.o
+---- tx Compiling C src/com_bfn.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_bfn.o
+---- tx Compiling C src/com_lock.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_lock.o
+---- tx Compiling C src/com_timing.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_timing.o
+---- tx Compiling C src/com_idma.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_idma.o
+---- tx Compiling C src/com_exception.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_exception.o
+---- tx Compiling C src/com_event.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_event.o
+---- tx Compiling C src/com_queue.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_queue.o
+---- tx Compiling C src/com_msg_handler_utils.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_msg_handler_utils.o
+---- tx Compiling C src/com_shared_memory.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_shared_memory.o
+---- tx Assembling src/com_bootrom.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_bootrom.o
+---- tx Compiling C unit/com_bfn_test.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_bfn_test.o
+---- tx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_bfn_test.elf  (HWC_RCS_LX7)
+---- tx Compiling C unit/com_event_test.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_event_test.o
+---- tx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_event_test.elf  (HWC_RCS_LX7)
+---- tx Compiling C unit/com_idma_test.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_idma_test.o
+---- tx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_idma_test.elf  (HWC_RCS_LX7)
+---- tx Compiling C unit/com_queue_test.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_queue_test.o
+---- tx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_queue_test.elf  (HWC_RCS_LX7)
+---- tx Compiling C unit/com_timing_test.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/com_timing_test.o
+---- tx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_timing_test.elf  (HWC_RCS_LX7)
+   text	   data	    bss	    dec	    hex	filename
+  41400	   5136	   3744	  50280	   c468	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_bfn_test.elf
+  42116	   4648	   3744	  50508	   c54c	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_event_test.elf
+  42376	   4688	   3744	  50808	   c678	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_idma_test.elf
+  43880	   4648	   3744	  52272	   cc30	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_queue_test.elf
+  40520	   4648	   3744	  48912	   bf10	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/com_timing_test.elf
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/com'
+make -C rcs/tx unit UNIT=1 
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/tx'
+---- tx Compiling C src/tx_msg_handler.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/tx_msg_handler.o
+---- tx Compiling C src/tx_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/tx_tables.o
+---- tx Compiling C src/tx_tests.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/tx_tests.o
+src/tx_tests.c:45:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+src/tx_tests.c:47:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:50:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:52:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:55:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:57:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:59:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:62:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:64:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:66:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:69:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:71:2: warning: non-void function does not return a value [-Wreturn-type]
+{}
+ ^
+src/tx_tests.c:76:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+13 warnings generated.
+---- tx Assembling ../com/xtensa/custom_vectors.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/custom_vectors.o
+---- tx Compiling C unit/tx_msg_handler_test.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/tx/iss/tx_msg_handler_test.o
+---- tx LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/tx_msg_handler_test.elf  (HWC_RCS_LX7)
+   text	   data	    bss	    dec	    hex	filename
+  42452	   4504	   3728	  50684	   c5fc	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/tx/tx_msg_handler_test.elf
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/tx'
+#make -C rcs/rx unit UNIT=1
+make -C rcs/cal unit UNIT=1
+make[3]: Entering directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/cal'
+---- cal Compiling C ../../com/src/com_print.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_print.o
+---- cal Compiling C ../../com/src/com_assert.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_assert.o
+---- cal Compiling C ../com/src/com_trax.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_trax.o
+---- cal Compiling C ../com/src/com_isr.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_isr.o
+---- cal Compiling C ../com/src/com_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_tables.o
+---- cal Compiling C ../com/src/com_bfn.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_bfn.o
+---- cal Compiling C ../com/src/com_lock.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_lock.o
+---- cal Compiling C ../com/src/com_timing.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_timing.o
+---- cal Compiling C ../com/src/com_idma.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_idma.o
+---- cal Compiling C ../com/src/com_exception.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_exception.o
+---- cal Compiling C ../com/src/com_event.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_event.o
+---- cal Compiling C ../com/src/com_queue.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_queue.o
+---- cal Compiling C ../com/src/com_msg_handler_utils.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_msg_handler_utils.o
+---- cal Compiling C ../com/src/com_shared_memory.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_shared_memory.o
+---- cal Compiling C src/cal_tables.c --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/cal_tables.o
+---- cal Compiling CPP src/rf_calib_com_malloc.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_com_malloc.o
+---- cal Compiling CPP src/rf_calib_com_free.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_com_free.o
+---- cal Compiling CPP src/rf_calib_com_heap.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_com_heap.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_save_inv_T_suffix_j_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_save_inv_T_suffix_j_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_L_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_L_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_read_matlab_nleq_coeffs_to_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_read_matlab_nleq_coeffs_to_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_Rh_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_Rh_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_driver.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_driver.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_x_suffix_NT_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_x_suffix_NT_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_qua_comp_exp_obt_diff.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_qua_comp_exp_obt_diff.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_fir_f32_opt.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_fir_f32_opt.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ftl_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_ftl_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_print_simulation_result.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_print_simulation_result.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_q_j_update_q_j_1_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_q_j_update_q_j_1_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_map_to_float_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_convert_map_to_float_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_inv_S_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_inv_S_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_S_j_update_S_j_1_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_S_j_update_S_j_1_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_read_observed_and_target_signals_to_map.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_read_observed_and_target_signals_to_map.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_signal_periodic.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_convert_signal_periodic.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_F_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_F_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_convert_ltl_to_full_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_convert_ltl_to_full_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_add_Rh_to_ftf_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_add_Rh_to_ftf_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_query_log_file_name.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_query_log_file_name.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_interpolate.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_interpolate.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_dot_product_optimized.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_dot_product_optimized.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ftf_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_ftf_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ltl_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_ltl_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_x_suffix_l_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_x_suffix_l_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_add_Rg_to_S_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_add_Rg_to_S_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_print_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_print_matrix.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_gen_ft_r_mi_x_lt_r_min_x_mat.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_gen_ft_r_mi_x_lt_r_min_x_mat.o
+---- cal Compiling CPP ./nleq/src/rf_calib_nleq_inverse_ftf_plus_Rh_matrix.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/rf_calib_nleq_inverse_ftf_plus_Rh_matrix.o
+---- cal Assembling ../com/src/com_bootrom.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/com_bootrom.o
+---- cal Assembling ../com/xtensa/custom_vectors.S --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/custom_vectors.o
+---- cal Compiling CPP unit/cal_nleq_unit_test.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/cal_nleq_unit_test.o
+---- cal LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/cal/cal_nleq_unit_test.elf  (HWC_RCS_KP1)
+---- cal Compiling CPP unit/cal_sample_unit_test.cpp --> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/unit/cal/iss/cal_sample_unit_test.o
+---- cal LINKING /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/cal/cal_sample_unit_test.elf  (HWC_RCS_KP1)
+   text	   data	    bss	    dec	    hex	filename
+ 328848	 158168	 145528	 632544	  9a6e0	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/cal/cal_nleq_unit_test.elf
+ 222772	 158244	  25520	 406536	  63408	/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/out/bin/unit/cal/cal_sample_unit_test.elf
+make[3]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw/rcs/cal'
+make[2]: Leaving directory '/nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_9Jan/abc_emul-srvrgen4/src/rcs_fw'

@@ -1,0 +1,33 @@
+Table Name,tx_pdpd_pc_sel_lut,,,,,,,,,,,,
+Table Description,"PDPD operating mode, sample rate, coefficient LUT function types selection. indexed by [pdpd_op_mod][pdpd_rate]
+Indexing: [op_mod][rate_comb_cfg_idx], here op_mod is 2-bit pdpd operating power mode selection (e_pdpd_op_mod_t); rate_comb_cfg_idx is 3-bit PDPD config based on valid in_rate and out_rate combination",,,,,,,,,,,,
+single entry bitwidth,8*1,,,,,,,,,,,,
+base type bit layout,,,7,6,5,4,3,2,1,0,,,
+Bit Field Name,,,lut_mod,,out_rate,,,in_rate,,,,,
+Bit Field Description,,,PDPD coefficient update LUT mode,,PDPD output sampling rate,,,PDPD input sampling rate,,,,,
+Unit [string],,,value,,value,,,value,,,,,
+Granularity,,,1,,1,,,1,,,,,
+Minimum Value,,,0,,0,,,0,,,,,
+Maximum Value,,,2,,4,,,4,,,,,
+Sign Type,,,e_pc_lut_mod_t,,e_pdpd_rate_t,,,e_pdpd_rate_t,,,,,
+Bit Field Width,,,2,,3,,,3,,,,,
+subtable dimension and name,5*1,,pdpd_op_mod_norm,,,,,,,,pdpd operating in normal mode,,how to calculate num of GMP and DDR terms:
+,,,0,,0,,,0,,,,,num_gmp = 32 / 2^lut_mod
+,,,0,,1,,,1,,,,,num_ddr = 16 / 2^lut_mod
+,,,0,,2,,,2,,,,,"eg, for lut_mod = e_PDPD_LUT_48 = 0, num_gmp = 32/2^0=32, num_ddr = 16/2^0=16"
+,,,1,,3,,,3,,,,,"eg, for lut_mod = e_PDPD_LUT_24 = 1, num_gmp = 32/2^1=16, num_ddr = 16/2^1=8"
+,,,2,,4,,,4,,,,,
+,6*1,,pdpd_op_mod_lp,,,,,,,,PDPD operating  in low power mode,,
+,,,0,,1,,,2,,,,,
+,,,1,,2,,,3,,,,,
+,,,1,,1,,,3,,,,,
+,,,2,,3,,,4,,,,,
+,,,2,,2,,,4,,,,,
+,,,2,,1,,,4,,,,,
+,6*1,,pdpd_op_mod_elp,,,,,,,,PDPD operating in enchanced low power mode,,
+,,,0,,1,,,2,,,,,
+,,,0,,2,,,3,,,,,
+,,,0,,1,,,3,,,,,
+,,,1,,3,,,4,,,,,
+,,,0,,2,,,4,,,,,
+,,,0,,1,,,4,,,,,

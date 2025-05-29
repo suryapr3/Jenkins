@@ -1,0 +1,22 @@
+Table Name,tx_pdpd_mod_lut,,,,,,,,,,,,,,,,,,,,
+Table Description,"PDPD mode selection table. Indexed by [pdpd_mod]
+This table indexed by supported pdpd mode index (need 3-bit)",,,,,,,,,,,,,,,,,,,,
+single entry bitwidth,16*1,,,,,,,,,,,,,,,,,,,,
+base type bit layout,,,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,,,
+Bit Field Name,,,use_flow_d,use_flow_b,use_flow_ac,v2d_input_ptr_sel,,pd_cap_mem_sel,,pd_extra_en,tx_strm_en,extra_static_en,pd_extra_only,tx_pd_strm_en,rx_pd_en,rx_pd_strm_en,wr_pc_m1,gang_mod,,,
+Bit Field Description,,,having path D output,using path B input,using path A/C input,"v2d input pointer bound selection, 0 for V2D_AC_BUF0_LUT, 1 for V2D_B_BUF0_LUT, 2 for V2D_AC_BUF1_LUT and V2D_B_BUF1_LUT",,select PDPD capture mem source,,"select flow A or C. 0: flow A, 1: flow C",enable flow A or C stream,enable extra term,enable flow C and disable flow B,enable flow B,enable flow D,enable flow D stream,"flow G using mode1 to update LUT. Mode 1 using NSIP4, mode2 using NSIP5",enable ganging mode,,,
+Unit [string],,,value,bit,bit,value,,value,,,,,,,,,,,,,
+Granularity,,,1,,1,1,,1,,,,,,,,,,,,,
+Minimum Value,,,0,,0,0,,0,,,,,,,,,,,,,
+Maximum Value,,,1,,1,2,,3,,,,,,,,,,,,,
+Sign Type,,,unsigned,unsigned,unsigned,unsigned,,e_pd_cap_mem_sel_t,,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,,,
+Bit Field Width,,,1,1,1,2,,2,,1,1,1,1,1,1,1,1,1,,,
+subtable dimension and name,8*1,,pdpd_mod_sel,,,,,,,,,,,,,,,,,,
+,,,0,0,1,0,,3,,0,1,0,0,0,0,0,0,0,,nd,flow A only
+,,,0,1,0,1,,0,,0,0,0,0,1,0,0,1,0,,dne,"flow B, G"
+,,,0,1,1,2,,0,,1,1,1,0,1,0,0,1,0,,de,"flow B, G, C"
+,,,0,1,0,1,,0,,0,0,0,0,1,0,0,1,1,,dgne,"flow B, G"
+,,,0,1,1,2,,0,,1,1,1,0,1,0,0,1,1,,dge,"flow B, G, C"
+,,,1,1,1,2,,0,,0,1,0,0,1,1,1,1,0,,dpp,"flow B, D, G, A"
+,,,1,1,1,2,,0,,0,1,0,0,1,1,1,1,1,,dgpp,"flow B, D, G, A"
+,,,0,0,1,0,,1,,1,1,0,1,0,0,0,0,0,,ndpf,flow C only

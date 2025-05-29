@@ -1,0 +1,3427 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/dlnk/jesdabc0/pipe_phy_1x4lane_map/pipe_phy_VERSA/versa_PMA0/PMA_LANEANA_SHARED_Q1/LANEANA_SHARED_regs</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/dlnk/jesdabc0/pipe_phy_1x4lane_map/pipe_phy_VERSA/versa_PMA0/PMA_LANEANA_SHARED_Q1/LANEANA_SHARED_regs</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">AddressMap abc_soc_top/dlnk/jesdabc0/pipe_phy_1x4lane_map/pipe_phy_VERSA/versa_PMA0/PMA_LANEANA_SHARED_Q1/LANEANA_SHARED_regs</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/dlnk/jesdabc0/pipe_phy_1x4lane_map/pipe_phy_VERSA/versa_PMA0/PMA_LANEANA_SHARED_Q1/LANEANA_SHARED_regs -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8E8AC23D9582C6E5">lane_refgen_ctrl0</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_ctrl0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8F6D1B35360C03FE">lane_refgen_ctrl1</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_ctrl1</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2EA35A29F135191E">lane_refgen_ctrl2</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_ctrl2</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000000c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_728A6A0CBFE78939">lane_refgen_ctrl3</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_ctrl3</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000010</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_59F76B96963F8C52">lane_refgen_ctrl4</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_ctrl4</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000014</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DC7792368F9A1D00">lane_refgen_ctrl5</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_ctrl5</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000018</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_23B7834E01019264">lane_refgen_pd</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_pd</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000001c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_E3A8269A6B4B7DA8">lane_refgen_dfx0</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_dfx0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000020</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_E7F60DFB4E5FC73E">lane_refgen_dfx1</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_dfx1</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000024</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_44BA8FE2667D6369">lane_refgen_trim0</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_trim0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000028</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5F31025B2C7789E1">lane_refgen_trim1</a>  </b></td>
+        <td class="unboxed sdescmap">lane_refgen_trim1</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000002c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C64D76947FD90042">lanepwrgood_ctrl0</a>  </b></td>
+        <td class="unboxed sdescmap">lanepwrgood_ctrl0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000030</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_EB8A2B0753A0DFB6">lanerefck_ctrl0</a>  </b></td>
+        <td class="unboxed sdescmap">lanerefck_ctrl0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000034</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_E1593BD8709EB975">lanerefck_ctrl1</a>  </b></td>
+        <td class="unboxed sdescmap">lanerefck_ctrl1</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000038</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_732007639E9E36E6">lanerefck_ctrl2</a>  </b></td>
+        <td class="unboxed sdescmap">lanerefck_ctrl2</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000003c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_00E67E599C797444">lanerefck_ctrl3</a>  </b></td>
+        <td class="unboxed sdescmap">lanerefck_ctrl3</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000040</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5528910CD7D26F56">lanerefck_spare0</a>  </b></td>
+        <td class="unboxed sdescmap">lanerefck_spare0</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000044</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_CFF801AA3BB4F677">lanechargepump_ctlr0</a>  </b></td>
+        <td class="unboxed sdescmap">lanechargepump_ctlr0</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/dlnk/jesdabc0/pipe_phy_1x4lane_map/pipe_phy_VERSA/versa_PMA0/PMA_LANEANA_SHARED_Q1/LANEANA_SHARED_regs</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_8E8AC23D9582C6E5" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) lane_refgen_ctrl0</span><br/>
+      <span class="sdescdet">lane_refgen_ctrl0</span><br/>
+      <span class="ldescdet">lane_refgen_ctrl0
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fce0</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000bb5</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffe000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffe000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="19">-</td>
+        <td class="fldnorm" colspan="5">refgen_rx_adcfe_prebuff_cmin_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_adcfe_prebuff_cmin_en</td>
+        <td class="fldnorm" colspan="6">refgen_rx_adcfe_ffe_cmout_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_adcfe_ffe_cmout_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="19">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="6">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[12:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmin_sel</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmin_sel[4:0]</span><br/>
+          <span class="ldescdet">sel_adcffe_1 - 680mV to 830mV</span></p>
+          <p><b>Reset: </b>hex:0x0b;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmin_en</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmin_en[0:0]</span><br/>
+          <span class="ldescdet">enables vref for ffe1</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_ffe_cmout_sel</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_ffe_cmout_sel[5:0]</span><br/>
+          <span class="ldescdet">sel_adcffe_0 - 250mV to 500mV</span></p>
+          <p><b>Reset: </b>hex:0x1a;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_ffe_cmout_en</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_ffe_cmout_en[0:0]</span><br/>
+          <span class="ldescdet">enables vref for ffe0 </span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_8F6D1B35360C03FE" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) lane_refgen_ctrl1</span><br/>
+      <span class="sdescdet">lane_refgen_ctrl1</span><br/>
+      <span class="ldescdet">lane_refgen_ctrl1
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fce4</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x008575d7</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="5">refgen_rx_adcfe_prebuff_cmout_q3_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_adcfe_prebuff_cmout_q3_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_adcfe_prebuff_cmout_q2_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_adcfe_prebuff_cmout_q2_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_adcfe_prebuff_cmout_q1_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_adcfe_prebuff_cmout_q1_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_adcfe_prebuff_cmout_q0_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_adcfe_prebuff_cmout_q0_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:19]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmout_q3_sel</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmout_q3_sel[4:0]</span><br/>
+          <span class="ldescdet">sel_adcffe_5 - 680mV to 830mV</span></p>
+          <p><b>Reset: </b>hex:0x10;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:18]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmout_q3_en</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmout_q3_en[0:0]</span><br/>
+          <span class="ldescdet">enables vref for ffe5</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:13]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmout_q2_sel</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmout_q2_sel[4:0]</span><br/>
+          <span class="ldescdet">sel_adcffe_4 - 680mV to 830mV</span></p>
+          <p><b>Reset: </b>hex:0x0b;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmout_q2_en</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmout_q2_en[0:0]</span><br/>
+          <span class="ldescdet">enables vref for ffe4</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmout_q1_sel</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmout_q1_sel[4:0]</span><br/>
+          <span class="ldescdet">sel_adcffe_3 - 680mV to 830mV</span></p>
+          <p><b>Reset: </b>hex:0x0b;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmout_q1_en</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmout_q1_en[0:0]</span><br/>
+          <span class="ldescdet">enables vref for ffe3</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmout_q0_sel</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmout_q0_sel[4:0]</span><br/>
+          <span class="ldescdet">sel_adcffe_2 - 680mV to 830mV</span></p>
+          <p><b>Reset: </b>hex:0x0b;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_adcfe_prebuff_cmout_q0_en</span><br/>
+          <span class="sdescdet">refgen_rx_adcfe_prebuff_cmout_q0_en[0:0]</span><br/>
+          <span class="ldescdet">enables vref for ffe2</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2EA35A29F135191E" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000008</span> Register(32 bit) lane_refgen_ctrl2</span><br/>
+      <span class="sdescdet">lane_refgen_ctrl2</span><br/>
+      <span class="ldescdet">lane_refgen_ctrl2
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fce8</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x211673e9</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0x80000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0x80000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="6">refgen_rx_regsar_ofc_high_stg2_sel_gry</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regsar_ofc_high_stg2_en</td>
+        <td class="fldnorm" colspan="3">refgen_rx_regsar_ofc_high_stg1_sel_gry</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regsar_ofc_high_stg1_en</td>
+        <td class="fldnorm" colspan="6">refgen_rx_regsar_ofc_low_sel_gry</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regsar_ofc_low_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_regsar_th2_sel_gry</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regsar_th2_en</td>
+        <td class="fldnorm" colspan="6">refgen_rx_regsar_dac_sel_gry</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regsar_dac_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="6">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="6">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="6">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[30:25]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_ofc_high_stg2_sel_gry</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_ofc_high_stg2_sel_gry[5:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_ofc_1</span></p>
+          <p><b>Reset: </b>hex:0x10;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[24:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_ofc_high_stg2_en</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_ofc_high_stg2_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:21]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_ofc_high_stg1_sel_gry</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_ofc_high_stg1_sel_gry[2:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_ofc_high_stg1</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:20]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_ofc_high_stg1_en</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_ofc_high_stg1_en[0:0]</span><br/>
+          <span class="ldescdet">enable dcmon to observe ldo_ofc_high_stg1 ref voltage</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_ofc_low_sel_gry</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_ofc_low_sel_gry[5:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_ofc_0</span></p>
+          <p><b>Reset: </b>hex:0x19;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:13]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_ofc_low_en</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_ofc_low_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_th2_sel_gry</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_th2_sel_gry[4:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_th2</span></p>
+          <p><b>Reset: </b>hex:0x13;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_th2_en</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_th2_en[0:0]</span><br/>
+          <span class="ldescdet">enable ldo_th2 reference voltage</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_dac_sel_gry</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_dac_sel_gry[5:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_sar</span></p>
+          <p><b>Reset: </b>hex:0x34;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regsar_dac_en</span><br/>
+          <span class="sdescdet">refgen_rx_regsar_dac_en[0:0]</span><br/>
+          <span class="ldescdet">enable ldo_sar reference voltage</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_728A6A0CBFE78939" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000000c</span> Register(32 bit) lane_refgen_ctrl3</span><br/>
+      <span class="sdescdet">lane_refgen_ctrl3</span><br/>
+      <span class="ldescdet">lane_refgen_ctrl3
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fcec</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x31659659</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xc0000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xc0000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="5">refgen_rx_regadc_th1_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regadc_th1_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_regadc_pi_stg2_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regadc_pi_stg2_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_regadc_pi_stg1_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regadc_pi_stg1_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_regadc_div_stg2_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regadc_div_stg2_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_regadc_div_stg1_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regadc_div_stg1_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[29:25]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_th1_sel</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_th1_sel[4:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_th1</span></p>
+          <p><b>Reset: </b>hex:0x18;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[24:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_th1_en</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_th1_en[0:0]</span><br/>
+          <span class="ldescdet">enable ldo_th1 reference voltage</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:19]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_pi_stg2_sel</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_pi_stg2_sel[4:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_pi_0</span></p>
+          <p><b>Reset: </b>hex:0x0c;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:18]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_pi_stg2_en</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_pi_stg2_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:13]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_pi_stg1_sel</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_pi_stg1_sel[4:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_pi_1</span></p>
+          <p><b>Reset: </b>hex:0x0c;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_pi_stg1_en</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_pi_stg1_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_div_stg2_sel</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_div_stg2_sel[4:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_div_0.</span></p>
+          <p><b>Reset: </b>hex:0x0c;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_div_stg2_en</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_div_stg2_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_div_stg1_sel</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_div_stg1_sel[4:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_div_1</span></p>
+          <p><b>Reset: </b>hex:0x0c;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_div_stg1_en</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_div_stg1_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_59F76B96963F8C52" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000010</span> Register(32 bit) lane_refgen_ctrl4</span><br/>
+      <span class="sdescdet">lane_refgen_ctrl4</span><br/>
+      <span class="ldescdet">lane_refgen_ctrl4
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fcf0</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00b477e4</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="5">refgen_tx_txreg_clkpath_stg2_sel</td>
+        <td class="fldnorm" colspan="5">refgen_tx_txreg_clkpath_stg1_sel</td>
+        <td class="fldnorm" colspan="3">refgen_tx_txreg_drvclk_sel</td>
+        <td class="fldnorm" colspan="1">refgen_tx_txreg_drvclk_en</td>
+        <td class="fldnorm" colspan="1">refgen_tx_txreg_clkpath_stg2_en</td>
+        <td class="fldnorm" colspan="1">refgen_tx_txreg_clkpath_stg1_en</td>
+        <td class="fldnorm" colspan="1">refgen_spare_stg2_en</td>
+        <td class="fldnorm" colspan="1">refgen_spare_stg1_en</td>
+        <td class="fldnorm" colspan="5">refgen_rx_regadc_pkdt_sel</td>
+        <td class="fldnorm" colspan="1">refgen_rx_regadc_pkdt_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:19]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_tx_txreg_clkpath_stg2_sel</span><br/>
+          <span class="sdescdet">refgen_tx_txreg_clkpath_stg2_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x16;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_tx_txreg_clkpath_stg1_sel</span><br/>
+          <span class="sdescdet">refgen_tx_txreg_clkpath_stg1_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x11;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_tx_txreg_drvclk_sel</span><br/>
+          <span class="sdescdet">refgen_tx_txreg_drvclk_sel[2:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ ldo_tx_0p85</span></p>
+          <p><b>Reset: </b>hex:0x6;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_tx_txreg_drvclk_en</span><br/>
+          <span class="sdescdet">refgen_tx_txreg_drvclk_en[0:0]</span><br/>
+          <span class="ldescdet">enable ldo_tx_0p85 reference voltage</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_tx_txreg_clkpath_stg2_en</span><br/>
+          <span class="sdescdet">refgen_tx_txreg_clkpath_stg2_en[0:0]</span><br/>
+          <span class="ldescdet">enable ldo_tx_0p8 reference voltage</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_tx_txreg_clkpath_stg1_en</span><br/>
+          <span class="sdescdet">refgen_tx_txreg_clkpath_stg1_en[0:0]</span><br/>
+          <span class="ldescdet">enable ldo_tx_0p9 reference voltage</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_spare_stg2_en</span><br/>
+          <span class="sdescdet">refgen_spare_stg2_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_spare_stg1_en</span><br/>
+          <span class="sdescdet">refgen_spare_stg1_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_pkdt_sel</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_pkdt_sel[4:0]</span><br/>
+          <span class="ldescdet">refgen output: vref_ pkdt</span></p>
+          <p><b>Reset: </b>hex:0x12;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_rx_regadc_pkdt_en</span><br/>
+          <span class="sdescdet">refgen_rx_regadc_pkdt_en[0:0]</span><br/>
+          <span class="ldescdet">enable packet detector reference voltage</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DC7792368F9A1D00" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000014</span> Register(32 bit) lane_refgen_ctrl5</span><br/>
+      <span class="sdescdet">lane_refgen_ctrl5</span><br/>
+      <span class="ldescdet">lane_refgen_ctrl5
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fcf4</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x000b2c00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffc00000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffc00000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="10">-</td>
+        <td class="fldnorm" colspan="1">refgen_reg2_bypass_en</td>
+        <td class="fldnorm" colspan="3">refgen_reg2_bleedres_tune</td>
+        <td class="fldnorm" colspan="2">refgen_lpfres2_sel</td>
+        <td class="fldnorm" colspan="1">refgen_reg1_bypass_en</td>
+        <td class="fldnorm" colspan="3">refgen_reg1_bleedres_tune</td>
+        <td class="fldnorm" colspan="2">refgen_lpfres1_sel</td>
+        <td class="fldnorm" colspan="5">refgen_spare_stg2_sel</td>
+        <td class="fldnorm" colspan="5">refgen_spare_stg1_sel</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="10">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="5">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[21:21]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_reg2_bypass_en</span><br/>
+          <span class="sdescdet">refgen_reg2_bypass_en[0:0]</span><br/>
+          <span class="ldescdet">bypass reg2</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:18]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_reg2_bleedres_tune</span><br/>
+          <span class="sdescdet">refgen_reg2_bleedres_tune[2:0]</span><br/>
+          <span class="ldescdet">reg2 current bleeder control</span></p>
+          <p><b>Reset: </b>hex:0x2;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_lpfres2_sel</span><br/>
+          <span class="sdescdet">refgen_lpfres2_sel[1:0]</span><br/>
+          <span class="ldescdet">reg2 Low pass filter bw selection</span></p>
+          <p><b>Reset: </b>hex:0x3;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_reg1_bypass_en</span><br/>
+          <span class="sdescdet">refgen_reg1_bypass_en[0:0]</span><br/>
+          <span class="ldescdet">bypass reg1</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_reg1_bleedres_tune</span><br/>
+          <span class="sdescdet">refgen_reg1_bleedres_tune[2:0]</span><br/>
+          <span class="ldescdet">reg1 current bleeder control</span></p>
+          <p><b>Reset: </b>hex:0x2;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_lpfres1_sel</span><br/>
+          <span class="sdescdet">refgen_lpfres1_sel[1:0]</span><br/>
+          <span class="ldescdet">reg1 Low pass filter bw selection</span></p>
+          <p><b>Reset: </b>hex:0x3;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_spare_stg2_sel</span><br/>
+          <span class="sdescdet">refgen_spare_stg2_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_spare_stg1_sel</span><br/>
+          <span class="sdescdet">refgen_spare_stg1_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_23B7834E01019264" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000018</span> Register(32 bit) lane_refgen_pd</span><br/>
+      <span class="sdescdet">lane_refgen_pd</span><br/>
+      <span class="ldescdet">lane_refgen_pd
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fcf8</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffff8</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffff8</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="29">-</td>
+        <td class="fldnorm" colspan="1">refgen_reg2_pd_b</td>
+        <td class="fldnorm" colspan="1">refgen_reg1_pd_b</td>
+        <td class="fldnorm" colspan="1">lanesharedbias_pd_b</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="29">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_reg2_pd_b</span><br/>
+          <span class="sdescdet">refgen_reg2_pd_b[0:0]</span><br/>
+          <span class="ldescdet">enables reg2</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_reg1_pd_b</span><br/>
+          <span class="sdescdet">refgen_reg1_pd_b[0:0]</span><br/>
+          <span class="ldescdet">enables reg1</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_pd_b</span><br/>
+          <span class="sdescdet">lanesharedbias_pd_b[0:0]</span><br/>
+          <span class="ldescdet">enable lanesharedbias_p &amp; tx_bias_n</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_E3A8269A6B4B7DA8" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000001c</span> Register(32 bit) lane_refgen_dfx0</span><br/>
+      <span class="sdescdet">lane_refgen_dfx0</span><br/>
+      <span class="ldescdet">lane_refgen_dfx0
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fcfc</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfff80000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfff80000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="13">-</td>
+        <td class="fldnorm" colspan="5">rxhsmon_sel</td>
+        <td class="fldnorm" colspan="3">adcsar_refgen_dcmon_sel</td>
+        <td class="fldnorm" colspan="8">refgen_dcmon_sel</td>
+        <td class="fldnorm" colspan="3">dcmon_sel</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="13">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[18:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rxhsmon_sel</span><br/>
+          <span class="sdescdet">rxhsmon_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">adcsar_refgen_dcmon_sel</span><br/>
+          <span class="sdescdet">adcsar_refgen_dcmon_sel[2:0]</span><br/>
+          <span class="ldescdet">node selection for Dcmon:x00: hi-Zx01: vreg_lowx10: vcm_outx11: vreg_high</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refgen_dcmon_sel</span><br/>
+          <span class="sdescdet">refgen_dcmon_sel[7:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">dcmon_sel</span><br/>
+          <span class="sdescdet">dcmon_sel[2:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_E7F60DFB4E5FC73E" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000020</span> Register(32 bit) lane_refgen_dfx1</span><br/>
+      <span class="sdescdet">lane_refgen_dfx1</span><br/>
+      <span class="ldescdet">lane_refgen_dfx1
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd00</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffff0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffff0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="28">-</td>
+        <td class="fldnorm" colspan="1">lanesharedbias_dcmon_p_from_pmos_en</td>
+        <td class="fldnorm" colspan="1">lanesharedbias_dcmon_p_from_nmos_en</td>
+        <td class="fldnorm" colspan="1">lanesharedbias_dcmon_n_from_pmos_en</td>
+        <td class="fldnorm" colspan="1">lanesharedbias_dcmon_n_from_nmos_en</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="28">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_dcmon_p_from_pmos_en</span><br/>
+          <span class="sdescdet">lanesharedbias_dcmon_p_from_pmos_en[0:0]</span><br/>
+          <span class="ldescdet">enable dcmon_p/n for pmos</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_dcmon_p_from_nmos_en</span><br/>
+          <span class="sdescdet">lanesharedbias_dcmon_p_from_nmos_en[0:0]</span><br/>
+          <span class="ldescdet">enable dcmon_p/n for nmos</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_dcmon_n_from_pmos_en</span><br/>
+          <span class="sdescdet">lanesharedbias_dcmon_n_from_pmos_en[0:0]</span><br/>
+          <span class="ldescdet">enable dcmon_p/n for pmos</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_dcmon_n_from_nmos_en</span><br/>
+          <span class="sdescdet">lanesharedbias_dcmon_n_from_nmos_en[0:0]</span><br/>
+          <span class="ldescdet">enable dcmon_p/n for nmos</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_44BA8FE2667D6369" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000024</span> Register(32 bit) lane_refgen_trim0</span><br/>
+      <span class="sdescdet">lane_refgen_trim0</span><br/>
+      <span class="ldescdet">lane_refgen_trim0
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd04</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x88888888</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_pmos_receive_trim</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_nmos_receive_trim</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_dcmon_from_pmos_trim</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_dcmon_from_nmos_trim</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_50u_from_pmos3_trim</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_50u_from_pmos2_trim</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_50u_from_pmos1_trim</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_50u_from_pmos0_trim</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:28]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_pmos_receive_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_pmos_receive_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_nmos_receive_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_nmos_receive_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:20]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_dcmon_from_pmos_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_dcmon_from_pmos_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_dcmon_from_nmos_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_dcmon_from_nmos_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_50u_from_pmos3_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_50u_from_pmos3_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_50u_from_pmos2_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_50u_from_pmos2_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_50u_from_pmos1_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_50u_from_pmos1_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_50u_from_pmos0_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_50u_from_pmos0_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5F31025B2C7789E1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000028</span> Register(32 bit) lane_refgen_trim1</span><br/>
+      <span class="sdescdet">lane_refgen_trim1</span><br/>
+      <span class="ldescdet">lane_refgen_trim1
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd08</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000008</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffff0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffff0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="28">-</td>
+        <td class="fldnorm" colspan="4">lanesharedbias_nmos_to_pmos_trim</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="28">-</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">lanesharedbias_nmos_to_pmos_trim</span><br/>
+          <span class="sdescdet">lanesharedbias_nmos_to_pmos_trim[3:0]</span><br/>
+          <span class="ldescdet">trim control of the biasing current</span></p>
+          <p><b>Reset: </b>hex:0x8;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C64D76947FD90042" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000002c</span> Register(32 bit) lanepwrgood_ctrl0</span><br/>
+      <span class="sdescdet">lanepwrgood_ctrl0</span><br/>
+      <span class="ldescdet">lanepwrgood_ctrl0
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd0c</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffffe</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="fldnorm" colspan="1">vccdet_pwrgood_force</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="31">-</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">vccdet_pwrgood_force</span><br/>
+          <span class="sdescdet">vccdet_pwrgood_force[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_EB8A2B0753A0DFB6" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000030</span> Register(32 bit) lanerefck_ctrl0</span><br/>
+      <span class="sdescdet">lanerefck_ctrl0</span><br/>
+      <span class="ldescdet">lanerefck_ctrl0
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd10</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00002000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffc80c0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffc80c0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="fldnorm" colspan="1">refckmux_regrx_pd_b</td>
+        <td class="fldnorm" colspan="1">refckmux_rx_refdiv_rst_b</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">refckmux_rx_regdrv_bleed_tune</td>
+        <td class="fldnorm" colspan="1">refckmux_rx_to_dpma_en</td>
+        <td class="fldnorm" colspan="3">refckmux_rx_sel</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="6">refckmux_rx_refdiv</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="6">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[17:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regrx_pd_b</span><br/>
+          <span class="sdescdet">refckmux_regrx_pd_b[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_rx_refdiv_rst_b</span><br/>
+          <span class="sdescdet">refckmux_rx_refdiv_rst_b[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_rx_regdrv_bleed_tune</span><br/>
+          <span class="sdescdet">refckmux_rx_regdrv_bleed_tune[2:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x2;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_rx_to_dpma_en</span><br/>
+          <span class="sdescdet">refckmux_rx_to_dpma_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_rx_sel</span><br/>
+          <span class="sdescdet">refckmux_rx_sel[2:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_rx_refdiv</span><br/>
+          <span class="sdescdet">refckmux_rx_refdiv[5:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_E1593BD8709EB975" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000034</span> Register(32 bit) lanerefck_ctrl1</span><br/>
+      <span class="sdescdet">lanerefck_ctrl1</span><br/>
+      <span class="ldescdet">lanerefck_ctrl1
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd14</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00002000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffc80c0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffc80c0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="fldnorm" colspan="1">refckmux_regtx_pd_b</td>
+        <td class="fldnorm" colspan="1">refckmux_tx_refdiv_rst_b</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">refckmux_tx_regdrv_bleed_tune</td>
+        <td class="fldnorm" colspan="1">refckmux_tx_to_dpma_en</td>
+        <td class="fldnorm" colspan="3">refckmux_tx_sel</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="6">refckmux_tx_refdiv</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="6">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[17:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regtx_pd_b</span><br/>
+          <span class="sdescdet">refckmux_regtx_pd_b[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_tx_refdiv_rst_b</span><br/>
+          <span class="sdescdet">refckmux_tx_refdiv_rst_b[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_tx_regdrv_bleed_tune</span><br/>
+          <span class="sdescdet">refckmux_tx_regdrv_bleed_tune[2:0]</span><br/>
+          <span class="ldescdet">need 8GHz clock quality</span></p>
+          <p><b>Reset: </b>hex:0x2;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_tx_to_dpma_en</span><br/>
+          <span class="sdescdet">refckmux_tx_to_dpma_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_tx_sel</span><br/>
+          <span class="sdescdet">refckmux_tx_sel[2:0]</span><br/>
+          <span class="ldescdet">need 8GHz clock quality</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_tx_refdiv</span><br/>
+          <span class="sdescdet">refckmux_tx_refdiv[5:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_732007639E9E36E6" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000038</span> Register(32 bit) lanerefck_ctrl2</span><br/>
+      <span class="sdescdet">lanerefck_ctrl2</span><br/>
+      <span class="ldescdet">lanerefck_ctrl2
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd18</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x063318cc</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xf0000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xf0000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="4">-</td>
+        <td class="fldnorm" colspan="5">refckmux_regtx_stg2_sel</td>
+        <td class="fldnorm" colspan="5">refckmux_regtx_stg1_sel</td>
+        <td class="fldnorm" colspan="1">refckmux_regtx_stg2_en</td>
+        <td class="fldnorm" colspan="1">refckmux_regtx_stg1_en</td>
+        <td class="fldnorm" colspan="1">refckmux_regtx_stg2_byp</td>
+        <td class="fldnorm" colspan="1">refckmux_regtx_stg1_byp</td>
+        <td class="fldnorm" colspan="5">refckmux_regrx_stg2_sel</td>
+        <td class="fldnorm" colspan="5">refckmux_regrx_stg1_sel</td>
+        <td class="fldnorm" colspan="1">refckmux_regrx_stg2_en</td>
+        <td class="fldnorm" colspan="1">refckmux_regrx_stg1_en</td>
+        <td class="fldnorm" colspan="1">refckmux_regrx_stg2_byp</td>
+        <td class="fldnorm" colspan="1">refckmux_regrx_stg1_byp</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="4">-</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[27:23]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regtx_stg2_sel</span><br/>
+          <span class="sdescdet">refckmux_regtx_stg2_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0c;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[22:18]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regtx_stg1_sel</span><br/>
+          <span class="sdescdet">refckmux_regtx_stg1_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0c;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regtx_stg2_en</span><br/>
+          <span class="sdescdet">refckmux_regtx_stg2_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regtx_stg1_en</span><br/>
+          <span class="sdescdet">refckmux_regtx_stg1_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regtx_stg2_byp</span><br/>
+          <span class="sdescdet">refckmux_regtx_stg2_byp[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regtx_stg1_byp</span><br/>
+          <span class="sdescdet">refckmux_regtx_stg1_byp[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regrx_stg2_sel</span><br/>
+          <span class="sdescdet">refckmux_regrx_stg2_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0c;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regrx_stg1_sel</span><br/>
+          <span class="sdescdet">refckmux_regrx_stg1_sel[4:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0c;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regrx_stg2_en</span><br/>
+          <span class="sdescdet">refckmux_regrx_stg2_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regrx_stg1_en</span><br/>
+          <span class="sdescdet">refckmux_regrx_stg1_en[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regrx_stg2_byp</span><br/>
+          <span class="sdescdet">refckmux_regrx_stg2_byp[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_regrx_stg1_byp</span><br/>
+          <span class="sdescdet">refckmux_regrx_stg1_byp[0:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_00E67E599C797444" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000003c</span> Register(32 bit) lanerefck_ctrl3</span><br/>
+      <span class="sdescdet">lanerefck_ctrl3</span><br/>
+      <span class="ldescdet">lanerefck_ctrl3
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd1c</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="10">refckmux_spare</td>
+        <td class="fldnorm" colspan="2">refckmux_hsmon_sel</td>
+        <td class="fldnorm" colspan="4">refckmux_dcmon_sel</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="10">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_spare</span><br/>
+          <span class="sdescdet">refckmux_spare[9:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_hsmon_sel</span><br/>
+          <span class="sdescdet">refckmux_hsmon_sel[1:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">refckmux_dcmon_sel</span><br/>
+          <span class="sdescdet">refckmux_dcmon_sel[3:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5528910CD7D26F56" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000040</span> Register(32 bit) lanerefck_spare0</span><br/>
+      <span class="sdescdet">lanerefck_spare0</span><br/>
+      <span class="ldescdet">lanerefck_spare0
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd20</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00f00000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="24">laneana_spare</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">laneana_spare</span><br/>
+          <span class="sdescdet">laneana_spare[23:0]</span><br/>
+          <span class="ldescdet"></span></p>
+          <p><b>Reset: </b>hex:0xf00000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_CFF801AA3BB4F677" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000044</span> Register(32 bit) lanechargepump_ctlr0</span><br/>
+      <span class="sdescdet">lanechargepump_ctlr0</span><br/>
+      <span class="ldescdet">lanechargepump_ctlr0
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0602fd24</span> at NOC.jesd__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00011002</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffe8000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffe8000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="15">-</td>
+        <td class="fldnorm" colspan="1">chargepump_clkdiv_bypass</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="4">chargepump_ro_ctrl_gry</td>
+        <td class="fldnorm" colspan="1">chargepump_hsmon_sel</td>
+        <td class="fldnorm" colspan="3">chargepump_dcmon_sel</td>
+        <td class="fldnorm" colspan="1">chargepump_rst_b</td>
+        <td class="fldnorm" colspan="1">chargepump_pd_b</td>
+        <td class="fldnorm" colspan="5">chargepump_bst_ctrl</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="15">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">chargepump_clkdiv_bypass</span><br/>
+          <span class="sdescdet">chargepump_clkdiv_bypass[0:0]</span><br/>
+          <span class="ldescdet">bypass the divider by 2</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">chargepump_ro_ctrl_gry</span><br/>
+          <span class="sdescdet">chargepump_ro_ctrl_gry[3:0]</span><br/>
+          <span class="ldescdet">gray coeded ro control</span></p>
+          <p><b>Reset: </b>hex:0x2;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">chargepump_hsmon_sel</span><br/>
+          <span class="sdescdet">chargepump_hsmon_sel[0:0]</span><br/>
+          <span class="ldescdet">hsmon enable</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">chargepump_dcmon_sel</span><br/>
+          <span class="sdescdet">chargepump_dcmon_sel[2:0]</span><br/>
+          <span class="ldescdet">dcmon control bits</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">chargepump_rst_b</span><br/>
+          <span class="sdescdet">chargepump_rst_b[0:0]</span><br/>
+          <span class="ldescdet">charege pump reset. Active LOW</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">chargepump_pd_b</span><br/>
+          <span class="sdescdet">chargepump_pd_b[0:0]</span><br/>
+          <span class="ldescdet">power down chargepump</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">chargepump_bst_ctrl</span><br/>
+          <span class="sdescdet">chargepump_bst_ctrl[4:0]</span><br/>
+          <span class="ldescdet">gray coded_boost cap control</span></p>
+          <p><b>Reset: </b>hex:0x02;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_dlnk_jesdabc0_pipe_phy_1x4lane_map_pipe_phy_VERSA_versa_PMA0_PMA_LANEANA_SHARED_Q1_LANEANA_SHARED_regs">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

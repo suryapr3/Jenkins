@@ -1,0 +1,61 @@
+--- /nfs/site/disks/xne_abc_fe_002/fw_tools/cov-analysis-linux64-2022.3.1/config/templates/xtensa_clang/compiler-compat-xtensaclang-common.h	2024-02-05 14:18:43.732694000 -0800
++++ /nfs/site/disks/xne_abc_fe_002/fw_tools/cov-analysis-linux64-2022.3.1/config/templates/xtensa_clang/compiler-compat-xtensaclang-common_original.h.bak	2024-02-05 14:23:41.605654000 -0800
+@@ -47,7 +47,57 @@
+ typedef int _TIE_xt_hifi2_ae_int24;
+ typedef unsigned short _TIE_xt_hifi2_ae_int16u;
+ typedef short _TIE_xt_hifi2_ae_int16;
+-
++typedef short _TIE_VectraFP_xb_f16;
++typedef struct { char _[16]; } _TIE_VectraFP_xtcomplexdouble;
++typedef double _TIE_VectraFP_xtcomplexfloat;
++typedef double _TIE_VectraFP_xtdouble;
++typedef int _TIE_VectraFP_xtfloat;
++typedef double _TIE_xt_bbe16_circb;
++typedef struct { char _[16]; } _TIE_xt_bbe16_valign;
++typedef char _TIE_xt_bbe16_vbool1;
++typedef short _TIE_xt_bbe16_vbool2N;
++typedef char _TIE_xt_bbe16_vboolN;
++typedef char _TIE_xt_bbe16_vboolN_2;
++typedef char _TIE_xt_bbe16_vboolN_4;
++typedef int _TIE_xt_bbe16_xb_c16;
++typedef int _TIE_xt_bbe16_xb_cq15;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_int128;
++typedef short _TIE_xt_bbe16_xb_int16;
++typedef short _TIE_xt_bbe16_xb_int16U;
++typedef int _TIE_xt_bbe16_xb_int32Uv;
++typedef int _TIE_xt_bbe16_xb_int32v;
++typedef double _TIE_xt_bbe16_xb_int64;
++typedef double _TIE_xt_bbe16_xb_int64U;
++typedef char _TIE_xt_bbe16_xb_int8;
++typedef char _TIE_xt_bbe16_xb_int8U;
++typedef short _TIE_xt_bbe16_xb_q15;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vec2Nx8;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vec2Nx8U;
++typedef double _TIE_xt_bbe16_xb_vecN_2x16;
++typedef unsigned short _TIE_xt_bbe16_xb_vecN_2x16U;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_2x32Uv;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_2x32v;
++typedef int _TIE_xt_bbe16_xb_vecN_2x8;
++typedef int _TIE_xt_bbe16_xb_vecN_2x8U;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_2xc16;
++typedef struct { char _[32]; } _TIE_xt_bbe16_xb_vecN_2xcf32;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_2xcq15;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_2xf32;
++typedef struct { char _[32]; } _TIE_xt_bbe16_xb_vecN_2xf64;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_4x64;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_4x64U;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_4xcf32;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecN_4xf64;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecNx16;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecNx16U;
++typedef struct { char _[32]; } _TIE_xt_bbe16_xb_vecNx32Uv;
++typedef struct { char _[32]; } _TIE_xt_bbe16_xb_vecNx32v;
++typedef double _TIE_xt_bbe16_xb_vecNx8;
++typedef double _TIE_xt_bbe16_xb_vecNx8U;
++typedef struct { char _[32]; } _TIE_xt_bbe16_xb_vecNxc16;
++typedef struct { char _[32]; } _TIE_xt_bbe16_xb_vecNxcq15;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecNxf16;
++typedef struct { char _[16]; } _TIE_xt_bbe16_xb_vecNxq15;
+ //hifi3z_ss_spfpu_7
+ typedef long long _TIE_xt_hifi2_ae_int64x4 __attribute__((__vector_size__(4 * sizeof(long long))));
+ 

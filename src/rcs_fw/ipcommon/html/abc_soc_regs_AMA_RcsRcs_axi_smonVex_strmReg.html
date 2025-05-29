@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/rcs/rcs_axi_smon/vex_strm/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/rcs/rcs_axi_smon/vex_strm/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet">RCS SMON Register Address Map</h3>
+    <p class="ldescdet">This address map contains register set for SMON in RCS</p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">AddressMap abc_soc_top/rcs/rcs_axi_smon/vex_strm/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/rcs/rcs_axi_smon/vex_strm/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_AA12D2F61EE85988">AXI_Read_ID_Compare</a>  </b></td>
+        <td class="unboxed sdescmap">ID used for comparison</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_7B6557CE6B53D540">AXI_Write_ID_Compare</a>  </b></td>
+        <td class="unboxed sdescmap">ID used for comparison</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2A2D8D5D9A96B0C5">SMON00</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon CONTROL0 register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000000c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_28C55A6AD5AF4AA9">SMON01</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon CONTROL1 register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000010</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_27CF53A26F2D9FC8">SMON02</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon SMON0_COMPARE register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000014</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_59BBA864B0DDE744">SMON03</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon SMON1_COMPARE register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000018</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5FA9A5C0EC648E96">SMON04</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon SMON0_COUNT register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000001c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_178BCF530F175F82">SMON05</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon SMON1_COUNT register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000020</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_56BDE51A0610E350">SMON06</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon TIMER register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000024</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F4C650D390243EA4">SMON07</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon TIMERMAXVAL register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000028</td>
+        <td class="unboxed addr">0x0000002f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000030</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_26FBC3D258E06F82">APB_BRIDGE_STATUS</a>  </b></td>
+        <td class="unboxed sdescmap">APB Bridge Status Register</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/rcs/rcs_axi_smon/vex_strm/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_AA12D2F61EE85988" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) AXI_Read_ID_Compare</span><br/>
+      <span class="sdescdet">ID used for comparison</span><br/>
+      <span class="ldescdet">
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fc0</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="16">smon_id_mask</td>
+        <td class="fldnorm" colspan="16">smon_id_compare</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="16">RW</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon_id_mask</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">MASK value to use when comparing ID value</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon_id_compare</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">ID value to compare to<br/></span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_7B6557CE6B53D540" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) AXI_Write_ID_Compare</span><br/>
+      <span class="sdescdet">ID used for comparison</span><br/>
+      <span class="ldescdet">
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fc4</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="16">smon_id_mask</td>
+        <td class="fldnorm" colspan="16">smon_id_compare</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="16">RW</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon_id_mask</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">MASK value to use when comparing ID value</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon_id_compare</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">ID value to compare to<br/></span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2A2D8D5D9A96B0C5" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000008</span> Register(32 bit) SMON00</span><br/>
+      <span class="sdescdet">AW_smon CONTROL0 register</span><br/>
+      <span class="ldescdet">This is used to configure the operation of the 2 internal counters in the SMON
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fc8</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x40000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="2">version</td>
+        <td class="fldnorm" colspan="1">rsvd2</td>
+        <td class="fldnorm" colspan="5">timer_prescale</td>
+        <td class="fldnorm" colspan="1">rsvd1</td>
+        <td class="fldnorm" colspan="1">stattimerovfl</td>
+        <td class="fldnorm" colspan="1">inttimerovfl</td>
+        <td class="fldnorm" colspan="1">stoptimerovfl</td>
+        <td class="fldnorm" colspan="1">statcounter1ovfl</td>
+        <td class="fldnorm" colspan="1">statcounter0ovfl</td>
+        <td class="fldnorm" colspan="1">intcounterovfl</td>
+        <td class="fldnorm" colspan="1">stopcounterovfl</td>
+        <td class="fldnorm" colspan="4">smon_mode</td>
+        <td class="fldnorm" colspan="1">smon1_function_compare</td>
+        <td class="fldnorm" colspan="3">smon1_function</td>
+        <td class="fldnorm" colspan="1">smon0_function_compare</td>
+        <td class="fldnorm" colspan="3">smon0_function</td>
+        <td class="fldnorm" colspan="3">rsvd0</td>
+        <td class="fldnorm" colspan="1">smon_enable</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW/V</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW/V</td>
+        <td class="accno" colspan="1">RW/V</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:30]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">version</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">version</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rsvd2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">timer_prescale</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">timer prescale<br/>   mode00 = 5'h00 { desc = "increment timer every      1 clock"; };<br/>   mode01 = 5'h01 { desc = "increment timer every      2 clocks"; };<br/>   mode02 = 5'h02 { desc = "increment timer every      4 clocks"; };<br/>   mode03 = 5'h03 { desc = "increment timer every      8 clocks"; };<br/>   mode04 = 5'h04 { desc = "increment timer every     16 clocks"; };<br/>   mode05 = 5'h05 { desc = "increment timer every     32 clocks"; };<br/>   mode06 = 5'h06 { desc = "increment timer every     64 clocks"; };<br/>   mode07 = 5'h07 { desc = "increment timer every    128 clocks"; };<br/>   mode08 = 5'h08 { desc = "increment timer every    256 clocks"; };<br/>   mode09 = 5'h09 { desc = "increment timer every    512 clocks"; };<br/>   mode10 = 5'h0a { desc = "increment timer every   1024 clocks"; };<br/>   mode11 = 5'h0b { desc = "increment timer every   2048 clocks"; };<br/>   mode12 = 5'h0c { desc = "increment timer every   4096 clocks"; };<br/>   mode13 = 5'h0d { desc = "increment timer every   8192 clocks"; };<br/>   mode14 = 5'h0e { desc = "increment timer every  16384 clocks"; };<br/>   mode15 = 5'h0f { desc = "increment timer every  32768 clocks"; };<br/>   mode16 = 5'h10 { desc = "increment timer every  65536 clocks"; };<br/>   mode17 = 5'h11 { desc = "increment timer every 131072 clocks"; };<br/>   mode18 = 5'h12 { desc = "increment timer every 262144 clocks"; };<br/>   mode19 = 5'h13 { desc = "increment timer every 524288 clocks"; };</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:23]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rsvd1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[22:22]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">stattimerovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">status of timer overflow. A value of '1' signifies timer overflow, or timer&gt;maxvalue.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:21]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">inttimerovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">configure to interrupt on timer overflow or timer&gt;maxvalue</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:20]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">stoptimerovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">configure to stop on timer overflow or timer&gt;maxvalue</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:19]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">statcounter1ovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">status for counter1 overflow. A value of '1' signifies counter1 overflow.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:18]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">statcounter0ovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">status for counter0 overflow. A value of '1' signifies counter0 overflow.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">intcounterovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">configure to interupt on counter0 or counter1 overflow</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">stopcounterovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">configure to stop on counter0 or counter1 overflow</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon_mode</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON mode<br/>   mode00 = 4'h0 { desc = "Independant Mode. SMON0_COUNT &amp; SMON1_COUNT operate independantly as their function is configured."; };<br/>   mode01 = 4'h1 { desc = "Average Latency Mode. SMON0 trigger starts timer &amp; SMON1 trigger stops timer. SMON0_COUNT accumulates occurances and SMON1_COUNT accumulates timer values. For multiple stop for a single start, accumulate  start_to_stop1,  start_to_stop1stop2 ..."; };<br/>   mode02 = 4'h2 { desc = "MinMax Latency Mode,. SMON0 trigger starts timer &amp; SMON1 trigger stops timer. SMON0_COUNT maintains the minimum timer value and SMON1_COUNT maintains the maximum timer value"; };<br/>   mode03 = 4'h3 { desc = "Average Mode.   SMON0 trigger increments SMON0_COUNT and the value is accumulated in SMON1_COUNT. SMON1 events are disabled."; };<br/>   mode04 = 4'h4 { desc = "Average Lantecy Mode 2. same as mode01, but only accumulate the first start_to_stop1 if there are multiple stop for each start"; };<br/>   mode05 = 4'h5 { desc = "Average Latency Mode 3. same as mode01, but accumualte the incremental start_to_stop1, stop1_to_stop2... if there are multiple stop for each start"; };</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon1_function_compare</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON1 function_compare<br/>   mode00 = 1'h0 { desc = "Compare mode disabled"; };<br/>   mode01 = 1'h1 { desc = "compare mode enabled"; };</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon1_function</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON1 function<br/>   mode00 = 3'h0 { desc = "free running function. Trigger to accumulate the value into the engine SMON_COUNT when an event is valid."; };<br/>   mode01 = 3'h1 { desc = "free running function. Trigger to accumulate a fixed value of 1 into the engine SMON_COUNT when an event is valid."; };<br/>   mode02 = 3'h2 { desc = "max function. Trigger to update max value when an event is valid and larger than the current value stored in the engine SMON_COUNT."; };<br/>   mode03 = 3'h3 { desc = "Timestamp First Mode. Capture the timer value on the first occurance of an event. Need to write CONTROL01 to reset"; };<br/>   mode04 = 3'h4 { desc = "Timestamp Mode. Capture the timer value on every occurance of an event. "; };</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon0_function_compare</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON0 function_compare<br/>   mode00 = 1'h0 { desc = "Compare mode disabled"; };<br/>   mode01 = 1'h1 { desc = "compare mode enabled"; };<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon0_function</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON0 function<br/>   mode00 = 3'h0 { desc = "free running function. Trigger to accumulate the value into the engine SMON_COUNT when an event is valid."; };<br/>   mode01 = 3'h1 { desc = "free running function. Trigger to accumulate a fixed value of 1 into the engine SMON_COUNT when an event is valid."; };<br/>   mode02 = 3'h2 { desc = "max function. Trigger to update max value when an event is valid and larger than the current value stored in the engine SMON_COUNT."; };<br/>   mode03 = 3'h3 { desc = "Timestamp First Mode. Capture the timer value on the first occurance of an event. Need to write CONTROL01 to reset"; };<br/>   mode04 = 3'h4 { desc = "Timestamp Mode. Capture the timer value on every occurance of an event. "; };<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rsvd0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon_enable</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">enable the SMON counters</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_28C55A6AD5AF4AA9" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000000c</span> Register(32 bit) SMON01</span><br/>
+      <span class="sdescdet">AW_smon CONTROL1 register</span><br/>
+      <span class="ldescdet">This is used to configure the operation of the 2 internal counters in the SMON
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fcc</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="16">rsvd</td>
+        <td class="fldnorm" colspan="4">counter_axi_ifc_select1</td>
+        <td class="fldnorm" colspan="4">counter_event_select1</td>
+        <td class="fldnorm" colspan="4">counter_axi_ifc_select0</td>
+        <td class="fldnorm" colspan="4">counter_event_select0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="16">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rsvd</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">counter_axi_ifc_select1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Select AXI interface for Counter1 engine. Consult table in RCS MAS titled "NIC400 interfaces serviced by ser2mon_axi instances"</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">AXI_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_4</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_5</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_6</td>
+          <td class="unboxed addr">0x6</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_7</td>
+          <td class="unboxed addr">0x7</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_8</td>
+          <td class="unboxed addr">0x08</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_9</td>
+          <td class="unboxed addr">0x09</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_10</td>
+          <td class="unboxed addr">0x0a</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_11</td>
+          <td class="unboxed addr">0x0b</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_12</td>
+          <td class="unboxed addr">0x0c</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">counter_event_select1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Select AXI Event for Counter0 engine.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Event0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for read address transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for read response transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for write address transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for write data transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event4</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for write response transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event5</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap"><br/>Read address transactions. The compare input is set to the ARID</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event6</td>
+          <td class="unboxed addr">0x6</td>
+          <td class="unboxed scdescmap"><br/>Read response transactions.  The compare input is set to the rlast signal.
+</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event7</td>
+          <td class="unboxed addr">0x7</td>
+          <td class="unboxed scdescmap"><br/>Write address transactions. The compare input is set to the AWID</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event8</td>
+          <td class="unboxed addr">0x08</td>
+          <td class="unboxed scdescmap"><br/>Write data transactions.  The compare input is set to the wlast signal.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event9</td>
+          <td class="unboxed addr">0x09</td>
+          <td class="unboxed scdescmap"><br/>Write response transactions.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event10</td>
+          <td class="unboxed addr">0x0a</td>
+          <td class="unboxed scdescmap"><br/>Read beats requested. The value input is set to the actual transaction length.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event11</td>
+          <td class="unboxed addr">0x0b</td>
+          <td class="unboxed scdescmap"><br/>Write beats requested. The value input is set to the actual transaction length.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event12</td>
+          <td class="unboxed addr">0x0c</td>
+          <td class="unboxed scdescmap"><br/>Start of read request to next available ID.  Used to measure read latency</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event13</td>
+          <td class="unboxed addr">0x0d</td>
+          <td class="unboxed scdescmap"><br/>Read response for monitored ID.  Used to measure read latency</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event14</td>
+          <td class="unboxed addr">0x0e</td>
+          <td class="unboxed scdescmap"><br/>Start of write address to next available ID.  Used to measure read latency</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event15</td>
+          <td class="unboxed addr">0x0f</td>
+          <td class="unboxed scdescmap"><br/>Write response for monitored ID.  Used to measure read latency</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">counter_axi_ifc_select0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Select AXI interface for Counter0 engine. Consult table in RCS MAS titled "NIC400 interfaces serviced by ser2mon_axi instances"</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">AXI_0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_4</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_5</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_6</td>
+          <td class="unboxed addr">0x6</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_7</td>
+          <td class="unboxed addr">0x7</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_8</td>
+          <td class="unboxed addr">0x08</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_9</td>
+          <td class="unboxed addr">0x09</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_10</td>
+          <td class="unboxed addr">0x0a</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_11</td>
+          <td class="unboxed addr">0x0b</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">AXI_12</td>
+          <td class="unboxed addr">0x0c</td>
+          <td class="unboxed scdescmap"><br/>Select AXI n</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">counter_event_select0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Select AXI Event for Counter0 engine.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">Event0</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for read address transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event1</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for read response transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event2</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for write address transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event3</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for write data transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event4</td>
+          <td class="unboxed addr">0x4</td>
+          <td class="unboxed scdescmap"><br/>Backpressure for write response transactions</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event5</td>
+          <td class="unboxed addr">0x5</td>
+          <td class="unboxed scdescmap"><br/>Read address transactions. The compare input is set to the ARID</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event6</td>
+          <td class="unboxed addr">0x6</td>
+          <td class="unboxed scdescmap"><br/>Read response transactions.  The compare input is set to the rlast signal.
+</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event7</td>
+          <td class="unboxed addr">0x7</td>
+          <td class="unboxed scdescmap"><br/>Write address transactions. The compare input is set to the AWID</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event8</td>
+          <td class="unboxed addr">0x08</td>
+          <td class="unboxed scdescmap"><br/>Write data transactions.  The compare input is set to the wlast signal.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event9</td>
+          <td class="unboxed addr">0x09</td>
+          <td class="unboxed scdescmap"><br/>Write response transactions.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event10</td>
+          <td class="unboxed addr">0x0a</td>
+          <td class="unboxed scdescmap"><br/>Read beats requested. The value input is set to the actual transaction length.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event11</td>
+          <td class="unboxed addr">0x0b</td>
+          <td class="unboxed scdescmap"><br/>Write beats requested. The value input is set to the actual transaction length.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event12</td>
+          <td class="unboxed addr">0x0c</td>
+          <td class="unboxed scdescmap"><br/>Start of read request to next available ID.  Used to measure read latency</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event13</td>
+          <td class="unboxed addr">0x0d</td>
+          <td class="unboxed scdescmap"><br/>Read response for monitored ID.  Used to measure read latency</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event14</td>
+          <td class="unboxed addr">0x0e</td>
+          <td class="unboxed scdescmap"><br/>Start of write address to next available ID.  Used to measure read latency</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">Event15</td>
+          <td class="unboxed addr">0x0f</td>
+          <td class="unboxed scdescmap"><br/>Write response for monitored ID.  Used to measure read latency</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_27CF53A26F2D9FC8" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000010</span> Register(32 bit) SMON02</span><br/>
+      <span class="sdescdet">AW_smon SMON0_COMPARE register</span><br/>
+      <span class="ldescdet">This is the compare register in the SMON0 engine used with the compare function
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fd0</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">compare0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">compare0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Comparison value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_59BBA864B0DDE744" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000014</span> Register(32 bit) SMON03</span><br/>
+      <span class="sdescdet">AW_smon SMON1_COMPARE register</span><br/>
+      <span class="ldescdet">This is the compare register in the SMON1 engine used with the compare function
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fd4</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">compare1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">compare1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Comparison value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5FA9A5C0EC648E96" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000018</span> Register(32 bit) SMON04</span><br/>
+      <span class="sdescdet">AW_smon SMON0_COUNT register</span><br/>
+      <span class="ldescdet">This is the first counter in SMON configured to count events by the SMON configuration register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fd8</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">counter0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">counter0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">counter0</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_178BCF530F175F82" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000001c</span> Register(32 bit) SMON05</span><br/>
+      <span class="sdescdet">AW_smon SMON1_COUNT register</span><br/>
+      <span class="ldescdet">This is the second counter in SMON configured to count events by the SMON configuration register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fdc</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">counter1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">counter1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">counter1</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_56BDE51A0610E350" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000020</span> Register(32 bit) SMON06</span><br/>
+      <span class="sdescdet">AW_smon TIMER register</span><br/>
+      <span class="ldescdet">This is the SMON timer, it is a running counter configured with a prescale parameter in the configuration register. The maxvalue is used to terminate counting.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fe0</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">timer</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">timer</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">timer</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F4C650D390243EA4" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000024</span> Register(32 bit) SMON07</span><br/>
+      <span class="sdescdet">AW_smon TIMERMAXVAL register</span><br/>
+      <span class="ldescdet">This is the timer maxvalue used to provide a value to terminate counting.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02fe4</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">maxvalue</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">maxvalue</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">maxvalue</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_26FBC3D258E06F82" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000030</span> Register(32 bit) APB_BRIDGE_STATUS</span><br/>
+      <span class="sdescdet">APB Bridge Status Register</span><br/>
+      <span class="ldescdet">This is the AW_apb2core_bridge status register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01b02ff0</span> at NOC.hub (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00010000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">TIMEOUT</td>
+        <td class="fldnorm" colspan="1">ACK_ERROR</td>
+        <td class="fldnorm" colspan="1">UNSOL_ACK</td>
+        <td class="fldnorm" colspan="1">SW_LOCK_CTRL</td>
+        <td class="fldnorm" colspan="8">REVISION</td>
+        <td class="fldnorm" colspan="20">TIMEOUT_VALUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1S/V/L</td>
+        <td class="accno" colspan="8">RO</td>
+        <td class="accno" colspan="20">RW/L</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMEOUT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">An APB request has timed out</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ACK_ERROR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Acknowledgement had error bit set</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">UNSOL_ACK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">An unsolicited acknowledge was received</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:28]</b><br/>RW/1S/V/L</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SW_LOCK_CTRL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Block software writes to timeout_value if set</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:20]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">REVISION</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Module Revision Number</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:00]</b><br/>RW/L</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMEOUT_VALUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Number of core clocks to wait before timing out an APB request</span></p>
+          <p><b>Reset: </b>hex:0x10000;</p>
+    <p><b>Locked by:</b> APB_BRIDGE_STATUS.SW_LOCK_CTRL; <b>Lock value:</b> 1</p>        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_rcs_axi_smon_vex_strm_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

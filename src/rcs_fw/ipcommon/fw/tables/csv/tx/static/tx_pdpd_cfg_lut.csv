@@ -1,0 +1,14 @@
+Table Name,tx_pdpd_cfg_lut,,,,,,,,,,,,,,,,,,
+Table Description,PDPD LUT config/enable table. Indexed by [pdpd_cfg],,,,,,,,,,,,,,,,,,
+single entry bitwidth,8*1,,,,,,,,,,,,,,,,,,
+base type bit layout,,,7,6,5,4,3,2,1,0,,,,,,,,,
+Bit Field Name,,,clut_interp_en,ext_cfg,,,,,,,,,,,,,,,
+Bit Field Description,,,this bit controls (enabling/disabling) MGP/DDR coef LUT interpolation,these 7 bits set the first 7 bits of register pdpd_cfg_reg,,,,,,,,,,,,,,,
+Unit [string],,,bit,val,,,,,,,,,,,,,,,
+Granularity,,,1,1,,,,,,,,,,,,,,,
+Minimum Value,,,0,0,,,,,,,,,,,,,,,
+Maximum Value,,,1,127,,,,,,,,,,,,,,,
+Sign Type,,,unsigned,unsigned,,,,,,,,,,,,,,,
+Bit Field Width,,,1,7,,,,,,,,,this bit controls (enabling/disabling) non-linear magnitude LUT interpolation,this bit controls (enabling/disabling) non-linear magnitude mapping,"this bit indicate who (0:CTRL reg, 1: sample count) control passthrough coef live update","this bit indicate who (0:CTRL reg, 1: sample count) control Non-Lear Magnitude mapping LUT live update","this bit indicate who (0:CTRL reg, 1: sample count) control GMP/DDR coef LUT live update","this bit indicate who (0:CTRL reg, 1: sample count) control zero stuffing mode","this bit indicate who (0:CTRL reg, 1: sample count) control bypass mode. bypass PDPD non-linear terms, used when doing ANT calibration"
+subtable dimension and name,1*1,,PDPD_CFG_SETTINGS,,,,,,,,,"default setting using sample count to control, also the LUT interpolation and LUT mapping are enabled",nl_mag_interp_en,nl_mag_en,pt_updt,nl_lut_updt,c_lut_updt,zero_stuff,bypass
+,,,1,127,,,,,,,,127,1,1,1,1,1,1,1

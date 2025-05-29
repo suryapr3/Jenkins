@@ -1,0 +1,523 @@
+================================test run completed==============================
+anfpgafrio112$ python dnrt_jesd_vex_rx_path_usecases_14_12_23.py VEXCNT:,1 NSIPCNT:,1 JESD:,5C
+=============================test starts here========================
+dnrt_jesd_vex_rx_path_usecases_14_12_23
+['VEXCNT:,1', 'NSIPCNT:,1', 'JESD:,5C']
+dnrt_jesd_vex_rx_path_usecases_14_12_23.so
+0
+Number of command-line arguments: 4
+Command-line arguments:
+1313
+argv[0] = VEXCNT:,1
+1319
+1313
+argv[1] = NSIPCNT:,1
+1319
+1313
+argv[2] = JESD:,5C
+1319
+parseOpts
+1022
+buffer is 
+1024
+parg is VEXCNT:,1
+1026
+1028
+1027
+DEBUG:,DEFAULT: Usecase=5C, N_CS=0, TX_RX_FB En=111, Testmode=0, FEC_CRC=0, Bit_order_Tx=0, Bit_order_Rx=3, SHErrTh= 9, EMBErrThr= 9
+parseOpts
+1022
+buffer is 
+1024
+parg is NSIPCNT:,1
+1026
+1028
+DEBUG:,DEFAULT: Usecase=5C, N_CS=0, TX_RX_FB En=111, Testmode=0, FEC_CRC=0, Bit_order_Tx=0, Bit_order_Rx=3, SHErrTh= 9, EMBErrThr= 9
+parseOpts
+1022
+buffer is 
+1024
+parg is JESD:,5C
+1026
+1028
+DEBUG:,DEFAULT: Usecase=5C, N_CS=0, TX_RX_FB En=111, Testmode=0, FEC_CRC=0, Bit_order_Tx=0, Bit_order_Rx=3, SHErrTh= 9, EMBErrThr= 9
+Selected Usecase is 5C RX path
+DEBUG:,POST: Usecase=5C, N_CS=0, TX_RX_FB En=111, Testmode=0, FEC_CRC=0, Bit_order_Tx=0, Bit_order_Rx=3, SHErrTh= 9, EMBErrThr= 9
+Before JESD_EN : Enable clock Done
+
+########Starting to clear vex mem from 0-10
+
+
+########Done clearing vex mem from 0-10
+
+Vex count is 1
+Vex count is 1
+Nsip count is 1
+vex id: 0 , nsipId : -17824 , apb_num: 0, cm_num: 0
+###### Hi configuring JESD host
+The block_id is 0x63
+base_address  from read_reg is 0x2800000 and region id is 0
+The block_id is 0x63
+base_address  from read_reg is 0x2800000 and region id is 0
+The block_id is 0x63
+base_address  from read_reg is 0x2800000 and region id is 0
+INFO: Vex 0 configuration completednsipId[0] = 0
+nsipConfigArraySize[0] = 84
+looped 134217728, 134217860, 4095 + 1048575, 0xabe6e82b, 0x0, 
+looped 134217728, 134217864, 4095 + 1048575, 0xabe6e845, 0x0, 
+looped 134217728, 134218504, 388 + -1073740801, 0xabe6e860, 0x0, 
+looped 134217728, 134218512, 3 + 1048591, 0xabe6e881, 0x0, 
+looped 134217728, 134218880, 0 + 16189439, 0xabe6e89e, 0x0, 
+looped 134217728, 134218752, -2147483648 + -1879048193, 0xabe6e8b7, 0x0, 
+looped 134217728, 134219008, 65536 + 268435455, 0xabe6e8cf, 0x0, 
+looped 134217728, 134219136, 0 + 16189439, 0xabe6e8e5, 0x0, 
+looped 134217728, 134219520, 7 + -1073740801, 0xabe6e901, 0x0, 
+looped 134217728, 134218884, 0 + 16189439, 0xabe6e91a, 0x0, 
+looped 134217728, 134218756, -2147483136 + -1879048193, 0xabe6e933, 0x0, 
+looped 134217728, 134219012, 65540 + 268435455, 0xabe6e94b, 0x0, 
+looped 134217728, 134219140, 0 + 16189439, 0xabe6e961, 0x0, 
+looped 134217728, 134219524, 7 + -1073740801, 0xabe6e97d, 0x0, 
+looped 134217728, 134218888, 0 + 16189439, 0xabe6e996, 0x0, 
+looped 134217728, 134218760, -2147482624 + -1879048193, 0xabe6e9af, 0x0, 
+looped 134217728, 134219016, 65544 + 268435455, 0xabe6e9c7, 0x0, 
+looped 134217728, 134219144, 0 + 16189439, 0xabe6e9dd, 0x0, 
+looped 134217728, 134219528, 7 + -1073740801, 0xabe6e9f9, 0x0, 
+looped 134217728, 134218892, 0 + 16189439, 0xabe6ea12, 0x0, 
+looped 134217728, 134218764, -2147482112 + -1879048193, 0xabe6ea2b, 0x0, 
+looped 134217728, 134219020, 65548 + 268435455, 0xabe6ea43, 0x0, 
+looped 134217728, 134219148, 0 + 16189439, 0xabe6ea59, 0x0, 
+looped 134217728, 134219532, 7 + -1073740801, 0xabe6ea75, 0x0, 
+looped 134217728, 134218896, 0 + 16189439, 0xabe6ea8e, 0x0, 
+looped 134217728, 134218768, -2147481600 + -1879048193, 0xabe6eaa7, 0x0, 
+looped 134217728, 134219024, 65552 + 268435455, 0xabe6eabf, 0x0, 
+looped 134217728, 134219152, 0 + 16189439, 0xabe6ead5, 0x0, 
+looped 134217728, 134219536, 7 + -1073740801, 0xabe6eaf1, 0x0, 
+looped 134217728, 134218900, 0 + 16189439, 0xabe6eb0a, 0x0, 
+looped 134217728, 134218772, -2147479552 + -1879048193, 0xabe6eb23, 0x0, 
+looped 134217728, 134219028, 65556 + 268435455, 0xabe6eb3b, 0x0, 
+looped 134217728, 134219156, 0 + 16189439, 0xabe6eb51, 0x0, 
+looped 134217728, 134219540, 7 + -1073740801, 0xabe6eb6d, 0x0, 
+looped 134217728, 134218904, 0 + 16189439, 0xabe6eb86, 0x0, 
+looped 134217728, 134218776, -2147479040 + -1879048193, 0xabe6eb9f, 0x0, 
+looped 134217728, 134219032, 65560 + 268435455, 0xabe6ebb7, 0x0, 
+looped 134217728, 134219160, 0 + 16189439, 0xabe6ebcd, 0x0, 
+looped 134217728, 134219544, 7 + -1073740801, 0xabe6ebe9, 0x0, 
+looped 134217728, 134218908, 0 + 16189439, 0xabe6ec02, 0x0, 
+looped 134217728, 134218780, -2147478528 + -1879048193, 0xabe6ec1b, 0x0, 
+looped 134217728, 134219036, 65564 + 268435455, 0xabe6ec33, 0x0, 
+looped 134217728, 134219164, 0 + 16189439, 0xabe6ec49, 0x0, 
+looped 134217728, 134219548, 7 + -1073740801, 0xabe6ec65, 0x0, 
+looped 134217728, 134218912, 0 + 16189439, 0xabe6ec7e, 0x0, 
+looped 134217728, 134218784, -2147478016 + -1879048193, 0xabe6ec97, 0x0, 
+looped 134217728, 134219040, 65568 + 268435455, 0xabe6ecaf, 0x0, 
+looped 134217728, 134219168, 0 + 16189439, 0xabe6ecc5, 0x0, 
+looped 134217728, 134219552, 7 + -1073740801, 0xabe6ece1, 0x0, 
+looped 134217728, 134218916, 0 + 16189439, 0xabe6ecfa, 0x0, 
+looped 134217728, 134218788, -2147477504 + -1879048193, 0xabe6ed13, 0x0, 
+looped 134217728, 134219044, 65572 + 268435455, 0xabe6ed2b, 0x0, 
+looped 134217728, 134219172, 0 + 16189439, 0xabe6ed41, 0x0, 
+looped 134217728, 134219556, 7 + -1073740801, 0xabe6ed5d, 0x0, 
+looped 134217728, 134218920, 0 + 16189439, 0xabe6ed76, 0x0, 
+looped 134217728, 134218792, -2147475456 + -1879048193, 0xabe6ed90, 0x0, 
+looped 134217728, 134219048, 65576 + 268435455, 0xabe6eda9, 0x0, 
+looped 134217728, 134219176, 0 + 16189439, 0xabe6edc0, 0x0, 
+looped 134217728, 134219560, 7 + -1073740801, 0xabe6eddd, 0x0, 
+looped 134217728, 134218924, 0 + 16189439, 0xabe6edf7, 0x0, 
+looped 134217728, 134218796, -2147474944 + -1879048193, 0xabe6ee11, 0x0, 
+looped 134217728, 134219052, 65580 + 268435455, 0xabe6ee2a, 0x0, 
+looped 134217728, 134219180, 0 + 16189439, 0xabe6ee41, 0x0, 
+looped 134217728, 134219564, 7 + -1073740801, 0xabe6ee5e, 0x0, 
+looped 134217728, 134218928, 0 + 16189439, 0xabe6ee78, 0x0, 
+looped 134217728, 134218800, -2147474432 + -1879048193, 0xabe6ee92, 0x0, 
+looped 134217728, 134219056, 65584 + 268435455, 0xabe6eeab, 0x0, 
+looped 134217728, 134219184, 0 + 16189439, 0xabe6eec2, 0x0, 
+looped 134217728, 134219568, 7 + -1073740801, 0xabe6eedf, 0x0, 
+looped 134217728, 134218932, 0 + 16189439, 0xabe6eef9, 0x0, 
+looped 134217728, 134218804, -2147473920 + -1879048193, 0xabe6ef13, 0x0, 
+looped 134217728, 134219060, 65588 + 268435455, 0xabe6ef2c, 0x0, 
+looped 134217728, 134219188, 0 + 16189439, 0xabe6ef43, 0x0, 
+looped 134217728, 134219572, 7 + -1073740801, 0xabe6ef60, 0x0, 
+looped 134217728, 134218936, 0 + 16189439, 0xabe6ef7a, 0x0, 
+looped 134217728, 134218808, -2147473408 + -1879048193, 0xabe6ef94, 0x0, 
+looped 134217728, 134219064, 65592 + 268435455, 0xabe6efad, 0x0, 
+looped 134217728, 134219192, 0 + 16189439, 0xabe6efc4, 0x0, 
+looped 134217728, 134219576, 7 + -1073740801, 0xabe6efe1, 0x0, 
+looped 134217728, 134218940, 0 + 16189439, 0xabe6effb, 0x0, 
+looped 134217728, 134218812, -2147471360 + -1879048193, 0xabe6f015, 0x0, 
+looped 134217728, 134219068, 65596 + 268435455, 0xabe6f02e, 0x0, 
+looped 134217728, 134219196, 0 + 16189439, 0xabe6f045, 0x0, 
+looped 134217728, 134219580, 7 + -1073740801, 0xabe6f062, 0x0, 
+INFO: ### JESD0 NSIP 0, nsipIdx DONE completedHost: start STRM2CIO rx program load 
+Host: STRM2CIO program load - done
+Host: start vex rx program load 
+JESD RX IP CONFIG : program_rx_ip_registers 
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+JESD RX path - UC 5C -LMFS -4-16-8-1 - IQ bandwidth -
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+JESD CMN CSR CONFIG : program_cmn_csr_registers 
+The write operation is completed without error
+The write operation is completed without error
+JESD RX GLUE CONFIG : program_rx_glue_registers 
+JESD RX path - UC 5C GLUE-
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+The write operation is completed without error
+Giving delay of 10 milli seconds 
+JESD ENABLE : program_enable_registers 
+The write operation is completed without error
+The write operation is completed without error
+ Before jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x0 
+ Before jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x0 
+ Before jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x0 
+ Before jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0x0 
+Host: vex program start - done
+SYSREF Done
+After JESD_EN : SYSREF Done
+
+
+Before jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x0 
+Before jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x0 
+Before jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x0 
+Before jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0x0 
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+
+
+
+
+After Jesd enable value for RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+After Jesd enable value for RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+After Jesd enable value for RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+After Jesd enable value for RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+After Jesd enable value for RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+After Jesd enable value for RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+After Jesd enable value forf RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+After Jesd enable value for RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE0  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE1  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE2  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE3  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE4  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE5  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE6  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE7  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE8  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE9  is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE10 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE11 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE12 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE13 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE14 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE15 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE16 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE17 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE18 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE19 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE20 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE21 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE22 is 0x0 
+ After Jesd enable value for ICOUNTER_REPORT_LANE23 is 0x0 
+ After Jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x0 
+ After Jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x0 
+ After Jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x0 
+ After Jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0x0 
+
+ 
+previous and current value for RX_LEMC_BOUNDARY_PHASE are 0x0, 0xb
+
+
+
+
+
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+Present value of SH lock of Link0 is 0xf 
+Present value of EMB lock of Link0 is 0xf 
+Present value of SH lock loss of Link0 is 0x0 
+Present value of EMB lock loss of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x0 
+Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_MASK_OFFSET of Link0 is 0x0 
+Present value of RX_CORE_INTERRUPT_STATUS_OFFSET of Link0 is 0x0 
+Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0xb 
+Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x0 
+
+
+
+0.63.0.0000030000: 09e001e0 0a610261 0a620262 0a630263 
+0.63.0.0000030010: 0a640264 0a650265 0ae602e6 0ae702e7 
+0.63.0.0000030020: 0ae802e8 0ae902e9 0aea02ea 0b6b036b 
+0.63.0.0000030030: 0b6c036c 0b6d036d 0b6e036e 0bef03ef 
+0.63.0.0000030040: 0bf003f0 0bf103f1 0bf203f2 0bf303f3 
+0.63.0.0000030050: 0c740474 0c750475 0c760476 0c770477 
+0.63.0.0000030060: 0cf804f8 0cf904f9 0cfa04fa 0cfb04fb 
+0.63.0.0000030070: 0cfc04fc 0d7d057d 0d7e057e 0d7f057f 
+0.63.0.0000030080: 0d800580 0d810581 0e020602 0e030603 
+0.63.0.0000030090: 0e040604 0e050605 0e060606 0e870687 
+0.63.0.00000300a0: 0e880688 0e890689 0e8a068a 0f0b070b 
+0.63.0.00000300b0: 0f0c070c 0f0d070d 0f0e070e 0f0f070f 
+0.63.0.00000300c0: 0f900790 0f910791 0f920792 0f930793 
+0.63.0.00000300d0: 0f940794 08150015 08160016 08170017 
+0.63.0.00000300e0: 08180018 08990099 089a009a 089b009b 
+0.63.0.00000300f0: 089c009c 089d009d 091e011e 091f011f 
+
+0.63.0.0000030200: 1c601460 1c611461 1c621462 1ce314e3 
+0.63.0.0000030210: 1ce414e4 1ce514e5 1ce614e6 1ce714e7 
+0.63.0.0000030220: 1d681568 1d691569 1d6a156a 1d6b156b 
+0.63.0.0000030230: 1dec15ec 1ded15ed 1dee15ee 1def15ef 
+0.63.0.0000030240: 1df015f0 1e711671 1e721672 1e731673 
+0.63.0.0000030250: 1e741674 1e751675 1ef616f6 1ef716f7 
+0.63.0.0000030260: 1ef816f8 1ef916f9 1efa16fa 1f7b177b 
+0.63.0.0000030270: 1f7c177c 1f7d177d 1f7e177e 1fff17ff 
+0.63.0.0000030280: 18001000 18011001 18021002 18031003 
+0.63.0.0000030290: 18841084 18851085 18861086 18871087 
+0.63.0.00000302a0: 18881088 19091109 190a110a 190b110b 
+0.63.0.00000302b0: 190c110c 190d110d 198e118e 198f118f 
+0.63.0.00000302c0: 19901190 19911191 1a121212 1a131213 
+0.63.0.00000302d0: 1a141214 1a151215 1a161216 1a971297 
+0.63.0.00000302e0: 1a981298 1a991299 1a9a129a 1a9b129b 
+0.63.0.00000302f0: 1b1c131c 1b1d131d 1b1e131e 1b1f131f 
+
+0.63.0.0000030400: 2e602660 2e612661 2e622662 2e632663 
+0.63.0.0000030410: 2ee426e4 2ee526e5 2ee626e6 2ee726e7 
+0.63.0.0000030420: 2ee826e8 2f692769 2f6a276a 2f6b276b 
+0.63.0.0000030430: 2f6c276c 2f6d276d 2fee27ee 2fef27ef 
+0.63.0.0000030440: 2ff027f0 2ff127f1 2ff227f2 28732073 
+0.63.0.0000030450: 28742074 28752075 28762076 28f720f7 
+0.63.0.0000030460: 28f820f8 28f920f9 28fa20fa 28fb20fb 
+0.63.0.0000030470: 297c217c 297d217d 297e217e 297f217f 
+0.63.0.0000030480: 29802180 2a012201 2a022202 2a032203 
+0.63.0.0000030490: 2a042204 2a852285 2a862286 2a872287 
+0.63.0.00000304a0: 2a882288 2a892289 2b0a230a 2b0b230b 
+0.63.0.00000304b0: 2b0c230c 2b0d230d 2b0e230e 2b8f238f 
+0.63.0.00000304c0: 2b902390 2b912391 2b922392 2c132413 
+0.63.0.00000304d0: 2c142414 2c152415 2c162416 2c172417 
+0.63.0.00000304e0: 2c982498 2c992499 2c9a249a 2c9b249b 
+0.63.0.00000304f0: 2c9c249c 2d1d251d 2d1e251e 2d1f251f 
+
+0.63.0.0000030600: 38603060 38613061 38623062 38e330e3 
+0.63.0.0000030610: 38e430e4 38e530e5 38e630e6 38e730e7 
+0.63.0.0000030620: 39683168 39693169 396a316a 396b316b 
+0.63.0.0000030630: 39ec31ec 39ed31ed 39ee31ee 39ef31ef 
+0.63.0.0000030640: 39f031f0 3a713271 3a723272 3a733273 
+0.63.0.0000030650: 3a743274 3a753275 3af632f6 3af732f7 
+0.63.0.0000030660: 3af832f8 3af932f9 3afa32fa 3b7b337b 
+0.63.0.0000030670: 3b7c337c 3b7d337d 3b7e337e 3bff33ff 
+0.63.0.0000030680: 3c003400 3c013401 3c023402 3c833483 
+0.63.0.0000030690: 3c843484 3c853485 3c863486 3c873487 
+0.63.0.00000306a0: 3d083508 3d093509 3d0a350a 3d0b350b 
+0.63.0.00000306b0: 3d0c350c 3d8d358d 3d8e358e 3d8f358f 
+0.63.0.00000306c0: 3d903590 3e113611 3e123612 3e133613 
+0.63.0.00000306d0: 3e143614 3e153615 3e963696 3e973697 
+0.63.0.00000306e0: 3e983698 3e993699 3e9a369a 3f1b371b 
+0.63.0.00000306f0: 3f1c371c 3f1d371d 3f1e371e 3f1f371f 
+
+0.63.0.0000030800: 4b604360 4b614361 4be243e2 4be343e3 
+0.63.0.0000030810: 4be443e4 4be543e5 4c664466 4c674467 
+0.63.0.0000030820: 4c684468 4c694469 4c6a446a 4ceb44eb 
+0.63.0.0000030830: 4cec44ec 4ced44ed 4cee44ee 4cef44ef 
+0.63.0.0000030840: 48704070 48714071 48724072 48734073 
+0.63.0.0000030850: 48f440f4 48f540f5 48f640f6 48f740f7 
+0.63.0.0000030860: 48f840f8 49794179 497a417a 497b417b 
+0.63.0.0000030870: 497c417c 497d417d 49fe41fe 49ff41ff 
+0.63.0.0000030880: 4a004200 4a014201 4a024202 4a834283 
+0.63.0.0000030890: 4a844284 4a854285 4a864286 4b074307 
+0.63.0.00000308a0: 4b084308 4b094309 4b0a430a 4b0b430b 
+0.63.0.00000308b0: 4b8c438c 4b8d438d 4b8e438e 4b8f438f 
+0.63.0.00000308c0: 4b904390 4c114411 4c124412 4c134413 
+0.63.0.00000308d0: 4c144414 4c954495 4c964496 4c974497 
+0.63.0.00000308e0: 4c984498 4c994499 4d1a451a 4d1b451b 
+0.63.0.00000308f0: 4d1c451c 4d1d451d 4d1e451e 4d9f459f 
+
+0.63.0.0000031000: 58605060 58615061 58e250e2 58e350e3 
+0.63.0.0000031010: 58e450e4 58e550e5 58e650e6 59675167 
+0.63.0.0000031020: 59685168 59695169 596a516a 596b516b 
+0.63.0.0000031030: 59ec51ec 59ed51ed 59ee51ee 59ef51ef 
+0.63.0.0000031040: 59f051f0 5a715271 5a725272 5a735273 
+0.63.0.0000031050: 5a745274 5af552f5 5af652f6 5af752f7 
+0.63.0.0000031060: 5af852f8 5af952f9 5b7a537a 5b7b537b 
+0.63.0.0000031070: 5b7c537c 5b7d537d 5b7e537e 5bff53ff 
+0.63.0.0000031080: 5c005400 5c015401 5c025402 5c835483 
+0.63.0.0000031090: 5c845484 5c855485 5c865486 5c875487 
+0.63.0.00000310a0: 5d085508 5d095509 5d0a550a 5d0b550b 
+0.63.0.00000310b0: 5d0c550c 5d8d558d 5d8e558e 5d8f558f 
+0.63.0.00000310c0: 5d905590 5e115611 5e125612 5e135613 
+0.63.0.00000310d0: 5e145614 5e155615 5e965696 5e975697 
+0.63.0.00000310e0: 5e985698 5e995699 5e9a569a 5f1b571b 
+0.63.0.00000310f0: 5f1c571c 5f1d571d 5f1e571e 5f9f579f 
+
+0.63.0.0000031200: 6a606260 6a616261 6a626262 6a636263 
+0.63.0.0000031210: 6a646264 6ae562e5 6ae662e6 6ae762e7 
+0.63.0.0000031220: 6ae862e8 6ae962e9 6b6a636a 6b6b636b 
+0.63.0.0000031230: 6b6c636c 6b6d636d 6bee63ee 6bef63ef 
+0.63.0.0000031240: 6bf063f0 6bf163f1 6bf263f2 6c736473 
+0.63.0.0000031250: 6c746474 6c756475 6c766476 6c776477 
+0.63.0.0000031260: 6cf864f8 6cf964f9 6cfa64fa 6cfb64fb 
+0.63.0.0000031270: 6d7c657c 6d7d657d 6d7e657e 6d7f657f 
+0.63.0.0000031280: 6d806580 6e016601 6e026602 6e036603 
+0.63.0.0000031290: 6e046604 6e056605 6e866686 6e876687 
+0.63.0.00000312a0: 6e886688 6e896689 6f0a670a 6f0b670b 
+0.63.0.00000312b0: 6f0c670c 6f0d670d 6f0e670e 6f8f678f 
+0.63.0.00000312c0: 6f906790 6f916791 6f926792 6f936793 
+0.63.0.00000312d0: 68146014 68156015 68166016 68176017 
+0.63.0.00000312e0: 68186018 68996099 689a609a 689b609b 
+0.63.0.00000312f0: 689c609c 691d611d 691e611e 691f611f 
+
+0.63.0.0000031400: 7be073e0 7be173e1 7c627462 7c637463 
+0.63.0.0000031410: 7c647464 7c657465 7c667466 7ce774e7 
+0.63.0.0000031420: 7ce874e8 7ce974e9 7cea74ea 7d6b756b 
+0.63.0.0000031430: 7d6c756c 7d6d756d 7d6e756e 7d6f756f 
+0.63.0.0000031440: 7df075f0 7df175f1 7df275f2 7df375f3 
+0.63.0.0000031450: 7df475f4 7e757675 7e767676 7e777677 
+0.63.0.0000031460: 7e787678 7ef976f9 7efa76fa 7efb76fb 
+0.63.0.0000031470: 7efc76fc 7efd76fd 7f7e777e 7f7f777f 
+0.63.0.0000031480: 7f807780 7f817781 7f827782 78037003 
+0.63.0.0000031490: 78047004 78057005 78067006 78077007 
+0.63.0.00000314a0: 78887088 78897089 788a708a 788b708b 
+0.63.0.00000314b0: 790c710c 790d710d 790e710e 790f710f 
+0.63.0.00000314c0: 79107110 79917191 79927192 79937193 
+0.63.0.00000314d0: 79947194 79957195 7a167216 7a177217 
+0.63.0.00000314e0: 7a187218 7a197219 7a9a729a 7a9b729b 
+0.63.0.00000314f0: 7a9c729c 7a9d729d 7a9e729e 7b1f731f 
+0
+there is no error or warning
+========================= test pass =============================
+================================test run completed==============================

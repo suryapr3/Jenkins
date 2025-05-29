@@ -1,0 +1,100 @@
+table_util is a script to generate C header files from .xlsx or .csv file, it's located under folder:
+    /path/to/networking.wireless.radio.firmware.arborcrest/scripts/table_utils
+
+files included:
+    table_utils.py --- python script for .xlsx, .csv and .h file conversion, below are its modules:
+        pm/access_macros.py
+        pm/build_headers.py
+        pm/build_table_init.py
+        pm/build_html.py
+        pm/build_test.py
+        pm/build_xml.py
+        pm/converter.py
+        pm/style.py
+        pm/table_info.py
+        pm/util.py
+    table_utils.sh --- bash script to easy the usage of table_utils.py, should be put at the same place as table_utils.py, in executable search path create a link to this script to be used by make system or by command line
+    docs/table_temp.xlsx --- table template for demo purpose
+    docs/float_demo.xlsx --- table template for generating table with float/double type
+    docs/msg_demo.xlsx --- table template for generating message table
+    docs/table_utils.readme --- general workflow for using table_utils.py, same content as this wiki page
+
+normal work flow:
+    1. initially, we start with creating a .xlsx file manually to define table structure/info, each .xlsx file contains one special sheet named "address_size_layout" to specify tables layout/size, and multiple other sheets with each defines one table. these tables will sit in mem back to back to each other, for specific purpose
+    2. once .xlsx file is created, run the tool with --x2c to generate .csv, or with --x2h to directly generate .h files. the .csv file is used to easy GIT maintenance while .h files are the target header files
+    3. we can then store the .xlsx files somewhere or just discard them as we can regenerate them from the .csv files generated from above step.
+    4. later on, we just follow below flow:
+        a. generate .xlsx from .csv file by using --c2x switch with the tool
+        b. modify .xlsx file as needed --- easy to review/modify
+        c. generate .csv file from the updated .xlsx by using '--x2c' switch, this should update the .csv files
+        d. generate header files from .xlsx (with --x2h switch), this should update the .h files and also generate .c test file.
+           Note: step c and d can be combined by using option '--c2h' switch
+        e. the .xlsx file can be discard or shared for review purpose
+        f. check-in .csv and .h files if working as expected
+        g. there is no need to change any of the .h or .csv files manually
+
+input, option and output files:
+    .xlsx --> --x2h --> .h, and .c for testing
+    .xlsx --> --x2c --> .csv
+    .csv  --> --c2x --> .xlsx
+    .csv  --> --c2h --> .xlsx, .h, and .c for testing
+
+output files description:
+    .xlsx --- for manual editing/reviewing purpose
+    .csv --- for git maintenance
+    *_bitfield.h --- for bitfield struct
+    *_const.h --- for constant definition
+    *_table.h --- table and super table definition
+    *_data.h --- for initialization
+    *_enum.h --- if enum type is used in table
+    *_msg.h --- if --msg switch is used
+    one more .h if you specify -m/--macros, this header file will contains a set of macros for table access
+    *_test.c for testing purpose, it's put under /tmp folder. it will check some bit field settings based on default value settings from the table, also calculate the table size and check whether tables have oversized or not. by default, this .c test program is generated for using GCC toolset, by specifying option '--use_xtensa', the generated .c file will use compiler from XTENSA toolset.
+    *.xml --- if using --xml option, this saves table struct in xml format
+    *.html --- if using --html_dir option, this saves table struct in .html format at the folder specified by html_dir for review purpose
+
+short summary:
+    1. requirement for the initial .xlsx file:
+        a. follow the format as the template (file docs/table_temp.xlsx) shows, also refer to file docs/ABC_RF_table.pptx
+        b. each sheet name (except the special one named 'address_size_layout') should be the same as the table name it defines
+    2. the solely purpose of the generated .csv files is for GIT maintenance, you don't normally touch its content
+    3. the generated .xlsx files are for editing/reviewing purpose, after you modify the .xlsx file, you need to re-generate .csv and .h file to pick up your changes. the sheet name and its corresponding table name will be the same (the tool forced it this way, unless you changed them in your new updates)
+    4. you can always specify output folder to hold the result .csv or .h files by specifying '-d' switch followed by the name of your target folder
+    5. a test program will be automatically generated/run unless you specify option '--no_test'
+    6. a xml file for bit struct can be generated if specify '--xml' option
+    7. a html file for bit struct can be generated if specify '--html_dir' option
+    8. you can specify -m/--macros switch followed with a string to generate header file containing table access macros, the new generated header file will be named after the string you specified
+    9. command switch --msg is used for message related table processing, it only generated table header file (in case new enum type is used, *_enum.h will be generated as well)
+    10. run the tool with '-h' or '--help' option to get help info
+
+usage examples:
+    let's assume in your execution path you already created symbol link named 'table_utils' which points to 'table_utils.sh', and in your current folder you have your .xlsx file created with name 'demo_table.xlsx'.
+    example 1: generating .h files from .xlsx and save them in ./inc folder:
+        table_utils --x2h demo_table.xlsx -d inc
+    example 2: converting .xlsx file to .csv files and save them in ./csv folder:
+        table_utils --x2c demo_table.xlsx -d csv
+    example 3: if after example 2 you generated .csv files under ./csv and want to generate .h (save to folder ./inc) and .c files from those .csv files and save result .h files under ./inc:
+        table_utils --c2h ./csv -d inc
+        or
+        table_utils --c2h csv/ -d inc
+    example 4: in above example 1 and 3 the generated test .c file assuming GCC tool set, if you want to use XTENSA toolset then specify '--use_xtensa' option:
+        table_utils demo_table.xlsx -d inc --use_xtensa
+        or
+        table_utils --c2h csv -d inc --use_xtensa
+    example 5: you can also change the start address of the table by specifying a new address with option '-a' or a new data section name with option '-s', and specifying table length with option '-l':
+        table_utils demo_table.xlsx -a 0x10040000 -l 0xD000 --use_xtensa -d inc
+        or
+        table_utils --c2h csv/ -s .dram0.table.data -l 0xD000 --use_xtensa -d inc
+    example 6: in any example for generating .h files, you can use additional option '--html_dir' to also generate .html file or '--xml' for .xml file, the generated .xml files will be saved under current folder while .html will be under specficed folder:
+        table_utils demo_table.xlsx -d inc --html_dir out --xml
+        or
+        table_utils --c2h csv -d inc --use_xtensa --html_dir ./ --xml
+        or
+        table_utils --c2h csv/ -s .dram0.table.data -l 0xD000 --use_xtensa -d inc --html_dir output --xml
+    example 7: for message related table generation:
+        table_utils --x2h msg_demo.xlsx -d inc --msg req
+        or
+        table_utils --x2h msg_demo.xlsx -d inc --msg req --html_dir ./
+        or
+        table_utils --c2h csv -d inc --msg req --html_dir ./
+

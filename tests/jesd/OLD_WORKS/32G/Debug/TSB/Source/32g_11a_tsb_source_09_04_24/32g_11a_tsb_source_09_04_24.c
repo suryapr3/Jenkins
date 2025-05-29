@@ -1,0 +1,3221 @@
+
+/*********************************************************************************************
+*
+* INTEL CONFIDENTIAL
+*
+* Copyright (C) 2022 Intel Corporation
+*
+* This software and the related documents ("Material") are Intel copyrighted materials,
+* and your use of them is governed by the express license under which they were provided
+* to you ("License"). Unless the License provides otherwise, you may not use, modify,
+* copy, publish, distribute, disclose or transmit this software or the related documents
+* without Intel's prior written permission.
+* This software and the related documents are provided as is, with no express or implied
+* warranties, other than those that are expressly stated in the License.
+* No license under any patent, copyright, trade secret or other intellectual property
+* right is granted to or conferred upon you by disclosure or delivery of the Materials,
+* either expressly, by implication, inducement, estoppel or otherwise. Any license under
+* such intellectual property rights must be expressed and approved by Intel in writing.
+*
+*********************************************************************************************/
+/**
+* @file    16g_5c_dnrt-dnrt_via_gluelpbk_v2_19_02_24.c
+* @brief   dnrt to dnrt lpbk via glue
+* @details 1. Data is sent from dnrt, received at jesd_rx, loopback at glue_rx to glue_tx,
+  then to jesd_tx and then to dnrt_rx
+*/
+
+/*********************************************************************************************
+* LOCAL INCLUDE STATEMENTS                    *
+*********************************************************************************************/
+#define HIVE_MULTIPLE_PROGRAMS
+#include "srp.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <srp_vex.h>
+#include "logger.h"
+
+#include "srp_block_ids.h"
+#include "cli.h"
+#include "init.h"
+#include "all_comps.h"
+#include "common_functions.h"
+#include<time.h> 
+
+//test
+
+/***********************************************
+* LOCAL/PRIVATE MACROS AND DEFINES            *
+***********************************************/
+
+//#define printf LOG_PRINT
+
+#define prefill_rsb_zero           1
+#define enable_rsb_dump            1        //enable enable_rsb_cap
+#define enable_rsb_cap             1        //enable dump_rsb_valid
+#define rsb_32kb_1_stream          1        //RSB 1 stream, 32kb/16kb
+#define enable_glue_lpbk           0
+#define en_status_register_polling 0        //enable for glue lpbk, disable for rsb dump
+#define tsb_64kb_1_stream          1        //TSB 1 stream, 64kb/4kb
+#define tsb_capture_enabled        0
+#define tsb_dump_enabled           0
+#define prefill_tsb_zero           0
+#define prefil_tsb_data            1
+#define jesd_tx_to_rx_lpbk_en      1
+#define tsb_source_mode_en         1
+
+fpga_clk_and_sysref_period()
+{
+    system("frioPciWrite -F s5a1 -P 0x20000 0x14");
+    system("frioPciWrite -F s5b1 -P 0x20000 0x14");
+    system("frioPciWrite -F s5a1 -P 0x20004 0x1900190");
+    system("frioPciWrite -F s5b1 -P 0x20004 0x1900190");
+
+    //enable jesd_ip path or serial or parallel lpbk
+#if jesd_tx_to_rx_lpbk_en
+    printf("\n####jesd_tx to jesd_rx lpbk is enabled\n");
+    system("frioPciWrite -F s5a3 -P 0x20000 0x07"); //IP
+#else
+    printf("\n####jesd_tx to jesd_rx lpbk is disabled\n");
+    system("frioPciWrite -F s5a3 -P 0x20000 0x06"); //IP
+#endif
+    //system("frioPciWrite -F s5a3 -P 0x20000 0x0"); //Serial
+    //system("frioPciWrite -F s5a3 -P 0x20000 0x01"); //Parallel
+}
+
+fpga_provided_sysref()
+{
+    //enable sysref
+    system("frioPciWrite -F s5a1 -P 0x20000 0x94");
+    system("frioPciWrite -F s5b1 -P 0x20000 0x94");
+}
+
+void delay(unsigned int milliseconds){
+
+    clock_t start = clock();
+    while((clock() - start) * 1000 / CLOCKS_PER_SEC < milliseconds);
+}
+
+static int program_cmn_csr_rx_registers()
+{
+    int i=0;
+    uint32_t base_address_cmn[] = {DLNK_JESDABC0_CMN_CSR_BASE,  DLNK_JESDABC1_CMN_CSR_BASE,  DLNK_JESDABC2_CMN_CSR_BASE,  DLNK_JESDABC3_CMN_CSR_BASE};
+    printf("JESD CMN CSR CONFIG : program_cmn_csr_registers \n");
+
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_IP_CLK_CTRL_OFFSET, JESDABC_CMN_CSR_MEM_RX_IP_CLK_CTRL_DEFAULT, 0x00000004, 0x00000004, JESDABC_CMN_CSR_MEM_RX_IP_CLK_CTRL_RD_MASK, JESDABC_CMN_CSR_MEM_RX_IP_CLK_CTRL_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_IP_CLK_CTRL_OFFSET");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_SYSREF_TSAD_OFFSET, JESDABC_CMN_CSR_MEM_RX_SYSREF_TSAD_DEFAULT, 0x00000003, 0x00000003, JESDABC_CMN_CSR_MEM_RX_SYSREF_TSAD_RD_MASK, JESDABC_CMN_CSR_MEM_RX_SYSREF_TSAD_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_SYSREF_TSAD");
+
+        //bits 0-15 -> 1b, bits 16-31 -> b, so total is 0x0b001b
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CTRL_OFFSET, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CTRL_DEFAULT, 0x00030013, 0x00030013, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CTRL_RD_MASK, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CTRL_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CTRL");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_BFN_SYSREF_TSAD_OFFSET, JESDABC_CMN_CSR_MEM_RX_BFN_SYSREF_TSAD_DEFAULT, 0x00000003, 0x00000003, JESDABC_CMN_CSR_MEM_RX_BFN_SYSREF_TSAD_RD_MASK, JESDABC_CMN_CSR_MEM_RX_BFN_SYSREF_TSAD_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_BFN_SYSREF_TSAD");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CTRL_OFFSET, JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CTRL_DEFAULT, 0x00030013, 0x00030013, JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CTRL_RD_MASK, JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CTRL_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CTRL");
+
+        //this register can be ingnored as per RP, roshan 12/02/24
+        //write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_CLK_1P5G_DIV_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_RX_CLK_1P5G_DIV_ENABLE_DEFAULT, 0x00000018, 0x00000018, JESDABC_CMN_CSR_MEM_RX_CLK_1P5G_DIV_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_RX_CLK_1P5G_DIV_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_CLK_1P5G_DIV_ENABLE");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_CLK_GEN_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_RX_CLK_GEN_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_RX_CLK_GEN_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_RX_CLK_GEN_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_CLK_GEN_ENABLE");
+
+        //this register can be ingnored as per RP, roshan 12/02/24
+        //write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CNT_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CNT_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CNT_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CNT_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_BFN_SYNC_POINT_CNT_ENABLE");
+    }
+}
+
+static int program_cmn_csr_tx_registers()
+{
+    int i=0;
+    uint32_t base_address_cmn[] = {DLNK_JESDABC0_CMN_CSR_BASE,  DLNK_JESDABC1_CMN_CSR_BASE,  DLNK_JESDABC2_CMN_CSR_BASE,  DLNK_JESDABC3_CMN_CSR_BASE};
+    printf("JESD CMN CSR CONFIG : program_cmn_csr_registers \n");
+
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_NUM_VALID_STR_OFFSET, JESDABC_CMN_CSR_MEM_TX_NUM_VALID_STR_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_TX_NUM_VALID_STR_RD_MASK, JESDABC_CMN_CSR_MEM_TX_NUM_VALID_STR_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_NUM_VALID_STR");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_IP_CLK_CTRL_OFFSET, JESDABC_CMN_CSR_MEM_TX_IP_CLK_CTRL_DEFAULT, 0x00000004, 0x00000004, JESDABC_CMN_CSR_MEM_TX_IP_CLK_CTRL_RD_MASK, JESDABC_CMN_CSR_MEM_TX_IP_CLK_CTRL_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_IP_CLK_CTRL");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_SYSREF_TSAD_OFFSET, JESDABC_CMN_CSR_MEM_TX_SYSREF_TSAD_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_TX_SYSREF_TSAD_RD_MASK, JESDABC_CMN_CSR_MEM_TX_SYSREF_TSAD_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_SYSREF_TSAD");
+
+        //bits 0-15 -> 1b, bits 16-31 -> b, so total is 0x0b001b
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_SYNC_POINT_CTRL_OFFSET, JESDABC_CMN_CSR_MEM_TX_SYNC_POINT_CTRL_DEFAULT, 0x0001000b, 0x0001000b, JESDABC_CMN_CSR_MEM_TX_SYNC_POINT_CTRL_RD_MASK, JESDABC_CMN_CSR_MEM_TX_SYNC_POINT_CTRL_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_SYNC_POINT_CTRL");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_BFN_SYSREF_TSAD_OFFSET, JESDABC_CMN_CSR_MEM_TX_BFN_SYSREF_TSAD_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_TX_BFN_SYSREF_TSAD_RD_MASK, JESDABC_CMN_CSR_MEM_TX_BFN_SYSREF_TSAD_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_BFN_SYSREF_TSAD");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CTRL_OFFSET, JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CTRL_DEFAULT, 0x0001000b, 0x0001000b, JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CTRL_RD_MASK, JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CTRL_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CTRL");
+
+        //this register can be ingnored as per RP, roshan 12/02/24
+        //write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_CLK_1P5G_DIV_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_TX_CLK_1P5G_DIV_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_TX_CLK_1P5G_DIV_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_RX_CLK_1P5G_DIV_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_CLK_1P5G_DIV_ENABLE");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_CLK_GEN_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_TX_CLK_GEN_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_TX_CLK_GEN_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_TX_CLK_GEN_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_CLK_GEN_ENABLE");
+
+        //this register can be ingnored as per RP, roshan 12/02/24
+        //write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_RX_SYNC_POINT_CNT_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_SYNC_POINT_CNT_ENABLE");
+        write_read_expect_18a(base_address_cmn[i]+JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CNT_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CNT_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CNT_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CNT_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_BFN_SYNC_POINT_CNT_ENABLE");
+
+    }
+}
+
+// JESD RX reg
+static int program_rx_ip_registers()
+{
+    int i=0;
+    uint32_t base_address_rx[] = {DLNK_JESDABC0_XIP_204C_RX_BASE,  DLNK_JESDABC1_XIP_204C_RX_BASE,  DLNK_JESDABC2_XIP_204C_RX_BASE,  DLNK_JESDABC3_XIP_204C_RX_BASE};
+    printf("JESD RX IP CONFIG : program_rx_ip_registers \n");
+    //for(i=0; i<sizeof(base_address_rx) / sizeof(base_address_rx[0]); i++)
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_SUBCLASS_OFFSET, JESD_XIP_204C_RX_MEM_RX_SUBCLASS_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_RX_MEM_RX_SUBCLASS_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_SUBCLASS_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_SUBCLASS_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_FEC_OFFSET, JESD_XIP_204C_RX_MEM_RX_FEC_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_FEC_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_FEC_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_FEC_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_CRC3_EN_OFFSET, JESD_XIP_204C_RX_MEM_RX_CRC3_EN_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_CRC3_EN_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_CRC3_EN_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_CRC3_EN_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_CRC12_EN_OFFSET, JESD_XIP_204C_RX_MEM_RX_CRC12_EN_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_CRC12_EN_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_CRC12_EN_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_CRC12_EN_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_BIT_ORDER_OFFSET, JESD_XIP_204C_RX_MEM_RX_BIT_ORDER_REG_DEFAULT, 0x00000003, 0x00000003, JESD_XIP_204C_RX_MEM_RX_BIT_ORDER_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_BIT_ORDER_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_BIT_ORDER_OFFSET");
+
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_E_OFFSET, JESD_XIP_204C_RX_MEM_RX_E_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_E_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_E_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_E_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_CF_OFFSET, JESD_XIP_204C_RX_MEM_RX_CF_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_CF_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_CF_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_CF_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_HD_OFFSET, JESD_XIP_204C_RX_MEM_RX_HD_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_RX_MEM_RX_HD_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_HD_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_HD_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_CMD_EN_OFFSET, JESD_XIP_204C_RX_MEM_RX_CMD_EN_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_CMD_EN_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_CMD_EN_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_CMD_EN_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_CLK_RATIO_OFFSET, JESD_XIP_204C_RX_MEM_RX_CLK_RATIO_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_CLK_RATIO_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_CLK_RATIO_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_CLK_RATIO_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_S_OFFSET, JESD_XIP_204C_RX_MEM_RX_S_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_S_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_S_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_S_OFFSET");
+
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_SONIF_OFFSET, JESD_XIP_204C_RX_MEM_RX_SONIF_REG_DEFAULT, 0x00000043, 0x00000043, JESD_XIP_204C_RX_MEM_RX_SONIF_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_SONIF_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_SONIF_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_N_OFFSET, JESD_XIP_204C_RX_MEM_RX_N_REG_DEFAULT, 0x0000000f, 0x0000000f, JESD_XIP_204C_RX_MEM_RX_N_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_N_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_N_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_NTOTAL_OFFSET, JESD_XIP_204C_RX_MEM_RX_NTOTAL_REG_DEFAULT, 0x0000000f, 0x0000000f, JESD_XIP_204C_RX_MEM_RX_NTOTAL_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_NTOTAL_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_NTOTAL_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_CS_OFFSET, JESD_XIP_204C_RX_MEM_RX_CS_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_CS_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_CS_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_CS_OFFSET");
+
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_TL_TEST_MODE_OFFSET, JESD_XIP_204C_RX_MEM_RX_TL_TEST_MODE_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_RX_MEM_RX_TL_TEST_MODE_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_TL_TEST_MODE_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_TL_TEST_MODE_OFFSET");
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_SCR_OFFSET, JESD_XIP_204C_RX_MEM_RX_SCR_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_RX_MEM_RX_SCR_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_SCR_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_SCR_OFFSET");
+
+        printf("JESD RX path - UC 11a 32G -LMFS -2-2-2-1 - IQ bandwidth -\n");
+        write_read_expect_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_L_OFFSET, JESD_XIP_204C_RX_MEM_RX_L_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_RX_MEM_RX_L_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_L_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_L_OFFSET");
+        write_read_expect_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_M_OFFSET, JESD_XIP_204C_RX_MEM_RX_M_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_RX_MEM_RX_M_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_M_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_M_OFFSET");
+        write_read_expect_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_F_OFFSET, JESD_XIP_204C_RX_MEM_RX_F_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_RX_MEM_RX_F_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_F_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_F_OFFSET");
+
+        write_read_expect_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_THRESH_EMB_ERR_OFFSET, JESD_XIP_204C_RX_MEM_RX_THRESH_EMB_ERR_REG_DEFAULT, 0x00000003, 0x00000003, JESD_XIP_204C_RX_MEM_RX_THRESH_EMB_ERR_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_THRESH_EMB_ERR_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_THRESH_EMB_ERR_OFFSET");
+        write_read_expect_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_THRESH_SH_ERR_OFFSET, JESD_XIP_204C_RX_MEM_RX_THRESH_SH_ERR_REG_DEFAULT, 0x00000003, 0x00000003, JESD_XIP_204C_RX_MEM_RX_THRESH_SH_ERR_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_THRESH_SH_ERR_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_THRESH_SH_ERR_OFFSET");
+    }
+}
+
+// JESD TX reg
+static int program_tx_ip_registers()
+{
+    int i=0;
+    uint32_t base_address_tx[] = {DLNK_JESDABC0_XIP_204C_TX_BASE,  DLNK_JESDABC1_XIP_204C_TX_BASE,  DLNK_JESDABC2_XIP_204C_TX_BASE,  DLNK_JESDABC3_XIP_204C_TX_BASE};
+    printf("JESD TX IP CONFIG : program_tx_ip_registers \n");
+
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_SUBCLASS_OFFSET, JESD_XIP_204C_TX_MEM_TX_SUBCLASS_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_TX_MEM_TX_SUBCLASS_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_SUBCLASS_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_SUBCLASS_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_FEC_OFFSET, JESD_XIP_204C_TX_MEM_TX_FEC_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_FEC_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_FEC_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_FEC_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_CRC3_EN_OFFSET, JESD_XIP_204C_TX_MEM_TX_CRC3_EN_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_CRC3_EN_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_CRC3_EN_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_CRC3_EN_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_CRC12_EN_OFFSET, JESD_XIP_204C_TX_MEM_TX_CRC12_EN_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_CRC12_EN_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_CRC12_EN_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_CRC12_EN_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_BIT_ORDER_OFFSET, JESD_XIP_204C_TX_MEM_TX_BIT_ORDER_REG_DEFAULT, 0x00000003, 0x00000003, JESD_XIP_204C_TX_MEM_TX_BIT_ORDER_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_BIT_ORDER_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_BIT_ORDER_OFFSET");
+        
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_E_OFFSET, JESD_XIP_204C_TX_MEM_TX_E_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_E_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_E_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_E_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_CF_OFFSET, JESD_XIP_204C_TX_MEM_TX_CF_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_CF_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_CF_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_CF_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_HD_OFFSET, JESD_XIP_204C_TX_MEM_TX_HD_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_TX_MEM_TX_HD_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_HD_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_HD_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_CMD_EN_OFFSET, JESD_XIP_204C_TX_MEM_TX_CMD_EN_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_CMD_EN_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_CMD_EN_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_CMD_EN_OFFSET");
+
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_SONIF_OFFSET, JESD_XIP_204C_TX_MEM_TX_SONIF_REG_DEFAULT, 0x00000043, 0x00000043, JESD_XIP_204C_TX_MEM_TX_SONIF_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_SONIF_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_SONIF_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_N_OFFSET, JESD_XIP_204C_TX_MEM_TX_N_REG_DEFAULT, 0x0000000f, 0x0000000f, JESD_XIP_204C_TX_MEM_TX_N_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_N_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_N_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_NTOTAL_OFFSET, JESD_XIP_204C_TX_MEM_TX_NTOTAL_REG_DEFAULT, 0x0000000f, 0x0000000f, JESD_XIP_204C_TX_MEM_TX_NTOTAL_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_NTOTAL_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_NTOTAL_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_CS_OFFSET, JESD_XIP_204C_TX_MEM_TX_CS_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_CS_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_CS_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_CS_OFFSET");
+        write_read_expect_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_SAMPLE_REQ_OFFSET, JESD_XIP_204C_TX_MEM_TX_SAMPLE_REQ_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_SAMPLE_REQ_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_SAMPLE_REQ_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_SAMPLE_REQ_REG");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_TL_TEST_MODE_OFFSET, JESD_XIP_204C_TX_MEM_TX_TL_TEST_MODE_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_TL_TEST_MODE_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_TL_TEST_MODE_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_TL_TEST_MODE_OFFSET");
+
+        printf("JESD TX path - UC 11a 32G -LMFS -2-2-2-1 - IQ bandwidth -\n");
+        write_read_expect_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_L_OFFSET, JESD_XIP_204C_TX_MEM_TX_L_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_TX_MEM_TX_L_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_L_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_L_OFFSET");
+        write_read_expect_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_M_OFFSET, JESD_XIP_204C_TX_MEM_TX_M_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_TX_MEM_TX_M_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_M_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_M_OFFSET");
+        write_read_expect_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_F_OFFSET, JESD_XIP_204C_TX_MEM_TX_F_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_TX_MEM_TX_F_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_F_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_F_OFFSET");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_S_OFFSET, JESD_XIP_204C_TX_MEM_TX_S_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_S_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_S_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_S_OFFSET");
+
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_CLK_RATIO_OFFSET, JESD_XIP_204C_TX_MEM_TX_CLK_RATIO_REG_DEFAULT, 0x00000000, 0x00000000, JESD_XIP_204C_TX_MEM_TX_CLK_RATIO_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_CLK_RATIO_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_CLK_RATIO_OFFSET");
+        write_read_expect_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_TL_LATENCY_OFFSET, JESD_XIP_204C_TX_MEM_TX_TL_LATENCY_REG_DEFAULT, 0x0000000a, 0x0000000a, JESD_XIP_204C_TX_MEM_TX_TL_LATENCY_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_TL_LATENCY_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_TL_LATENCY_REG");
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_SCR_OFFSET, JESD_XIP_204C_TX_MEM_TX_SCR_REG_DEFAULT, 0x00000001, 0x00000001, JESD_XIP_204C_TX_MEM_TX_SCR_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_SCR_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_SCR_OFFSET");
+    }
+}
+
+// JESD RX glue reg
+static int program_crux_clk_csr_rx_registers()
+{
+    int i=0;
+    uint32_t base_address_crux_clk_csr[] = {DLNK_JESDABC0_CRUX_CLK_CSR_BASE,  DLNK_JESDABC1_CRUX_CLK_CSR_BASE,  DLNK_JESDABC2_CRUX_CLK_CSR_BASE,  DLNK_JESDABC3_CRUX_CLK_CSR_BASE};
+    printf("###### : program_crux_clk-csr_registers \n");
+
+    for(i=0; i<1; i++)
+    {
+       //keeping only 1 stream and commenting out other streams for 18a now, roshan 01/12/23
+       //enabling for 8 streams, 14/12/23
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RX_WR_MEM_TBL0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RX_WR_MEM_TBL_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RX_WR_MEM_TBL_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RX_WR_MEM_TBL_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RX_WR_MEM_TBL0");
+
+        //keeping only 1 stream and commenting out other streams for 18a now, roshan 01/12/23
+        //enabling for 8 streams, 14/12/23
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RX_RD_MEM_TBL0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RX_RD_MEM_TBL_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RX_RD_MEM_TBL_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RX_RD_MEM_TBL_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RX_RD_MEM_TBL0");
+
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_CFG_DEFAULT, 0x000000e1, 0x000000e1, JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_CFG");
+
+#if rsb_32kb_1_stream
+        //configure 1ff for 1 stream and 32kb allocation
+        printf("\n#### 1 stream usecase RSB 32kb allocated\n");
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG_DEFAULT, 0x000001ff, 0x000001ff, JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG");
+#else
+        //configure ff for 1 stream and only 16kb allocation
+        printf("\n#### 1 stream usecase RSB 16kb allocated\n");
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG_DEFAULT, 0x000000ff, 0x000000ff, JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RX_MEM_STREAM_CFG");
+#endif
+    }
+}
+
+static int program_crux_clk_csr_tx_registers()
+{
+        int i=0;
+    uint32_t base_address_crux_clk_csr[] = {DLNK_JESDABC0_CRUX_CLK_CSR_BASE,  DLNK_JESDABC1_CRUX_CLK_CSR_BASE,  DLNK_JESDABC2_CRUX_CLK_CSR_BASE,  DLNK_JESDABC3_CRUX_CLK_CSR_BASE};
+    printf("###### : program_crux_clk-csr_tx_registers \n");
+
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_ADDR0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_ADDR_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_ADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_ADDR_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_ADDR0");
+
+#if tsb_64kb_1_stream
+        //changing from 4kb per stream to 64kb per stream for usecase 11a
+        printf("###### TSB 64kb allocated \n");
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE_DEFAULT, 0x0000ffff, 0x0000ffff, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE0");
+#else
+        //changing to 4kb per stream 0x00000fff
+        printf("###### TSB 4kb allocated \n");
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE_DEFAULT, 0x00000fff, 0x00000fff, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_SIZE0");
+#endif
+
+
+#if tsb_64kb_1_stream
+        //changing from 4kb per stream to 64kb per stream for usecase 11a
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_REG_DEFAULT, 0x00037fff, 0x00037fff, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_REG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_REG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_REG");
+#else
+        //changing to 4kb per stream
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_REG_DEFAULT, 0x000307ff, 0x000307ff, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_REG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_REG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_TRIG_EN_REG");
+#endif
+    }
+}
+
+static int program_rx_glue_registers()
+{
+    int i=0;
+    uint32_t base_rx_glue[] = {DLNK_JESDABC0_RX_GLUE_BASE,  DLNK_JESDABC1_RX_GLUE_BASE,  DLNK_JESDABC2_RX_GLUE_BASE,  DLNK_JESDABC3_RX_GLUE_BASE};
+    printf("JESD RX GLUE CONFIG : program_rx_glue_registers \n");
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_rx_glue[i]+JESDABC_RX_GLUE_MEM_RX_GLUE_SONI_OFFSET, JESDABC_RX_GLUE_MEM_RX_GLUE_SONI_DEFAULT, 0x00000004, 0x00000004, JESDABC_RX_GLUE_MEM_RX_GLUE_SONI_RD_MASK, JESDABC_RX_GLUE_MEM_RX_GLUE_SONI_WR_MASK, "RX_GLUE_MEM_RX_GLUE_SONI");
+        write_read_expect_18a(base_rx_glue[i]+JESDABC_RX_GLUE_MEM_RX_DATAPATH_GATE_SEL_OFFSET, JESDABC_RX_GLUE_MEM_RX_DATAPATH_GATE_SEL_DEFAULT, 0x00000001, 0x00000001, JESDABC_RX_GLUE_MEM_RX_DATAPATH_GATE_SEL_RD_MASK, JESDABC_RX_GLUE_MEM_RX_DATAPATH_GATE_SEL_WR_MASK, "RX_DATAPATH_GATE_SEL");
+        write_read_expect_18a(base_rx_glue[i]+JESDABC_RX_GLUE_MEM_RX_DATAPATH_INIT_CYC_CNT_OFFSET, JESDABC_RX_GLUE_MEM_RX_DATAPATH_INIT_CYC_CNT_DEFAULT, 0x00000100, 0x00000100, JESDABC_RX_GLUE_MEM_RX_DATAPATH_INIT_CYC_CNT_RD_MASK, JESDABC_RX_GLUE_MEM_RX_DATAPATH_INIT_CYC_CNT_WR_MASK, "RX_DATAPATH_INIT_CYC_CNT");
+    }
+}
+
+static int program_tx_glue_registers()
+{
+    int i=0;
+    uint32_t base_tx_glue[] = {DLNK_JESDABC0_TX_GLUE_BASE,  DLNK_JESDABC1_TX_GLUE_BASE,  DLNK_JESDABC2_TX_GLUE_BASE,  DLNK_JESDABC3_TX_GLUE_BASE};
+    printf("JESD TX GLUE CONFIG : program_tx_glue_registers \n");
+    for(i=0; i<1; i++)
+    {
+#if tsb_64kb_1_stream
+        //for 11a, 1 stream only and allocating all 16blocks to 1 stream, so giving 0x10,
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT_OFFSET, JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT_DEFAULT, 0x00000010, 0x00000010, JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT_RD_MASK, JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT");
+#else
+        //for 1 block give 0x1
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT_OFFSET, JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT_DEFAULT, 0x00000001, 0x00000001, JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT_RD_MASK, JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_STRM_MEM_INST_CNT");
+#endif
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_CONV_DP_CFG_OFFSET, JESDABC_TX_GLUE_MEM_TX_CONV_DP_CFG_DEFAULT, 0x00000124, 0x00000124, JESDABC_TX_GLUE_MEM_TX_CONV_DP_CFG_RD_MASK, JESDABC_TX_GLUE_MEM_TX_CONV_DP_CFG_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_CONV_DP_CFG");
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_MEM_RD_FREQ_CFG_OFFSET, JESDABC_TX_GLUE_MEM_TX_MEM_RD_FREQ_CFG_DEFAULT, 0x00000003, 0x00000003, JESDABC_TX_GLUE_MEM_TX_MEM_RD_FREQ_CFG_RD_MASK, JESDABC_TX_GLUE_MEM_TX_MEM_RD_FREQ_CFG_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_MEM_RD_FREQ_CFG");
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_STRM_PHM_EN_OFFSET, JESDABC_TX_GLUE_MEM_TX_STRM_PHM_EN_DEFAULT, 0x00000000, 0x00000000, JESDABC_TX_GLUE_MEM_TX_STRM_PHM_EN_RD_MASK, JESDABC_TX_GLUE_MEM_TX_STRM_PHM_EN_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_STRM_PHM_EN");
+
+        
+        //###########
+        //bits 5:4
+        //html values                            //rtl values                      //register program value
+        // 00 - delayed trigger                  //delayed trigger                 //0x00000004
+        // 01 - BFN trigger                      //bfn trigger                     //0x00000014
+        // 10 - software trigger                 //always enabled for tsb data     //0x00000024
+        // 11 - always enabled for tsb data      //software trigger                //0x00000034
+        //as per rtl values 0x24 should be for tsb always enabled and 0x34 for software trigger
+        //#################
+
+        //for tsb source mode, we need software trigger for trigger 0 and trigger 1, so 0x3c
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_DATAPATH_GATE_SEL_OFFSET, JESDABC_TX_GLUE_MEM_TX_DATAPATH_GATE_SEL_DEFAULT, 0x0000003c, 0x0000003c, JESDABC_TX_GLUE_MEM_TX_DATAPATH_GATE_SEL_RD_MASK, JESDABC_TX_GLUE_MEM_TX_DATAPATH_GATE_SEL_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DATAPATH_GATE_SEL");
+
+#if tsb_source_mode_en
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_OFFSET, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_DEFAULT, 0x00000001, 0x00000001, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_RD_MASK, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN");
+#endif
+
+#if tsb_capture_enabled
+        printf("\ntsb capture is enabled\n");
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_CAPTURE_FRZ_EN_OFFSET, JESDABC_TX_GLUE_MEM_TX_CAPTURE_FRZ_EN_DEFAULT, 0x00000001, 0x00000001, JESDABC_TX_GLUE_MEM_TX_CAPTURE_FRZ_EN_RD_MASK, JESDABC_TX_GLUE_MEM_TX_CAPTURE_FRZ_EN_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_CAPTURE_FRZ_EN");
+#else
+        printf("\ntsb capture is not enabled\n");
+#endif
+    }
+}
+
+// JESD enable reg
+static int program_enable_registers()
+{
+    int i,j = 0;
+    uint32_t base_address_rx[] = {DLNK_JESDABC0_XIP_204C_RX_BASE,  DLNK_JESDABC1_XIP_204C_RX_BASE,  DLNK_JESDABC2_XIP_204C_RX_BASE,  DLNK_JESDABC3_XIP_204C_RX_BASE};
+    uint32_t base_address_tx[] = {DLNK_JESDABC0_XIP_204C_TX_BASE,  DLNK_JESDABC1_XIP_204C_TX_BASE,  DLNK_JESDABC2_XIP_204C_TX_BASE,  DLNK_JESDABC3_XIP_204C_TX_BASE};
+    printf("JESD ENABLE : program_enable_registers \n");
+
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_address_tx[i]+JESD_XIP_204C_TX_MEM_TX_ENABLEMODULE_OFFSET, JESD_XIP_204C_TX_MEM_TX_ENABLEMODULE_REG_DEFAULT, 0x1, 0x1, JESD_XIP_204C_TX_MEM_TX_ENABLEMODULE_REG_RD_MASK, JESD_XIP_204C_TX_MEM_TX_ENABLEMODULE_REG_WR_MASK, "JESD_XIP_204C_TX_MEM_TX_ENABLEMODULE_OFFSET");
+    }
+
+    for(i=0; i<1; i++)
+    { 
+        write_read_expect_18a(base_address_rx[i]+JESD_XIP_204C_RX_MEM_RX_ENABLEMODULE_OFFSET, JESD_XIP_204C_RX_MEM_RX_ENABLEMODULE_REG_DEFAULT, 0x1, 0x1, JESD_XIP_204C_RX_MEM_RX_ENABLEMODULE_REG_RD_MASK, JESD_XIP_204C_RX_MEM_RX_ENABLEMODULE_REG_WR_MASK, "JESD_XIP_204C_RX_MEM_RX_ENABLEMODULE_OFFSET");
+    }
+}
+
+//############################
+#if prefill_tsb_zero
+static int prefil_tsb_zero()
+{
+    int m=0;
+    uint32_t value38 = 0;
+    uint32_t value39 = 0;
+    uint32_t value40 = 0;
+    uint32_t value41 = 0;
+    uint32_t value42 = 0;
+    uint32_t value43 = 0;
+    uint32_t value44 = 0;
+    uint32_t value45 = 0;
+    int fill_level0 = 0;
+    int fill_level1 = 0;
+    int fill_level2 = 0;
+    int fill_level3 = 0;
+    int fill_level4 = 0;
+    int fill_level5 = 0;
+    int fill_level6 = 0;
+    int fill_level7 = 0;
+    uint32_t stream0_buffer = 0;
+    uint32_t stream1_buffer = 0;
+    uint32_t stream2_buffer = 0;
+    uint32_t stream3_buffer = 0;
+    uint32_t stream4_buffer = 0;
+    uint32_t stream5_buffer = 0;
+    uint32_t stream6_buffer = 0;
+    uint32_t stream7_buffer = 0;
+    uint32_t stream8_buffer = 0;
+    uint32_t stream9_buffer = 0;
+    uint32_t stream10_buffer = 0;
+    uint32_t stream11_buffer = 0;
+    uint32_t stream12_buffer = 0;
+    uint32_t stream13_buffer = 0;
+    uint32_t stream14_buffer = 0;
+    uint32_t stream15_buffer = 0;
+    int flit_count = 0;
+    int wr_addr = 0x0;
+    uint32_t base_address_crux_clk_csr[] = {DLNK_JESDABC0_CRUX_CLK_CSR_BASE,  DLNK_JESDABC1_CRUX_CLK_CSR_BASE,  DLNK_JESDABC2_CRUX_CLK_CSR_BASE,  DLNK_JESDABC3_CRUX_CLK_CSR_BASE};
+    uint32_t base_tx_glue[] = {DLNK_JESDABC0_TX_GLUE_BASE,  DLNK_JESDABC1_TX_GLUE_BASE,  DLNK_JESDABC2_TX_GLUE_BASE,  DLNK_JESDABC3_TX_GLUE_BASE};
+
+    printf("Loading TSB's all buffers with 0s\n");
+    for(m=0; m<1; m++)
+    {
+        write_read_expect_18a(base_tx_glue[m]+JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_OFFSET, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_DEFAULT, 0x00000001, 0x00000001, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_RD_MASK, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN");
+
+       //prefill buffer0
+       for(flit_count=0; flit_count < 64; flit_count++)
+       {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 6);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###buffer0\n");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            delay(500);
+        }
+
+       //prefill buffer 1
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 7);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer1");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+            
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+       }
+
+        //prefill buffer 2
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 8);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("\n###buffer2");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 3
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 9);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer3");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 4
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 10);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer4");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 5
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 11);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer5");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 6
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 12);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer6");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 7
+        for(flit_count=0; flit_count < 64; flit_count++)
+            {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 13);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 8
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 14);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer8");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 9
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 15);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer9");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 10
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 16);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer10");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 11
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 17);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer11");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 12
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 18);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer12");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 13
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 19);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer13");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+            
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 14
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 20);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer14");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+            
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 15
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 21);
+            //printf("wr_addr is %x\n",wr_addr);
+            printf("###\nbuffer15");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000,0x00000000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+        write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        write_read_expect_18a(base_tx_glue[m]+JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_OFFSET, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_DEFAULT, 0x00000000, 0x00000000, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_RD_MASK, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN");
+    }
+}
+#endif
+
+//############################
+
+
+#if prefil_tsb_data
+static int prefill_tsb_data()
+{
+    int m=0;
+    uint32_t value38 = 0;
+    uint32_t value39 = 0;
+    uint32_t value40 = 0;
+    uint32_t value41 = 0;
+    uint32_t value42 = 0;
+    uint32_t value43 = 0;
+    uint32_t value44 = 0;
+    uint32_t value45 = 0;
+    int fill_level0 = 0;
+    int fill_level1 = 0;
+    int fill_level2 = 0;
+    int fill_level3 = 0;
+    int fill_level4 = 0;
+    int fill_level5 = 0;
+    int fill_level6 = 0;
+    int fill_level7 = 0;
+    uint32_t stream0_buffer = 0;
+    uint32_t stream1_buffer = 0;
+    uint32_t stream2_buffer = 0;
+    uint32_t stream3_buffer = 0;
+    uint32_t stream4_buffer = 0;
+    uint32_t stream5_buffer = 0;
+    uint32_t stream6_buffer = 0;
+    uint32_t stream7_buffer = 0;
+    uint32_t stream8_buffer = 0;
+    uint32_t stream9_buffer = 0;
+    uint32_t stream10_buffer = 0;
+    uint32_t stream11_buffer = 0;
+    uint32_t stream12_buffer = 0;
+    uint32_t stream13_buffer = 0;
+    uint32_t stream14_buffer = 0;
+    uint32_t stream15_buffer = 0;
+    int flit_count = 0;
+    int wr_addr = 0x0;
+    uint32_t base_address_crux_clk_csr[] = {DLNK_JESDABC0_CRUX_CLK_CSR_BASE,  DLNK_JESDABC1_CRUX_CLK_CSR_BASE,  DLNK_JESDABC2_CRUX_CLK_CSR_BASE,  DLNK_JESDABC3_CRUX_CLK_CSR_BASE};
+    uint32_t base_tx_glue[] = {DLNK_JESDABC0_TX_GLUE_BASE,  DLNK_JESDABC1_TX_GLUE_BASE,  DLNK_JESDABC2_TX_GLUE_BASE,  DLNK_JESDABC3_TX_GLUE_BASE};
+
+    printf("Loading TSB with valid data\n");
+    for(m=0; m<1; m++)
+    {
+        write_read_expect_18a(base_tx_glue[m]+JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_OFFSET, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_DEFAULT, 0x00000001, 0x00000001, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_RD_MASK, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN");
+
+        //prefill buffer 0.1
+        for(flit_count=0; flit_count < 1; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 6);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###buffer0\n");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00010000, 0x00010000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00030002, 0x00030002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00050004, 0x00050004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00070006, 0x00070006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00090008, 0x00090008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x000b000a, 0x000b000a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x000d000c, 0x000d000c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x000f000e, 0x000f000e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00110010, 0x00110010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00130012, 0x00130012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00150014, 0x00150014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00170016, 0x00170016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00190018, 0x00190018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x001b001a, 0x001b001a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x001d001c, 0x001d001c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x001f001e, 0x001f001e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            delay(500);
+        }
+        //prefill buffer 0.2
+        for(flit_count=1; flit_count < 2; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 6);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###buffer0\n");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00210020, 0x00210020,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00230022, 0x00230022, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00250024, 0x00250024, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00270026, 0x00270026, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00290028, 0x00290028, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x002b002a, 0x002b002a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x002d002c, 0x002d002c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x002f002e, 0x002f002e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00310030, 0x00310030, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00330032, 0x00330032, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00350034, 0x00350034, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00370036, 0x00370036, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00390038, 0x00390038, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x003b003a, 0x003b003a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x003d003c, 0x003d003c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x003f003e, 0x003f003e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            delay(500);
+        }
+        //prefill buffer 0.3
+        for(flit_count=2; flit_count < 3; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 6);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###buffer0\n");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00410040, 0x00410040,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00430042, 0x00430042, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00450044, 0x00450044, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00470046, 0x00470046, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00490048, 0x00490048, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x004b004a, 0x004b004a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x004d004c, 0x004d004c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x004f004e, 0x004f004e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00510050, 0x00510050, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00530052, 0x00530052, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00550054, 0x00550054, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00570056, 0x00570056, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00590058, 0x00590058, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x005b005a, 0x005b005a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x005d005c, 0x005d005c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x005f005e, 0x005f005e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            delay(500);
+        }
+        //prefill buffer 0.4
+        for(flit_count=3; flit_count < 4; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 6);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###buffer0\n");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00610060, 0x00610060,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00630062, 0x00630062, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00650064, 0x00650064, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00670066, 0x00670066, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00690068, 0x00690068, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x006b006a, 0x006b006a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x006d006c, 0x006d006c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x006f006e, 0x006f006e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00710070, 0x00710070, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00730072, 0x00730072, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00750074, 0x00750074, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00770076, 0x00770076, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00790078, 0x00790078, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x007b007a, 0x007b007a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x007d007c, 0x007d007c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x007f007e, 0x007f007e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            delay(500);
+        }
+
+//prefill buffer 0 4-64
+        for(flit_count=4; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 6);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###buffer0\n");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00810080, 0x00810080,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00830082, 0x00830082, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00850084, 0x00850084, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00870086, 0x00870086, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00890088, 0x00890088, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x008b008a, 0x008b008a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x008d008c, 0x008d008c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x008f008e, 0x008f008e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00910090, 0x00910090, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00930092, 0x00930092, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00950094, 0x00950094, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00970096, 0x00970096, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x00990098, 0x00990098, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x009b009a, 0x009b009a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x009d009c, 0x009d009c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x009f009e, 0x009f009e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            delay(500);
+        }
+
+        //prefill buffer 1  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 7);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer1");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10011000, 0x10011000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10031002, 0x10031002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10051004, 0x10051004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10071006, 0x10071006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10091008, 0x10091008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x100b100a, 0x100b100a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x100d100c, 0x100d100c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x100f100e, 0x100f100e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10111010, 0x10111010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10131012, 0x10131012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10151014, 0x10151014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10171016, 0x10171016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x10191018, 0x10191018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x101b101a, 0x101b101a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x101d101c, 0x101d101c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x101f101e, 0x101f101e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 2  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 8);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("\n###buffer2");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20012000, 0x20012000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20032002, 0x20032002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20052004, 0x20052004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20072006, 0x20072006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20092008, 0x20092008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x200b200a, 0x200b200a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x200d200c, 0x200d200c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x200f200e, 0x200f200e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20112010, 0x20112010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20132012, 0x20132012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20152014, 0x20152014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20172016, 0x20172016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x20192018, 0x20192018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x201b201a, 0x201b201a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x201d201c, 0x201d201c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x201f201e, 0x201f201e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 3  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 9);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer3");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30013000, 0x30013000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30033002, 0x30033002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30053004, 0x30053004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30073006, 0x30073006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30093008, 0x30093008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x300b300a, 0x300b300a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x300d300c, 0x300d300c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x300f300e, 0x300f300e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30113010, 0x30113010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30133012, 0x30133012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30153014, 0x30153014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30173016, 0x30173016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x30193018, 0x30193018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x301b301a, 0x301b301a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x301d301c, 0x301d301c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x301f301e, 0x301f301e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 4  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 10);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer4");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40014000,0x40014000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40034002, 0x40034002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40054004, 0x40054004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40074006, 0x40074006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40094008, 0x40094008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x400b400a, 0x400b400a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x400d400c, 0x400d400c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x400f400e, 0x400f400e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40114010, 0x40114010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40134012, 0x40134012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40154014, 0x40154014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40174016, 0x40174016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x40194018, 0x40194018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x401b401a, 0x401b401a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x401d401c, 0x401d401c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x401f401e, 0x401f401e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 5  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 11);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer5");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50015000, 0x50015000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50035002, 0x50035002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50055004, 0x50055004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50075006, 0x50075006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50095008, 0x50095008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x500b500a, 0x500b500a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x500d500c, 0x500d500c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x500f500e, 0x500f500e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50115010, 0x50115010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50135012, 0x50135012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50155014, 0x50155014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50175016, 0x50175016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x50195018, 0x50195018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x501b501a, 0x501b501a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x501d501c, 0x501d501c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x501f501e, 0x501f501e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 6  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 12);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer6");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60016000,0x60016000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60036002, 0x60036002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60056004, 0x60056004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60076006, 0x60076006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60096008, 0x60096008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x600b600a, 0x600b600a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x600d600c, 0x600d600c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x600f600e, 0x600f600e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60116010, 0x60116010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60136012, 0x60136012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60156014, 0x60156014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60176016, 0x60176016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x60196018, 0x60196018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x601b601a, 0x601b601a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x601d601c, 0x601d601c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x601f601e, 0x601f601e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 7  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 13);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70017000, 0x70017000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70037002, 0x70037002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70057004, 0x70057004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70077006, 0x70077006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70097008, 0x70097008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x700b700a, 0x700b700a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x700d700c, 0x700d700c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x700f700e, 0x700f700e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70117010, 0x70117010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70137012, 0x70137012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70157014, 0x70157014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70177016, 0x70177016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x70197018, 0x70197018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x701b701a, 0x701b701a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x701d701c, 0x701d701c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x701f701e, 0x701f701e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 8  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 14);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80018000, 0x80018000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80038002, 0x80038002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80058004, 0x80058004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80078006, 0x80078006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80098008, 0x80098008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x800b800a, 0x800b800a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x800d800c, 0x800d800c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x800f800e, 0x800f800e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80118010, 0x80118010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80138012, 0x80138012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80158014, 0x80158014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80178016, 0x80178016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x80198018, 0x80198018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x801b801a, 0x801b801a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x801d801c, 0x801d801c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x801f801e, 0x801f801e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 9  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 15);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90019000, 0x90019000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90039002, 0x90039002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90059004, 0x90059004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90079006, 0x90079006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90099008, 0x90099008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x900b900a, 0x900b900a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x900d900c, 0x900d900c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x900f900e, 0x900f900e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90119010, 0x90119010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90139012, 0x90139012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90159014, 0x90159014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90179016, 0x90179016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x90199018, 0x90199018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x901b901a, 0x901b901a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x901d901c, 0x901d901c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0x901f901e, 0x901f901e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 10  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 16);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa001a000, 0xa001a000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa003a002, 0xa003a002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa005a004, 0xa005a004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa007a006, 0xa007a006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa009a008, 0xa009a008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa00ba00a, 0xa00ba00a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa00da00c, 0xa00da00c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa00fa00e, 0xa00fa00e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa011a010, 0xa011a010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa013a012, 0xa013a012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa015a014, 0xa015a014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa017a016, 0xa017a016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa019a018, 0xa019a018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa01ba01a, 0xa01ba01a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa01da01c, 0xa01da01c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xa01fa01e, 0xa01fa01e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 11  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 17);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb001b000, 0xb001b000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb003b002, 0xb003b002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb005b004, 0xb005b004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb007b006, 0xb007b006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb009b008, 0xb009b008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb00bb00a, 0xb00bb00a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb00db00c, 0xb00db00c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb00fb00e, 0xb00fb00e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb011b010, 0xb011b010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb013b012, 0xb013b012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb015b014, 0xb015b014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb017b016, 0xb017b016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb019b018, 0xb019b018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb01bb01a, 0xb01bb01a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb01db01c, 0xb01db01c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xb01fb01e, 0xb01fb01e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 12  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 18);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc001c000, 0xc001c000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc003c002, 0xc003c002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc005c004, 0xc005c004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc007c006, 0xc007c006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc009c008, 0xc009c008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc00bc00a, 0xc00bc00a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc00dc00c, 0xc00dc00c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc00fc00e, 0xc00fc00e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc011c010, 0xc011c010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc013c012, 0xc013c012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc015c014, 0xc015c014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc017c016, 0xc017c016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc019c018, 0xc019c018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc01bc01a, 0xc01bc01a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc01dc01c, 0xc01dc01c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xc01fc01e, 0xc01fc01e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 13  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 19);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd001d000, 0xd001d000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd003d002, 0xd003d002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd005d004, 0xd005d004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd007d006, 0xd007d006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd009d008, 0xd009d008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd00bd00a, 0xd00bd00a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd00dd00c, 0xd00dd00c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd00fd00e, 0xd00fd00e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd011d010, 0xd011d010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd013d012, 0xd013d012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd015d014, 0xd015d014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd017d016, 0xd017d016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd019d018, 0xd019d018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd01bd01a, 0xd01bd01a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd01dd01c, 0xd01dd01c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xd01fd01e, 0xd01fd01e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 14  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 20);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe001e000, 0xe001e000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe003e002, 0xe003e002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe005e004, 0xe005e004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe007e006, 0xe007e006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe009e008, 0xe009e008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe00be00a, 0xe00be00a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe00de00c, 0xe00de00c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe00fe00e, 0xe00fe00e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe011e010, 0xe011e010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe013e012, 0xe013e012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe015e014, 0xe015e014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe017e016, 0xe017e016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe019e018, 0xe019e018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe01be01a, 0xe01be01a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe01de01c, 0xe01de01c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xe01fe01e, 0xe01fe01e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        //prefill buffer 15  0-64
+        for(flit_count=0; flit_count < 64; flit_count++)
+        {
+            //printf("flit count is %x\n",flit_count);
+            wr_addr = flit_count | (1 << 21);
+            //printf("wr_addr is %x\n",wr_addr);
+            //printf("###\nbuffer7");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_DEFAULT, wr_addr, wr_addr, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_APB_MEM_WADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DEBUG_MEM_WR_ADDR_OFFSET");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf001f000, 0xf001f000,JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA0_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf003f002, 0xf003f002, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA1_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf005f004, 0xf005f004, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA2_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf007f006, 0xf007f006, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA3_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf009f008, 0xf009f008, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA4_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf00bf00a, 0xf00bf00a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA5_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf00df00c, 0xf00df00c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA6_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf00ff00e, 0xf00ff00e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA7_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf011f010, 0xf011f010, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA8_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf013f012, 0xf013f012, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA9_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf015f014, 0xf015f014, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA10_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf017f016, 0xf017f016, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA11_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf019f018, 0xf019f018, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA12_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf01bf01a, 0xf01bf01a, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA13_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf01df01c, 0xf01df01c, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA14_OFFSET");
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_DEFAULT, 0xf01ff01e, 0xf01ff01e, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WDATA15_OFFSET");
+
+            write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        }
+
+        write_read_expect_18a(base_address_crux_clk_csr[m]+JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_MEM_APB_WR_OFFSET");
+        write_read_expect_18a(base_tx_glue[m]+JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_OFFSET, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_DEFAULT, 0x00000000, 0x00000000, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_RD_MASK, JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_DATA_SRC_EN");
+    }
+}
+#endif
+
+static void configure_jesd_block()
+{
+    uint32_t tx_gb_empty_reg = 0;
+    uint32_t tx_gb_full_reg = 0;
+    uint32_t rx_gb_empty_reg = 0;
+    uint32_t rx_gb_full_reg = 0;
+    int i,j=0;
+    //function calls - Reg seq usecase
+    program_rx_ip_registers();
+    program_tx_ip_registers();
+    program_cmn_csr_rx_registers();
+    program_cmn_csr_tx_registers();
+    program_crux_clk_csr_rx_registers();
+    program_crux_clk_csr_tx_registers();
+    program_rx_glue_registers();
+    program_tx_glue_registers();
+
+#if prefill_tsb_zero
+    prefil_tsb_zero();
+#else
+    printf("####tsb prefil to zeros is disabled \n");
+#endif
+
+#if prefil_tsb_data
+    prefill_tsb_data();
+#else
+    printf("####tsb prefil is disabled \n");
+#endif
+    delay(100);
+
+#if enable_rsb_cap
+    //rsb freeze mode enable, roshan 12/02/24
+    printf("###\nRSB capture is enabled\n");
+    write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_CAP_FRZ_EN_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_CAP_FRZ_EN_DEFAULT, 0x01, 0x01, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_CAP_FRZ_EN_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_CAP_FRZ_EN_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_CAP_FRZ_EN");
+    delay(10);
+#else
+    printf("###\nRSB capture is disabled\n");
+#endif
+
+#if enable_glue_lpbk
+    //enable loopback - glue level - jesd rx glue to jesd tx glue - lpbk ctl - 0x2
+    i=0;
+    uint32_t base_address_crux_clk_csr[] = {DLNK_JESDABC0_CRUX_CLK_CSR_BASE,  DLNK_JESDABC1_CRUX_CLK_CSR_BASE,  DLNK_JESDABC2_CRUX_CLK_CSR_BASE,  DLNK_JESDABC3_CRUX_CLK_CSR_BASE};
+    printf("\n#####Glue lpbk is enabled\n\n");
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_LPBK_CTL_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_LPBK_CTL_DEFAULT, 0x2, 0x2, JESDABC_CRUX_CLK_CSR_MEM_LPBK_CTL_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_LPBK_CTL_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_LPBK_CTL");
+    }
+#else
+    printf("\n#####Glue lpbk is disabled\n");
+#endif
+
+    //enable JESD
+    program_enable_registers();
+
+    //CMN_CSR SYSREF ENABLE, AS PER SIMVAL LOG,
+    write_read_expect_18a(DLNK_JESDABC0_CMN_CSR_BASE+JESDABC_CMN_CSR_MEM_RX_IP_SYSREF_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_RX_IP_SYSREF_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_RX_IP_SYSREF_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_RX_IP_SYSREF_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_RX_IP_SYSREF_ENABLE");
+    write_read_expect_18a(DLNK_JESDABC0_CMN_CSR_BASE+JESDABC_CMN_CSR_MEM_TX_IP_SYSREF_ENABLE_OFFSET, JESDABC_CMN_CSR_MEM_TX_IP_SYSREF_ENABLE_DEFAULT, 0x00000001, 0x00000001, JESDABC_CMN_CSR_MEM_TX_IP_SYSREF_ENABLE_RD_MASK, JESDABC_CMN_CSR_MEM_TX_IP_SYSREF_ENABLE_WR_MASK, "JESDABC_CMN_CSR_MEM_TX_IP_SYSREF_ENABLE");
+
+#if tsb_source_mode_en
+    i=0;
+    uint32_t base_tx_glue[] = {DLNK_JESDABC0_TX_GLUE_BASE,  DLNK_JESDABC1_TX_GLUE_BASE,  DLNK_JESDABC2_TX_GLUE_BASE,  DLNK_JESDABC3_TX_GLUE_BASE};
+    printf("\n#######TSB source mode is enabled\n");
+    for(i=0; i<1; i++)
+    {
+        //registers needs to be enabled for tsb trigger via software
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_TSB_RD_TRIG_OFFSET, JESDABC_TX_GLUE_MEM_TX_TSB_RD_TRIG_DEFAULT, 0x00000001, 0x00000001, JESDABC_TX_GLUE_MEM_TX_TSB_RD_TRIG_RD_MASK, JESDABC_TX_GLUE_MEM_TX_TSB_RD_TRIG_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_TSB_RD_TRIG");
+        write_read_expect_18a(base_tx_glue[i]+JESDABC_TX_GLUE_MEM_TX_IP_SMPL_TSB_DATA_EN_OFFSET, JESDABC_TX_GLUE_MEM_TX_IP_SMPL_TSB_DATA_EN_DEFAULT, 0x00000001, 0x00000001, JESDABC_TX_GLUE_MEM_TX_IP_SMPL_TSB_DATA_EN_RD_MASK, JESDABC_TX_GLUE_MEM_TX_IP_SMPL_TSB_DATA_EN_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_IP_SMPL_TSB_DATA_EN");
+    }
+#else
+    printf("\n#######TSB source mode is disabled\n");
+#endif
+
+    j=0;
+    i = 0;
+    uint32_t base_address_rx[] = {DLNK_JESDABC0_XIP_204C_RX_BASE,  DLNK_JESDABC1_XIP_204C_RX_BASE,  DLNK_JESDABC2_XIP_204C_RX_BASE,  DLNK_JESDABC3_XIP_204C_RX_BASE};
+    uint32_t base_address_tx[] = {DLNK_JESDABC0_XIP_204C_TX_BASE,  DLNK_JESDABC1_XIP_204C_TX_BASE,  DLNK_JESDABC2_XIP_204C_TX_BASE,  DLNK_JESDABC3_XIP_204C_TX_BASE};
+
+    for(i=0; i<1; i++)
+    {
+        tx_gb_empty_reg = read_reg_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_GEARBOX_EMPTY_STATUS_OFFSET, "JL_N_TX_GB_EMPTY_REG");
+        tx_gb_full_reg = read_reg_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_GEARBOX_FULL_STATUS_OFFSET, "JL_N_TX_GB_FULL_REG");
+    }
+
+    for(j=0; j<1; j++)
+    {
+        rx_gb_empty_reg = read_reg_18a(base_address_rx[j] + JESD_XIP_204C_RX_MEM_RX_GEARBOX_EMPTY_STATUS_OFFSET, "JL_N_RX_GB_EMPTY_REG");
+        rx_gb_full_reg = read_reg_18a(base_address_rx[j] + JESD_XIP_204C_RX_MEM_RX_GEARBOX_FULL_STATUS_OFFSET, "JL_N_RX_GB_FULL_REG");
+    }
+
+    printf(" After jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x%x \n", tx_gb_empty_reg);
+    printf(" After jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x%x \n", tx_gb_full_reg);
+    printf(" After jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x%x \n", rx_gb_empty_reg);
+    printf(" After jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0x%x \n", rx_gb_full_reg);
+}
+
+
+int main(int argc, const char *argv[])
+{
+    int rv = 0;
+    int flags = 0;
+    int i, j;
+
+    fpga_clk_and_sysref_period();
+    delay(100);    
+    system("/p/frio/tools/frioPciWrite -F s6b3 -P 0x20000 0xa");
+    system("/p/frio/tools/frioPciWrite -F s6b3 -P 0x20000 0xb");
+    delay(100);
+    init(); // Initialize the srp
+    delay(1000);
+    jesd_reset(JESD_INSTANCE_0,0);
+    delay(1000);
+    printf("\n");
+    fpga_provided_sysref();
+    delay(100);
+    printf("\n$$$$###$$$$$$$$$Hello from roshan UC11a TSB source mode\n");
+
+    uint32_t base_address_crux_clk_csr[] = {DLNK_JESDABC0_CRUX_CLK_CSR_BASE,  DLNK_JESDABC1_CRUX_CLK_CSR_BASE,  DLNK_JESDABC2_CRUX_CLK_CSR_BASE,  DLNK_JESDABC3_CRUX_CLK_CSR_BASE};
+    uint32_t base_tx_glue[] = {DLNK_JESDABC0_TX_GLUE_BASE,  DLNK_JESDABC1_TX_GLUE_BASE,  DLNK_JESDABC2_TX_GLUE_BASE,  DLNK_JESDABC3_TX_GLUE_BASE};
+
+    uint32_t value38 = 0;
+    uint32_t value39 = 0;
+    uint32_t value40 = 0;
+    uint32_t value41 = 0;
+    uint32_t value42 = 0;
+    uint32_t value43 = 0;
+    uint32_t value44 = 0;
+    uint32_t value45 = 0;
+    int fill_level0 = 0;
+    int fill_level1 = 0;
+    int fill_level2 = 0;
+    int fill_level3 = 0;
+    int fill_level4 = 0;
+    int fill_level5 = 0;
+    int fill_level6 = 0;
+    int fill_level7 = 0;
+    uint32_t stream0_buffer = 0;
+    uint32_t stream1_buffer = 0;
+    uint32_t stream2_buffer = 0;
+    uint32_t stream3_buffer = 0;
+    uint32_t stream4_buffer = 0;
+    uint32_t stream5_buffer = 0;
+    uint32_t stream6_buffer = 0;
+    uint32_t stream7_buffer = 0;
+    uint32_t stream8_buffer = 0;
+    uint32_t stream9_buffer = 0;
+    uint32_t stream10_buffer = 0;
+    uint32_t stream11_buffer = 0;
+    uint32_t stream12_buffer = 0;
+    uint32_t stream13_buffer = 0;
+    uint32_t stream14_buffer = 0;
+    uint32_t stream15_buffer = 0;
+
+    int flit_count = 0;
+    int wr_addr = 0x0;
+
+#if prefill_rsb_zero
+    i=0;
+    uint32_t flit_count_pre = 0;
+    for(i=0; i<1; i++)
+    {
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN_DEFAULT, 0x01, 0x01, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN");
+        printf("\n########Starting to prefil 512 flits of RSB to 0\n");
+        for(flit_count_pre=0; flit_count_pre<512; flit_count_pre++)
+        {
+            printf("flit count is %d\n",flit_count_pre);
+            //write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR_DEFAULT, flit_count_pre, flit_count_pre, JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR");
+
+            // 16 registers *32 bit = 512 bit data 
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA0_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA0");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA1_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA1");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA2_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA2");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA3_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA3");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA4_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA4");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA5_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA5");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA6_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA6");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA7_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA7");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA8_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA8");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA9_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA9");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA10_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA10");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA11_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA11");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA12_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA12");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA13_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA13");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA14_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA14");
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA15_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_DEFAULT, 0x00000000, 0x00000000, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_DATA15");
+
+            write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_DEFAULT, 0x0, 0x0, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL");
+        }
+        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN_DEFAULT, 0x00, 0x00, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_DATA_SRC_EN");
+        printf("########Prefil of 512 flits of RSB to 0 done\n");
+    }
+#else
+    printf("\n########Disabling Prefil of 512 flits of RSB to 0 after reset\n\n");
+#endif
+
+    LOG_PRINT("INFO: logger beginning\n");
+    configure_jesd_block();
+    delay(1000);
+
+
+//##################################################
+#if tsb_dump_enabled
+    printf("\n#####TSB dump is enabled\n");
+    //dump tsb buffer, roshan 21/02/24
+    //===============================================================
+    //uncommenting dumping rsb
+
+    //i = 0;
+    flit_count = 0;
+
+    value38 = 0;
+    value38  = read_reg_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE + JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_BUF_FILL_STATUS_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_BUF_FILL_STATUS");
+    printf("\n#######TSB buffer 0 fill status register value is 0x%x \n", value38);
+    fill_level0 = (value38 & 0x02);
+    printf("#######JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_BUF_FILL_STATUS register's buffer full value is 0x%x \n", fill_level0);
+    wr_addr = 0x0;
+
+    /*if(value38 != 0)
+    {
+        printf("#######buffer is not full\n");
+    }
+    else
+    {*/
+        printf("###############buffer 0 is full\n");
+        printf("###TSB buffer0 0-64 flits \n");
+        for(flit_count=0; flit_count<64; flit_count++)
+        //for(flit_count=0; flit_count<11; flit_count++)
+        {
+            wr_addr = flit_count;
+            printf("###flit count of buffer 0 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.1 64 to 128 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (1 << 6);
+            printf("###flit count of buffer 0.1 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.2 128 to 192 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (2 << 6);
+            printf("###flit count of buffer 0.2 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.3 192 to 256 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (3 << 6);
+            printf("###flit count of buffer 0.3 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.4 256 to 320 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (4<<6);
+            printf("###flit count of buffer 0.4 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.5 320 to 384 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (5<<6);
+            printf("###flit count of buffer 0.5 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.6 384 to 448 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (6<<6);
+            printf("###flit count of buffer 0.6 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.7 448 to 512 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (7<<6);
+            printf("###flit count of buffer 0.7 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.8 512 to 576 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (8<<6);
+            printf("###flit count of buffer 0.8 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.9 576 to 640 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (9<<6);
+            printf("###flit count of buffer 0.9 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.10 640 to 704 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (10<<6);
+            printf("###flit count of buffer 0.10 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.11 704 to 768 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (11<<6);
+            printf("###flit count of buffer 0.11 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.12 768 to 832 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (12<<6);
+            printf("###flit count of buffer 0.12 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.13 832 to 896 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (13<<6);
+            printf("###flit count of buffer 0.13 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.14 896 to 960 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (14<<6);
+            printf("###flit count of buffer 0.14 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+        flit_count = 0;
+        wr_addr = 0x0;
+        printf("\n\n###TSB buffer0.15 960 to 1024 flits \n");
+        //for(flit_count=0; flit_count<64; flit_count++)
+        for(flit_count=0; flit_count<64; flit_count++)
+        {
+            wr_addr = flit_count | (15<<6);
+            printf("###flit count of buffer 0.15 is %d\n",flit_count);
+            //printf("current offset address is %x\n",wr_addr);
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_DEFAULT, wr_addr, wr_addr, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RADDR");
+            write_read_expect_18a(DLNK_JESDABC0_TX_GLUE_BASE+JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_OFFSET, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_DEFAULT, 0x01, 0x01, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_MASK, JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD_WR_MASK, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RD");
+            write_read_expect_18a(DLNK_JESDABC0_CRUX_CLK_CSR_BASE+JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_DEFAULT, 0x00000001, 0x00000001, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_CFG");
+            stream0_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA0_OFFSET");
+            stream1_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA1_OFFSET");
+            stream2_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA2_OFFSET");
+            stream3_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA3_OFFSET");
+            stream4_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA4_OFFSET");
+            stream5_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA5_OFFSET");
+            stream6_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA6_OFFSET");
+            stream7_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA7_OFFSET");
+            stream8_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA8_OFFSET");
+            stream9_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA9_OFFSET");
+            stream10_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA10_OFFSET");
+            stream11_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream12_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA12_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA11_OFFSET");
+            stream13_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA13_OFFSET");
+            stream14_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA14_OFFSET");
+            stream15_buffer = read_reg_18a(DLNK_JESDABC0_TX_GLUE_BASE + JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET, "JESDABC_TX_GLUE_MEM_TX_APB_MEM_RDATA15_OFFSET"); 
+            printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+        }
+
+  //}
+#else
+    printf("\n#####TSB dump is not enabled\n");
+#endif
+//##################################################
+    uint32_t read_value;
+    extern void * srp;
+    uint32_t error = 0;
+    uint32_t write_status = 0;
+    uint32_t dev_id =0;
+    uint32_t dev_flags = 0;
+
+    uint32_t value24 = 0;
+    uint32_t value25 = 0;
+    uint32_t value26 = 0;
+    uint32_t value27 = 0;
+    uint32_t value28 = 0;
+    uint32_t value29 = 0;
+    uint32_t value30 = 0;
+    uint32_t value31 = 0;
+    uint32_t value32 = 0;
+    uint32_t value33 = 0;
+    uint32_t value34 = 0;
+    uint32_t value35 = 0;
+    uint32_t value36 = 0;
+    uint32_t value37 = 0;
+    value38 = 0;
+    value39 = 0;
+    value40 = 0;
+    value41 = 0;
+    value42 = 0;
+    value43 = 0;
+    value44 = 0;
+    value45 = 0;
+
+    uint32_t value46 = 0;
+    uint32_t value47 = 0;
+    uint32_t value48 = 0;
+    uint32_t value49 = 0;
+    uint32_t value50 = 0;
+    uint32_t value51 = 0;
+    uint32_t value52 = 0;
+    uint32_t value53 = 0;
+    uint32_t value54 = 0;
+    uint32_t value55 = 0;
+    uint32_t value56 = 0;
+    uint32_t value57 = 0;
+    uint32_t value58 = 0;
+    uint32_t value59 = 0;
+    uint32_t value60 = 0;
+    stream0_buffer = 0;
+    stream1_buffer = 0;
+    stream2_buffer = 0;
+    stream3_buffer = 0;
+    stream4_buffer = 0;
+    stream5_buffer = 0;
+    stream6_buffer = 0;
+    stream7_buffer = 0;
+    stream8_buffer = 0;
+    stream9_buffer = 0;
+    stream10_buffer = 0;
+    stream11_buffer = 0;
+    stream12_buffer = 0;
+    stream13_buffer = 0;
+    stream14_buffer = 0;
+    stream15_buffer = 0;
+
+    uint32_t value   = 0;
+    uint32_t value1   = 0;
+    uint32_t value2  = 0;
+    uint32_t value3  = 0;
+    uint32_t value4  = 0;
+    uint32_t value5  = 0;
+    uint32_t value6  = 0;
+    uint32_t value7  = 0;
+    uint32_t value8  = 0;
+    uint32_t value9  = 0;
+    uint32_t value10 = 0;
+    uint32_t value11 = 0;
+    uint32_t value12 = 0;
+    uint32_t value13 = 0;
+    uint32_t value14 = 0;
+    uint32_t value15 = 0;
+    uint32_t value16 = 0;
+    uint32_t value17 = 0;
+    uint32_t value18 = 0;
+    uint32_t value19 = 0;
+    uint32_t value20 = 0;
+    uint32_t value21 = 0;
+    uint32_t value22 = 0;
+    uint32_t value23 = 0;
+
+    uint32_t curr_value  = 0;
+    uint32_t curr_value1  = 0;
+    uint32_t curr_value2  = 0;
+    uint32_t curr_value3  = 0;
+    uint32_t curr_value4  = 0;
+    uint32_t curr_value5  = 0;
+    uint32_t curr_value6  = 0;
+    uint32_t curr_value7  = 0;
+    uint32_t curr_value8  = 0;
+    uint32_t curr_value9  = 0;
+    uint32_t curr_value10 = 0;
+    uint32_t curr_value11 = 0;
+    uint32_t curr_value12 = 0;
+    uint32_t curr_value13 = 0;
+    uint32_t curr_value14 = 0;
+    uint32_t curr_value15 = 0;
+    uint32_t curr_value16 = 0;
+    uint32_t curr_value17 = 0;
+    uint32_t curr_value18 = 0;
+    uint32_t curr_value19 = 0;
+    uint32_t curr_value20 = 0;
+    uint32_t curr_value21 = 0;
+    uint32_t curr_value22 = 0;
+    uint32_t curr_value23 = 0;
+    uint32_t curr_value24 = 0;
+    uint32_t curr_value25 = 0;
+    uint32_t curr_value26 = 0;
+    uint32_t curr_value27 = 0;
+    uint32_t curr_value38 = 0;
+    uint32_t curr_value39 = 0;
+    uint32_t curr_value40 = 0;
+    uint32_t curr_value41 = 0;
+    uint32_t curr_value42 = 0;
+    uint32_t curr_value43 = 0;
+    uint32_t curr_value44 = 0;
+    uint32_t curr_value45 = 0;
+
+    uint32_t prev_value   = 0;
+    uint32_t prev_value1  = 0;
+    uint32_t prev_value2  = 0;
+    uint32_t prev_value3  = 0;
+    uint32_t prev_value4  = 0;
+    uint32_t prev_value5  = 0;
+    uint32_t prev_value6  = 0;
+    uint32_t prev_value7  = 0;
+    uint32_t prev_value8  = 0;
+    uint32_t prev_value9  = 0;
+    uint32_t prev_value10 = 0;
+    uint32_t prev_value11 = 0;
+    uint32_t prev_value12 = 0;
+    uint32_t prev_value13 = 0;
+    uint32_t prev_value14 = 0;
+    uint32_t prev_value15 = 0;
+    uint32_t prev_value16 = 0;
+    uint32_t prev_value17 = 0;
+    uint32_t prev_value18 = 0;
+    uint32_t prev_value19 = 0;
+    uint32_t prev_value20 = 0;
+    uint32_t prev_value21 = 0;
+    uint32_t prev_value22 = 0;
+    uint32_t prev_value23 = 0;
+    uint32_t prev_value24 = 0;
+    uint32_t prev_value25 = 0;
+    uint32_t prev_value26 = 0;
+    uint32_t prev_value27 = 0;
+    uint32_t prev_value38 = 0;
+    uint32_t prev_value39 = 0;
+    uint32_t prev_value40 = 0;
+    uint32_t prev_value41 = 0;
+    uint32_t prev_value42 = 0;
+    uint32_t prev_value43 = 0;
+    uint32_t prev_value44 = 0;
+    uint32_t prev_value45 = 0;
+
+    uint32_t print  = 0;
+    uint32_t print1  = 0;
+    uint32_t print2  = 0;
+    uint32_t print3  = 0;
+    uint32_t print4  = 0;
+    uint32_t print5  = 0;
+    uint32_t print6  = 0;
+    uint32_t print7  = 0;
+    uint32_t print8  = 0;
+    uint32_t print9  = 0;
+    uint32_t print10 = 0;
+    uint32_t print11 = 0;
+    uint32_t print12 = 0;
+    uint32_t print13 = 0;
+    uint32_t print14 = 0;
+    uint32_t print15 = 0;
+    uint32_t print16 = 0;
+    uint32_t print17 = 0;
+    uint32_t print18 = 0;
+    uint32_t print19 = 0;
+    uint32_t print20 = 0;
+    uint32_t print21 = 0;
+    uint32_t print22 = 0;
+    uint32_t print23 = 0;
+    uint32_t print24 = 0;
+    uint32_t print25 = 0;
+    uint32_t print26 = 0;
+    uint32_t print27 = 0;
+    uint32_t print38 = 0;
+    uint32_t print39 = 0;
+    uint32_t print40 = 0;
+    uint32_t print41 = 0;
+    uint32_t print42 = 0;
+    uint32_t print43 = 0;
+    uint32_t print44 = 0;
+    uint32_t print45 = 0;
+
+    uint32_t count = 0;
+    uint32_t base_address_rx[] = {DLNK_JESDABC0_XIP_204C_RX_BASE,  DLNK_JESDABC1_XIP_204C_RX_BASE,  DLNK_JESDABC2_XIP_204C_RX_BASE,  DLNK_JESDABC3_XIP_204C_RX_BASE};
+    uint32_t base_address_tx[] = {DLNK_JESDABC0_XIP_204C_TX_BASE,  DLNK_JESDABC1_XIP_204C_TX_BASE,  DLNK_JESDABC2_XIP_204C_TX_BASE,  DLNK_JESDABC3_XIP_204C_TX_BASE};
+
+    srp_dev_open(dev_id, dev_flags, &srp);
+
+    for(i=0; i<1; i++)
+    {
+        value24 = read_reg_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_GEARBOX_EMPTY_STATUS_OFFSET, "JL_N_TX_GB_EMPTY_REG");
+        value25 = read_reg_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_GEARBOX_FULL_STATUS_OFFSET, "JL_N_TX_GB_FULL_REG");
+    }
+    for(j=0; j<1; j++)
+    {
+        value26 = read_reg_18a(base_address_rx[j] + JESD_XIP_204C_RX_MEM_RX_GEARBOX_EMPTY_STATUS_OFFSET, "JL_N_RX_GB_EMPTY_REG");
+        value27 = read_reg_18a(base_address_rx[j] + JESD_XIP_204C_RX_MEM_RX_GEARBOX_FULL_STATUS_OFFSET, "JL_N_RX_GB_FULL_REG");
+    }
+
+    printf("\n\n");
+    printf("Before jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x%x \n", value24);
+    printf("Before jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x%x \n", value25);
+    printf("Before jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x%x \n", value26);
+    printf("Before jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0x%x \n", value27);
+    delay(2000);
+//====================================================================================
+
+
+#if en_status_register_polling
+    printf("\n#######enabling polling of status registers \n");
+    while(1)
+#else
+    printf("\n#######status registers will be dumped only once\n");
+    while(count < 1)
+#endif
+    {
+        for(i=0; i<1; i++)
+        {
+            value24 = read_reg_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_GEARBOX_EMPTY_STATUS_OFFSET, "JL_N_TX_GB_EMPTY_REG");
+            value25 = read_reg_18a(base_address_tx[i] + JESD_XIP_204C_TX_MEM_TX_GEARBOX_FULL_STATUS_OFFSET, "JL_N_TX_GB_FULL_REG");
+        }
+        for(j=0; j<1; j++)
+        {
+            value26 = read_reg_18a(base_address_rx[j] + JESD_XIP_204C_RX_MEM_RX_GEARBOX_EMPTY_STATUS_OFFSET, "JL_N_RX_GB_EMPTY_REG");
+            value27 = read_reg_18a(base_address_rx[j] + JESD_XIP_204C_RX_MEM_RX_GEARBOX_FULL_STATUS_OFFSET, "JL_N_RX_GB_FULL_REG");
+        }
+
+        value28  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_SH_LOCK_STATUS_OFFSET, "JESD_XIP_RX_MEM_JL_SH_LOCK_STATUS");
+        value32  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_EMB_LOCK_STATUS_OFFSET, "JESD_XIP_RX_MEM_JL_EMB_LOCK_STATUS");
+        value36  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_SH_LOCK_LOSS_STATUS_OFFSET, "JESD_XIP_RX_MEM_JL_SH_LOCK_LOSS_STATUS");
+        value37  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_EMB_LOCK_LOSS_STATUS_OFFSET, "JESD_XIP_RX_MEM_JL_SH_LOCK_LOSS_STATUS");
+        value38  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_ERROR_REPORT_LANE_REG0_OFFSET, "JESD_XIP_204C_RX_MEM_RX_ERROR_REPORT_LANE_REG0");
+        value39  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_ERROR_REPORT_LANE_REG1_OFFSET, "JESD_XIP_204C_RX_MEM_RX_ERROR_REPORT_LANE_REG1");
+        value40  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_ERROR_REPORT_LANE_REG2_OFFSET, "JESD_XIP_204C_RX_MEM_RX_ERROR_REPORT_LANE_REG2");
+        value41  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_ERROR_REPORT_LANE_REG3_OFFSET, "JESD_XIP_204C_RX_MEM_RX_ERROR_REPORT_LANE_REG3");
+        //INT STATUS -if jesd 204c and rx cfg en  
+        value42  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_CORE_INTERRUPT_MASK_OFFSET, "JESD_XIP_204C_RX_MEM_RX_CORE_INTERRUPT_MASK");
+        value43  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_CORE_INTERRUPT_STATUS_OFFSET, "JESD_XIP_204C_RX_MEM_RX_CORE_INTERRUPT_STATUS");
+        //lemc boundary phase TODO: can these be predicted?-if jesd 204c and rx cfg en 
+        value44  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_LEMC_BOUNDARY_PHASE_OFFSET, "JESD_XIP_204C_RX_MEM_RX_LEMC_BOUNDARY_PHASE");
+        //Sysref-  One shot sysref / periodic sysre -if jesd 204c and rx cfg en 
+        value45  = read_reg_18a(base_address_rx[0] + JESD_XIP_204C_RX_MEM_RX_SYSREF_COUNTER_STATUS_OFFSET, "JESD_XIP_204C_RX_MEM_RX_SYSREF_COUNTER_STATUS");
+        value46  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_BUF_FILL_STATUS_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_BUF_FILL_STATUS");
+        value47  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_FULL_STATUS_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_FULL_STATUS");
+        value48  = read_reg_18a(base_tx_glue[0] + JESDABC_TX_GLUE_MEM_TX_TSB_EMPTY_STATUS_OFFSET, "JESDABC_TX_GLUE_MEM_TX_TSB_EMPTY_STATUS");
+        value49  = read_reg_18a(base_tx_glue[0] + JESDABC_TX_GLUE_MEM_TX_TSB_UNDERFLOW_STATUS_OFFSET, "JESDABC_TX_GLUE_MEM_TX_TSB_UNDERFLOW_STATUS");
+        value50  = read_reg_18a(base_tx_glue[0] + JESDABC_TX_GLUE_MEM_TX_DATAPATH_GATE_SEL_OFFSET, "JESDABC_TX_GLUE_MEM_TX_DATAPATH_GATE_SEL");
+        value59  = read_reg_18a(base_tx_glue[0] + JESDABC_TX_GLUE_MEM_TX_TSB_RD_TRIG_OFFSET, "JESDABC_TX_GLUE_MEM_TX_TSB_RD_TRIG");
+        value60  = read_reg_18a(base_tx_glue[0] + JESDABC_TX_GLUE_MEM_TX_IP_SMPL_TSB_DATA_EN_OFFSET, "JESDABC_TX_GLUE_MEM_TX_IP_SMPL_TSB_DATA_EN");
+        value51  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR0_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR0");
+        value52  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR1_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR1");
+        value53  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR2_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR2");
+        value54  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR3_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR3");
+        value55  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR4_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR4");
+        value56  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR5_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR5");
+        value57  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR6_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR6");
+        value58  = read_reg_18a(base_address_crux_clk_csr[0] + JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR7_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR7");
+
+        printf("\n\n");
+        printf("//############################################################\n");
+        printf("Before jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x%x \n", value24);
+        printf("Before jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x%x \n", value25);
+        printf("Before jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x%x \n", value26);
+        printf("Before jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0x%x \n", value27);
+        printf("\n");
+        printf("Present value of SH lock of Link0 is 0x%x \n",value28);
+        printf("Present value of EMB lock of Link0 is 0x%x \n",value32);
+        printf("Present value of SH lock loss of Link0 is 0x%x \n",value36);
+        printf("Present value of EMB lock loss of Link0 is 0x%x \n",value37);
+        printf("Present value of RX_ERROR_REPORT_LANE_REG0 of Link0 is 0x%x \n",value38);
+        printf("Present value of RX_ERROR_REPORT_LANE_REG1 of Link0 is 0x%x \n",value39);
+        printf("Present value of RX_ERROR_REPORT_LANE_REG2 of Link0 is 0x%x \n",value40);
+        printf("Present value of RX_ERROR_REPORT_LANE_REG3 of Link0 is 0x%x \n",value41);
+        printf("Present value of RX_CORE_INTERRUPT_MASK of Link0 is 0x%x \n",value42);
+        printf("Present value of RX_CORE_INTERRUPT_STATUS of Link0 is 0x%x \n",value43);
+        printf("Present value of RX_LEMC_BOUNDARY_PHASE of Link0 is 0x%x \n",value44);
+        printf("Present value of RX_SYSREF_COUNTER_STATUS of Link0 is 0x%x \n",value45);
+        printf("\n");
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_BUF_FILL_STATUS is 0x%x \n",value46);
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_TSB_FULL_STATUS is 0x%x \n",value47);
+        printf("Present value of JESDABC_TX_GLUE_MEM_TX_TSB_EMPTY_STATUS is 0x%x \n",value48);
+        printf("Present value of JESDABC_TX_GLUE_MEM_TX_TSB_UNDERFLOW_STATUS is 0x%x \n",value49);
+        printf("Present value of JESDABC_TX_GLUE_MEM_TX_DATAPATH_GATE_SEL is 0x%x \n",value50);
+        printf("Present value of JESDABC_TX_GLUE_MEM_TX_TSB_RD_TRIG is 0x%x \n",value59);
+        printf("Present value of JESDABC_TX_GLUE_MEM_TX_IP_SMPL_TSB_DATA_EN is 0x%x \n",value60);
+        printf("\n");
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR0 is 0x%x \n",value51);
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR1 is 0x%x \n",value52);
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR2 is 0x%x \n",value53);
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR3 is 0x%x \n",value54);
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR4 is 0x%x \n",value55);
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR5 is 0x%x \n",value56);
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR6 is 0x%x \n",value57);
+        printf("Present value of JESDABC_CRUX_CLK_CSR_MEM_TX_STRM_MEM_WPTR7 is 0x%x \n",value58);
+
+        i=0;
+        j=0;
+        for(i=0; i<1; i++)
+        {
+            value   = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE0_OFFSET, "ICOUNTER_REPORT_LANE0");
+            value1  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE1_OFFSET, "ICOUNTER_REPORT_LANE1");
+            value2  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE2_OFFSET, "ICOUNTER_REPORT_LANE2");
+            value3  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE3_OFFSET, "ICOUNTER_REPORT_LANE3");
+            value4  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE4_OFFSET, "ICOUNTER_REPORT_LANE4");
+            value5  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE5_OFFSET, "ICOUNTER_REPORT_LANE5");
+            value6  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE6_OFFSET, "ICOUNTER_REPORT_LANE6");
+            value7  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE7_OFFSET, "ICOUNTER_REPORT_LANE7");
+            value8  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE8_OFFSET, "ICOUNTER_REPORT_LANE8");
+            value9  = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE9_OFFSET, "ICOUNTER_REPORT_LANE9");
+            value10 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE10_OFFSET, "ICOUNTER_REPORT_LANE10");
+            value11 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE11_OFFSET, "ICOUNTER_REPORT_LANE11");
+            value12 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE12_OFFSET, "ICOUNTER_REPORT_LANE12");
+            value13 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE13_OFFSET, "ICOUNTER_REPORT_LANE13");
+            value14 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE14_OFFSET, "ICOUNTER_REPORT_LANE14");
+            value15 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE15_OFFSET, "ICOUNTER_REPORT_LANE15");
+            value16 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE16_OFFSET, "ICOUNTER_REPORT_LANE16");
+            value17 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE17_OFFSET, "ICOUNTER_REPORT_LANE17");
+            value18 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE18_OFFSET, "ICOUNTER_REPORT_LANE18");
+            value19 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE19_OFFSET, "ICOUNTER_REPORT_LANE19");
+            value20 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE20_OFFSET, "ICOUNTER_REPORT_LANE20");
+            value21 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE21_OFFSET, "ICOUNTER_REPORT_LANE21");
+            value22 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE22_OFFSET, "ICOUNTER_REPORT_LANE22");
+            value23 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_ICOUNTER_REPORT_LANE23_OFFSET, "ICOUNTER_REPORT_LANE23");
+            value26 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_GEARBOX_EMPTY_STATUS_OFFSET, "JL_N_RX_GB_EMPTY_REG");
+            value27 = read_reg_18a(base_address_rx[i] + JESD_XIP_204C_RX_MEM_RX_GEARBOX_FULL_STATUS_OFFSET, "JL_N_RX_GB_FULL_REG");
+        }
+        int j=0;
+        for(j=0; j<1; j++)
+        {
+            value24 = read_reg_18a(base_address_tx[j] + JESD_XIP_204C_TX_MEM_TX_GEARBOX_EMPTY_STATUS_OFFSET, "JL_N_TX_GB_EMPTY_REG");
+            value25 = read_reg_18a(base_address_tx[j] + JESD_XIP_204C_TX_MEM_TX_GEARBOX_FULL_STATUS_OFFSET, "JL_N_TX_GB_FULL_REG");
+        }
+        if( count == 0 )
+        {
+            printf("\n");
+            printf("\n");
+
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE0  is 0x%x \n",  value);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE1  is 0x%x \n",  value1);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE2  is 0x%x \n",  value2);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE3  is 0x%x \n",  value3);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE4  is 0x%x \n",  value4);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE5  is 0x%x \n",  value5);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE6  is 0x%x \n",  value6);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE7  is 0x%x \n",  value7);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE8  is 0x%x \n",  value8);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE9  is 0x%x \n",  value9);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE10 is 0x%x \n", value10);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE11 is 0x%x \n", value11);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE12 is 0x%x \n", value12);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE13 is 0x%x \n", value13);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE14 is 0x%x \n", value14);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE15 is 0x%x \n", value15);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE16 is 0x%x \n", value16);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE17 is 0x%x \n", value17);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE18 is 0x%x \n", value18);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE19 is 0x%x \n", value19);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE20 is 0x%x \n", value20);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE21 is 0x%x \n", value21);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE22 is 0x%x \n", value22);
+            printf(" After Jesd enable value for ICOUNTER_REPORT_LANE23 is 0x%x \n", value23);
+            printf(" After Jesd enable value for JL_N_TX_GB_EMPTY_REG --------is 0x%x \n", value24);
+            printf(" After Jesd enable value for JL_N_TX_GB_FULL_REG ---------is 0x%x \n", value25);
+            printf(" After Jesd enable value for JL_N_RX_GB_EMPTY_REG --------is 0x%x \n", value26);
+            printf(" After Jesd enable value for JL_N_RX_GB_FULL_REG ---------is 0x%x \n", value27);
+        }
+        if(value)
+        {
+            curr_value = value;
+            if(prev_value != curr_value)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE0 are 0x%x, 0x%x\n", prev_value, curr_value);
+                print = 1;
+                prev_value = curr_value;
+            }
+        }
+
+        if(value1)
+        {
+            curr_value1 = value1;
+            if(prev_value1 != curr_value1)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE1 are 0x%x, 0x%x\n", prev_value1, curr_value1);
+                print1 = 1;
+                prev_value1 = curr_value1;
+            }
+        }
+
+        if(value2)
+        {
+            curr_value2 = value2;
+            if(prev_value2 != curr_value2)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE2 are 0x%x, 0x%x\n", prev_value2, curr_value2);
+                print2 = 1;
+                prev_value2 = curr_value2;
+            }
+        }
+
+        if(value3)
+        {
+            curr_value3 = value3;
+            if(prev_value3 != curr_value3)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE3 are 0x%x, 0x%x\n", prev_value3, curr_value3);
+                print3 = 1;
+                prev_value3 = curr_value3;
+            }
+        }
+
+        if(value4)
+        {
+            curr_value4 = value4;
+            if(prev_value4 != curr_value4)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE4 are 0x%x, 0x%x\n", prev_value4, curr_value4);
+                print4 = 1;
+                prev_value4 = curr_value4;
+            }
+        }
+
+        if(value5)
+        {
+            curr_value5 = value5;
+            if(prev_value5 != curr_value5)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE5 are 0x%x, 0x%x\n", prev_value5, curr_value5);
+                print5 = 1;
+                prev_value5 = curr_value5;
+            }
+        }
+
+        if(value6)
+        {
+            curr_value6 = value6;
+            if(prev_value6 != curr_value6)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE6 are 0x%x, 0x%x\n", prev_value6, curr_value6);
+                print6 = 1;
+                prev_value6 = curr_value6;
+            }
+        }
+
+        if(value7)
+        {
+            curr_value7 = value7;
+            if(prev_value7 != curr_value7)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE7 are 0x%x, 0x%x\n", prev_value7, curr_value7);
+                print7 = 1;
+                prev_value7 = curr_value7;
+            }
+        }
+
+        if(value8)
+        {
+            curr_value8 = value8;
+            if(prev_value8 != curr_value8)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE8 are 0x%x, 0x%x\n", prev_value8, curr_value8);
+                print8 = 1;
+                prev_value8 = curr_value8;
+            }
+        }
+
+        if(value9)
+        {
+            curr_value9 = value9;
+            if(prev_value9 != curr_value9)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE9 are 0x%x, 0x%x\n", prev_value9, curr_value9);
+                print9 = 1;
+                prev_value9 = curr_value9;
+            }
+        }
+
+        if(value10)
+        {
+            curr_value10 = value10;
+            if(prev_value10 != curr_value10)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE10 are 0x%x, 0x%x\n", prev_value10, curr_value10);
+                print10 = 1;
+                prev_value10 = curr_value10;
+            }
+        }
+
+        if(value11)
+        {
+            curr_value11 = value11;
+            if(prev_value11 != curr_value11)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE11 are 0x%x, 0x%x\n", prev_value11, curr_value11);
+                print11 = 1;
+                prev_value11 = curr_value11;
+            }
+        }
+
+        if(value12)
+        {
+            curr_value12 = value12;
+            if(prev_value12 != curr_value12)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE12 are 0x%x, 0x%x\n", prev_value12, curr_value12);
+                print12 = 1;
+                prev_value12 = curr_value12;
+            }
+        }
+
+        if(value13)
+        {
+            curr_value13 = value13;
+            if(prev_value13 != curr_value13)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE13 are 0x%x, 0x%x\n", prev_value13, curr_value13);
+                print13 = 1;
+                prev_value13 = curr_value13;
+            }
+        }
+
+        if(value14)
+        {
+            curr_value14 = value14;
+            if(prev_value14 != curr_value14)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE14 are 0x%x, 0x%x\n", prev_value14, curr_value14);
+                print14 = 1;
+                prev_value14 = curr_value14;
+            }
+        }
+
+        if(value15)
+        {
+            curr_value15 = value15;
+            if(prev_value15 != curr_value15)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE15 are 0x%x, 0x%x\n", prev_value15, curr_value15);
+                print15 = 1;
+                prev_value15 = curr_value15;
+            }
+        }
+
+        if(value16)
+        {
+            curr_value16 = value16;
+            if(prev_value16 != curr_value16)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE16 are 0x%x, 0x%x\n", prev_value16, curr_value16);
+                print16 = 1;
+                prev_value16 = curr_value16;
+            }
+        }
+
+        if(value17)
+        {
+            curr_value17 = value17;
+            if(prev_value17 != curr_value17)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE17 are 0x%x, 0x%x\n", prev_value17, curr_value17);
+                print17 = 1;
+                prev_value17 = curr_value17;
+            }
+        }
+
+        if(value18)
+        {
+            curr_value18 = value18;
+            if(prev_value18 != curr_value18)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE18 are 0x%x, 0x%x\n", prev_value18, curr_value18);
+                print18 = 1;
+                prev_value18 = curr_value18;
+            }
+        }
+
+        if(value19)
+        {
+            curr_value19 = value19;
+            if(prev_value19 != curr_value19)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE19 are 0x%x, 0x%x\n", prev_value19, curr_value19);
+                print19 = 1;
+                prev_value19 = curr_value19;
+            }
+        }
+
+        if(value20)
+        {
+            curr_value20 = value20;
+            if(prev_value20 != curr_value20)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE20 are 0x%x, 0x%x\n", prev_value20, curr_value20);
+                print20 = 1;
+                prev_value20 = curr_value20;
+            }
+        }
+
+        if(value21)
+        {
+            curr_value21 = value21;
+            if(prev_value21 != curr_value21)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE21 are 0x%x, 0x%x\n", prev_value21, curr_value21);
+                print21 = 1;
+                prev_value21 = curr_value21;
+            }
+        }
+
+        if(value22)
+        {
+            curr_value22 = value22;
+            if(prev_value22 != curr_value22)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE22 are 0x%x, 0x%x\n", prev_value22, curr_value22);
+                print22 = 1;
+                prev_value22 = curr_value22;
+            }
+        }
+
+        if(value23)
+        {
+            curr_value23 = value23;
+            if(prev_value23 != curr_value23)
+            {
+                printf(" \nprevious and current value for ICOUNTER_REPORT_LANE23 are 0x%x, 0x%x\n", prev_value23, curr_value23);
+                print23 = 1;
+                prev_value23 = curr_value23;
+            }
+        }
+
+        if(value24)
+        {
+            curr_value24 = value24;
+            if(prev_value24 != curr_value24)
+            {
+                printf(" \nprevious and current value for JL_N_TX_GB_EMPTY_REG are 0x%x, 0x%x\n", prev_value24, curr_value24);
+                print24 = 1;
+                prev_value24 = curr_value24;
+            }
+        }
+
+        if(value25)
+        {
+            curr_value25 = value25;
+            if(prev_value25 != curr_value25)
+            {
+                printf(" \nprevious and current value for JL_N_TX_GB_FULL_REG are 0x%x, 0x%x\n", prev_value25, curr_value25);
+                print25 = 1;
+                prev_value25 = curr_value25;
+            }
+        }
+
+        if(value26)
+        {
+            curr_value26 = value26;
+            if(prev_value26 != curr_value26)
+            {
+                printf(" \nprevious and current value for JL_N_RX_GB_EMPTY_REG are 0x%x, 0x%x\n", prev_value26, curr_value26);
+                print26 = 1;
+                prev_value26 = curr_value26;
+            }
+        }
+
+        if(value27)
+        {
+            curr_value27 = value27;
+            if(prev_value27 != curr_value27)
+            {
+                printf(" \nprevious and current value for JL_N_RX_GB_FULL_REG are 0x%x, 0x%x\n", prev_value27, curr_value27);
+                print27 = 1;
+                prev_value27 = curr_value27;
+            }
+        }
+
+            if(value38)
+            {
+                curr_value38 = value38;
+                if(prev_value38 != curr_value38)
+                {
+                printf(" \nprevious and current value for RX_ERROR_REPORT_LANE_REG0 are 0x%x, 0x%x\n", prev_value38, curr_value38);
+                    print38 = 1;
+                    prev_value38 = curr_value38;
+                }
+            }
+
+            if(value39)
+            {
+                curr_value39 = value39;
+                if(prev_value39 != curr_value39)
+                {
+                printf(" \nprevious and current value for RX_ERROR_REPORT_LANE_REG1 are 0x%x, 0x%x\n", prev_value39, curr_value39);
+                    print39 = 1;
+                    prev_value39 = curr_value39;
+                }
+            }
+
+            if(value40)
+            {
+                curr_value40 = value40;
+                if(prev_value40 != curr_value40)
+                {
+                printf(" \nprevious and current value for RX_ERROR_REPORT_LANE_REG2 are 0x%x, 0x%x\n", prev_value40, curr_value40);
+                    print40 = 1;
+                    prev_value40 = curr_value40;
+                }
+            }
+
+            if(value41)
+            {
+                curr_value41 = value41;
+                if(prev_value41 != curr_value41)
+                {
+                printf(" \nprevious and current value for RX_ERROR_REPORT_LANE_REG3 are 0x%x, 0x%x\n", prev_value41, curr_value41);
+                    print41 = 1;
+                    prev_value41 = curr_value38;
+                }
+            }
+
+            if(value42)
+            {
+                curr_value42 = value42;
+                if(prev_value42 != curr_value42)
+                {
+                printf(" \nprevious and current value for RX_CORE_INTERRUPT_MASK_OFFSET are 0x%x, 0x%x\n", prev_value42, curr_value42);
+                    print42 = 1;
+                    prev_value42 = curr_value42;
+                }
+            }
+
+            if(value43)
+            {
+                curr_value43 = value43;
+                if(prev_value43 != curr_value43)
+                {
+                printf(" \nprevious and current value for RX_CORE_INTERRUPT_STATUS_OFFSET are 0x%x, 0x%x\n", prev_value43, curr_value43);
+                    print43 = 1;
+                    prev_value43 = curr_value43;
+                }
+            }
+
+            if(value44)
+            {
+                curr_value44 = value44;
+                if(prev_value44 != curr_value44)
+                {
+                printf(" \nprevious and current value for RX_LEMC_BOUNDARY_PHASE are 0x%x, 0x%x\n", prev_value44, curr_value44);
+                    print44 = 1;
+                    prev_value44 = curr_value44;
+                }
+            }
+
+            if(value45)
+            {
+                curr_value45 = value45;
+                if(prev_value45 != curr_value45)
+                {
+                printf(" \nprevious and current value for RX_SYSREF_COUNTER_STATUS are 0x%x, 0x%x\n", prev_value45, curr_value45);
+                    print45 = 1;
+                    prev_value45 = curr_value45;
+                }
+            }
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+        if((print == 1) || (print1 == 1) || (print2 == 1) || (print3 == 1) || (print4 == 1) || (print5 == 1) || (print6 == 1) || (print7 == 1) || (print8 == 1) || (print9 == 1) || (print10 == 1) || (print11 == 1) || (print12 == 1) || (print13 == 1) || (print14 == 1) || (print15 == 1) || (print16 == 1) || (print17 == 1) || (print18 == 1) || (print19 == 1) || (print20 == 1) || (print21 == 1) || (print22 == 1) || (print23 == 1) || (print24 == 1) || (print25 == 1) || (print26 == 1) || (print27 == 1) || (print38 == 1)  || (print39 == 1)  || (print40 == 1)  || (print41 == 1)  || (print42 == 1)  || (print43 == 1)  || (print44 == 1)  || (print45 == 1))
+        {
+            printf("\n\n");
+            print   = 0;
+            print1  = 0;
+            print2  = 0;
+            print3  = 0;
+            print4  = 0;
+            print5  = 0;
+            print6  = 0;
+            print7  = 0;
+            print8  = 0;
+            print9  = 0;
+            print10 = 0;
+            print11 = 0;
+            print12 = 0;
+            print13 = 0;
+            print14 = 0;
+            print15 = 0;
+            print16 = 0;
+            print17 = 0;
+            print18 = 0;
+            print19 = 0;
+            print20 = 0;
+            print21 = 0;
+            print22 = 0;
+            print23 = 0;
+            print24 = 0;
+            print25 = 0;
+            print26 = 0;
+            print27 = 0;
+            print38 = 0;
+            print39 = 0;
+            print40 = 0;
+            print41 = 0;
+            print42 = 0;
+            print43 = 0;
+            print44 = 0;
+            print45 = 0;
+            count   = 1;
+        }
+        else
+        {
+            if((count % 3000) == 0)
+            printf(" no change in errors and no change in fifo empty or full at both rx and tx \n");
+        }
+        //if((count % 1000) == 0)
+        //    printf("########count is %d \n",count);
+        //delay(10000);
+        delay(500);
+        count = count + 1;
+    }
+        //======================================================
+
+#if enable_rsb_dump
+        //going to dump RSB 8 streams
+        fill_level0 = 0;
+        fill_level1 = 0;
+        fill_level2 = 0;
+        fill_level3 = 0;
+        fill_level4 = 0;
+        fill_level5 = 0;
+        fill_level6 = 0;
+        fill_level7 = 0;
+        i = 0;
+        flit_count = 0;
+        int loop_count = 0;
+        while(loop_count < 1)
+        {
+            int i=0;
+            uint32_t base_address_crux_clk_csr[] = {DLNK_JESDABC0_CRUX_CLK_CSR_BASE,  DLNK_JESDABC1_CRUX_CLK_CSR_BASE,  DLNK_JESDABC2_CRUX_CLK_CSR_BASE,  DLNK_JESDABC3_CRUX_CLK_CSR_BASE};
+            for(i=0; i<1; i++)
+            {
+                printf("#######loop_count is %d\n",loop_count);
+                //------------------0
+                value38 = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_MEM_STS0_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_MEM_STS0");
+                fill_level0 = (value38 && 0x400);
+                printf("#######JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_MEM_STS0 register value is 0x%x \n", value38);
+                printf("#######10th bit of JESDABC_CRUX_CLK_CSR_MEM_RX_STRM_MEM_STS0 register or fill status of rsb buffer value is 0x%x \n", fill_level0);
+                if(fill_level0 == 0)
+                {
+                    printf("#######buffer 0 is not full\n");
+                }
+                else
+                {
+                    printf("###############buffer 0 is full\n");
+
+                    //below 2 registers are programmed in first test for rsb capture
+                    printf("###RSB buffer0 0-4 flits for stream0 \n");
+                    //for(flit_count=0; flit_count<512; flit_count++)
+                    for(flit_count=0; flit_count<512; flit_count++)
+                    {
+                        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR_DEFAULT, flit_count, flit_count, JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_INDIR_ADDR");
+                        write_read_expect_18a(base_address_crux_clk_csr[i]+JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_OFFSET, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_DEFAULT, 0x1, 0x1, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_RD_MASK, JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL_WR_MASK, "JESDABC_CRUX_CLK_CSR_MEM_RSB_WR_RD_CTL");
+                        stream0_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA0_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA0");
+                        stream1_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA1_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA1");
+                        stream2_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA2_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA2");
+                        stream3_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA3_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA3");
+                        stream4_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA4_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA4");
+                        stream5_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA5_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA5");
+                        stream6_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA6_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA6");
+                        stream7_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA7_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA7");
+                        stream8_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA8_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA8");
+                        stream9_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA9_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA9");
+                        stream10_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA10_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA10");
+                        stream11_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA11_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA11");
+                        stream12_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA12_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA12");
+                        stream13_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA13_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA13");
+                        stream14_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA14_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA14");
+                        stream15_buffer = read_reg_18a(base_address_crux_clk_csr[i] + JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA15_OFFSET, "JESDABC_CRUX_CLK_CSR_MEM_RSB_RD_DATA15");
+                        printf("\nflit count is %d \n",flit_count);
+                        printf("%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n%x %x %x %x\n\n", stream0_buffer, stream1_buffer, stream2_buffer, stream3_buffer, stream4_buffer, stream5_buffer, stream6_buffer, stream7_buffer, stream8_buffer, stream9_buffer, stream10_buffer, stream11_buffer, stream12_buffer, stream13_buffer, stream14_buffer, stream15_buffer);
+                    }
+                }
+            }
+            loop_count = loop_count + 1;
+        }
+#else
+    printf("\n#####not dumping RSB \n");
+#endif
+
+    return rv;
+}// main ends

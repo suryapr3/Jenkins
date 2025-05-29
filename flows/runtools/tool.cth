@@ -1,0 +1,21 @@
+[INCLUDES]
+$WORKAREA/project_tools/flows/runtools/runtools.cth
+
+
+[PARAMS]
+post_process_pattern_file = $WORKAREA/cfg/rcs_post_process.pp
+trex_macros = $WORKAREA/flows/runtools/trex_macros:$WORKAREA/project_tools/flows/runtools/trex_macros
+
+[ENVS]
+DENALI=/p/hdk/rtl/cad/x86-64_linux26/cadence/vipcat/vipcat_11.30.064-20_Aug_2019_08_15_00/tools/denali_64bit
+DENALI_LICENSE_QUEUE_TIMEOUT=60
+DENALI_LICENSE_QUEUE_RETRY_DELAY=180
+LICENSE_QUEUEING=yes
+CADENCE_VIP_LIC_Q_TIMEOUT=-1
+CADENCE_VIP_LIC_Q_DELAY=30
+CADENCE_VIP_LIC_Q_ONLY_WHEN_ALL_IN_USE=1
+CDS_LIC_FILE  += 5280@cadence01p.elic.intel.com:5280@cadence11p.elic.intel.com:5280@cadence42p.elic.intel.com:5280@cadence10p.elic.intel.com:5280@cadence15p.elic.intel.com:5280@cadence16p.elic.intel.com:5280@cadence20p.elic.intel.com:5280@cadence43p.elic.intel.com
+
+
+
+

@@ -1,0 +1,32 @@
+/************************************************************
+*                                                           *
+* Project     : ABC                                         *
+* Author      : Sneha Singh                                 *
+* Date        : 1 July 2024                                 *
+* Test        : rbm_registers_write_read_test               *
+*                                                           *
+************************************************************/
+
+This test aims to validate the 'm_pcie' port of the NoC by initiating WRITE/READ access to the RBM registers of the
+connected target ports. The pcie host is by default secure, but in security the master pcie is supposed to be
+non-secure. Therefore, we need to enable the security by setting the "pcie_master_axim_override_bypass_disable"
+bit before running the testcase. Then pcie host is made to write to the target RBM registers, compares the
+actual value against the default values.
+
+How to enable security ?
+    frioPciWrite -F s6b1 -P 0x20000 0x050
+
+How to run the test ?
+    From any ABC FRIO bash terminal, execute the following.
+    python rbm_registers_write_read_test.py <rcs_core> <pattern>
+
+    @input arguments
+        <pattern>     : This is the pattern which is to be written to the target RBM register via m_rcs0 port.
+
+How to check the output ?
+    Upon completion of the test, PASS/FAIL status will be displayed in the bash terminal.
+    Additionally, the same can be confirmed from the log file generated from the serial console.
+
+Errors if any ?
+    Take a look at the serial log so generated and grep for string "ERROR". Triage it depending upon the
+    nature of the ERROR logged.

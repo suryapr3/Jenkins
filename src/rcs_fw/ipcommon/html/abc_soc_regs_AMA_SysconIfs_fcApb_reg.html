@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/syscon/ifs_fc/APB_REG</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/syscon/ifs_fc/APB_REG</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet">APB_REG</h3>
+    <p class="ldescdet">none</p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">AddressMap abc_soc_top/syscon/ifs_fc/APB_REG</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/syscon/ifs_fc/APB_REG -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_9AD60F2925E4630B">FUSE_ADDRESS_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse Address Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_27569D7B2528FEE5">FUSE_COMMAND_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse Command Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_B0259F55B21BE403">FUSE_COUNTERS_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse Counters Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x0000000c</td>
+        <td class="unboxed addr">0x0000001f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000020</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DE20F9EFCD05C4F8">FUSE_DATA_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse Data Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000024</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F3C68237B0829FCC">FUSE_ECC_DATA_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse ECC Data Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000028</td>
+        <td class="unboxed addr">0x000000ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000100</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_098CA6D831AB6F04">FUSE_STATUS_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse Status Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000104</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_1E7FBB759B9253EB">FUSE_HIP_ECC_STATUS_REG</a>  </b></td>
+        <td class="unboxed sdescmap">FUSE HIP Status Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000108</td>
+        <td class="unboxed addr">0x000001ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000200</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D7594F95C4D63352">FUSE_DEBUG_CONTROL_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse Debug Control Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000204</td>
+        <td class="unboxed addr">0x000002ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000300</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_234382F8C8B08514">FUSE_HIP_REGISTERS_ADDRESS_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse HIP Registers Address</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000304</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D6ECD371FCE939DB">FUSE_HIP_REGISTER_DATA_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse HIP REGISTERS Data Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000308</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_940D42FCF71A1284">FUSE_HIP_REGISTERS_CONTROL_REG</a>  </b></td>
+        <td class="unboxed sdescmap">Fuse HIP Registers Control Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x0000030c</td>
+        <td class="unboxed addr">0x000003ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000400</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_025C21C150DA8C12">DRNG_ES_CONFIG0_REG</a>  </b></td>
+        <td class="unboxed sdescmap">DRNG ES Config 0 register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000404</td>
+        <td class="unboxed addr">0x00000407</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000408</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D1E63E9C14722309">DRNG_ES_CONFIG1_REG</a>  </b></td>
+        <td class="unboxed sdescmap">DRNG ES Config 1 register</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/syscon/ifs_fc/APB_REG</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_9AD60F2925E4630B" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) FUSE_ADDRESS_REG</span><br/>
+      <span class="sdescdet">Fuse Address Register</span><br/>
+      <span class="ldescdet">Fuse Address Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30000</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="14">RESERVED_31_18</td>
+        <td class="fldnorm" colspan="2">REDUNDANCY</td>
+        <td class="fldnorm" colspan="1">ADDRESS_TYPE</td>
+        <td class="fldnorm" colspan="7">MODULE_ADDRESS</td>
+        <td class="fldnorm" colspan="3">ARRAY_ADDRESS</td>
+        <td class="fldnorm" colspan="5">ROW_ADDRESS</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="14">RO</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="7">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="5">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:18]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_31_18</span><br/>
+          <span class="sdescdet">RESERVED_31_18</span><br/>
+          <span class="ldescdet">RESERVED_31_18</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">REDUNDANCY</span><br/>
+          <span class="sdescdet">REDUNDANCY FEILD</span><br/>
+          <span class="ldescdet">2b00 : Reserved<br/>2b01 : Read/Program Redundanct Copy 0<br/>2b10 : Read/Program Redundanct Copy 1<br/>2b11 : Read/Program all Redundant Copies<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ADDRESS_TYPE</span><br/>
+          <span class="sdescdet">ADDRESS TYPE</span><br/>
+          <span class="ldescdet">1b0 : Data Rows<br/>1b1 : Special Rows<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MODULE_ADDRESS</span><br/>
+          <span class="sdescdet">MODULE ADDRESS</span><br/>
+          <span class="ldescdet">The fuse controller supports up to 128 modules.  This field specifies the module address to program or fuse override.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ARRAY_ADDRESS</span><br/>
+          <span class="sdescdet">ARRAY ADDRESS</span><br/>
+          <span class="ldescdet">The fuse controller supports up to 8 arrays per module.  This field specifies the array address to program or fuse override.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ROW_ADDRESS</span><br/>
+          <span class="sdescdet">ROW ADDRESS</span><br/>
+          <span class="ldescdet">this feild specifies the row address to program or fuse override</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_27569D7B2528FEE5" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) FUSE_COMMAND_REG</span><br/>
+      <span class="sdescdet">Fuse Command Register</span><br/>
+      <span class="ldescdet">Fuse Command Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30004</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x0000000f</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="14">RESERVED_31_18</td>
+        <td class="fldnorm" colspan="1">HVPROTECT</td>
+        <td class="fldnorm" colspan="1">SENSELVLHD</td>
+        <td class="fldnorm" colspan="1">SENSELVL2HD</td>
+        <td class="fldnorm" colspan="1">SENSEHIZHD</td>
+        <td class="fldnorm" colspan="3">FAV0R1</td>
+        <td class="fldnorm" colspan="3">FAV0R0</td>
+        <td class="fldnorm" colspan="4">RESERVED_7_4</td>
+        <td class="fldnorm" colspan="4">FUSE_COMMAND</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="14">RO</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:18]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_31_18</span><br/>
+          <span class="sdescdet">RESERVED_31_18</span><br/>
+          <span class="ldescdet">RESERVED_31_18</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HVPROTECT</span><br/>
+          <span class="sdescdet">High Voltage Protection</span><br/>
+          <span class="ldescdet">Must be set during fuse programming to enable the high voltage protection circuits within the fuse arrays to prevent damage. This bit takes effect immediately, it is no longer gated by Global Program Enable being set. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SENSELVLHD</span><br/>
+          <span class="sdescdet">Sense Level High Density</span><br/>
+          <span class="ldescdet">Used to increase the reference side sense current. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SENSELVL2HD</span><br/>
+          <span class="sdescdet">Sense Level2 High Density</span><br/>
+          <span class="ldescdet">Used to increase the reference side sense current. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SENSEHIZHD</span><br/>
+          <span class="sdescdet">Sense HiZ High Density</span><br/>
+          <span class="ldescdet">Extra control signal for fuse sense. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FAV0R1</span><br/>
+          <span class="sdescdet">Favor 1 Sense</span><br/>
+          <span class="ldescdet">Binary weighted sense current adjustment. Biases the output of the column fuse sense amps to one. During fuse read operation, verifies the integrity of a fuse value of zero. <br/><br/>Default must always remain at zero as sensing state machine takes the favor one bits from this field. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FAV0R0</span><br/>
+          <span class="sdescdet">Favor 0 Sense</span><br/>
+          <span class="ldescdet">Binary weighted sense current adjustment. Biases the output of the column fuse sense amps to zero. During fuse read operation, verifies the integrity of a fuse value of one. <br/><br/>Default must always remain at 0 as sensing state machine takes the favor 0 bits from this field. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_7_4</span><br/>
+          <span class="sdescdet">RESERVED</span><br/>
+          <span class="ldescdet">RESERVED_7_4</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FUSE_COMMAND</span><br/>
+          <span class="sdescdet">FUSE COMMAND</span><br/>
+          <span class="ldescdet">command to execute on the fuse controller <br/>4b0000: Fuse HIP Array read<br/>4b0001: Reserved<br/>4b0010: Reserved<br/>4b0011: Reserved<br/>4b0100: Reserved<br/>4'B0101: Reserved<br/>4b0110: Fuse HIP Array program (Data Only)<br/>4b0111: Fuse HIP Array program (ECC Only)<br/>4b1000: Fuse HIP Array program (Data + ECC)<br/>4b1001: Reserved<br/>4b1010: Reserved<br/>4b1011: Override Done<br/>4b1100: Shadow Register Zeroing      (RED2/RED4 Only)<br/>4b1101: Shadow Register Read<br/>4b1110: Shadow Register Write<br/>4b1111: Fuse Sense<br/></span></p>
+          <p><b>Reset: </b>hex:0xf;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_B0259F55B21BE403" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000008</span> Register(32 bit) FUSE_COUNTERS_REG</span><br/>
+      <span class="sdescdet">Fuse Counters Register</span><br/>
+      <span class="ldescdet">Fuse Counters Register 
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30008</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="16">SENSE_CNT</td>
+        <td class="fldnorm" colspan="16">PROGRAM_CNT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="16">RW</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SENSE_CNT</span><br/>
+          <span class="sdescdet">SENSE CNT</span><br/>
+          <span class="ldescdet">The number of ring oscillator clocks (fuse_ro_clk) required to properly sense the fuses. Must be set to meet the TD Redbook sense time and the propagation time of the sensed data traveling from the Fuse Arrays back to the fuse controller. </span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PROGRAM_CNT</span><br/>
+          <span class="sdescdet">PROGRAM CNT</span><br/>
+          <span class="ldescdet">The number of clocks (fuse_ref_clk) required to properly program the fuses.  Must be set to meet the TD Redbook programming time. <br/><br/> </span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DE20F9EFCD05C4F8" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000020</span> Register(32 bit) FUSE_DATA_REG</span><br/>
+      <span class="sdescdet">Fuse Data Register</span><br/>
+      <span class="ldescdet">Fuse Data Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30020</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">FUSEDATA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FUSEDATA</span><br/>
+          <span class="sdescdet">Fuse Data</span><br/>
+          <span class="ldescdet">Supplies the 32 bits of data for a Program / Write command. <br/><br/>Returns the 32 bits of data returned from a Read command. </span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F3C68237B0829FCC" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000024</span> Register(32 bit) FUSE_ECC_DATA_REG</span><br/>
+      <span class="sdescdet">Fuse ECC Data Register</span><br/>
+      <span class="ldescdet">Fuse ECC Data Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30024</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="3">RESERVED_31_29</td>
+        <td class="fldnorm" colspan="6">S3</td>
+        <td class="fldnorm" colspan="1">RESERVED_22</td>
+        <td class="fldnorm" colspan="6">S1</td>
+        <td class="fldnorm" colspan="4">RESERVED_15_12</td>
+        <td class="fldnorm" colspan="12">FUSEECCDATA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="3">RO</td>
+        <td class="accno" colspan="6">RO/V</td>
+        <td class="accno" colspan="1">RO</td>
+        <td class="accno" colspan="6">RO/V</td>
+        <td class="accno" colspan="4">RO</td>
+        <td class="accno" colspan="12">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:29]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_31_29</span><br/>
+          <span class="sdescdet">RESERVED_31_29</span><br/>
+          <span class="ldescdet">RESERVED</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:23]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">S3</span><br/>
+          <span class="sdescdet">ECC Syndrome (S3)</span><br/>
+          <span class="ldescdet">Returns the syndrome (s3) value of the fuse data from a Fuse HIP Array Read command.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[22:22]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_22</span><br/>
+          <span class="sdescdet">RESERVED_22</span><br/>
+          <span class="ldescdet">RESERVED</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:16]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">S1</span><br/>
+          <span class="sdescdet">ECC Syndrome (S1)</span><br/>
+          <span class="ldescdet">Returns the syndrome (s1) value of the fuse data from a Fuse HIP Array Read command </span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:12]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_15_12</span><br/>
+          <span class="sdescdet">RESERVED_15_12</span><br/>
+          <span class="ldescdet">RESERVED</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FUSEECCDATA</span><br/>
+          <span class="sdescdet">ECC Data</span><br/>
+          <span class="ldescdet">Returns the 12 bits of ECC data returned from a Fuse HIP Array Read command. </span></p>
+          <p><b>Reset: </b>hex:0x000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_098CA6D831AB6F04" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000100</span> Register(32 bit) FUSE_STATUS_REG</span><br/>
+      <span class="sdescdet">Fuse Status Register</span><br/>
+      <span class="ldescdet">Fuse Status Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30100</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">STATUSCLEAR</td>
+        <td class="fldnorm" colspan="2">RESERVED_30_29</td>
+        <td class="fldnorm" colspan="1">A0DEBUGSTRAP</td>
+        <td class="fldnorm" colspan="8">ATTACK</td>
+        <td class="fldnorm" colspan="3">SORTONLYBUMPS</td>
+        <td class="fldnorm" colspan="3">COMMANDERROR</td>
+        <td class="fldnorm" colspan="3">ADDRESSSTATUS</td>
+        <td class="fldnorm" colspan="3">COMMANDSTATUS</td>
+        <td class="fldnorm" colspan="4">DFX_POLICY</td>
+        <td class="fldnorm" colspan="1">FUSESENSEERROR</td>
+        <td class="fldnorm" colspan="1">FUSEHIPALLZERO</td>
+        <td class="fldnorm" colspan="1">FUSESENSEDONE</td>
+        <td class="fldnorm" colspan="1">HWBusy</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW/1C</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="3">RO/V</td>
+        <td class="accno" colspan="4">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW/1C</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">STATUSCLEAR</span><br/>
+          <span class="sdescdet">Fuse Status Register Clear</span><br/>
+          <span class="ldescdet">A write to this bit causes the Fuse Status register to be cleared.  There are a few bits that are not clearable, see the note in the individual bits for details. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:29]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_30_29</span><br/>
+          <span class="sdescdet">RESERVED_30_29</span><br/>
+          <span class="ldescdet">Reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:28]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">A0DEBUGSTRAP</span><br/>
+          <span class="sdescdet">A0 Debug Strap Status</span><br/>
+          <span class="ldescdet">This field reflects the input port a0_debug_strap.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:20]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ATTACK</span><br/>
+          <span class="sdescdet">Attack Bus [7:0]</span><br/>
+          <span class="ldescdet">7 = Over Voltage<br/>6 = Under Voltage<br/>5 = Reserved (Temperature)<br/>4 = Canary Error (Sense Amp)<br/>3 = Reserved (Frequency)<br/>2 = Module Address Out of Range<br/>1 = Array Address Out of Range<br/>0 = Row Address Out of Range<br/>Whenever an attack occurs, this field can be used to determine which attack(s) occurred. <br/></span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:17]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SORTONLYBUMPS</span><br/>
+          <span class="sdescdet">Fuse Sort Only Bumps Status</span><br/>
+          <span class="ldescdet">This field reflects the input port fuse_sort_only_bumps[2:0].</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:14]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">COMMANDERROR</span><br/>
+          <span class="sdescdet">Command Error Reason</span><br/>
+          <span class="ldescdet">3b000 : No errors<br/>3b001 : Fuse HIP Write Security failed.  An attempt was made to perform a Fuse HIP Write, via APB or JTAG, however the access controls prohibited the write. <br/>3b010 : Fuse HIP Read Security failed.  An attempt was made to perform a Fuse HIP Read, via APB or JTAG, however the access controls are preventing the read.  The data in the Fuse Data  is not valid.<br/>3b011 : Shadow Register Write Security failed.  An attempt was made to perform a Shadow Register Write, via APB or JTAG, however the access controls prohibited the write.<br/>3b100 : Shadow Register Read Security failed.  An attempt was made to perform a Shadow Register Read, via APB or JTAG, however the access controls are preventing the read.  The data in the Fuse Data  is not valid.<br/>3b101 : Reserved<br/>3b110 : Reserved, not used with Intel Fuse HIPs<br/>3b111 : Address Error.  An attempt was made to access an address that does not exist.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:11]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ADDRESSSTATUS</span><br/>
+          <span class="sdescdet">ADDRESS STATUS</span><br/>
+          <span class="ldescdet">3b000 : All addresses are valid<br/>3b001 : Module Address is invalid. The module address specified in the Fuse Address  register contains a module that does not exist on this SoC.<br/>3b010 : Row Address is invalid.  The row address specified in either the Fuse Address  or Fuse Address (Fuse Repair) registers contains a logical row address that does not exist on this SoC.  This can only happen if the Module contains a 4K Fuse HIP and the address specified is &gt;63.<br/>3b011 : Jason TBD to add redundancy error<br/>3b100 : Reserved<br/>3b101 : Reserved<br/>3b110 : Reserved<br/>3b111 : Reserved<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">COMMANDSTATUS</span><br/>
+          <span class="sdescdet">COMMAND STATUS</span><br/>
+          <span class="ldescdet">3b000 : IDLE, No Command Requested<br/>3b001 : Command is currently being Executed<br/>3b010 : Command requested, but dropped as the HW controller was currently processing another request.<br/>3b011 : Command requested, but dropped as the command requested is not valid and is one of the Reserved commands.<br/>3b100 : Command requested, but dropped as the command requested is not valid in the current  Secure Policy.<br/>3b101 : Command Executed, but dropped as the specified address was not valid.<br/>3b110 : Command Executed, but completed with errors.  Check bits [16:14] and [13:11] for the reason.<br/>3b111 : Command Executed, completed successfully</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DFX_POLICY</span><br/>
+          <span class="sdescdet">DFx Secure Policy</span><br/>
+          <span class="ldescdet">The value of the input port, dfx_agg_policy[3:0].<br/>4b0000 : Functionality Locked   (GREEN)<br/>4b0010 : Security Unlocked       (RED 2)<br/>4b0100 : Intel Unlocked            (RED 4)<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FUSESENSEERROR</span><br/>
+          <span class="sdescdet">Fuse Sense Error (NOT CLEARABLE)</span><br/>
+          <span class="ldescdet">At the end of fuse sensing, if any error occurred, this bit will be set. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FUSEHIPALLZERO</span><br/>
+          <span class="sdescdet">Fuse Sense All Zero (NOT CLEARABLE)</span><br/>
+          <span class="ldescdet">During fuse sensing, the fuse controller checks each fuse data row if it contains all 0 or not.  At the end of fuse sensing, this bit indicates if all fuse data rows are 0 or not. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FUSESENSEDONE</span><br/>
+          <span class="sdescdet">Fuse Sense Done (NOT CLEARABLE)</span><br/>
+          <span class="ldescdet">This bit is used to indicate that the fuse sensing process has completed.  Reflects the value of the output port (fuse_sense_done). </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HWBusy</span><br/>
+          <span class="sdescdet">Fuse Controller Busy (NOT CLEARABLE)</span><br/>
+          <span class="ldescdet">Fuse hardware state machine is currently busy performing an Fuse operation </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_1E7FBB759B9253EB" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000104</span> Register(32 bit) FUSE_HIP_ECC_STATUS_REG</span><br/>
+      <span class="sdescdet">FUSE HIP Status Register</span><br/>
+      <span class="ldescdet">FUSE JIP Status Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30104</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">CLEAR</td>
+        <td class="fldnorm" colspan="1">NONCORERR</td>
+        <td class="fldnorm" colspan="14">CORERR2</td>
+        <td class="fldnorm" colspan="16">CORERR1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW/1C</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="14">RO/V</td>
+        <td class="accno" colspan="16">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW/1C</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CLEAR</span><br/>
+          <span class="sdescdet">Fuse ECC Statistics Clear</span><br/>
+          <span class="ldescdet">This register consists of Read Only bits providing current statistics of the Fuse HIP ECC decoding logic during fuse sensing. <br/><br/>This bit is used to clear the statistics explicitly if needed. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">NONCORERR</span><br/>
+          <span class="sdescdet">Detected but Uncorrectable Error (due)</span><br/>
+          <span class="ldescdet">This field indicates that 3+ bit error occurred, which is detectable only, and not corrected. This is indicated by the output indicator bit (due) being set, or more than 1 of the output indicator bits being set at the same time (noerror, ce_one, ce_two, due). <br/><br/>This is a catastrophic error for the fuse controller and will result in a Fuse Sense Error.  </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:16]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CORERR2</span><br/>
+          <span class="sdescdet">Number of Correctable 2-bit Errors</span><br/>
+          <span class="ldescdet">This field is updated after power on fuse sensing or re-sensing completes. </span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CORERR1</span><br/>
+          <span class="sdescdet">Number of Correctable 1-bit Errors</span><br/>
+          <span class="ldescdet">This field is updated after power on fuse sensing or re-sensing completes. </span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D7594F95C4D63352" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000200</span> Register(32 bit) FUSE_DEBUG_CONTROL_REG</span><br/>
+      <span class="sdescdet">Fuse Debug Control Register</span><br/>
+      <span class="ldescdet">"Fuse Debug Control Register"<br/>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30200</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="25">RESERVED_31_7</td>
+        <td class="fldnorm" colspan="2">POLICYGROUP</td>
+        <td class="fldnorm" colspan="5">DEBUGMUXCNTRL</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="25">RO</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="5">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:07]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_31_7</span><br/>
+          <span class="sdescdet">RESERVED_31_7</span><br/>
+          <span class="ldescdet">RESERVED</span></p>
+          <p><b>Reset: </b>hex:0x0000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">POLICYGROUP</span><br/>
+          <span class="sdescdet">POLICY GROUP</span><br/>
+          <span class="ldescdet">Selects which group of signals the lane is to be selected from.<br/>00 security locked<br/>01 security unlocked<br/>10 inter locked<br/>11 reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEBUGMUXCNTRL</span><br/>
+          <span class="sdescdet">DEBUG MUX CNTRL</span><br/>
+          <span class="ldescdet">Selects which of the 32 input lanes to be routed to the 8-bit output Debug Mux. </span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_234382F8C8B08514" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000300</span> Register(32 bit) FUSE_HIP_REGISTERS_ADDRESS_REG</span><br/>
+      <span class="sdescdet">Fuse HIP Registers Address</span><br/>
+      <span class="ldescdet">Fuse HIP Register Address Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30300</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">ARRAYTYPE</td>
+        <td class="fldnorm" colspan="9">RESERVED_30_22</td>
+        <td class="fldnorm" colspan="7">MODULEADDRESS</td>
+        <td class="fldnorm" colspan="3">ARRAYADDRESS</td>
+        <td class="fldnorm" colspan="5">IPNUMBER</td>
+        <td class="fldnorm" colspan="7">REGISTER</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="9">RO</td>
+        <td class="accno" colspan="7">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="7">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ARRAYTYPE</span><br/>
+          <span class="sdescdet">Fuse HIP Array Type</span><br/>
+          <span class="ldescdet">Must be specified to indicate if the Fuse HIP address specified is target for an Intel HVM array or an OEM IFP Array.  It indicates to the Fuse Controller which set of address and data registers to communicate with. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:22]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_30_22</span><br/>
+          <span class="sdescdet">RESERVED_30_22</span><br/>
+          <span class="ldescdet">RESERVED</span></p>
+          <p><b>Reset: </b>hex:0x000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MODULEADDRESS</span><br/>
+          <span class="sdescdet">MODULE ADDRESS</span><br/>
+          <span class="ldescdet">The fuse controller supports up to 128 modules.  This field specifies the module address to program or fuse override. </span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ARRAYADDRESS</span><br/>
+          <span class="sdescdet">ARRAY ADDRESS</span><br/>
+          <span class="ldescdet">The fuse controller supports up to 8 arrays per module.  This field specifies the array address to program or fuse override. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">IPNUMBER</span><br/>
+          <span class="sdescdet">IP NUMBER</span><br/>
+          <span class="ldescdet">The fuse controller supports up to 128 modules </span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">REGISTER</span><br/>
+          <span class="sdescdet">REGISTER feild</span><br/>
+          <span class="ldescdet">The fuse controller supports up to 128 modules </span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D6ECD371FCE939DB" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000304</span> Register(32 bit) FUSE_HIP_REGISTER_DATA_REG</span><br/>
+      <span class="sdescdet">Fuse HIP REGISTERS Data Register</span><br/>
+      <span class="ldescdet">Fuse HIP REGISTERS Data Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30304</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">HIPDATA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">HIPDATA</span><br/>
+          <span class="sdescdet">Fuse HIP Data</span><br/>
+          <span class="ldescdet">Fuse HIP uses indirect addressing to access all their registers. This register is used together with the Fuse HIP Address register.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_940D42FCF71A1284" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000308</span> Register(32 bit) FUSE_HIP_REGISTERS_CONTROL_REG</span><br/>
+      <span class="sdescdet">Fuse HIP Registers Control Register</span><br/>
+      <span class="ldescdet">Fuse HIP Register Control Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30308</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="31">RESERVED_31_1</td>
+        <td class="fldnorm" colspan="1">TRANSTYPE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="31">RO</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:01]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_31_1</span><br/>
+          <span class="sdescdet">RESERVED_31_1</span><br/>
+          <span class="ldescdet">RESERVED</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TRANSTYPE</span><br/>
+          <span class="sdescdet">Fuse HIP Register Transaction Type</span><br/>
+          <span class="ldescdet">Used to indicate if the transaction type to access the Fuse HIP Registers.<br/>0 = Read Fuse HIP Register<br/>1 = Write Fuse HIP Register</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_025C21C150DA8C12" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000400</span> Register(32 bit) DRNG_ES_CONFIG0_REG</span><br/>
+      <span class="sdescdet">DRNG ES Config 0 register</span><br/>
+      <span class="ldescdet">DRNG ES Config 0 register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30400</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00001400</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">STEPSIZE_N</td>
+        <td class="fldnorm" colspan="8">STEPSIZE_P</td>
+        <td class="fldnorm" colspan="8">LOOPDELAY</td>
+        <td class="fldnorm" colspan="8">ES_MODE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">STEPSIZE_N</span><br/>
+          <span class="sdescdet">STEP SIZE_N</span><br/>
+          <span class="ldescdet">RESERVED</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">STEPSIZE_P</span><br/>
+          <span class="sdescdet">STEP SIZE_P</span><br/>
+          <span class="ldescdet">TBD, need description from RNG-ES team</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">LOOPDELAY</span><br/>
+          <span class="sdescdet">LOOP DELAY</span><br/>
+          <span class="ldescdet">These bits adjust the oscillation frequency of the ES and the internal clock pulse width for the switched capacitor filter. They are intended for process centering only and should not need to be changed.<br/>[15:14]: Reserved                              (00)<br/>[13:11]: Stepper Pulse Clock Adjust    (010)<br/>[10: 8]: ES Frequency Adjust              (100)</span></p>
+          <p><b>Reset: </b>hex:0x14;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ES_MODE</span><br/>
+          <span class="sdescdet">ES MODE</span><br/>
+          <span class="ldescdet">Reserved for future use by the RNG-ES</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D1E63E9C14722309" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000408</span> Register(32 bit) DRNG_ES_CONFIG1_REG</span><br/>
+      <span class="sdescdet">DRNG ES Config 1 register</span><br/>
+      <span class="ldescdet">Fuse HIP Register Control Register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x01e30408</span> at NOC.syscon__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000007</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="19">RESERVED_31_13</td>
+        <td class="fldnorm" colspan="1">DEBUG_EN</td>
+        <td class="fldnorm" colspan="4">DFX_MODE</td>
+        <td class="fldnorm" colspan="2">RESERVED</td>
+        <td class="fldnorm" colspan="6">ES_CTRL</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="19">RO</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="6">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:13]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED_31_13</span><br/>
+          <span class="sdescdet">RESERVED_31_13</span><br/>
+          <span class="ldescdet">RESERVED</span></p>
+          <p><b>Reset: </b>hex:0x00000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[12:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEBUG_EN</span><br/>
+          <span class="sdescdet">Debug Out Enable</span><br/>
+          <span class="ldescdet">When asserted, enables the debug bus out from the ES.  Observed on the input port : rng_es_dfx_obs_data[15:0] </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DFX_MODE</span><br/>
+          <span class="sdescdet">DFx Configuration</span><br/>
+          <span class="ldescdet">Used to configure the Design for Excellence Mode of the Entropy Source (ES).<br/>[11]: Reserved<br/>[10]: Deterministic Test Mode (bit 2 of 2)<br/>[9:8]  : Reserved<br/>Deterministic test mode for post-Si debug use only. To enable, bit [10] must be set in conjunction with bit [3]. Will replace ES random bitstream with repeating 000111 output before digitizer.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">RESERVED</span><br/>
+          <span class="sdescdet">Reserved</span><br/>
+          <span class="ldescdet">Reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ES_CTRL</span><br/>
+          <span class="sdescdet">ES Control</span><br/>
+          <span class="ldescdet">Digitizer configuration<br/>[5:4]: Reserved<br/>[3]: Deterministic Test Mode (bit 1 of 2)<br/>[2]: Enable digitizer recirculate<br/>[1]: Enable digitizer divide by 4<br/>[0]: Enable digitizer XOR<br/><br/>[3]<br/>Deterministic test mode for post-Si debug use only. To enable, bit [3] must be set in conjunction with idfx [2]. Will replace ES random bitstream with repeating 000111 output before digitizer.<br/>[2:0] Value depends on usage and DRNG version:<br/>3'b111: Digitizer included as SP800-90B Non-Vetted Conditioner (NVC). Output data decimated by 4x<br/>3'b010: No NVC. Output data decimated by 4x<br/>3'b000: No NVC. Output data full rate<br/></span></p>
+          <p><b>Reset: </b>hex:0x07;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_syscon_ifs_fc_APB_REG">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

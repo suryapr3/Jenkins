@@ -1,0 +1,58 @@
+[Wed Jul  3 13:03:01 2024] [gpdma_LLI_rsm2rsm_test.c][line: 199] Host: main starts!
+
+[Wed Jul  3 13:03:02 2024] [init.c][line: 51] VEX RTE config is enabled
+[Wed Jul  3 13:03:02 2024] [common_functions.c][line: 282] INFO: Asserting the reset of CRUX from CAR registers
+
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register abc_noc_CLK disable at address 0x2408094 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408094 is successful and data read is 0x1
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register abc_noc_CLK_disable at address 0x2408098 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408098 is successful and data read is 0x1
+[Wed Jul  3 13:03:02 2024] [common_functions.c][line: 290] INFO: Deasserting the reset of CRUX from CAR registers
+
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register abc_noc_CLK disable at address 0x2408094 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408094 is successful and data read is 0x0
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Wed Jul  3 13:03:02 2024] [common_functions.c][line: 203] INFO: Asserting the reset and disabling the CLKs
+
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register car_CLK_disable0 at address 0x2408000 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register car_CLK_disable1 at address 0x2408004 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable1 at address 0x2408004 is successful and data read is 0xff
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Wed Jul  3 13:03:02 2024] [common_functions.c][line: 217] INFO: Deasserting the reset and enabling the CLKs
+
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register car_CLK_disable0 at address 0x2408000 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable0 at address 0x2408000 is successful and data read is 0x0
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register car_CLK_disable1 at address 0x2408004 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable1 at address 0x2408004 is successful and data read is 0x0
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 320] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Wed Jul  3 13:03:02 2024] [init.c][line: 75] INFO: Common configuration done
+
+[Wed Jul  3 13:03:02 2024] [gpdma_LLI_rsm2rsm_test.c][line: 201] calling srp_config!
+
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Wed Jul  3 13:03:02 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Wed Jul  3 13:03:03 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Wed Jul  3 13:03:03 2024] [cli.c][line: 612] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Wed Jul  3 13:03:04 2024] [gpdma_LLI_rsm2rsm_test.c][line: 213] calling srp_rcs_config...
+
+[Wed Jul  3 13:03:06 2024] [gpdma_LLI_rsm2rsm_test.c][line: 217] after calling srp_rcs_config...
+
+[Wed Jul  3 13:10:23 2024] [gpdma_LLI_rsm2rsm_test.c][line: 461] Host:------ CORE 0: GPDMA TEST RSM TO RSM PASSED ,test_pattern: a0a00000------
+
+[Wed Jul  3 13:17:39 2024] [gpdma_LLI_rsm2rsm_test.c][line: 461] Host:------ CORE 1: GPDMA TEST RSM TO RSM PASSED ,test_pattern: b0b00000------
+

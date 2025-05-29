@@ -1,0 +1,19 @@
+[params]
+gk_version = 4.30.04_20ww12c
+rtl_root = /p/hdk/rtl
+rtl_proj_tools = params(rtl_root)/proj_tools
+turnin_exec = params(rtl_proj_tools)/gatekeeper4/master/params(gk_version)/bin/turnin
+turnininfo_exec = params(rtl_proj_tools)/gatekeeper4/master/params(gk_version)/bin/turnininfo
+turnintool_exec = params(rtl_proj_tools)/gatekeeper4/master/params(gk_version)/bin/turnintool
+releaseinfo_exec = params(rtl_proj_tools)/gatekeeper4/master/params(gk_version)/bin/releaseinfo
+pu_tu_root = /p/hdk/pu_tu
+
+[envs]
+GK_VERSION = params(gk_version)
+RTL_ROOT = params(rtl_root)
+RTL_PROJ_CFG = envs(RTL_ROOT)/proj_cfg
+RTL_PROJ_TOOLS = params(rtl_proj_tools)
+RTL_PROJ_BIN = params(rtl_proj_tools)/proj_binx/cds/latest
+GK_CONFIG_DIR = params(pu_tu_root)/prd/gatekeeper_configs/cicg_pdx/latest
+PROJECT = CTH
+PATH = envs(RTL_PROJ_TOOLS)/gatekeeper4/master/params(gk_version)/bin:$PATH

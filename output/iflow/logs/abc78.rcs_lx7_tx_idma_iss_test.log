@@ -1,0 +1,19 @@
+FW_INFO: com_isr.c:183  com_isr_event_irq: SW irq = 4, cpu_irq = 4.
+FW_INFO: com_isr.c:183  com_isr_event_irq: SW irq = 3, cpu_irq = 3.
+FW_INFO: com_idma_test.c:75  Test: idma 1D with polling
+FW_INFO: com_idma_test.c:92  Test: idma 1D with interrupt
+FW_INFO: com_idma_test.c:116  Test: idma 1D using descriptor with interrupt
+FW_INFO: com_idma_test.c:133  Test: idma broadcast (2D) test
+FW_NOTICE: com_idma_test.c:147  --- Expected errors follow.
+FW_INFO: com_idma_test.c:148  Test: idma negative test, error means test pass
+( iDMA0      ) *WARNING* Received a descriptor with bad parameters setting BAD_PARAMS_ERR:
+Row Bytes equal or less than 0.
+Params were: row_bytes:0 num_rows:1 src_row_pitch:0 dest_row_pitch:0
+( iDMA0      ) *WARNING* Read a descriptor with src_addr=0x0, setting NULL_ADDR_ERR
+( iDMA0      ) *WARNING* Read a descriptor with dest_addr=0x0, setting NULL_ADDR_ERR
+( iDMA0      ) *WARNING* Read a descriptor with the SRC and DST targetting the AXI/PIF, and AXIToAXI feature is not enabled, setting UNSUP_TRANS_ERR
+( iDMA0      ) *WARNING* Didn't dispatch stream due to an error (0x1c00)
+( iDMA0      ) *WARNING* desc_addr(v/p):0x01003ff1c/0x01003ff1c src_addr(v/p):0x000000000/0x000000000 dest_addr(v/p):0x000000000/0x000000000
+( iDMA0      ) *WARNING* Params: row_bytes:0 num_rows:1 src_row_pitch:0 dest_row_pitch:0
+FW_NOTICE: com_idma_test.c:156  --- End of expected errors.
+FW_INFO: com_idma_test.c:178  IDMA test PASSED

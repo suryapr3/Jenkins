@@ -1,0 +1,18 @@
+Table Name,tx_topology_lut,,,,,,,,,,,
+Table Description,"this table depicts the topology of TX lineup, ie, the data process blocks involved.  as V2D and JESD are always involved, only process blocks between these two need to be speicified; indexed by [topology]",,,,,,,,,,,
+single entry bitwidth,8*1,,,,,,,,,,,
+base type bit layout,,,7,6,5,4,3,2,1,0,,
+Bit Field Name,,,res_7_3,,,,,vex_v2d,vha,vex_vha,,<----
+Bit Field Description,,,reserved,,,,,"indicating data goes through VEX and V2D or not: 1=yes, 0=no","indicating data goes through VHA or not: 1=yes, 0=no","indicating data goes through VEX and VHA path or not: 1=yes, 0=no",,
+Unit [string],,,value,,,,,bit,bit,bit,,
+Granularity,,,1,,,,,1,1,1,,
+Minimum Value,,,0,,,,,0,0,0,,
+Maximum Value,,,31,,,,,1,1,1,,
+Sign Type,,,unsigned,,,,,unsigned,unsigned,unsigned,,
+Bit Field Width,,,5,,,,,1,1,1,,
+subtable dimension and name,5*1,,tx_topology_sel,,,,,,,,,
+,,,0,,,,,0,0,0,,hwc0016
+,,,0,,,,,1,0,0,,Z0
+,,,0,,,,,0,1,0,,
+,,,0,,,,,0,1,1,,
+,,,0,,,,,1,1,1,,

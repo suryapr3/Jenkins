@@ -1,0 +1,745 @@
+export TOOLS_BASE := /nfs/site/disks/xne_abc_fe_002/fw_tools
+export PRJDIR := ${WORKAREA}/src/rcs_fw
+export SWTOOLS_CTL := /nfs/site/disks/xne_abc_fe_002/fw_tools/RI-2022.9-linux/XtensaTools
+export SWTOOLS_ANA := /nfs/site/disks/xne_abc_fe_002/fw_tools/RI-2022.9-linux/XtensaTools
+export COV_TOOLS := /nfs/site/disks/xne_abc_fe_002/fw_tools/cov-analysis-linux64-2022.3.1/bin
+export PYTHONPATH := scripts/table_utils:/usr/intel/pkgs/python3/3.6.3/lib/python3.6:/usr/intel/pkgs/python3/3.6.3/lib/python3.6/site-packages:/usr/intel/pkgs/python3/3.6.3/modules/r1/lib/python3.6/site-packages
+
+initiateIflow : .flowMgr/initiateIflow.touch
+	@echo "Please find the Logs per stage at /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs ."
+
+.flowMgr/initiateIflow.touch :
+	@mkdir -p .flowMgr
+	@touch .flowMgr/initiateIflow.touch
+	@printf "    %-50s %-20s %-20s %-10s\n" STAGE STATUS RUNTIME LOGPATH
+	@printf "    %-50s %-20s %-20s %-10s\n" ----- ------ ------- -------
+
+abc78.complete : .flowMgr/abc78.complete.touch
+
+.flowMgr/abc78.complete.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.complete RUN '' \$$\WORKAREA/output/iflow/logs/abc78.complete.log
+	@touch .flowMgr/.abc78.complete.touch_start 
+	@date +%s > .flowMgr/.abc78.complete.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW COMPLETE"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.complete.log 2>&1, "abc78.complete")
+	@date +%s > .flowMgr/.abc78.complete.end_time
+	@echo "STAGE: abc78.complete RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.complete.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.complete.log
+	@date +%s > .flowMgr/.abc78.complete.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.complete COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.complete.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.complete.log
+
+clean_abc78.complete :
+	rm -f .flowMgr/.abc78.complete.start_time
+	rm -f .flowMgr/.abc78.complete.end_time
+	rm -f .flowMgr/abc78.complete.touch
+
+	rm -f .flowMgr/abc78.complete_incr.touch
+
+
+abc78.complete_NODEPS : .flowMgr/abc78.complete_NODEPS.touch
+
+.flowMgr/abc78.complete_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.complete_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.complete_NODEPS.log
+	@touch .flowMgr/.abc78.complete_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.complete_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW COMPLETE"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.complete_NODEPS.log 2>&1, "abc78.complete_NODEPS")
+	@date +%s > .flowMgr/.abc78.complete_NODEPS.end_time
+	@echo "STAGE: abc78.complete_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.complete_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.complete_NODEPS.log
+	@date +%s > .flowMgr/.abc78.complete_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.complete_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.complete_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.complete_NODEPS.log
+
+clean_abc78.complete_NODEPS :
+	rm -f .flowMgr/.abc78.complete_NODEPS.start_time
+	rm -f .flowMgr/.abc78.complete_NODEPS.end_time
+	rm -f .flowMgr/abc78.complete_NODEPS.touch
+
+	rm -f .flowMgr/abc78.complete_NODEPS_incr.touch
+
+
+abc78.rcs_firmware_compile : .flowMgr/abc78.rcs_firmware_compile.touch
+
+.flowMgr/abc78.rcs_firmware_compile.touch : .flowMgr/initiateIflow.touch .flowMgr/abc78.start.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_firmware_compile RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_firmware_compile.log
+	@touch .flowMgr/.abc78.rcs_firmware_compile.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_firmware_compile.start_time
+	@$(call run_cmd, cd $(WORKAREA)/src/rcs_fw && make all  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_firmware_compile.log 2>&1, "abc78.rcs_firmware_compile")
+	@date +%s > .flowMgr/.abc78.rcs_firmware_compile.end_time
+	@echo "STAGE: abc78.rcs_firmware_compile RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_firmware_compile.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_firmware_compile.log
+	@date +%s > .flowMgr/.abc78.rcs_firmware_compile.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_firmware_compile COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_firmware_compile.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_firmware_compile.log
+
+clean_abc78.rcs_firmware_compile :
+	rm -f .flowMgr/.abc78.rcs_firmware_compile.start_time
+	rm -f .flowMgr/.abc78.rcs_firmware_compile.end_time
+	rm -f .flowMgr/abc78.rcs_firmware_compile.touch
+
+	rm -f .flowMgr/abc78.rcs_firmware_compile_incr.touch
+
+
+abc78.rcs_firmware_compile_NODEPS : .flowMgr/abc78.rcs_firmware_compile_NODEPS.touch
+
+.flowMgr/abc78.rcs_firmware_compile_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_firmware_compile_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_firmware_compile_NODEPS.log
+	@touch .flowMgr/.abc78.rcs_firmware_compile_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_firmware_compile_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA)/src/rcs_fw && make all  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_firmware_compile_NODEPS.log 2>&1, "abc78.rcs_firmware_compile_NODEPS")
+	@date +%s > .flowMgr/.abc78.rcs_firmware_compile_NODEPS.end_time
+	@echo "STAGE: abc78.rcs_firmware_compile_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_firmware_compile_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_firmware_compile_NODEPS.log
+	@date +%s > .flowMgr/.abc78.rcs_firmware_compile_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_firmware_compile_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_firmware_compile_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_firmware_compile_NODEPS.log
+
+clean_abc78.rcs_firmware_compile_NODEPS :
+	rm -f .flowMgr/.abc78.rcs_firmware_compile_NODEPS.start_time
+	rm -f .flowMgr/.abc78.rcs_firmware_compile_NODEPS.end_time
+	rm -f .flowMgr/abc78.rcs_firmware_compile_NODEPS.touch
+
+	rm -f .flowMgr/abc78.rcs_firmware_compile_NODEPS_incr.touch
+
+
+abc78.rcs_kp1_sample_iss_test : .flowMgr/abc78.rcs_kp1_sample_iss_test.touch
+
+.flowMgr/abc78.rcs_kp1_sample_iss_test.touch : .flowMgr/initiateIflow.touch .flowMgr/abc78.rcs_firmware_compile.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_kp1_sample_iss_test RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_kp1_sample_iss_test.log
+	@touch .flowMgr/.abc78.rcs_kp1_sample_iss_test.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_kp1_sample_iss_test.start_time
+	@date +%s > .flowMgr/abc78.rcs_kp1_sample_iss_test.touch
+	@date +%s > .flowMgr/.abc78.rcs_kp1_sample_iss_test.end_time
+	@echo "STAGE: abc78.rcs_kp1_sample_iss_test RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_kp1_sample_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_kp1_sample_iss_test.log
+	@date +%s > .flowMgr/.abc78.rcs_kp1_sample_iss_test.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_kp1_sample_iss_test COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_kp1_sample_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_kp1_sample_iss_test.log
+
+clean_abc78.rcs_kp1_sample_iss_test :
+	rm -f .flowMgr/.abc78.rcs_kp1_sample_iss_test.start_time
+	rm -f .flowMgr/.abc78.rcs_kp1_sample_iss_test.end_time
+	rm -f .flowMgr/abc78.rcs_kp1_sample_iss_test.touch
+
+	rm -f .flowMgr/abc78.rcs_kp1_sample_iss_test_incr.touch
+
+
+abc78.rcs_kp1_sample_iss_test_NODEPS : .flowMgr/abc78.rcs_kp1_sample_iss_test_NODEPS.touch
+
+.flowMgr/abc78.rcs_kp1_sample_iss_test_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_kp1_sample_iss_test_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_kp1_sample_iss_test_NODEPS.log
+	@touch .flowMgr/.abc78.rcs_kp1_sample_iss_test_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_kp1_sample_iss_test_NODEPS.start_time
+	@date +%s > .flowMgr/abc78.rcs_kp1_sample_iss_test_NODEPS.touch
+	@date +%s > .flowMgr/.abc78.rcs_kp1_sample_iss_test_NODEPS.end_time
+	@echo "STAGE: abc78.rcs_kp1_sample_iss_test_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_kp1_sample_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_kp1_sample_iss_test_NODEPS.log
+	@date +%s > .flowMgr/.abc78.rcs_kp1_sample_iss_test_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_kp1_sample_iss_test_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_kp1_sample_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_kp1_sample_iss_test_NODEPS.log
+
+clean_abc78.rcs_kp1_sample_iss_test_NODEPS :
+	rm -f .flowMgr/.abc78.rcs_kp1_sample_iss_test_NODEPS.start_time
+	rm -f .flowMgr/.abc78.rcs_kp1_sample_iss_test_NODEPS.end_time
+	rm -f .flowMgr/abc78.rcs_kp1_sample_iss_test_NODEPS.touch
+
+	rm -f .flowMgr/abc78.rcs_kp1_sample_iss_test_NODEPS_incr.touch
+
+
+abc78.rcs_lx7_tx_bfn_iss_test : .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test.touch
+
+.flowMgr/abc78.rcs_lx7_tx_bfn_iss_test.touch : .flowMgr/initiateIflow.touch .flowMgr/abc78.rcs_firmware_compile.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_bfn_iss_test RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_bfn_iss_test.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_bfn_iss_test RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_bfn_iss_test.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_bfn_iss_test COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_bfn_iss_test.log
+
+clean_abc78.rcs_lx7_tx_bfn_iss_test :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test_incr.touch
+
+
+abc78.rcs_lx7_tx_bfn_iss_test_NODEPS : .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.touch
+
+.flowMgr/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_bfn_iss_test_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_bfn_iss_test_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_bfn_iss_test_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.log
+
+clean_abc78.rcs_lx7_tx_bfn_iss_test_NODEPS :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS_incr.touch
+
+
+abc78.rcs_lx7_tx_idma_iss_test : .flowMgr/abc78.rcs_lx7_tx_idma_iss_test.touch
+
+.flowMgr/abc78.rcs_lx7_tx_idma_iss_test.touch : .flowMgr/initiateIflow.touch .flowMgr/abc78.rcs_firmware_compile.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_idma_iss_test RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_idma_iss_test.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_idma_iss_test.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_idma_iss_test RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_idma_iss_test.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_idma_iss_test COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_idma_iss_test.log
+
+clean_abc78.rcs_lx7_tx_idma_iss_test :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_idma_iss_test.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_idma_iss_test_incr.touch
+
+
+abc78.rcs_lx7_tx_idma_iss_test_NODEPS : .flowMgr/abc78.rcs_lx7_tx_idma_iss_test_NODEPS.touch
+
+.flowMgr/abc78.rcs_lx7_tx_idma_iss_test_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_idma_iss_test_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_idma_iss_test_NODEPS.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test_NODEPS.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_idma_iss_test_NODEPS.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test_NODEPS.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_idma_iss_test_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_idma_iss_test_NODEPS.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_idma_iss_test_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_idma_iss_test_NODEPS.log
+
+clean_abc78.rcs_lx7_tx_idma_iss_test_NODEPS :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test_NODEPS.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_idma_iss_test_NODEPS.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_idma_iss_test_NODEPS.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_idma_iss_test_NODEPS_incr.touch
+
+
+abc78.rcs_lx7_tx_msghandler_iss_test : .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test.touch
+
+.flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test.touch : .flowMgr/initiateIflow.touch .flowMgr/abc78.rcs_firmware_compile.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_msghandler_iss_test RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_msghandler_iss_test.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_msghandler_iss_test RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_msghandler_iss_test.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_msghandler_iss_test COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_msghandler_iss_test.log
+
+clean_abc78.rcs_lx7_tx_msghandler_iss_test :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test_incr.touch
+
+
+abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS : .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.touch
+
+.flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.log
+
+clean_abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS_incr.touch
+
+
+abc78.rcs_lx7_tx_queue_iss_test : .flowMgr/abc78.rcs_lx7_tx_queue_iss_test.touch
+
+.flowMgr/abc78.rcs_lx7_tx_queue_iss_test.touch : .flowMgr/initiateIflow.touch .flowMgr/abc78.rcs_firmware_compile.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_queue_iss_test RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_queue_iss_test.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_queue_iss_test.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_queue_iss_test RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_queue_iss_test.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_queue_iss_test COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_queue_iss_test.log
+
+clean_abc78.rcs_lx7_tx_queue_iss_test :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_queue_iss_test.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_queue_iss_test_incr.touch
+
+
+abc78.rcs_lx7_tx_queue_iss_test_NODEPS : .flowMgr/abc78.rcs_lx7_tx_queue_iss_test_NODEPS.touch
+
+.flowMgr/abc78.rcs_lx7_tx_queue_iss_test_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_queue_iss_test_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_queue_iss_test_NODEPS.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test_NODEPS.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_queue_iss_test_NODEPS.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test_NODEPS.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_queue_iss_test_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_queue_iss_test_NODEPS.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_queue_iss_test_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_queue_iss_test_NODEPS.log
+
+clean_abc78.rcs_lx7_tx_queue_iss_test_NODEPS :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test_NODEPS.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_queue_iss_test_NODEPS.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_queue_iss_test_NODEPS.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_queue_iss_test_NODEPS_incr.touch
+
+
+abc78.rcs_lx7_tx_timing_iss_test : .flowMgr/abc78.rcs_lx7_tx_timing_iss_test.touch
+
+.flowMgr/abc78.rcs_lx7_tx_timing_iss_test.touch : .flowMgr/initiateIflow.touch .flowMgr/abc78.rcs_firmware_compile.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_timing_iss_test RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_timing_iss_test.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_timing_iss_test.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_timing_iss_test RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_timing_iss_test.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_timing_iss_test COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_timing_iss_test.log
+
+clean_abc78.rcs_lx7_tx_timing_iss_test :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_timing_iss_test.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_timing_iss_test_incr.touch
+
+
+abc78.rcs_lx7_tx_timing_iss_test_NODEPS : .flowMgr/abc78.rcs_lx7_tx_timing_iss_test_NODEPS.touch
+
+.flowMgr/abc78.rcs_lx7_tx_timing_iss_test_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_timing_iss_test_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_timing_iss_test_NODEPS.log
+	@touch .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test_NODEPS.start_time
+	@date +%s > .flowMgr/abc78.rcs_lx7_tx_timing_iss_test_NODEPS.touch
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test_NODEPS.end_time
+	@echo "STAGE: abc78.rcs_lx7_tx_timing_iss_test_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.rcs_lx7_tx_timing_iss_test_NODEPS.log
+	@date +%s > .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.rcs_lx7_tx_timing_iss_test_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.rcs_lx7_tx_timing_iss_test_NODEPS.log
+
+clean_abc78.rcs_lx7_tx_timing_iss_test_NODEPS :
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test_NODEPS.start_time
+	rm -f .flowMgr/.abc78.rcs_lx7_tx_timing_iss_test_NODEPS.end_time
+	rm -f .flowMgr/abc78.rcs_lx7_tx_timing_iss_test_NODEPS.touch
+
+	rm -f .flowMgr/abc78.rcs_lx7_tx_timing_iss_test_NODEPS_incr.touch
+
+
+abc78.start : .flowMgr/abc78.start.touch
+
+.flowMgr/abc78.start.touch : .flowMgr/initiateIflow.touch .flowMgr/abc_emul.moab.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.start RUN '' \$$\WORKAREA/output/iflow/logs/abc78.start.log
+	@touch .flowMgr/.abc78.start.touch_start 
+	@date +%s > .flowMgr/.abc78.start.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW START"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.start.log 2>&1, "abc78.start")
+	@date +%s > .flowMgr/.abc78.start.end_time
+	@echo "STAGE: abc78.start RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.start.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.start.log
+	@date +%s > .flowMgr/.abc78.start.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.start COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.start.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.start.log
+
+clean_abc78.start :
+	rm -f .flowMgr/.abc78.start.start_time
+	rm -f .flowMgr/.abc78.start.end_time
+	rm -f .flowMgr/abc78.start.touch
+
+	rm -f .flowMgr/abc78.start_incr.touch
+
+
+abc78.start_NODEPS : .flowMgr/abc78.start_NODEPS.touch
+
+.flowMgr/abc78.start_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.start_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc78.start_NODEPS.log
+	@touch .flowMgr/.abc78.start_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc78.start_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW START"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.start_NODEPS.log 2>&1, "abc78.start_NODEPS")
+	@date +%s > .flowMgr/.abc78.start_NODEPS.end_time
+	@echo "STAGE: abc78.start_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.start_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc78.start_NODEPS.log
+	@date +%s > .flowMgr/.abc78.start_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc78.start_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc78.start_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc78.start_NODEPS.log
+
+clean_abc78.start_NODEPS :
+	rm -f .flowMgr/.abc78.start_NODEPS.start_time
+	rm -f .flowMgr/.abc78.start_NODEPS.end_time
+	rm -f .flowMgr/abc78.start_NODEPS.touch
+
+	rm -f .flowMgr/abc78.start_NODEPS_incr.touch
+
+
+abc_emul.clean_subip : .flowMgr/abc_emul.clean_subip.touch
+
+.flowMgr/abc_emul.clean_subip.touch : .flowMgr/initiateIflow.touch .flowMgr/abc_emul.gen_download_dir.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.clean_subip RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.clean_subip.log
+	@touch .flowMgr/.abc_emul.clean_subip.touch_start 
+	@date +%s > .flowMgr/.abc_emul.clean_subip.start_time
+	@$(call run_cmd, cd $(WORKAREA) && \rm -rf $(WORKAREA)/subip  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.clean_subip.log 2>&1, "abc_emul.clean_subip")
+	@date +%s > .flowMgr/.abc_emul.clean_subip.end_time
+	@echo "STAGE: abc_emul.clean_subip RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.clean_subip.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.clean_subip.log
+	@date +%s > .flowMgr/.abc_emul.clean_subip.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.clean_subip COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.clean_subip.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.clean_subip.log
+
+clean_abc_emul.clean_subip :
+	rm -f .flowMgr/.abc_emul.clean_subip.start_time
+	rm -f .flowMgr/.abc_emul.clean_subip.end_time
+	rm -f .flowMgr/abc_emul.clean_subip.touch
+
+	rm -f .flowMgr/abc_emul.clean_subip_incr.touch
+
+
+abc_emul.clean_subip_NODEPS : .flowMgr/abc_emul.clean_subip_NODEPS.touch
+
+.flowMgr/abc_emul.clean_subip_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.clean_subip_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.clean_subip_NODEPS.log
+	@touch .flowMgr/.abc_emul.clean_subip_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc_emul.clean_subip_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && \rm -rf $(WORKAREA)/subip  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.clean_subip_NODEPS.log 2>&1, "abc_emul.clean_subip_NODEPS")
+	@date +%s > .flowMgr/.abc_emul.clean_subip_NODEPS.end_time
+	@echo "STAGE: abc_emul.clean_subip_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.clean_subip_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.clean_subip_NODEPS.log
+	@date +%s > .flowMgr/.abc_emul.clean_subip_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.clean_subip_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.clean_subip_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.clean_subip_NODEPS.log
+
+clean_abc_emul.clean_subip_NODEPS :
+	rm -f .flowMgr/.abc_emul.clean_subip_NODEPS.start_time
+	rm -f .flowMgr/.abc_emul.clean_subip_NODEPS.end_time
+	rm -f .flowMgr/abc_emul.clean_subip_NODEPS.touch
+
+	rm -f .flowMgr/abc_emul.clean_subip_NODEPS_incr.touch
+
+
+abc_emul.complete : .flowMgr/abc_emul.complete.touch
+
+.flowMgr/abc_emul.complete.touch : .flowMgr/initiateIflow.touch .flowMgr/abcn5.complete.touch .flowMgr/abc78.complete.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.complete RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.complete.log
+	@touch .flowMgr/.abc_emul.complete.touch_start 
+	@date +%s > .flowMgr/.abc_emul.complete.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW COMPLETE"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.complete.log 2>&1, "abc_emul.complete")
+	@date +%s > .flowMgr/.abc_emul.complete.end_time
+	@echo "STAGE: abc_emul.complete RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.complete.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.complete.log
+	@date +%s > .flowMgr/.abc_emul.complete.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.complete COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.complete.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.complete.log
+
+clean_abc_emul.complete :
+	rm -f .flowMgr/.abc_emul.complete.start_time
+	rm -f .flowMgr/.abc_emul.complete.end_time
+	rm -f .flowMgr/abc_emul.complete.touch
+
+	rm -f .flowMgr/abc_emul.complete_incr.touch
+
+
+abc_emul.complete_NODEPS : .flowMgr/abc_emul.complete_NODEPS.touch
+
+.flowMgr/abc_emul.complete_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.complete_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.complete_NODEPS.log
+	@touch .flowMgr/.abc_emul.complete_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc_emul.complete_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW COMPLETE"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.complete_NODEPS.log 2>&1, "abc_emul.complete_NODEPS")
+	@date +%s > .flowMgr/.abc_emul.complete_NODEPS.end_time
+	@echo "STAGE: abc_emul.complete_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.complete_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.complete_NODEPS.log
+	@date +%s > .flowMgr/.abc_emul.complete_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.complete_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.complete_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.complete_NODEPS.log
+
+clean_abc_emul.complete_NODEPS :
+	rm -f .flowMgr/.abc_emul.complete_NODEPS.start_time
+	rm -f .flowMgr/.abc_emul.complete_NODEPS.end_time
+	rm -f .flowMgr/abc_emul.complete_NODEPS.touch
+
+	rm -f .flowMgr/abc_emul.complete_NODEPS_incr.touch
+
+
+abc_emul.gen_download_dir : .flowMgr/abc_emul.gen_download_dir.touch
+
+.flowMgr/abc_emul.gen_download_dir.touch : .flowMgr/initiateIflow.touch .flowMgr/abc_emul.start.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.gen_download_dir RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.gen_download_dir.log
+	@touch .flowMgr/.abc_emul.gen_download_dir.touch_start 
+	@date +%s > .flowMgr/.abc_emul.gen_download_dir.start_time
+	@$(call run_cmd, cd $(WORKAREA) && \mkdir -p $(WORKAREA)/output/download  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.gen_download_dir.log 2>&1, "abc_emul.gen_download_dir")
+	@date +%s > .flowMgr/.abc_emul.gen_download_dir.end_time
+	@echo "STAGE: abc_emul.gen_download_dir RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.gen_download_dir.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.gen_download_dir.log
+	@date +%s > .flowMgr/.abc_emul.gen_download_dir.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.gen_download_dir COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.gen_download_dir.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.gen_download_dir.log
+
+clean_abc_emul.gen_download_dir :
+	rm -f .flowMgr/.abc_emul.gen_download_dir.start_time
+	rm -f .flowMgr/.abc_emul.gen_download_dir.end_time
+	rm -f .flowMgr/abc_emul.gen_download_dir.touch
+
+	rm -f .flowMgr/abc_emul.gen_download_dir_incr.touch
+
+
+abc_emul.gen_download_dir_NODEPS : .flowMgr/abc_emul.gen_download_dir_NODEPS.touch
+
+.flowMgr/abc_emul.gen_download_dir_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.gen_download_dir_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.gen_download_dir_NODEPS.log
+	@touch .flowMgr/.abc_emul.gen_download_dir_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc_emul.gen_download_dir_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && \mkdir -p $(WORKAREA)/output/download  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.gen_download_dir_NODEPS.log 2>&1, "abc_emul.gen_download_dir_NODEPS")
+	@date +%s > .flowMgr/.abc_emul.gen_download_dir_NODEPS.end_time
+	@echo "STAGE: abc_emul.gen_download_dir_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.gen_download_dir_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.gen_download_dir_NODEPS.log
+	@date +%s > .flowMgr/.abc_emul.gen_download_dir_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.gen_download_dir_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.gen_download_dir_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.gen_download_dir_NODEPS.log
+
+clean_abc_emul.gen_download_dir_NODEPS :
+	rm -f .flowMgr/.abc_emul.gen_download_dir_NODEPS.start_time
+	rm -f .flowMgr/.abc_emul.gen_download_dir_NODEPS.end_time
+	rm -f .flowMgr/abc_emul.gen_download_dir_NODEPS.touch
+
+	rm -f .flowMgr/abc_emul.gen_download_dir_NODEPS_incr.touch
+
+
+abc_emul.moab : .flowMgr/abc_emul.moab.touch
+
+.flowMgr/abc_emul.moab.touch : .flowMgr/initiateIflow.touch .flowMgr/abc_emul.clean_subip.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.moab RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.moab.log
+	@touch .flowMgr/.abc_emul.moab.touch_start 
+	@date +%s > .flowMgr/.abc_emul.moab.start_time
+	@$(call run_cmd, cd $(WORKAREA) && true  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.moab.log 2>&1, "abc_emul.moab")
+	@date +%s > .flowMgr/.abc_emul.moab.end_time
+	@echo "STAGE: abc_emul.moab RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.moab.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.moab.log
+	@date +%s > .flowMgr/.abc_emul.moab.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.moab COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.moab.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.moab.log
+
+clean_abc_emul.moab :
+	rm -f .flowMgr/.abc_emul.moab.start_time
+	rm -f .flowMgr/.abc_emul.moab.end_time
+	rm -f .flowMgr/abc_emul.moab.touch
+
+	rm -f .flowMgr/abc_emul.moab_incr.touch
+
+
+abc_emul.moab_NODEPS : .flowMgr/abc_emul.moab_NODEPS.touch
+
+.flowMgr/abc_emul.moab_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.moab_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.moab_NODEPS.log
+	@touch .flowMgr/.abc_emul.moab_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc_emul.moab_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && true  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.moab_NODEPS.log 2>&1, "abc_emul.moab_NODEPS")
+	@date +%s > .flowMgr/.abc_emul.moab_NODEPS.end_time
+	@echo "STAGE: abc_emul.moab_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.moab_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.moab_NODEPS.log
+	@date +%s > .flowMgr/.abc_emul.moab_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.moab_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.moab_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.moab_NODEPS.log
+
+clean_abc_emul.moab_NODEPS :
+	rm -f .flowMgr/.abc_emul.moab_NODEPS.start_time
+	rm -f .flowMgr/.abc_emul.moab_NODEPS.end_time
+	rm -f .flowMgr/abc_emul.moab_NODEPS.touch
+
+	rm -f .flowMgr/abc_emul.moab_NODEPS_incr.touch
+
+
+abc_emul.start : .flowMgr/abc_emul.start.touch
+
+.flowMgr/abc_emul.start.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.start RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.start.log
+	@touch .flowMgr/.abc_emul.start.touch_start 
+	@date +%s > .flowMgr/.abc_emul.start.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW START"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.start.log 2>&1, "abc_emul.start")
+	@date +%s > .flowMgr/.abc_emul.start.end_time
+	@echo "STAGE: abc_emul.start RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.start.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.start.log
+	@date +%s > .flowMgr/.abc_emul.start.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.start COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.start.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.start.log
+
+clean_abc_emul.start :
+	rm -f .flowMgr/.abc_emul.start.start_time
+	rm -f .flowMgr/.abc_emul.start.end_time
+	rm -f .flowMgr/abc_emul.start.touch
+
+	rm -f .flowMgr/abc_emul.start_incr.touch
+
+
+abc_emul.start_NODEPS : .flowMgr/abc_emul.start_NODEPS.touch
+
+.flowMgr/abc_emul.start_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.start_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abc_emul.start_NODEPS.log
+	@touch .flowMgr/.abc_emul.start_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abc_emul.start_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW START"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.start_NODEPS.log 2>&1, "abc_emul.start_NODEPS")
+	@date +%s > .flowMgr/.abc_emul.start_NODEPS.end_time
+	@echo "STAGE: abc_emul.start_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.start_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abc_emul.start_NODEPS.log
+	@date +%s > .flowMgr/.abc_emul.start_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abc_emul.start_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abc_emul.start_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abc_emul.start_NODEPS.log
+
+clean_abc_emul.start_NODEPS :
+	rm -f .flowMgr/.abc_emul.start_NODEPS.start_time
+	rm -f .flowMgr/.abc_emul.start_NODEPS.end_time
+	rm -f .flowMgr/abc_emul.start_NODEPS.touch
+
+	rm -f .flowMgr/abc_emul.start_NODEPS_incr.touch
+
+
+abcn5.complete : .flowMgr/abcn5.complete.touch
+
+.flowMgr/abcn5.complete.touch : .flowMgr/initiateIflow.touch .flowMgr/abcn5.start.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abcn5.complete RUN '' \$$\WORKAREA/output/iflow/logs/abcn5.complete.log
+	@touch .flowMgr/.abcn5.complete.touch_start 
+	@date +%s > .flowMgr/.abcn5.complete.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW COMPLETE"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abcn5.complete.log 2>&1, "abcn5.complete")
+	@date +%s > .flowMgr/.abcn5.complete.end_time
+	@echo "STAGE: abcn5.complete RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abcn5.complete.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abcn5.complete.log
+	@date +%s > .flowMgr/.abcn5.complete.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abcn5.complete COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abcn5.complete.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abcn5.complete.log
+
+clean_abcn5.complete :
+	rm -f .flowMgr/.abcn5.complete.start_time
+	rm -f .flowMgr/.abcn5.complete.end_time
+	rm -f .flowMgr/abcn5.complete.touch
+
+	rm -f .flowMgr/abcn5.complete_incr.touch
+
+
+abcn5.complete_NODEPS : .flowMgr/abcn5.complete_NODEPS.touch
+
+.flowMgr/abcn5.complete_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abcn5.complete_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abcn5.complete_NODEPS.log
+	@touch .flowMgr/.abcn5.complete_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abcn5.complete_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW COMPLETE"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abcn5.complete_NODEPS.log 2>&1, "abcn5.complete_NODEPS")
+	@date +%s > .flowMgr/.abcn5.complete_NODEPS.end_time
+	@echo "STAGE: abcn5.complete_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abcn5.complete_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abcn5.complete_NODEPS.log
+	@date +%s > .flowMgr/.abcn5.complete_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abcn5.complete_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abcn5.complete_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abcn5.complete_NODEPS.log
+
+clean_abcn5.complete_NODEPS :
+	rm -f .flowMgr/.abcn5.complete_NODEPS.start_time
+	rm -f .flowMgr/.abcn5.complete_NODEPS.end_time
+	rm -f .flowMgr/abcn5.complete_NODEPS.touch
+
+	rm -f .flowMgr/abcn5.complete_NODEPS_incr.touch
+
+
+abcn5.start : .flowMgr/abcn5.start.touch
+
+.flowMgr/abcn5.start.touch : .flowMgr/initiateIflow.touch .flowMgr/abc_emul.moab.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abcn5.start RUN '' \$$\WORKAREA/output/iflow/logs/abcn5.start.log
+	@touch .flowMgr/.abcn5.start.touch_start 
+	@date +%s > .flowMgr/.abcn5.start.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW START"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abcn5.start.log 2>&1, "abcn5.start")
+	@date +%s > .flowMgr/.abcn5.start.end_time
+	@echo "STAGE: abcn5.start RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abcn5.start.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abcn5.start.log
+	@date +%s > .flowMgr/.abcn5.start.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abcn5.start COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abcn5.start.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abcn5.start.log
+
+clean_abcn5.start :
+	rm -f .flowMgr/.abcn5.start.start_time
+	rm -f .flowMgr/.abcn5.start.end_time
+	rm -f .flowMgr/abcn5.start.touch
+
+	rm -f .flowMgr/abcn5.start_incr.touch
+
+
+abcn5.start_NODEPS : .flowMgr/abcn5.start_NODEPS.touch
+
+.flowMgr/abcn5.start_NODEPS.touch : .flowMgr/initiateIflow.touch 
+	@printf "    %-50s %-20s %-20s %-50s\n" abcn5.start_NODEPS RUN '' \$$\WORKAREA/output/iflow/logs/abcn5.start_NODEPS.log
+	@touch .flowMgr/.abcn5.start_NODEPS.touch_start 
+	@date +%s > .flowMgr/.abcn5.start_NODEPS.start_time
+	@$(call run_cmd, cd $(WORKAREA) && echo "IFLOW START"  > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abcn5.start_NODEPS.log 2>&1, "abcn5.start_NODEPS")
+	@date +%s > .flowMgr/.abcn5.start_NODEPS.end_time
+	@echo "STAGE: abcn5.start_NODEPS RUNTIME: `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abcn5.start_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"`" >> /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/logs/abcn5.start_NODEPS.log
+	@date +%s > .flowMgr/.abcn5.start_NODEPS.end_time
+	@printf "    %-50s %-20s %-20s %-50s\n" abcn5.start_NODEPS COMPLETE `date -d@$$(($$(date +%s)-$$(cat .flowMgr/.abcn5.start_NODEPS.start_time))) -u "+%Hh:%Mm:%Ss"` \$$\WORKAREA/output/iflow/logs/abcn5.start_NODEPS.log
+
+clean_abcn5.start_NODEPS :
+	rm -f .flowMgr/.abcn5.start_NODEPS.start_time
+	rm -f .flowMgr/.abcn5.start_NODEPS.end_time
+	rm -f .flowMgr/abcn5.start_NODEPS.touch
+
+	rm -f .flowMgr/abcn5.start_NODEPS_incr.touch
+
+
+run_all_stages : .flowMgr/initiateIflow.touch  .flowMgr/abc78.complete.touch .flowMgr/abc78.rcs_firmware_compile.touch .flowMgr/abc78.rcs_kp1_sample_iss_test.touch .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test.touch .flowMgr/abc78.rcs_lx7_tx_idma_iss_test.touch .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test.touch .flowMgr/abc78.rcs_lx7_tx_queue_iss_test.touch .flowMgr/abc78.rcs_lx7_tx_timing_iss_test.touch .flowMgr/abc78.start.touch .flowMgr/abc_emul.clean_subip.touch .flowMgr/abc_emul.complete.touch .flowMgr/abc_emul.gen_download_dir.touch .flowMgr/abc_emul.moab.touch .flowMgr/abc_emul.start.touch .flowMgr/abcn5.complete.touch .flowMgr/abcn5.start.touch
+
+clean_all_stages :
+	@rm -rf .flowMgr
+
+run_all_nodeps_stages : .flowMgr/initiateIflow.touch  .flowMgr/abc78.complete_NODEPS.touch  .flowMgr/abc78.rcs_firmware_compile_NODEPS.touch  .flowMgr/abc78.rcs_kp1_sample_iss_test_NODEPS.touch  .flowMgr/abc78.rcs_lx7_tx_bfn_iss_test_NODEPS.touch  .flowMgr/abc78.rcs_lx7_tx_idma_iss_test_NODEPS.touch  .flowMgr/abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS.touch  .flowMgr/abc78.rcs_lx7_tx_queue_iss_test_NODEPS.touch  .flowMgr/abc78.rcs_lx7_tx_timing_iss_test_NODEPS.touch  .flowMgr/abc78.start_NODEPS.touch  .flowMgr/abc_emul.clean_subip_NODEPS.touch  .flowMgr/abc_emul.complete_NODEPS.touch  .flowMgr/abc_emul.gen_download_dir_NODEPS.touch  .flowMgr/abc_emul.moab_NODEPS.touch  .flowMgr/abc_emul.start_NODEPS.touch  .flowMgr/abcn5.complete_NODEPS.touch  .flowMgr/abcn5.start_NODEPS.touch  
+
+iflow_generate_summary : 
+	@/p/hdk/rtl/proj_tools/gatekeeper_utils/latest/gk-utils.pl -gen_summary -makefile_path $(abspath $(firstword $(MAKEFILE_LIST))) -outdir `pwd`
+
+list_all_stages : 
+	@echo ''
+	@echo '[Info] Following Stages are supported by this Iflow generated Makefile :'
+	@echo '        '
+	@echo '        abc78.complete'
+	@echo '        clean_abc78.complete'
+	@echo '        clean_abc78.complete_NODEPS'
+	@echo '        abc78.rcs_firmware_compile'
+	@echo '        clean_abc78.rcs_firmware_compile'
+	@echo '        clean_abc78.rcs_firmware_compile_NODEPS'
+	@echo '        abc78.rcs_kp1_sample_iss_test'
+	@echo '        clean_abc78.rcs_kp1_sample_iss_test'
+	@echo '        clean_abc78.rcs_kp1_sample_iss_test_NODEPS'
+	@echo '        abc78.rcs_lx7_tx_bfn_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_bfn_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_bfn_iss_test_NODEPS'
+	@echo '        abc78.rcs_lx7_tx_idma_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_idma_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_idma_iss_test_NODEPS'
+	@echo '        abc78.rcs_lx7_tx_msghandler_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_msghandler_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS'
+	@echo '        abc78.rcs_lx7_tx_queue_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_queue_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_queue_iss_test_NODEPS'
+	@echo '        abc78.rcs_lx7_tx_timing_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_timing_iss_test'
+	@echo '        clean_abc78.rcs_lx7_tx_timing_iss_test_NODEPS'
+	@echo '        abc78.start'
+	@echo '        clean_abc78.start'
+	@echo '        clean_abc78.start_NODEPS'
+	@echo '        abc_emul.clean_subip'
+	@echo '        clean_abc_emul.clean_subip'
+	@echo '        clean_abc_emul.clean_subip_NODEPS'
+	@echo '        abc_emul.complete'
+	@echo '        clean_abc_emul.complete'
+	@echo '        clean_abc_emul.complete_NODEPS'
+	@echo '        abc_emul.gen_download_dir'
+	@echo '        clean_abc_emul.gen_download_dir'
+	@echo '        clean_abc_emul.gen_download_dir_NODEPS'
+	@echo '        abc_emul.moab'
+	@echo '        clean_abc_emul.moab'
+	@echo '        clean_abc_emul.moab_NODEPS'
+	@echo '        abc_emul.start'
+	@echo '        clean_abc_emul.start'
+	@echo '        clean_abc_emul.start_NODEPS'
+	@echo '        abcn5.complete'
+	@echo '        clean_abcn5.complete'
+	@echo '        clean_abcn5.complete_NODEPS'
+	@echo '        abcn5.start'
+	@echo '        clean_abcn5.start'
+	@echo '        clean_abcn5.start_NODEPS'
+	@echo ''
+	@echo '[Info] Iflow Generated Stages :'
+	@echo ''
+	@echo '        run_all_stages'
+	@echo '        run_all_nodeps_stages'
+	@echo '        clean_all_stages'
+	@echo '        list_all_stages'
+	@echo '        iflow_generate_summary'
+	@echo ''
+
+.PHONY :  abc78.complete  clean_abc78.complete clean_abc78.complete_NODEPS abc78.rcs_firmware_compile  clean_abc78.rcs_firmware_compile clean_abc78.rcs_firmware_compile_NODEPS abc78.rcs_kp1_sample_iss_test  clean_abc78.rcs_kp1_sample_iss_test clean_abc78.rcs_kp1_sample_iss_test_NODEPS abc78.rcs_lx7_tx_bfn_iss_test  clean_abc78.rcs_lx7_tx_bfn_iss_test clean_abc78.rcs_lx7_tx_bfn_iss_test_NODEPS abc78.rcs_lx7_tx_idma_iss_test  clean_abc78.rcs_lx7_tx_idma_iss_test clean_abc78.rcs_lx7_tx_idma_iss_test_NODEPS abc78.rcs_lx7_tx_msghandler_iss_test  clean_abc78.rcs_lx7_tx_msghandler_iss_test clean_abc78.rcs_lx7_tx_msghandler_iss_test_NODEPS abc78.rcs_lx7_tx_queue_iss_test  clean_abc78.rcs_lx7_tx_queue_iss_test clean_abc78.rcs_lx7_tx_queue_iss_test_NODEPS abc78.rcs_lx7_tx_timing_iss_test  clean_abc78.rcs_lx7_tx_timing_iss_test clean_abc78.rcs_lx7_tx_timing_iss_test_NODEPS abc78.start  clean_abc78.start clean_abc78.start_NODEPS abc_emul.clean_subip  clean_abc_emul.clean_subip clean_abc_emul.clean_subip_NODEPS abc_emul.complete  clean_abc_emul.complete clean_abc_emul.complete_NODEPS abc_emul.gen_download_dir  clean_abc_emul.gen_download_dir clean_abc_emul.gen_download_dir_NODEPS abc_emul.moab  clean_abc_emul.moab clean_abc_emul.moab_NODEPS abc_emul.start  clean_abc_emul.start clean_abc_emul.start_NODEPS abcn5.complete  clean_abcn5.complete clean_abcn5.complete_NODEPS abcn5.start  clean_abcn5.start clean_abcn5.start_NODEPS run_all_stages run_all_nodeps_stages clean_all_stages list_all_stages initiateIflow iflow_generate_summary
+
+
+define run_cmd
+	$(eval job_cmd    := $(1))
+	$(eval job_name   := $(2))
+	if [ '$(subst ','\'', $(job_cmd))' != '' ]; then \
+		$(job_cmd); exitstatus=$$?; \
+		if [ $$exitstatus -eq 0 ]; then \
+		touch /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/.flowMgr/$(job_name).touch; \
+		else \
+			printf "Job $(job_name) failed. Check log in output directory (<outdir>/logs)"; \
+			date +%s > /nfs/site/disks/zsc14.xne_abc_fe_001/users/chandrbi/emulval_0p8_17Jun/abc_emul-srvrgen4/output/iflow/.flowMgr/.$(job_name).end_time; \
+			/bin/false; \
+		fi; \
+	fi;
+endef

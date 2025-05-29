@@ -1,0 +1,7 @@
+#ifndef _PRODUCER_CONSUMER_HIVE_H_
+#define _PRODUCER_CONSUMER_HIVE_H_
+
+#define PROD_SM_BUF_ID  0
+#define CONS_SM_BUF_ID  1
+
+#endif /* _PRODUCER_CONSUMER_HIVE_H_ */

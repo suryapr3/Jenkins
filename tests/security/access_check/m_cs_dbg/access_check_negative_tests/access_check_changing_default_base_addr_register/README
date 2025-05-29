@@ -1,0 +1,30 @@
+/***********************************************************************
+*                                                                      *
+* Project     : ABC                                                    *
+* Author      : Sneha Singh                                            *
+* Date        : 20 Aug 2024                                            *
+* Test        : access_check_changing_default_base_address_register    *
+*                                                                      *
+***********************************************************************/
+This is a negative test case where m_cs_dbg is made to access the NoC targets after modifying the default base address register
+corresponding to that target in the RBM register space of the m_cs_dbg bridge. This test aims to validate the m_cs_dbg port of
+the NoC by initiating access to the target ports. By default, the base address register will be pointing to the address space of
+the target, where in the access via m_cs_dbg will pass through. However, in this test this base address register will be modified
+to any pattern so that any access to that target address space should be blocked. So in this test, we're validating
+whether that access is blocked or not.
+
+How to run the test ?
+    From any ABC FRIO bash terminal, execute the following.
+    python access_check_changing_default_base_address_register.py <rcs_core>
+
+    @input arguments
+        <rcs_core>    : The LX7 Cores 0, 1 or 2 for modifying the security bit and base address of rbm register.
+        <pattern>     : This the pattern that user wants to write in the target register.
+
+How to check the output ?
+    Upon completion of the test, PASS/FAIL status will be displayed in the bash terminal.
+    Additionally, the same can be confirmed from the log file generated from the serial console.
+
+Errors if any ?
+    Take a look at the serial log so generated and grep for string "ERROR". Triage it depending upon the
+    nature of the ERROR logged.

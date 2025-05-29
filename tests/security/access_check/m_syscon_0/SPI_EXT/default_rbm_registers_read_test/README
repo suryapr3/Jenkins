@@ -1,0 +1,24 @@
+/************************************************************
+*                                                           *
+* Project     : ABC                                         *
+* Author      : Sneha Singh                                 *
+* Date        : 6 Aug 2024                                  *
+* Test        : default rbm register read access test       *
+*                                                           *
+************************************************************/
+
+This test aims to validate the 'm_syscon_0' port of the NoC by initiating READ access from SPI_EXT to the RBM registers
+of the connected target ports. Then SPI host is made to read from the target RBM registers, compares the actual value
+against the default values.
+
+How to run the test ?
+    From any ABC FRIO bash terminal, execute the following.
+    python default_rbm_register_read_test.py
+
+How to check the output ?
+    Upon completion of the test, PASS/FAIL status will be displayed in the bash terminal.
+    Additionally, the same can be confirmed from the log file generated from the serial console.
+
+Errors if any ?
+    Take a look at the serial log so generated and grep for string "ERROR". Triage it depending upon the
+    nature of the ERROR logged.

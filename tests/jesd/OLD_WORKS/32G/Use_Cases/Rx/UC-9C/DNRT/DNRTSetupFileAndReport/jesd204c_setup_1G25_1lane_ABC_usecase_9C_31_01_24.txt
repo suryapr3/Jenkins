@@ -1,0 +1,73 @@
+
+;-----------------------------------------------------------------------------------
+;Copyright 2018-2020 Mentor Graphics Corporation. All rights reserved.
+;-----------------------------------------------------------------------------------
+;THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY
+;INFORMATION WHICH ARE THE PROPERTY OF MENTOR
+;GRAPHICS CORPORATION OR ITS LICENSORS AND IS
+;SUBJECT TO LICENSE TERMS.
+;-----------------------------------------------------------------------------------
+
+LaneSpeed=1G25
+
+# Frame parameters
+CF = 0
+CS = 0
+F = 4
+HD = 1
+L = 4
+M = 8
+N = 16
+N_total = 16
+K = 16
+S = 1
+E = 1
+
+CmdWordInputFileName = input_command_words.txt
+CmdWordOutputFileName = output_command_words.txt
+CmdChannelSingleLaneMode=1
+
+# Generator/Analyzer internal
+IdleType = PayloadLoop
+NumberOfExtMultiblocks = 1000
+TailBits = high
+Verbose = 0
+OversamplePayloads = 1
+TxReportFileName = TX_frame_report_file.txt
+RxReportFileName = RX_frame_report_file.txt
+RxFrameCaptureStartTrigger=TRIGGER_IMMEDIATELY
+Converter0.PayloadFileFormat = HEX_16
+Converter0.PayloadFileName = payload0.txt
+Converter0.SavePayloadFileFormat = HEX_16
+Converter0.SavePayloadFileName = savepayload0.txt
+Converter1.PayloadFileFormat = HEX_16
+Converter1.PayloadFileName = payload1.txt
+Converter1.SavePayloadFileFormat = HEX_16
+Converter1.SavePayloadFileName = savepayload1.txt
+Converter2.PayloadFileFormat = HEX_16
+Converter2.PayloadFileName = payload2.txt
+Converter2.SavePayloadFileFormat = HEX_16
+Converter2.SavePayloadFileName = savepayload2.txt
+Converter3.PayloadFileFormat = HEX_16
+Converter3.PayloadFileName = payload3.txt
+Converter3.SavePayloadFileFormat = HEX_16
+Converter3.SavePayloadFileName = savepayload3.txt
+Converter4.PayloadFileFormat = HEX_16
+Converter4.PayloadFileName = payload4.txt
+Converter4.SavePayloadFileFormat = HEX_16
+Converter4.SavePayloadFileName = savepayload4.txt
+Converter5.PayloadFileFormat = HEX_16
+Converter5.PayloadFileName = payload5.txt
+Converter5.SavePayloadFileFormat = HEX_16
+Converter5.SavePayloadFileName = savepayload5.txt
+Converter6.PayloadFileFormat = HEX_16
+Converter6.PayloadFileName = payload6.txt
+Converter6.SavePayloadFileFormat = HEX_16
+Converter6.SavePayloadFileName = savepayload6.txt
+Converter7.PayloadFileFormat = HEX_16
+Converter7.PayloadFileName = payload7.txt
+Converter7.SavePayloadFileFormat = HEX_16
+Converter7.SavePayloadFileName = savepayload7.txt
+Lane0.TxFrameFileName = TX0_frame_file.txt
+Lane0.RxOutputFrameFileName = RX0_frame_file.txt
+Lane0.RxFrameFileName = RX0_output_frame_file.txt

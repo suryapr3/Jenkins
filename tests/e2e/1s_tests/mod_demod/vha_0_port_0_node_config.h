@@ -1,0 +1,5 @@
+.vha_num = 0,
+.ant_num = 0,
+.in_rate = VHA_SYS_RATE_IQ_P25,
+.out_rate = VHA_SYS_RATE_IQ_1,
+.mode = AUTO,

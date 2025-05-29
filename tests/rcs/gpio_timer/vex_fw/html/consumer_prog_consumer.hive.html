@@ -1,0 +1,155 @@
+<html><head><title>Module: consumer_prog_consumer</title><link rel="stylesheet" type="text/css" href="html/hive.css" />
+</head>
+<body>
+<a name="top"></a><a name="contents"></a><ul>
+<li>Function consumer_prog</li><ul>
+<li><a href="html/consumer_prog_consumer/consumer_prog/issued.html">issued operations</a></li>
+<li><a href="html/consumer_prog_consumer/consumer_prog/resources.html">resource utilization</a></li>
+<li><a href="html/consumer_prog_consumer/consumer_prog/sched.html">schedule information</a></li>
+</ul><br>
+<li>Function consumer_prog_entry</li><ul>
+<li><a href="html/consumer_prog_consumer/consumer_prog_entry/issued.html">issued operations</a></li>
+<li><a href="html/consumer_prog_consumer/consumer_prog_entry/resources.html">resource utilization</a></li>
+<li><a href="html/consumer_prog_consumer/consumer_prog_entry/sched.html">schedule information</a></li>
+</ul><br>
+<li><a href="#sources">Sources</a></li></ul><br><hr>
+<a name="sources"</a><br><big>/nfs/site/disks/xne_00001/workspace/hw/chandrbi/emulval_0p8_10Jun/abc_emul-srvrgen4/tests/rcs/gpio_timer/vex_fw/cir_buf.hive.h</big><br>
+<pre class="sourceline" name="cir_buf.hive.h:1"><a name="cir_buf.hive.h:1"/>  1: #ifndef _CIR_BUF_HIVE_H_
+</pre><pre class="sourceline" name="cir_buf.hive.h:2"><a name="cir_buf.hive.h:2"/>  2: #define _CIR_BUF_HIVE_H_
+</pre><pre class="sourceline" name="cir_buf.hive.h:3"><a name="cir_buf.hive.h:3"/>  3: 
+</pre><pre class="sourceline" name="cir_buf.hive.h:4"><a name="cir_buf.hive.h:4"/>  4: #define INLINE inline
+</pre><pre class="sourceline" name="cir_buf.hive.h:5"><a name="cir_buf.hive.h:5"/>  5: #define IS_PROD 0
+</pre><pre class="sourceline" name="cir_buf.hive.h:6"><a name="cir_buf.hive.h:6"/>  6: #define IS_CONS (1&lt;&lt;16)
+</pre><pre class="sourceline" name="cir_buf.hive.h:7"><a name="cir_buf.hive.h:7"/>  7: 
+</pre><pre class="sourceline" name="cir_buf.hive.h:8"><a name="cir_buf.hive.h:8"/>  8: #define debug_STATE( x )\
+</pre><pre class="sourceline" name="cir_buf.hive.h:9"><a name="cir_buf.hive.h:9"/>  9: {\
+</pre><pre class="sourceline" name="cir_buf.hive.h:10"><a name="cir_buf.hive.h:10"/> 10:   int temp0,temp1,temp2,temp3,temp4,temp5;\
+</pre><pre class="sourceline" name="cir_buf.hive.h:11"><a name="cir_buf.hive.h:11"/> 11:   OP___printstring( "fu mc_get_state{1,2,3} idx=" );\
+</pre><pre class="sourceline" name="cir_buf.hive.h:12"><a name="cir_buf.hive.h:12"/> 12:   OP___dump(x,x);\
+</pre><pre class="sourceline" name="cir_buf.hive.h:13"><a name="cir_buf.hive.h:13"/> 13:   OP___printstring( "{s1}0 :#request[15] #P/C[1]#in_use[16], 1:tbs[16]ptr[16], 2:message[16],{s2} 3:addres[32], {s3} 4:blocking[1], {sg} 5:value[32]\n" );\
+</pre><pre class="sourceline" name="cir_buf.hive.h:14"><a name="cir_buf.hive.h:14"/> 14:   mc_get_state(Any, 0, x, temp0 );\
+</pre><pre class="sourceline" name="cir_buf.hive.h:15"><a name="cir_buf.hive.h:15"/> 15:   OP___dump(0,temp0);\
+</pre><pre class="sourceline" name="cir_buf.hive.h:16"><a name="cir_buf.hive.h:16"/> 16:   mc_get_state(Any, 1, x, temp1 );\
+</pre><pre class="sourceline" name="cir_buf.hive.h:17"><a name="cir_buf.hive.h:17"/> 17:   OP___dump(1,temp1);\
+</pre><pre class="sourceline" name="cir_buf.hive.h:18"><a name="cir_buf.hive.h:18"/> 18:   mc_get_state(Any, 2, x, temp2 );\
+</pre><pre class="sourceline" name="cir_buf.hive.h:19"><a name="cir_buf.hive.h:19"/> 19:   OP___dump(2,temp2);\
+</pre><pre class="sourceline" name="cir_buf.hive.h:20"><a name="cir_buf.hive.h:20"/> 20:   mc_get_state(Any, 3, x, temp3 );\
+</pre><pre class="sourceline" name="cir_buf.hive.h:21"><a name="cir_buf.hive.h:21"/> 21:   OP___dump(3,temp3);\
+</pre><pre class="sourceline" name="cir_buf.hive.h:22"><a name="cir_buf.hive.h:22"/> 22:   mc_get_state(Any, 4, x, temp4 );\
+</pre><pre class="sourceline" name="cir_buf.hive.h:23"><a name="cir_buf.hive.h:23"/> 23:   OP___dump(4,temp4);\
+</pre><pre class="sourceline" name="cir_buf.hive.h:24"><a name="cir_buf.hive.h:24"/> 24:   mc_get_state(Any, 5, x, temp5 );\
+</pre><pre class="sourceline" name="cir_buf.hive.h:25"><a name="cir_buf.hive.h:25"/> 25:   OP___dump(5,temp5);\
+</pre><pre class="sourceline" name="cir_buf.hive.h:26"><a name="cir_buf.hive.h:26"/> 26: }
+</pre><pre class="sourceline" name="cir_buf.hive.h:27"><a name="cir_buf.hive.h:27"/> 27: 
+</pre><pre class="sourceline" name="cir_buf.hive.h:28"><a name="cir_buf.hive.h:28"/> 28: 
+</pre><pre class="sourceline" name="cir_buf.hive.h:29"><a name="cir_buf.hive.h:29"/> 29:  /*****************************************************************************
+</pre><pre class="sourceline" name="cir_buf.hive.h:30"><a name="cir_buf.hive.h:30"/> 30:  *Function: circ_buff_init
+</pre><pre class="sourceline" name="cir_buf.hive.h:31"><a name="cir_buf.hive.h:31"/> 31:  *Description:
+</pre><pre class="sourceline" name="cir_buf.hive.h:32"><a name="cir_buf.hive.h:32"/> 32:  *    - initializes the Functional unit(FU) state for the channel  "sm_ch"
+</pre><pre class="sourceline" name="cir_buf.hive.h:33"><a name="cir_buf.hive.h:33"/> 33:  * Parameters:
+</pre><pre class="sourceline" name="cir_buf.hive.h:34"><a name="cir_buf.hive.h:34"/> 34:  *    ch_type: channel type: consumer or producer
+</pre><pre class="sourceline" name="cir_buf.hive.h:35"><a name="cir_buf.hive.h:35"/> 35:  *    tbs: token buffer size
+</pre><pre class="sourceline" name="cir_buf.hive.h:36"><a name="cir_buf.hive.h:36"/> 36:  *    token_per_request : number of tokens requested in every access of
+</pre><pre class="sourceline" name="cir_buf.hive.h:37"><a name="cir_buf.hive.h:37"/> 37:  *                        mc_claim_debug  and mc_complete_and_cancel instructions
+</pre><pre class="sourceline" name="cir_buf.hive.h:38"><a name="cir_buf.hive.h:38"/> 38:  *    loc_ptr : initial value for local pointer
+</pre><pre class="sourceline" name="cir_buf.hive.h:39"><a name="cir_buf.hive.h:39"/> 39:  * returns: none
+</pre><pre class="sourceline" name="cir_buf.hive.h:40"><a name="cir_buf.hive.h:40"/> 40:  *****************************************************************************/
+</pre><pre class="sourceline" name="cir_buf.hive.h:41"><a name="cir_buf.hive.h:41"/> 41: INLINE void circ_buff_init( int ch_type, int tbs, int token_per_request, int loc_ptr, int sm_ch)
+</pre><pre class="sourceline" name="cir_buf.hive.h:42"><a name="cir_buf.hive.h:42"/> 42: {
+</pre><pre class="sourceline" name="cir_buf.hive.h:43"><a name="cir_buf.hive.h:43"/> 43:     /* mc_init( slot_id, A, C)
+</pre><pre class="sourceline" name="cir_buf.hive.h:44"><a name="cir_buf.hive.h:44"/> 44:     input A = contains three parts
+</pre><pre class="sourceline" name="cir_buf.hive.h:45"><a name="cir_buf.hive.h:45"/> 45:           a1) Token request rate                  bits[31:17]
+</pre><pre class="sourceline" name="cir_buf.hive.h:46"><a name="cir_buf.hive.h:46"/> 46:                 number of tokens consumed/produced for each operation of mc_claim_debug and/or mc_complete_and_cancel.
+</pre><pre class="sourceline" name="cir_buf.hive.h:47"><a name="cir_buf.hive.h:47"/> 47:                 Mostly set at init time, can be modified later based on run time needs by mc_set_rate operation.
+</pre><pre class="sourceline" name="cir_buf.hive.h:48"><a name="cir_buf.hive.h:48"/> 48:           a2) Producer(0), consumer(1)            bit[16]
+</pre><pre class="sourceline" name="cir_buf.hive.h:49"><a name="cir_buf.hive.h:49"/> 49:           a3) Token buffer size                   bits[15:0]
+</pre><pre class="sourceline" name="cir_buf.hive.h:50"><a name="cir_buf.hive.h:50"/> 50:                 a2,a3 cannot be changed without a mc_reset follwed by mc_init
+</pre><pre class="sourceline" name="cir_buf.hive.h:51"><a name="cir_buf.hive.h:51"/> 51:     input C = channel id, each channel id has an attached semaphore.
+</pre><pre class="sourceline" name="cir_buf.hive.h:52"><a name="cir_buf.hive.h:52"/> 52: 
+</pre><pre class="sourceline" name="cir_buf.hive.h:53"><a name="cir_buf.hive.h:53"/> 53:        mc_init_local_idc( slot_id, B, C)
+</pre><pre class="sourceline" name="cir_buf.hive.h:54"><a name="cir_buf.hive.h:54"/> 54:     input B = init value for loacl pointer
+</pre><pre class="sourceline" name="cir_buf.hive.h:55"><a name="cir_buf.hive.h:55"/> 55:               - write pointer for producer
+</pre><pre class="sourceline" name="cir_buf.hive.h:56"><a name="cir_buf.hive.h:56"/> 56:               - read pointer for consumer
+</pre><pre class="sourceline" name="cir_buf.hive.h:57"><a name="cir_buf.hive.h:57"/> 57:     input C = channel id, each channel id has an attached semaphore.*/
+</pre><pre class="sourceline" name="cir_buf.hive.h:58"><a name="cir_buf.hive.h:58"/> 58: 
+</pre><pre class="sourceline" name="cir_buf.hive.h:59"><a name="cir_buf.hive.h:59"/> 59:     mc_init( Any, tbs + (token_per_request&lt;&lt;17) + ch_type, sm_ch);
+</pre><pre class="sourceline" name="cir_buf.hive.h:60"><a name="cir_buf.hive.h:60"/> 60:     mc_init_local_idc( Any, loc_ptr, sm_ch);
+</pre><pre class="sourceline" name="cir_buf.hive.h:61"><a name="cir_buf.hive.h:61"/> 61:     debug_STATE(sm_ch);
+</pre><pre class="sourceline" name="cir_buf.hive.h:62"><a name="cir_buf.hive.h:62"/> 62: }
+</pre><pre class="sourceline" name="cir_buf.hive.h:63"><a name="cir_buf.hive.h:63"/> 63:  /*****************************************************************************
+</pre><pre class="sourceline" name="cir_buf.hive.h:64"><a name="cir_buf.hive.h:64"/> 64:  *Function: semaphore_gate_init
+</pre><pre class="sourceline" name="cir_buf.hive.h:65"><a name="cir_buf.hive.h:65"/> 65:  *Description:
+</pre><pre class="sourceline" name="cir_buf.hive.h:66"><a name="cir_buf.hive.h:66"/> 66:  *    - initializes the semaphore_gate state, to be done at core init time
+</pre><pre class="sourceline" name="cir_buf.hive.h:67"><a name="cir_buf.hive.h:67"/> 67:  * Parameters:
+</pre><pre class="sourceline" name="cir_buf.hive.h:68"><a name="cir_buf.hive.h:68"/> 68:  *    loc_ptr_address : address monitorend by semaphore on the local core,
+</pre><pre class="sourceline" name="cir_buf.hive.h:69"><a name="cir_buf.hive.h:69"/> 69:  *               external core updates the pointer and writes to this location
+</pre><pre class="sourceline" name="cir_buf.hive.h:70"><a name="cir_buf.hive.h:70"/> 70:  * returns: none
+</pre><pre class="sourceline" name="cir_buf.hive.h:71"><a name="cir_buf.hive.h:71"/> 71:  *****************************************************************************/
+</pre><pre class="sourceline" name="cir_buf.hive.h:72"><a name="cir_buf.hive.h:72"/> 72: INLINE void semaphore_gate_init()
+</pre><pre class="sourceline" name="cir_buf.hive.h:73"><a name="cir_buf.hive.h:73"/> 73: {
+</pre><pre class="sourceline" name="cir_buf.hive.h:74"><a name="cir_buf.hive.h:74"/> 74:     /*resets all channels of semaphore gate and TSU*/
+</pre><pre class="sourceline" name="cir_buf.hive.h:75"><a name="cir_buf.hive.h:75"/> 75:     mc_reset( Any , 0 );
+</pre><pre class="sourceline" name="cir_buf.hive.h:76"><a name="cir_buf.hive.h:76"/> 76: }
+</pre><pre class="sourceline" name="cir_buf.hive.h:77"><a name="cir_buf.hive.h:77"/> 77: #endif /* _CIR_BUF_HIVE_H_ */
+</pre><big>/nfs/site/disks/xne_00001/workspace/hw/chandrbi/emulval_0p8_10Jun/abc_emul-srvrgen4/tests/rcs/gpio_timer/vex_fw/consumer.hive.c</big><br>
+<pre class="sourceline" name="consumer.hive.c:1"><a name="consumer.hive.c:1"/>  1: #include &lt;common_macros.h>
+</pre><pre class="sourceline" name="consumer.hive.c:2"><a name="consumer.hive.c:2"/>  2: #include "ve32_appl_target.h"
+</pre><pre class="sourceline" name="consumer.hive.c:3"><a name="consumer.hive.c:3"/>  3: 
+</pre><pre class="sourceline" name="consumer.hive.c:4"><a name="consumer.hive.c:4"/>  4: #include "defines.h"
+</pre><pre class="sourceline" name="consumer.hive.c:5"><a name="consumer.hive.c:5"/>  5: #include "consumer.hive.h"
+</pre><pre class="sourceline" name="consumer.hive.c:6"><a name="consumer.hive.c:6"/>  6: #include "cir_buf.hive.h"
+</pre><pre class="sourceline" name="consumer.hive.c:7"><a name="consumer.hive.c:7"/>  7: 
+</pre><pre class="sourceline" name="consumer.hive.c:8"><a name="consumer.hive.c:8"/>  8: int consumer_max_count;
+</pre><pre class="sourceline" name="consumer.hive.c:9"><a name="consumer.hive.c:9"/>  9: unsigned int buffer_ra;
+</pre><pre class="sourceline" name="consumer.hive.c:10"><a name="consumer.hive.c:10"/> 10: volatile int ALIGNED(128) AT(0x180) consumer_sm_gate[16];// write pointer @ consumer core -> producer core will write here
+</pre><pre class="sourceline" name="consumer.hive.c:11"><a name="consumer.hive.c:11"/> 11: int consumer_token_per_request;
+</pre><pre class="sourceline" name="consumer.hive.c:12"><a name="consumer.hive.c:12"/> 12: int AT(0x40) count; 
+</pre><pre class="sourceline" name="consumer.hive.c:13"><a name="consumer.hive.c:13"/> 13: 
+</pre><pre class="sourceline" name="consumer.hive.c:14"><a name="consumer.hive.c:14"/> 14: vec32i32 AT(0x0) gTimeStampData;
+</pre><pre class="sourceline" name="consumer.hive.c:15"><a name="consumer.hive.c:15"/> 15: vec32i32 AT(0x100) gTimeStampDataCopy[10];
+</pre><pre class="sourceline" name="consumer.hive.c:16"><a name="consumer.hive.c:16"/> 16: 
+</pre><pre class="sourceline" name="consumer.hive.c:17"><a name="consumer.hive.c:17"/> 17: 
+</pre><pre class="sourceline" name="consumer.hive.c:18"><a name="consumer.hive.c:18"/> 18: void  consumer_prog() ENTRY
+</pre><pre class="sourceline" name="consumer.hive.c:19"><a name="consumer.hive.c:19"/> 19: {
+</pre><pre class="sourceline" name="consumer.hive.c:20"><a name="consumer.hive.c:20"/> 20:   unsigned int ra = buffer_ra;//(unsigned int)&amp;read_pointer;
+</pre><pre class="sourceline" name="consumer.hive.c:21"><a name="consumer.hive.c:21"/> 21:   //int count;
+</pre><pre class="sourceline" name="consumer.hive.c:22"><a name="consumer.hive.c:22"/> 22:   int lc;
+</pre><pre class="sourceline" name="consumer.hive.c:23"><a name="consumer.hive.c:23"/> 23:   int rp = 0;
+</pre><pre class="sourceline" name="consumer.hive.c:24"><a name="consumer.hive.c:24"/> 24:   int sm_ch = CONSUMER_SM_BUF_ID;
+</pre><pre class="sourceline" name="consumer.hive.c:25"><a name="consumer.hive.c:25"/> 25: 
+</pre><pre class="sourceline" name="consumer.hive.c:26"><a name="consumer.hive.c:26"/> 26:   semaphore_gate_init();
+</pre><pre class="sourceline" name="consumer.hive.c:27"><a name="consumer.hive.c:27"/> 27:   /*-------------------------------------------------------------------------*/
+</pre><pre class="sourceline" name="consumer.hive.c:28"><a name="consumer.hive.c:28"/> 28:   /* Initialize consumer(Buffer):                                            */
+</pre><pre class="sourceline" name="consumer.hive.c:29"><a name="consumer.hive.c:29"/> 29:   /* TBS_IN_BLK :token buffer size for buffer                                */
+</pre><pre class="sourceline" name="consumer.hive.c:30"><a name="consumer.hive.c:30"/> 30:   /* consumer_token_per_request : tokens processed per request and ready     */
+</pre><pre class="sourceline" name="consumer.hive.c:31"><a name="consumer.hive.c:31"/> 31:   /* IS_CONS : the channel is configured as consumer                         */
+</pre><pre class="sourceline" name="consumer.hive.c:32"><a name="consumer.hive.c:32"/> 32:   /* 0 intial value for local pointer @ consumer                             */
+</pre><pre class="sourceline" name="consumer.hive.c:33"><a name="consumer.hive.c:33"/> 33:   /* sm_ch - index of Semaphore used                                         */
+</pre><pre class="sourceline" name="consumer.hive.c:34"><a name="consumer.hive.c:34"/> 34:   /*-------------------------------------------------------------------------*/
+</pre><pre class="sourceline" name="consumer.hive.c:35"><a name="consumer.hive.c:35"/> 35:   circ_buff_init( IS_CONS, 1, 1, 0, sm_ch);
+</pre><pre class="sourceline" name="consumer.hive.c:36"><a name="consumer.hive.c:36"/> 36: 
+</pre><pre class="sourceline" name="consumer.hive.c:37"><a name="consumer.hive.c:37"/> 37: 
+</pre><pre class="sourceline" name="consumer.hive.c:38"><a name="consumer.hive.c:38"/> 38:   count = 0;
+</pre><pre class="sourceline" name="consumer.hive.c:39"><a name="consumer.hive.c:39"/> 39:   int max_count = 5;
+</pre><pre class="sourceline" name="consumer.hive.c:40"><a name="consumer.hive.c:40"/> 40:   lc = (count &lt; max_count); //loop condition
+</pre><pre class="sourceline" name="consumer.hive.c:41"><a name="consumer.hive.c:41"/> 41: 
+</pre><pre class="sourceline" name="consumer.hive.c:42"><a name="consumer.hive.c:42"/> 42:   while( lc )
+</pre><pre class="sourceline" name="consumer.hive.c:43"><a name="consumer.hive.c:43"/> 43:   {
+</pre><pre class="sourceline" name="consumer.hive.c:44"><a name="consumer.hive.c:44"/> 44:     int is_data_ready;
+</pre><pre class="sourceline" name="consumer.hive.c:45"><a name="consumer.hive.c:45"/> 45:     int idx;
+</pre><pre class="sourceline" name="consumer.hive.c:46"><a name="consumer.hive.c:46"/> 46:     //check for data buffer
+</pre><pre class="sourceline" name="consumer.hive.c:47"><a name="consumer.hive.c:47"/> 47:     mc_request( Any, lc, sm_ch, is_data_ready, idx)  SYNC(buffer_read);
+</pre><pre class="sourceline" name="consumer.hive.c:48"><a name="consumer.hive.c:48"/> 48:     (gTimeStampDataCopy[count++] = gTimeStampData) SYNC_WITH(buffer_read) SYNC_WITH(buffer_write);
+</pre><pre class="sourceline" name="consumer.hive.c:49"><a name="consumer.hive.c:49"/> 49: 
+</pre><pre class="sourceline" name="consumer.hive.c:50"><a name="consumer.hive.c:50"/> 50:     lc = (count &lt; max_count);
+</pre><pre class="sourceline" name="consumer.hive.c:51"><a name="consumer.hive.c:51"/> 51: 
+</pre><pre class="sourceline" name="consumer.hive.c:52"><a name="consumer.hive.c:52"/> 52:     mc_complete( Any, sm_ch, rp);
+</pre><pre class="sourceline" name="consumer.hive.c:53"><a name="consumer.hive.c:53"/> 53:     v_xsto_32(Any, ra, 0, rp) SYNC(buffer_write);
+</pre><pre class="sourceline" name="consumer.hive.c:54"><a name="consumer.hive.c:54"/> 54:   }
+</pre><pre class="sourceline" name="consumer.hive.c:55"><a name="consumer.hive.c:55"/> 55: 
+</pre><pre class="sourceline" name="consumer.hive.c:56"><a name="consumer.hive.c:56"/> 56:   OP___dump(__LINE__,count);
+</pre><pre class="sourceline" name="consumer.hive.c:57"><a name="consumer.hive.c:57"/> 57:   OP___printstring( "\n" );
+</pre><pre class="sourceline" name="consumer.hive.c:58"><a name="consumer.hive.c:58"/> 58:   OP___printstring( "------------consumer core:END------------\n" );
+</pre><pre class="sourceline" name="consumer.hive.c:59"><a name="consumer.hive.c:59"/> 59: }
+</pre><div class="navigator"><a href="#contents"><small>back to contents</small></a></div></body>
+</html>

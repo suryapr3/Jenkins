@@ -1,0 +1,55 @@
+<html><head><title>Schedule for function jesd_rx_entry</title><link rel="stylesheet" type="text/css" href="../../hive.css" />
+<script type="text/javascript" src="../../sched.js" ></script>
+<link rel="stylesheet" type="text/css" href="../../sched.css" />
+</head>
+<body>
+<br><a name="si">Schedule for function jesd_rx_entry.</a><br><br>
+<table cellpadding="2" border="1" cellspacing="0" style="text-align: left;">
+<tbody>
+<tr class="evenrow"><td rowspan=1><code><a name="_cycle_0">0</a></code></td><td><pre><code><a name="label_n2400"></a><b>s_imm_u</b><i>:bp_s1_psu</i></td><td><pre><code>#1 <big><b>to</b></big> <i>simd0_vlsu0_srf0[3]</i>:to:<a href="sched.html#_cycle_5">5</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr></code></pre></td>
+</tr><tr class="oddrow"><td rowspan=1><code><a name="_cycle_1">1</a></code></td><td><pre><code><a name="label_n2700"></a><b>s_imm_u</b><i>:bp_s1_psu</i></td><td><pre><code>#1 <big><b>to</b></big> <i>simd0_vlsu1_srf0[0]</i>:to:<a href="sched.html#_cycle_5">5</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr></code></pre></td>
+</tr><tr class="evenrow"><td rowspan=2><code><a name="_cycle_2">2</a></code></td><td><pre><code><a name="label_n3000"></a><b>s_imm_u</b><i>:bp_s1_psu</i></td><td><pre><code>#16384 <big><b>to</b></big> <i>bp_rf1[0]</i>:to:<a href="sched.html#_cycle_5">5</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr>
+<tr class="evenrow"><td><pre><code><a name="label_n400"></a><b>s_jmp_i</b><i>:bp_s0_bru</i></td><td><pre><code>#@jesd_rx <big><b>to</b></big> <i>bp_pc[0]</i>:to:<a href="sched.html#_cycle_5">5</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr></code></pre></td>
+</tr><tr class="oddrow"><td rowspan=1><code><a name="_cycle_3">3</a></code></td><td><pre><code><a name="label_n2100"></a><b>s_imm_u</b><i>:bp_s1_psu</i></td><td><pre><code>#1 <big><b>to</b></big> <i>bp_rf1[6]</i>:to:<a href="sched.html#_cycle_5">5</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr></code></pre></td>
+</tr><tr class="evenrow"><td rowspan=1><code><a name="_cycle_4">4</a></code></td><td><pre><code><a name="label_n3300"></a><b>s_imm_u</b><i>:bp_s1_psu</i></td><td><pre><code>#65536 <big><b>to</b></big> <i>simd0_vlsu0_srf0[0]</i>:to:<a href="sched.html#_cycle_5">5</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr></code></pre></td>
+</tr><tr class="oddrow"><td rowspan=2><code><a name="_cycle_5">5</a></code></td><td><pre><code><a name="label_n200"></a><b>s_imm_u</b><i>:simd0_vcom0_spsu</i></td><td><pre><code>#jesd_rx_entry.1 <big><b>to</b></big> <i>bp_rf1[1]</i>:to:<a href="sched.html#_cycle_5">5</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr>
+<tr class="oddrow"><td><pre><code><a name="label_n3600"></a><b>s_sub_i</b><i>:bp_s1_aru</i></td><td><pre><code><i>bp_rf1[0]</i>:from:<a href="sched.html#_cycle_2">2</a><b>, </b>#16 <big><b>to</b></big> <i>bp_rf1[0]</i>:to:<a href="sched.html#_cycle_9">9</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr></code></pre></td>
+</tr><tr class="evenrow"><td rowspan=1><code><a name="_cycle_6">6</a></code></td><td><pre><code><a name="label_n600"></a><b>s_idle</b><i>:bp_s0_suu</i></td><td><pre><code><i>bp_cr[0]</i>:from:<a href="sched.html#_cycle_6">6</a> <big><b>to</b></big> <i>bp_cr[0]</i>:to:<a href="sched.html#_cycle_9">9</a> <span class="code">151:e84</span></td></tr></code></pre></td>
+</tr><tr class="oddrow"><td rowspan=1><code><a name="_cycle_9">9</a></code></td><td><pre><code><a name="label_n3900"></a><b>s_add_i</b><i>:bp_s1_aru</i></td><td><pre><code><i>bp_rf1[0]</i>:from:<a href="sched.html#_cycle_5">5</a><b>, </b>#16 <big><b>to</b></big> <i>bp_rf1[0]</i>:to:<a href="sched.html#_cycle_9">9</a> <span class="code">104:void jesd_rx() ENTRY...EN_PER_REQ</span></td></tr></code></pre></td>
+</tr></tbody>
+</table>
+<div class="navigator"><a href="../../../jesd_rx_vex_jesd_rx.html#contents"><small>back to contents</small></a></div><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+install_hooks();
+</script>
+</body>
+</html>

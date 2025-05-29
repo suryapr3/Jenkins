@@ -1,0 +1,30 @@
+/************************************************************
+*                                                           *
+* Project     : ABC                                         *
+* Author      : Arockia raj                                 *
+* Date        : 23 Aug 2024                                 *
+* Test        : Targets_write_read_test                     *
+*                                                           *
+************************************************************/
+
+This test aims to validate the m_syscon_1 port of the NoC by initiating WRITE/READ operations to the target ports. By default,
+the m_syscon_1 port is non-secure and the targets are secured, as indicated by the non-secure bit in the RBM registers being 0.
+To facilitate access to these targets by the m_syscon_1 port, the Non secure bit must be set to 1 in the RBM registers. Then
+m_syscon_1/cs_dbg APIs are used to WRITE/READ the targets, and get result as PASS/FAIL based on comparison between actual value and
+expected value.
+
+How to run the test ?
+    From any ABC FRIO bash terminal, execute the following.
+    python targets_write_read_test.py <rcs_core> <pattern>
+
+    @input arguments
+        <rcs_core>    : The LX7 Cores 0, 1 or 2 for modifying the security bit of rbm register.
+        <pattern>     : This the pattern that user wants to write in the target register.
+
+How to check the output ?
+    Upon completion of the test, PASS/FAIL status will be displayed in the bash terminal.
+    Additionally, the same can be confirmed from the log file generated from the serial console.
+
+Errors if any ?
+    Take a look at the serial log so generated and grep for string "ERROR". Triage it depending upon the
+    nature of the ERROR logged.

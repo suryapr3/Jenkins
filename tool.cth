@@ -1,0 +1,14 @@
+[INCLUDES]
+$WORKAREA/project_tools/tool.cth
+
+[ENVS]
+LM_LICENSE_FILE=18764@xtensa11p.elic.intel.com
+TOOLS_BASE=/nfs/site/disks/xne_abc_fe_002/fw_tools
+SWTOOLS_CTL=$TOOLS_BASE/RI-2022.9-linux/XtensaTools
+SWTOOLS_ANA=$TOOLS_BASE/RI-2022.9-linux/XtensaTools
+PRJDIR=$PWD
+COV_TOOLS=$TOOLS_BASE/cov-analysis-linux64-2022.3.1/bin
+PYTHONPATH="/usr/intel/pkgs/python3/3.6.3/modules/r1/lib/python3.6/site-packages"
+PYTHONPATH="/usr/intel/pkgs/python3/3.6.3/lib/python3.6/site-packages:$PYTHONPATH"
+PYTHONPATH="/usr/intel/pkgs/python3/3.6.3/lib/python3.6:$PYTHONPATH"
+PYTHONPATH="scripts/table_utils:$PYTHONPATH"

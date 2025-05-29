@@ -1,0 +1,12 @@
+# Coresight common function test case
+
+# Introduction
+This test case is created to test common_function.c apis available in $PROJECT_HOME/tests/syscon/coresight/coresight_common
+Makefile has the inputs for include file and library file to include coresight_common folder
+
+# Build Instruction
+Run the following command on frio in test directory
+make clean; make
+
+#Run Instruction
+python coresight_sample.py

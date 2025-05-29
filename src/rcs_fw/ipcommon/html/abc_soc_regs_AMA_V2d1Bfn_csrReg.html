@@ -1,0 +1,4614 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/v2d1/BFN_CSR/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/v2d1/BFN_CSR/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet">V2D BFN Register Address Map</h3>
+    <p class="ldescdet">This address map contains 1kB APB accessible V2D BFN related register set.</p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_v2d1_BFN_CSR_reg">AddressMap abc_soc_top/v2d1/BFN_CSR/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/v2d1/BFN_CSR/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_845561D38F00D198">BFN_SCRATCH</a>  </b></td>
+        <td class="unboxed sdescmap">Scratch Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000004</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_57071AD98181F98A">APB_BRI_STATUS</a>  </b></td>
+        <td class="unboxed sdescmap">APB Bridge Status Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000008</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_D0DABA790CA90523">GENERAL_CSR</a>  </b></td>
+        <td class="unboxed sdescmap">V2D BFN General Control and Statue Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x0000000c</td>
+        <td class="unboxed addr">0x0000000f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000010[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_55D856B8FC39D21F">CAP_BFN[12]</a>  </b></td>
+        <td class="unboxed sdescmap">Captured BFN Count Value.</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000040</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_A1DB73DF15AC3D6B">ISYNC_CTRL</a>  </b></td>
+        <td class="unboxed sdescmap">ISYNC Control Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000044</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8ACFA328FB9797AF">ISYNC_LCNT_INC</a>  </b></td>
+        <td class="unboxed sdescmap">Isync Lower Count Increment Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000048</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_BDD8F916252E8BD3">ISYNC_TEN_MS_CNT</a>  </b></td>
+        <td class="unboxed sdescmap">Isync 10ms Counter Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000004c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_6C09CA4611D63C52">ISYNC_INC_PRE</a>  </b></td>
+        <td class="unboxed sdescmap">Isync Timer Increment/Preset Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000050</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_3307638D30FA6C1C">ISYNC_CNT_ADJ</a>  </b></td>
+        <td class="unboxed sdescmap">Isync Timer Count Adjustment Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000054</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_A805041397072140">ISYNC_BFN_CNT_SYNC</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Count Sync</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000058</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DE5C021631398B52">ISYNC_BFN_CNT</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Count</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x0000005c</td>
+        <td class="unboxed addr">0x0000005f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000060[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_FEABC2E46F8C23F7">BFNE_CONFIG[4]</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Event Config Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000070[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_5AE3D3EDC3A55D43">BFNE_INCR[4]</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Event Increment</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000080[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_CB1CEDAE71E739DF">BFNE_START[4]</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Event Start</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x00000090[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_14889C377DB0D1AC">BFNE_STAT[4]</a>  </b></td>
+        <td class="unboxed sdescmap">BFN Event Status Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x000000a0</td>
+        <td class="unboxed addr">0x000000cf</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x000000d0[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_BF3954A08EEB746B">START_LM[4]</a>  </b></td>
+        <td class="unboxed sdescmap">START Latency Match Register</td>
+      </tr>
+      <tr class="tabrbd">
+        <td class="unboxed addr">0x000000e0[+=0x4]</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_46F0B26BA3D4467B">START_L_CNT[4]</a>  </b></td>
+        <td class="unboxed sdescmap">Start Latency Count Register</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x000000f0</td>
+        <td class="unboxed addr">0x000000f7</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000000f8</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_95A9535A8153FB12">CAP_MODE_CTRL</a>  </b></td>
+        <td class="unboxed sdescmap">Data Capture Mode Control Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x000000fc</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_EE437EA637729CD0">CAP_DATA_CTRL</a>  </b></td>
+        <td class="unboxed sdescmap">Capture Memory Data Control Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000100</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_7ED839ACC7FBFCD9">SMON_r0</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon CONTROL0 register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000104</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_2FE38FEFD7A9E2F1">SMON_r1</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon CONTROL1 register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000108</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DCA734830771BF14">SMON_r2</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon SMON0_COMPARE register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000010c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F1A2F8B9538B8F70">SMON_r3</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon SMON1_COMPARE register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000110</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_CEE1A5BD628F53FC">SMON_r4</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon SMON0_COUNT register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000114</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_AB7B64BC257A4567">SMON_r5</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon SMON1_COUNT register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000118</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_558B5E6D54D7E431">SMON_r6</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon TIMER register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000011c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8C427419EF339CAB">SMON_r7</a>  </b></td>
+        <td class="unboxed sdescmap">AW_smon TIMERMAXVAL register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000120</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_37C060C97A6C0DD7">SUBB_LO_INTR</a>  </b></td>
+        <td class="unboxed sdescmap">Subblock Low Interrupt Status Register</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000124</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_AC1895459D27B7D3">SUBB_HI_INTR</a>  </b></td>
+        <td class="unboxed sdescmap">Subblock High Interrupt Status Register</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/v2d1/BFN_CSR/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_845561D38F00D198" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000000</span> Register(32 bit) BFN_SCRATCH</span><br/>
+      <span class="sdescdet">Scratch Register</span><br/>
+      <span class="ldescdet">This register can be used by software to verify reads/writes to this address space.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c000</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">SCRATCHPAD</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SCRATCHPAD</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Scratch pad</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_57071AD98181F98A" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000004</span> Register(32 bit) APB_BRI_STATUS</span><br/>
+      <span class="sdescdet">APB Bridge Status Register</span><br/>
+      <span class="ldescdet">This is the AW_apb2core_bridge status register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c004</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00010000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">TIMEOUT</td>
+        <td class="fldnorm" colspan="1">ACK_ERROR</td>
+        <td class="fldnorm" colspan="1">UNSOL_ACK</td>
+        <td class="fldnorm" colspan="1">SW_LOCK_CTRL</td>
+        <td class="fldnorm" colspan="8">REVISION</td>
+        <td class="fldnorm" colspan="20">TIMEOUT_VALUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1C/V</td>
+        <td class="accno" colspan="1">RW/1S/V/L</td>
+        <td class="accno" colspan="8">RO</td>
+        <td class="accno" colspan="20">RW/L</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMEOUT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">An APB request has timed out</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ACK_ERROR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Acknowledgement had error bit set</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">UNSOL_ACK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">An unsolicited acknowledge was received</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:28]</b><br/>RW/1S/V/L</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SW_LOCK_CTRL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Block software writes to timeout_value if set</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:20]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">REVISION</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Module Revision Number</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:00]</b><br/>RW/L</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMEOUT_VALUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Number of core clocks to wait before timing out an APB request</span></p>
+          <p><b>Reset: </b>hex:0x10000;</p>
+    <p><b>Locked by:</b> APB_BRI_STATUS.SW_LOCK_CTRL; <b>Lock value:</b> 1</p>        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_D0DABA790CA90523" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000008</span> Register(32 bit) GENERAL_CSR</span><br/>
+      <span class="sdescdet">V2D BFN General Control and Statue Register</span><br/>
+      <span class="ldescdet">This is the general control and status register in v2d_bfn block.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c008</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0x00fffc0c</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0x00fffc0c</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">CHANNEL_1_DP_INIT</td>
+        <td class="fldnorm" colspan="1">CHANNEL_0_DP_INIT</td>
+        <td class="fldnorm" colspan="1">CHANNEL_1_DP_INIT_DONE</td>
+        <td class="fldnorm" colspan="1">CHANNEL_0_DP_INIT_DONE</td>
+        <td class="fldnorm" colspan="1">CHANNEL_1_HALT_DONE</td>
+        <td class="fldnorm" colspan="1">CHANNEL_0_HALT_DONE</td>
+        <td class="fldnorm" colspan="1">CHANNEL_1_HALT</td>
+        <td class="fldnorm" colspan="1">CHANNEL_0_HALT</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="fldnorm" colspan="1">PDPD_1_CLK_EN</td>
+        <td class="fldnorm" colspan="1">PDPD_0_CLK_EN</td>
+        <td class="fldnorm" colspan="1">CHANNEL_1_DRF_CLK_EN</td>
+        <td class="fldnorm" colspan="1">CHANNEL_0_DRF_CLK_EN</td>
+        <td class="fldnorm" colspan="1">CHANNEL_1_CRUX_CLK_EN</td>
+        <td class="fldnorm" colspan="1">CHANNEL_0_CRUX_CLK_EN</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="fldnorm" colspan="1">DIE_MODE</td>
+        <td class="fldnorm" colspan="1">BFN_START_EN</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="2">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_1_DP_INIT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel Datapath Initialization. When set, this bit resets synchronously corresponding V2D channel. This bit should be set after corresponding CHANNEL_HALT_DONE bit is set.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_0_DP_INIT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel Datapath Initialization. When set, this bit resets synchronously corresponding V2D channel. This bit should be set after corresponding CHANNEL_HALT_DONE bit is set.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_1_DP_INIT_DONE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel Datapath Initialization Done. When set, this bit indicates that the corresponding V2D channel initialization is done. It will be reset when the corresponding CHANNEL_DP_INIT bit is cleared.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:28]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_0_DP_INIT_DONE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel Datapath Initialization Done. When set, this bit indicates that the corresponding V2D channel initialization is done. It will be reset when the corresponding CHANNEL_DP_INIT bit is cleared.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[27:27]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_1_HALT_DONE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel Halt Done. When high, this bit indicates that the corresponding V2D channel has completed halt operation.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[26:26]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_0_HALT_DONE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel Halt Done. When high, this bit indicates that the corresponding V2D channel has completed halt operation.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[25:25]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_1_HALT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel Halt. When set, this bit enables the corresponding V2D channel to do halt operation, which is needed before a channel soft reset.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[24:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_0_HALT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel Halt. When set, this bit enables the corresponding V2D channel to do halt operation, which is needed before a channel soft reset.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:09]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PDPD_1_CLK_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">PDPD Clock Enable. When high, this bit enables DRF clock to the corresponding PDPD. When low, the clock to the PDPD is gated.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[08:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">PDPD_0_CLK_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">PDPD Clock Enable. When high, this bit enables DRF clock to the corresponding PDPD. When low, the clock to the PDPD is gated.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_1_DRF_CLK_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel DRF Clock Enable. When high, this bit enables DRF clock to the corresponding V2D channel. When low, the clock to the channel is gated.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_0_DRF_CLK_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel DRF Clock Enable. When high, this bit enables DRF clock to the corresponding V2D channel. When low, the clock to the channel is gated.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_1_CRUX_CLK_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel CRUX Clock Enable. When high, this bit enables CRUX clock to the corresponding V2D channel. When low, the clock to the channel is gated.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CHANNEL_0_CRUX_CLK_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel CRUX Clock Enable. When high, this bit enables CRUX clock to the corresponding V2D channel. When low, the clock to the channel is gated.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DIE_MODE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This bit tells the mode of the die. 1=4016, VEX exists, 0=0016, there are no VEX and PDPD.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_START_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When high, this bit enables BFN to control TX/PDPD start. When low, DRF synchronized JESD start signal, i_drf_quad_start, is used to control TX/PDPD start. The selected start control will go through DRF clock latency count, START_LM_CTL, to generate final start signal. This bit is only useful in even numbered V2Ds, e.g. V2D 0/2/4/6. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_55D856B8FC39D21F" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000010[+=0x4]</span> Register(32 bit) CAP_BFN[12]</span><br/>
+      <span class="sdescdet">Captured BFN Count Value.</span><br/>
+      <span class="ldescdet">This register set includes all captured BFN value registers. <br/>Register  0 = BFN count for abc_v2d 0, Tx stream data with configured index is seen on Path 0 from NSIP 0.<br/>Register  1 = BFN count for abc_v2d 0, Tx stream data with configured index is seen on Path 1 from NSIP 1.<br/>Register  2 = BFN count for abc_v2d 0, Tx transmission to DigRF started.<br/>Register  3 = BFN count for abc_v2d 0, Tx transmission to PDPD started.<br/>Register  4 = BFN count for abc_v2d 0, Rx sample data from DRF is seen.<br/>Register  5 = BFN count for abc_v2d 0, Rx sample data from PDPD is seen.<br/>Register  6 = BFN count for abc_v2d 1, Tx stream data with configured index is seen on Path 0 from NSIP 0.<br/>Register  7 = BFN count for abc_v2d 1, Tx stream data with configured index is seen on Path 1 from NSIP 1.<br/>Register  8 = BFN count for abc_v2d 1, Tx transmission to DigRF started.<br/>Register  9 = BFN count for abc_v2d 1, Tx transmission to PDPD started.<br/>Register 10 = BFN count for abc_v2d 1, Rx sample data from DRF is seen.<br/>Register 11 = BFN count for abc_v2d 1, Rx sample data from PDPD is seen.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=12, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c010[+=0x4]</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">CAP_BFN_UP8_VAL</td>
+        <td class="fldnorm" colspan="24">CAP_BFN_LO_VAL</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO</td>
+        <td class="accno" colspan="24">RO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CAP_BFN_UP8_VAL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Captured 8 LSBs of BFN Upper Count Value. This is the 8 LSBs of captured BFN upper count value.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CAP_BFN_LO_VAL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Captured BFN Lower Count Value. This is the captured BFN value of lower part of the BFN counter. This value should not be more than the value in TEN_MS_CNT register.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_A1DB73DF15AC3D6B" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000040</span> Register(32 bit) ISYNC_CTRL</span><br/>
+      <span class="sdescdet">ISYNC Control Register</span><br/>
+      <span class="ldescdet">This is the general control register for AW_isync instantiation
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c040</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff7fc8</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff7fc8</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="fldnorm" colspan="1">SOFT_RESET</td>
+        <td class="fldgap" colspan="9">-</td>
+        <td class="fldnorm" colspan="1">BFN_CNT_SAMPLE</td>
+        <td class="fldnorm" colspan="1">LOAD_READ</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="fldnorm" colspan="3">TIMER_CMD</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="9">-</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="1">-</td>
+        <td class="accno" colspan="3">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SOFT_RESET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Soft Reset for the entire AW_isync. Active high.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_CNT_SAMPLE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Write to 1 (regardless of the current value) causes the circuit to sample the BFN_CNT and synchronize it into the register clock domain. After waiting 3-4 BFN clock cycles plus 3-4 register clock cycles, the sample is available to read in the ISYNC_BFN_CNT register</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">LOAD_READ</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When 1, load BFN count into the manager counter at the first timesync pulse, when 0, read BFN count from the Manager BFN counter at every timesync pulse.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TIMER_CMD</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When i_isync value is 11, the command programmed in this register is executed.<br/><br/>3'b000, 3'b100, 3'b110 -&gt; bfn_lower_cnt is incremented with the value in BFN_LOWER_CNT_INC. If the<br/><br/>lower count value equals the TEN_MS_CNT value the bfn_upper_cnt value is incremented by 1.<br/><br/>3'b001 -&gt; bfn_lower_cnt and bfn_upper_cnt are preset to the value in the TIMER_INC_PRE register.<br/><br/>3'b010 -&gt; The internal registers corresponding to BFN_LOWER_CNT_INC., TIMER_INC_PRE, TIMER_INC_ADJ<br/><br/>TEN_MS_CNT are all initialized to their corresponding input values.<br/><br/>If the current bfn_lower_cnt value is equal to the TEN_MS_CNT value, the bfn_upper_cnt<br/><br/>is incremented by 1. If not, bfn_lower_cnt is incremented by the value in BFN_LOWER_CNT_INC.<br/><br/>register.<br/><br/>3'b011 -&gt; Increment the bfn_lower_cnt value with the value in the TIMER_INC_PRE register.<br/><br/>3'b101 -&gt; If bfn_lower_cnt value equals the TEN_MS_CNT value, reset the bfn_lower_cnt to zero and<br/><br/>increment the bfn_upper_cnt by 1. If not, increment bfn_lower_cnt by a value<br/><br/>in the BFN_LOWER_CNT_INC. register. A sync_adj_pulse is also generated so that when the<br/><br/>bfn_lower_cnt value is equal to the TEN_MS_CNT and the bfn_upper_cnt equals timer_cnt_adj<br/><br/>the bfn_lower_cnt is preset to the value in TIMER_INC_PRE and the bfn_upper_cnt is<br/><br/>incremented by the value in TIMER_INC_PRE register.<br/><br/>3'b111 -&gt; The current value in the bfn_lower_cnt and bfn_upper_cnt is captured and made available<br/><br/>in a register for the application to read.<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_8ACFA328FB9797AF" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000044</span> Register(32 bit) ISYNC_LCNT_INC</span><br/>
+      <span class="sdescdet">Isync Lower Count Increment Register</span><br/>
+      <span class="ldescdet">This register specifies the increment of AW_isync BFN lower counter every clock cycle.<br/>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c044</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000001</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="24">BFN_LOWER_CNT_INC</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">BFN_LOWER_CNT_INC</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Increment for the Offset Counter.</span></p>
+          <p><b>Reset: </b>hex:0x000001;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_BDD8F916252E8BD3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000048</span> Register(32 bit) ISYNC_TEN_MS_CNT</span><br/>
+      <span class="sdescdet">Isync 10ms Counter Register</span><br/>
+      <span class="ldescdet">This register controls lower BFN counter value for ten millisecond count.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c048</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x0095ffff</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xff000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="fldnorm" colspan="24">TEN_MS_CNT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="8">-</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">TEN_MS_CNT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Number of clock cycles in 10ms (minus 1).</span></p>
+          <p><b>Reset: </b>hex:0x95ffff;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_6C09CA4611D63C52" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000004c</span> Register(32 bit) ISYNC_INC_PRE</span><br/>
+      <span class="sdescdet">Isync Timer Increment/Preset Register</span><br/>
+      <span class="ldescdet">This is the value used to preset/increment the BFN counter or add to the BFN counter depending on the value of i_timer_cmd.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c04c</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME_INCR</td>
+        <td class="fldnorm" colspan="24">OFFSET_INCR</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME_INCR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [7:0] of the 10ms frame counter.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET_INCR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Offset from nearest 10ms frame, in clock cycles.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_3307638D30FA6C1C" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000050</span> Register(32 bit) ISYNC_CNT_ADJ</span><br/>
+      <span class="sdescdet">Isync Timer Count Adjustment Register</span><br/>
+      <span class="ldescdet">When the value of the BFN frame counter equals this value, the BFN counter is incremented by the value in TIMER_INC_PRE registers.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c050</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="24">-</td>
+        <td class="fldnorm" colspan="8">FRAME_ADJ</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="24">-</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME_ADJ</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [7:0] of the 10ms frame counter.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_A805041397072140" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000054</span> Register(32 bit) ISYNC_BFN_CNT_SYNC</span><br/>
+      <span class="sdescdet">BFN Count Sync</span><br/>
+      <span class="ldescdet">The value of the BFN counter that was sampled when isync=11 and TIMER_CMD=111.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c054</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME</td>
+        <td class="fldnorm" colspan="24">OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Bits [7:0] fo the count of 10ms frames.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Offset from nearest 10ms frame, in clock cycles.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DE5C021631398B52" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000058</span> Register(32 bit) ISYNC_BFN_CNT</span><br/>
+      <span class="sdescdet">BFN Count</span><br/>
+      <span class="ldescdet">Sample of the current BFN counter, triggered by writing a 1 to the BFN_CNT_SAMPLE bit of the ISYNC_CTRL register Because of synchronization, this will be several clock cycles behind the actual current value.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c058</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME</td>
+        <td class="fldnorm" colspan="24">OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RO/V</td>
+        <td class="accno" colspan="24">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">LSB's of Count of 10ms frames.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Offset from nearest 10ms frame, in clock cycles.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_FEABC2E46F8C23F7" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000060[+=0x4]</span> Register(32 bit) BFNE_CONFIG[4]</span><br/>
+      <span class="sdescdet">BFN Event Config Register</span><br/>
+      <span class="ldescdet">This array of registers contains 4 sets of abc_bfn_event registers. <br/>[0] = TX/PDPD start control for Channel 0/1/2/3 at DRF Sample Interface and PDPD ingress interfaces. This is only useful in even numbered V2Ds, e.g. V2D 0/2/4/6. <br/>[1] = PDPD 0 select control for data to Capture Memory, <br/>[2] = PDPD 1 select control for data to Capture Memory, <br/>[3] = PDPD data capture Pause/Resume or Halt/Start controls.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c060[+=0x4]</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffffc0</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffffc0</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="26">-</td>
+        <td class="fldnorm" colspan="2">DEBUG_MODE</td>
+        <td class="fldnorm" colspan="1">OUTPUT_MODE</td>
+        <td class="fldnorm" colspan="2">MODE</td>
+        <td class="fldnorm" colspan="1">ENABLE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="26">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="1">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEBUG_MODE</span><br/>
+          <span class="sdescdet">BFN Event Status Debug Mode</span><br/>
+          <span class="ldescdet">Controls what appears in BFN_EVENT_STAT DEBUG field, which is 28 bits.<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_DEBUG_MODE_COUNT</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>When selected, the DEBUG field in the BFNE_STATUS register represents the number of events that have occured. It is a rotating count and will wrap freely.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_DEBUG_MODE_LAST</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>When selected, the DEBUG field in the BFNE_STATUS register represents the upper 28 bits of the 32-bit bfn_cnt of the last event that occurred.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_DEBUG_MODE_TARGET</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>When selected, the DEBUG field in the BFNE_STATUS register represents the upper 28 bits of the 32-bit bfn_cnt of the next event that scheduled.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_DEBUG_MODE_DELAY</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap"><br/>When selected, the DEBUG field in the BFNE_STATUS register represents the number of clock cycles between the start (arming) of the BFN_EVENT and the first event. Note that this is limited to the available space, so will saturate at all ones.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OUTPUT_MODE</span><br/>
+          <span class="sdescdet">BFN Event Trigger Value</span><br/>
+          <span class="ldescdet">Selects whether the BFN_EVENT output toggles at each event, or produces a single cycle pulse.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_OUTPUT_MODE_TOGGLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>Output Toggles at each event</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_OUTPUT_MODE_PULSE</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>Output Produces a single cycle pulse at each event</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MODE</span><br/>
+          <span class="sdescdet">BFN Event Trigger Mode</span><br/>
+          <span class="ldescdet">Selects the mode of operation. Note that the force mechanism can be triggered (see BFNE_START) regardless of which mode is selected here.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_MODE_SINGLE</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap"><br/>At the time specified by BFNE_START, the event (toggle or pulse) will occur</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_MODE_DOUBLE</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap"><br/>At the time specified by BFNE_START, the event (toggle or pulse) will occur. A second event will occur at BFNE_START+BFNE_INCR.</td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">BFN_EVENT_MODE_REPEAT</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap"><br/>At the time specified by BFNE_START, the event (toggle or pulse) will occur. Events continue to occur at each BFNE_INCR.</td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ENABLE</span><br/>
+          <span class="sdescdet">BFN Event Enable</span><br/>
+          <span class="ldescdet">Set to 1 to enable the operation of the bfn_event module. When running in repeat mode, set this back to zero to immediately halt the operation. NOte that this must be set to 1 for the force mechanism (See BFN_START register) to work.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_5AE3D3EDC3A55D43" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000070[+=0x4]</span> Register(32 bit) BFNE_INCR[4]</span><br/>
+      <span class="sdescdet">BFN Event Increment</span><br/>
+      <span class="ldescdet">This register represents the increment, or delta, between events for BFN_EVENT_MODE_DOUBLE and BFN_EVENT_MODE_REPEAT. Please refer to the BFNE_CONFIG register for event trigger mapping.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c070[+=0x4]</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME</td>
+        <td class="fldnorm" colspan="24">OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Count of 10ms frames.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Offset from nearest 10ms frame, in clock cycles.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_CB1CEDAE71E739DF" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000080[+=0x4]</span> Register(32 bit) BFNE_START[4]</span><br/>
+      <span class="sdescdet">BFN Event Start</span><br/>
+      <span class="ldescdet">This register should be programmed with the BFN_CNT value at which the first event should occur. A write to this register also triggers the bfn_event module to begin operation, if the ENABLE bit in the CONFIG register has already been set. In order to immediately force a value onto the output, the user should program this register with 0xFFFF_FFFF or 0xFFFF_FFFE. If the BFN event is enabled, and OUTPUT_MODE is selected as TOGGLE, the circuit will place the value programmed in bit 0 onto the output immediately, regardless of the mode. If OUTPUT_MODE is PULSE, the output will produce a single cycle pulse immediately. Please refer to the BFNE_CONFIG register for event trigger mapping.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c080[+=0x4]</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="8">FRAME</td>
+        <td class="fldnorm" colspan="24">OFFSET</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="24">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">FRAME</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Count of 10ms frames.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFFSET</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Offset from nearest 10ms frame, in clock cycles.</span></p>
+          <p><b>Reset: </b>hex:0x000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_14889C377DB0D1AC" class="boxed tabrbd"><span class="regname">+<span class="addr">0x00000090[+=0x4]</span> Register(32 bit) BFNE_STAT[4]</span><br/>
+      <span class="sdescdet">BFN Event Status Register</span><br/>
+      <span class="ldescdet">This register provides statistics for the BFN event module. Please refer to the BFNE_CONFIG register for event trigger mapping.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c090[+=0x4]</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="29">DEBUG</td>
+        <td class="fldnorm" colspan="1">DONE</td>
+        <td class="fldnorm" colspan="1">WAITING</td>
+        <td class="fldnorm" colspan="1">CURRENT_VALUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="29">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEBUG</span><br/>
+          <span class="sdescdet">BFN Debug</span><br/>
+          <span class="ldescdet">This field is different based on the DEBUG_MODE setting in the BFNE_CONFIG register.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DONE</span><br/>
+          <span class="sdescdet">BFN Done Flag</span><br/>
+          <span class="ldescdet">This bit indicates that the bfn_module has reached its programmed bfn time. In Repeate mode, this will only toggle high during the single cycle of each event, so is not usefule.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">WAITING</span><br/>
+          <span class="sdescdet">BFN Event Waiting Flag</span><br/>
+          <span class="ldescdet">This bit indicates when the bfn_event module is waiting for the programmed bfn_start time. In Repeat mode, this will only toggle low during the single cycle of each event, so is not useful.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CURRENT_VALUE</span><br/>
+          <span class="sdescdet">BFN Event Current Value</span><br/>
+          <span class="ldescdet">This bit shows the current output value of the bfn_event module</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_BF3954A08EEB746B" class="boxed tabrbd"><span class="regname">+<span class="addr">0x000000d0[+=0x4]</span> Register(32 bit) START_LM[4]</span><br/>
+      <span class="sdescdet">START Latency Match Register</span><br/>
+      <span class="ldescdet">This register contains the enable and value to compare with START latency count. When matchted, a start signal will assert to control the start of data transmission if enabled.<br/>Register 0 = match value for start of data transmission at DRF Channel 0.<br/>Register 1 = match value for start of data transmission at DRF Channel 1.<br/>Register 2 = match value for start of data transmission at input of PDPD 0.<br/>Register 3 = match value for start of data transmission at input of PDPD 1.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c0d0[+=0x4]</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0x7ffc0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0x7ffc0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">MATCH_EN</td>
+        <td class="fldgap" colspan="13">-</td>
+        <td class="fldnorm" colspan="18">MATCH_VALUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="13">-</td>
+        <td class="accno" colspan="18">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MATCH_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When high, this bit enables the use of MATCH_VALUE to compare with START_L_CNT to generate start control. After setting this bit to high, software should not clear this bit.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">MATCH_VALUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is the value used to compare with Start latency count. If matched, a start signal will assert to control the start of data transmission if enabled. This value must be configured no later than MATCH_EN is set.</span></p>
+          <p><b>Reset: </b>hex:0x00000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_46F0B26BA3D4467B" class="boxed tabrbd"><span class="regname">+<span class="addr">0x000000e0[+=0x4]</span> Register(32 bit) START_L_CNT[4]</span><br/>
+      <span class="sdescdet">Start Latency Count Register</span><br/>
+      <span class="ldescdet">This register contains the value of Start signal latency count. It starts to increment when the start signal, from either DRF synchronized JESD start signal i_drf_quad_start or optionally BFN, changes from 0 to 1, and stops when a DRF or PDPD interface starts to transmit data. The value is in number of DRF clock cycles.<br/>Register 0 = latency count at DRF Tx interface of Channel 0.<br/>Register 1 = latency count at DRF Tx interface of Channel 1.<br/>Register 2 = latency count at input of PDPD 0.<br/>Register 3 = latency count at input of PDPD 1.
+</span></p>
+    <p><b>Array dimensions:</b><br/>
+      &#x2003;Count=4, Start=0, Step=1<br/>
+    </p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c0e0[+=0x4]</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffc0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffc0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="fldnorm" colspan="18">LATENCY_VALUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="14">-</td>
+        <td class="accno" colspan="18">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[17:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">LATENCY_VALUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is the value of latency count of start signal from either DRF synchronized JESD start signal or optionally BFN. The count is number of cycles in DRF clock.</span></p>
+          <p><b>Reset: </b>hex:0x00000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_95A9535A8153FB12" class="boxed tabrb"><span class="regname">+<span class="addr">0x000000f8</span> Register(32 bit) CAP_MODE_CTRL</span><br/>
+      <span class="sdescdet">Data Capture Mode Control Register</span><br/>
+      <span class="ldescdet">This register contains ON/OFF mode controls for sending data from ingress/egree PDPDs to Capture Memory.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c0f8</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0x3c00fc00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0x3c00fc00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">ONOFF_MODE_EN</td>
+        <td class="fldnorm" colspan="1">CONTINUOUS_MODE</td>
+        <td class="fldgap" colspan="4">-</td>
+        <td class="fldnorm" colspan="10">OFF_SET_COUNT</td>
+        <td class="fldgap" colspan="6">-</td>
+        <td class="fldnorm" colspan="10">ON_SET_COUNT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="fldgap" colspan="4">-</td>
+        <td class="accno" colspan="10">RW</td>
+        <td class="fldgap" colspan="6">-</td>
+        <td class="accno" colspan="10">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ONOFF_MODE_EN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When set, this bit enables ON/OFF mode of data capture.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:30]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CONTINUOUS_MODE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When set, this bit enables the mode of capturing data continuously. The data source is selected by CAPTURE_EN_* in CAP_DATA_CTRL register, and CAPTURE_SIZE_* is ignored.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[25:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">OFF_SET_COUNT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This defines the number of repeating capture data block sets for OFF state, which stops sending data to Capture Memory. 0 = 1 set, and 0x3ff = 1k sets.</span></p>
+          <p><b>Reset: </b>hex:0x000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">ON_SET_COUNT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This defines the number of repeating capture data block sets for ON state, which sends data to Capture Memory. 0 = 1 set, and 0x3ff = 1k sets.</span></p>
+          <p><b>Reset: </b>hex:0x000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_EE437EA637729CD0" class="boxed tabrb"><span class="regname">+<span class="addr">0x000000fc</span> Register(32 bit) CAP_DATA_CTRL</span><br/>
+      <span class="sdescdet">Capture Memory Data Control Register</span><br/>
+      <span class="ldescdet">This register contains controls for sending data from ingress/egree PDPDs to Capture Memory.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c0fc</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="1">CAPTURE_EN_1</td>
+        <td class="fldnorm" colspan="15">CAPTURE_SIZE_1</td>
+        <td class="fldnorm" colspan="1">CAPTURE_EN_0</td>
+        <td class="fldnorm" colspan="15">CAPTURE_SIZE_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="15">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="15">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:31]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CAPTURE_EN_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When set, this bit enables data capture from PDPD 1.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[30:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CAPTURE_SIZE_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This defines capture data block size for data from PDPD 1. It's in number of 256-bit data(8 samples). 0 = 1 256-bit data(8 samples), 0x7fff = 32k 256-bit data(256k samples).</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:15]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CAPTURE_EN_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When set, this bit enables data capture from PDPD 0.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[14:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CAPTURE_SIZE_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This defines capture data block size for data from PDPD 0. It's in number of 256-bit data(8 samples). 0 = 1 256-bit data(8 samples), 0x7fff = 32k 256-bit data(256k samples).</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_7ED839ACC7FBFCD9" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000100</span> Register(32 bit) SMON_r0</span><br/>
+      <span class="sdescdet">AW_smon CONTROL0 register</span><br/>
+      <span class="ldescdet">This is used to configure the operation of the 2 internal counters in the SMON
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c100</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x40000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="2">version</td>
+        <td class="fldnorm" colspan="1">rsvd2</td>
+        <td class="fldnorm" colspan="5">timer_prescale</td>
+        <td class="fldnorm" colspan="1">rsvd1</td>
+        <td class="fldnorm" colspan="1">stattimerovfl</td>
+        <td class="fldnorm" colspan="1">inttimerovfl</td>
+        <td class="fldnorm" colspan="1">stoptimerovfl</td>
+        <td class="fldnorm" colspan="1">statcounter1ovfl</td>
+        <td class="fldnorm" colspan="1">statcounter0ovfl</td>
+        <td class="fldnorm" colspan="1">intcounterovfl</td>
+        <td class="fldnorm" colspan="1">stopcounterovfl</td>
+        <td class="fldnorm" colspan="4">smon_mode</td>
+        <td class="fldnorm" colspan="1">smon1_function_compare</td>
+        <td class="fldnorm" colspan="3">smon1_function</td>
+        <td class="fldnorm" colspan="1">smon0_function_compare</td>
+        <td class="fldnorm" colspan="3">smon0_function</td>
+        <td class="fldnorm" colspan="3">rsvd0</td>
+        <td class="fldnorm" colspan="1">smon_enable</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="2">RO</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="5">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW/V</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW/V</td>
+        <td class="accno" colspan="1">RW/V</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="3">RW</td>
+        <td class="accno" colspan="1">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:30]</b><br/>RO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">version</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">version</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[29:29]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rsvd2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[28:24]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">timer_prescale</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">timer prescale<br/>   5'h00 = mode00, increment timer every      1 clock<br/>   5'h01 = mode01, increment timer every      2 clocks<br/>   5'h02 = mode02, increment timer every      4 clocks<br/>   5'h03 = mode03, increment timer every      8 clocks<br/>   5'h04 = mode04, increment timer every     16 clocks<br/>   5'h05 = mode05, increment timer every     32 clocks<br/>   5'h06 = mode06, increment timer every     64 clocks<br/>   5'h07 = mode07, increment timer every    128 clocks<br/>   5'h08 = mode08, increment timer every    256 clocks<br/>   5'h09 = mode09, increment timer every    512 clocks<br/>   5'h0a = mode10, increment timer every   1024 clocks<br/>   5'h0b = mode11, increment timer every   2048 clocks<br/>   5'h0c = mode12, increment timer every   4096 clocks<br/>   5'h0d = mode13, increment timer every   8192 clocks<br/>   5'h0e = mode14, increment timer every  16384 clocks<br/>   5'h0f = mode15, increment timer every  32768 clocks<br/>   5'h10 = mode16, increment timer every  65536 clocks<br/>   5'h11 = mode17, increment timer every 131072 clocks<br/>   5'h12 = mode18, increment timer every 262144 clocks<br/>   5'h13 = mode19, increment timer every 524288 clocks </span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[23:23]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rsvd1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[22:22]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">stattimerovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">status of timer overflow. A value of '1' signifies timer overflow, or timer&gt;maxvalue.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[21:21]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">inttimerovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">configure to interrupt on timer overflow or timer&gt;maxvalue</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[20:20]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">stoptimerovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">configure to stop on timer overflow or timer&gt;maxvalue</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[19:19]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">statcounter1ovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">status for counter1 overflow. A value of '1' signifies counter1 overflow.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[18:18]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">statcounter0ovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">status for counter0 overflow. A value of '1' signifies counter0 overflow.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[17:17]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">intcounterovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">configure to interupt on counter0 or counter1 overflow</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[16:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">stopcounterovfl</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">configure to stop on counter0 or counter1 overflow</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon_mode</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON mode <br/>   4'h0 = Independant Mode. SMON0_COUNT &amp; SMON1_COUNT operate independantly as their function is configured.   <br/>   4'h1 = Average Latency Mode. SMON0 trigger starts timer &amp; SMON1 trigger stops timer. SMON0_COUNT accumulates occurances and SMON1_COUNT accumulates timer values. For multiple stop for a single start, accumulate  start_to_stop1,  start_to_stop1stop2 ...<br/>   4'h2 = MinMax Latency Mode,. SMON0 trigger starts timer &amp; SMON1 trigger stops timer. SMON0_COUNT maintains the minimum timer value and SMON1_COUNT maintains the maximum timer value.<br/>   4'h3 = Average Mode.	  SMON0 trigger increments SMON0_COUNT and the value is accumulated in SMON1_COUNT. SMON1 events are disabled.<br/>   4'h4 = Average Lantecy Mode 2. same as mode01, but only accumulate the first start_to_stop1 if there are multiple stop for each start.<br/>   4'h5 = Average Latency Mode 3. same as mode01, but accumualte the incremental start_to_stop1, stop1_to_stop2... if there are multiple stop for each start. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:11]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon1_function_compare</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON1 function_compare<br/>   1'h0 = compare mode disabled<br/>   1'h1 = compare mode enabled</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[10:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon1_function</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON1 function<br/>   3'h0 = free running function. Trigger to accumulate the value into the engine SMON_COUNT when an event is valid.<br/>   3'h1 = free running function. Trigger to accumulate a fixed value of 1 into the engine SMON_COUNT when an event is valid.<br/>   3'h2 = max function. Trigger to update max value when an event is valid and larger than the current value stored in the engine SMON_COUNT.<br/>   3'h3 = Timestamp First Mode. Capture the timer value on the first occurance of an event. Need to write CONTROL01 to reset.<br/>   3'h4 = Timestamp Mode. Capture the timer value on every occurance of an event. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon0_function_compare</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON0 function_compare<br/>   1'h0 = compare mode disabled<br/>   1'h1 = compare mode enabled<br/></span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon0_function</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON0 function<br/>   3'h0 = free running function. Trigger to accumulate the value into the engine SMON_COUNT when an event is valid.<br/>   3'h1 = free running function. Trigger to accumulate a fixed value of 1 into the engine SMON_COUNT when an event is valid.<br/>   3'h2 = max function. Trigger to update max value when an event is valid and larger than the current value stored in the engine SMON_COUNT.<br/>   3'h3 = Timestamp First Mode. Capture the timer value on the first occurance of an event. Need to write CONTROL01 to reset.<br/>   3'h4 = Timestamp Mode. Capture the timer value on every occurance of an event. </span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:01]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rsvd0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">smon_enable</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">enable the SMON counters</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_2FE38FEFD7A9E2F1" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000104</span> Register(32 bit) SMON_r1</span><br/>
+      <span class="sdescdet">AW_smon CONTROL1 register</span><br/>
+      <span class="ldescdet">This is used to configure the operation of the 2 internal counters in the SMON
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c104</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="16">rsvd</td>
+        <td class="fldnorm" colspan="8">mode1</td>
+        <td class="fldnorm" colspan="8">mode0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="16">RW</td>
+        <td class="accno" colspan="8">RW</td>
+        <td class="accno" colspan="8">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:16]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">rsvd</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">reserved</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[15:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">mode1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">select input signal for SMON1 engine. <br/>
+0x0  = Triggered by PDPD 0 start signal from V2D BFN module, pd_start[0]. Counter input is connected to 1. <br/> 0x1  = Triggered by PDPD 1 start signal from V2D BFN module, pd_start[1]. Counter input is connected to 1. <br/> 0x2  = Triggered by Tx A path 0 start signal from V2D BFN module, tx_start[0]. Counter input is connected to 1. <br/> 0x3  = Triggered by Tx A path 1 start signal from V2D BFN module, tx_start[1]. Counter input is connected to 1. <br/> 0x4  = Triggered by Quad start signal from JESD or even numbered V2D, i_drf_quad_start. Counter input is connected to 1. <br/> 0x5  = Triggered by V2D start signal from even numbered V2D, i_drf_quad_start. Counter input is connected to 1. <br/> 0x6  = Triggered by PDPD 0 ingress main data valid signal from V2D 0, pd_data_main_in_v[0]. Counter input is connected to ingress main data[31:0]. <br/> 0x7  = Triggered by PDPD 1 ingress main data valid signal from V2D 1, pd_data_main_in_v[1]. Counter input is connected to ingress main data[31:0]. <br/> 0x8  = Triggered by PDPD 0 egress main data valid signal from PDPD 0, pd_data_main_out_v[0]. Counter input is connected to egress main data[31:0]. <br/> 0x9  = Triggered by PDPD 1 egress main data valid signal from PDPD 1, pd_data_main_out_v[1]. Counter input is connected to egress main data[31:0]. <br/> 0xA  = Triggered by PDPD 0 ingress extra data valid signal from V2D 0, pd_data_extra_in_v[0]. Counter input is connected to ingress extra data[31:0]. <br/> 0xB  = Triggered by PDPD 1 ingress extra data valid signal from V2D 1, pd_data_extra_in_v[1]. Counter input is connected to ingress extra data[31:0]. <br/> 0xC  = Triggered by PDPD 0 ganging input data valid signal from PDPD 1, pd_data_gang_in_v[0]. Counter input is connected to ganging input data[31:0]. <br/> 0xD  = Triggered by PDPD 1 ganging input data valid signal tied to 0, pd_data_gang_in_v[1]. Counter input is connected to 0. <br/> 0xE  = Triggered by PDPD 0 Coefficient Update valid signal from V2D 0, pd_data_coeff_in_v[0]. Counter input is connected to Coefficient Update data[31:0]. <br/> 0xF  = Triggered by PDPD 1 Coefficient Update valid signal from V2D 1, pd_data_coeff_in_v[1]. Counter input is connected to Coefficient Update data[31:0]. <br/> 0x10 = Triggered by PDPD 0 Coefficient Update last cycle signal from V2D 0, pd_data_coeff_in_v[0] AND pd_data_coeff_in_last[0]. Counter input is connected to {31d0, pd_data_coeff_in_err[0]}. <br/> 0x11 = Triggered by PDPD 1 Coefficient Update last cycle signal from V2D 1, pd_data_coeff_in_v[1] AND pd_data_coeff_in_last[1]. Counter input is connected to {31d0, pd_data_coeff_in_err[1]}. <br/> 0x12 = Triggered by DRF Tx Channel 0 data valid signal to DRF, o_drf_tx_0_v. Counter input is connected to DRF Tx data[31:0]. <br/> 0x13 = Triggered by DRF Rx Channel 0 data valid signal from DRF, i_drf_rx_0_v. Counter input is connected to DRF Rx data[31:0]. <br/> 0x14 = Triggered by DRF Tx Channel 1 data valid signal to DRF, o_drf_tx_1_v. Counter input is connected to DRF Tx data[31:0]. <br/> 0x15 = Triggered by DRF Rx Channel 1 data valid signal from DRF, i_drf_rx_1_v. Counter input is connected to DRF Rx data[31:0]. <br/> 0x16 = Triggered by Capture Memory data valid signal from odd numbered V2D, i_mem_v. Counter input is connected to Capture Memory data[31:0]. <br/> 0x17 = Triggered by Capture Memory data valid signal from odd numbered V2D, i_mem_v. Counter input is connected to {i_v2d_odd, 29d0, i_mem_id}. <br/> 0x18 = Triggered by Capture Memory output data valid signal from V2D, o_mem_v. Counter input is connected to Capture Memory data[31:0]. <br/> 0x19 = Triggered by Capture Memory otuput data valid signal from V2D, o_mem_v. Counter input is connected to {i_v2d_odd, 29d0, o_mem_id}.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">mode0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">select input signal for SMON0 engine. <br/>
+0x0  = Triggered by PDPD 0 start signal from V2D BFN module, pd_start[0]. Counter input is connected to 1. <br/> 0x1  = Triggered by PDPD 1 start signal from V2D BFN module, pd_start[1]. Counter input is connected to 1. <br/> 0x2  = Triggered by Tx A path 0 start signal from V2D BFN module, tx_start[0]. Counter input is connected to 1. <br/> 0x3  = Triggered by Tx A path 1 start signal from V2D BFN module, tx_start[1]. Counter input is connected to 1. <br/> 0x4  = Triggered by Quad start signal from JESD or even numbered V2D, i_drf_quad_start. Counter input is connected to 1. <br/> 0x5  = Triggered by V2D start signal from even numbered V2D, i_drf_quad_start. Counter input is connected to 1. <br/> 0x6  = Triggered by PDPD 0 ingress main data valid signal from V2D 0, pd_data_main_in_v[0]. Counter input is connected to ingress main data[31:0]. <br/> 0x7  = Triggered by PDPD 1 ingress main data valid signal from V2D 1, pd_data_main_in_v[1]. Counter input is connected to ingress main data[31:0]. <br/> 0x8  = Triggered by PDPD 0 egress main data valid signal from PDPD 0, pd_data_main_out_v[0]. Counter input is connected to egress main data[31:0]. <br/> 0x9  = Triggered by PDPD 1 egress main data valid signal from PDPD 1, pd_data_main_out_v[1]. Counter input is connected to egress main data[31:0]. <br/> 0xA  = Triggered by PDPD 0 ingress extra data valid signal from V2D 0, pd_data_extra_in_v[0]. Counter input is connected to ingress extra data[31:0]. <br/> 0xB  = Triggered by PDPD 1 ingress extra data valid signal from V2D 1, pd_data_extra_in_v[1]. Counter input is connected to ingress extra data[31:0]. <br/> 0xC  = Triggered by PDPD 0 ganging input data valid signal from PDPD 1, pd_data_gang_in_v[0]. Counter input is connected to ganging input data[31:0]. <br/> 0xD  = Triggered by PDPD 1 ganging input data valid signal tied to 0, pd_data_gang_in_v[1]. Counter input is connected to 0. <br/> 0xE  = Triggered by PDPD 0 Coefficient Update valid signal from V2D 0, pd_data_coeff_in_v[0]. Counter input is connected to Coefficient Update data[31:0]. <br/> 0xF  = Triggered by PDPD 1 Coefficient Update valid signal from V2D 1, pd_data_coeff_in_v[1]. Counter input is connected to Coefficient Update data[31:0]. <br/> 0x10 = Triggered by PDPD 0 Coefficient Update last cycle signal from V2D 0, pd_data_coeff_in_v[0] AND pd_data_coeff_in_last[0]. Counter input is connected to {31d0, pd_data_coeff_in_err[0]}. <br/> 0x11 = Triggered by PDPD 1 Coefficient Update last cycle signal from V2D 1, pd_data_coeff_in_v[1] AND pd_data_coeff_in_last[1]. Counter input is connected to {31d0, pd_data_coeff_in_err[1]}. <br/> 0x12 = Triggered by DRF Tx Channel 0 data valid signal to DRF, o_drf_tx_0_v. Counter input is connected to DRF Tx data[31:0]. <br/> 0x13 = Triggered by DRF Rx Channel 0 data valid signal from DRF, i_drf_rx_0_v. Counter input is connected to DRF Rx data[31:0]. <br/> 0x14 = Triggered by DRF Tx Channel 1 data valid signal to DRF, o_drf_tx_1_v. Counter input is connected to DRF Tx data[31:0]. <br/> 0x15 = Triggered by DRF Rx Channel 1 data valid signal from DRF, i_drf_rx_1_v. Counter input is connected to DRF Rx data[31:0]. <br/> 0x16 = Triggered by Capture Memory data valid signal from odd numbered V2D, i_mem_v. Counter input is connected to Capture Memory data[31:0]. <br/> 0x17 = Triggered by Capture Memory data valid signal from odd numbered V2D, i_mem_v. Counter input is connected to {i_v2d_odd, 29d0, i_mem_id}. <br/> 0x18 = Triggered by Capture Memory output data valid signal from V2D, o_mem_v. Counter input is connected to Capture Memory data[31:0]. <br/> 0x19 = Triggered by Capture Memory otuput data valid signal from V2D, o_mem_v. Counter input is connected to {i_v2d_odd, 29d0, o_mem_id}.</span></p>
+          <p><b>Reset: </b>hex:0x00;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DCA734830771BF14" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000108</span> Register(32 bit) SMON_r2</span><br/>
+      <span class="sdescdet">AW_smon SMON0_COMPARE register</span><br/>
+      <span class="ldescdet">This is the compare register in the SMON0 engine used with the compare function
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c108</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">compare0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">compare0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Comparison value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F1A2F8B9538B8F70" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000010c</span> Register(32 bit) SMON_r3</span><br/>
+      <span class="sdescdet">AW_smon SMON1_COMPARE register</span><br/>
+      <span class="ldescdet">This is the compare register in the SMON1 engine used with the compare function
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c10c</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">compare1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">compare1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Comparison value.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_CEE1A5BD628F53FC" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000110</span> Register(32 bit) SMON_r4</span><br/>
+      <span class="sdescdet">AW_smon SMON0_COUNT register</span><br/>
+      <span class="ldescdet">This is the first counter in SMON configured to count events by the SMON configuration register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c110</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">counter0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">counter0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">counter0</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_AB7B64BC257A4567" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000114</span> Register(32 bit) SMON_r5</span><br/>
+      <span class="sdescdet">AW_smon SMON1_COUNT register</span><br/>
+      <span class="ldescdet">This is the second counter in SMON configured to count events by the SMON configuration register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c114</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">counter1</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">counter1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">counter1</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_558B5E6D54D7E431" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000118</span> Register(32 bit) SMON_r6</span><br/>
+      <span class="sdescdet">AW_smon TIMER register</span><br/>
+      <span class="ldescdet">This is the SMON timer, it is a running counter configured with a prescale parameter in the configuration register. The maxvalue is used to terminate counting.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c118</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">timer</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">timer</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">timer</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_8C427419EF339CAB" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000011c</span> Register(32 bit) SMON_r7</span><br/>
+      <span class="sdescdet">AW_smon TIMERMAXVAL register</span><br/>
+      <span class="ldescdet">This is the timer maxvalue used to provide a value to terminate counting.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c11c</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">maxvalue</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">maxvalue</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">maxvalue</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_37C060C97A6C0DD7" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000120</span> Register(32 bit) SUBB_LO_INTR</span><br/>
+      <span class="sdescdet">Subblock Low Interrupt Status Register</span><br/>
+      <span class="ldescdet">This register shows V2D subblock low interrupt signal status.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c120</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xfffffe00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xfffffe00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="23">-</td>
+        <td class="fldnorm" colspan="1">SMON_INTR</td>
+        <td class="fldnorm" colspan="1">CH1_PDPD_LO_INTR</td>
+        <td class="fldnorm" colspan="1">CH1_AV2D_LO_INTR</td>
+        <td class="fldnorm" colspan="1">CH1_NSIP1_LO_INTR</td>
+        <td class="fldnorm" colspan="1">CH1_NSIP0_LO_INTR</td>
+        <td class="fldnorm" colspan="1">CH0_PDPD_LO_INTR</td>
+        <td class="fldnorm" colspan="1">CH0_AV2D_LO_INTR</td>
+        <td class="fldnorm" colspan="1">CH0_NSIP1_LO_INTR</td>
+        <td class="fldnorm" colspan="1">CH0_NSIP0_LO_INTR</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="23">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[08:08]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">SMON_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">SMON Interrupt. This bit shows the value of hcm_v2d's AW_smon interrupt output.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:07]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH1_PDPD_LO_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 1 PDPD Low Interrupt. This bit shows the value of Channel 1 PDPD low interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH1_AV2D_LO_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 1 abc_v2d Low Interrupt. This bit shows the value of Channel 1 abc_v2d low interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH1_NSIP1_LO_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 1 nsip_hbi 1 Low Interrupt. This bit shows the value of Channel 1 nsip_hbi 1 low interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH1_NSIP0_LO_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 1 nsip_hbi 0 Low Interrupt. This bit shows the value of Channel 1 nsip_hbi 0 low interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH0_PDPD_LO_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 0 PDPD Low Interrupt. This bit shows the value of Channel 0 PDPD low interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH0_AV2D_LO_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 0 abc_v2d Low Interrupt. This bit shows the value of Channel 0 abc_v2d low interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH0_NSIP1_LO_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 0 nsip_hbi 1 Low Interrupt. This bit shows the value of Channel 0 nsip_hbi 1 low interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH0_NSIP0_LO_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 0 nsip_hbi 0 Low Interrupt. This bit shows the value of Channel 0 nsip_hbi 0 low interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_AC1895459D27B7D3" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000124</span> Register(32 bit) SUBB_HI_INTR</span><br/>
+      <span class="sdescdet">Subblock High Interrupt Status Register</span><br/>
+      <span class="ldescdet">This register shows V2D subblock high interrupt signal status.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0387c124</span> at NOC.v2d__v2d (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="24">-</td>
+        <td class="fldnorm" colspan="1">CH1_PDPD_HI_INTR</td>
+        <td class="fldnorm" colspan="1">CH1_AV2D_HI_INTR</td>
+        <td class="fldnorm" colspan="1">CH1_NSIP1_HI_INTR</td>
+        <td class="fldnorm" colspan="1">CH1_NSIP0_HI_INTR</td>
+        <td class="fldnorm" colspan="1">CH0_PDPD_HI_INTR</td>
+        <td class="fldnorm" colspan="1">CH0_AV2D_HI_INTR</td>
+        <td class="fldnorm" colspan="1">CH0_NSIP1_HI_INTR</td>
+        <td class="fldnorm" colspan="1">CH0_NSIP0_HI_INTR</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="24">-</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+        <td class="accno" colspan="1">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[07:07]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH1_PDPD_HI_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 1 PDPD High Interrupt. This bit shows the value of Channel 1 PDPD high interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[06:06]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH1_AV2D_HI_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 1 abc_v2d High Interrupt. This bit shows the value of Channel 1 abc_v2d high interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:05]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH1_NSIP1_HI_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 1 nsip_hbi 1 High Interrupt. This bit shows the value of Channel 1 nsip_hbi 1 high interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[04:04]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH1_NSIP0_HI_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 1 nsip_hbi 0 High Interrupt. This bit shows the value of Channel 1 nsip_hbi 0 high interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:03]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH0_PDPD_HI_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 0 PDPD High Interrupt. This bit shows the value of Channel 0 PDPD high interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[02:02]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH0_AV2D_HI_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 0 abc_v2d High Interrupt. This bit shows the value of Channel 0 abc_v2d high interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:01]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH0_NSIP1_HI_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 0 nsip_hbi 1 High Interrupt. This bit shows the value of Channel 0 nsip_hbi 1 high interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[00:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">CH0_NSIP0_HI_INTR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Channel 0 nsip_hbi 0 High Interrupt. This bit shows the value of Channel 0 nsip_hbi 0 high interrupt.</span></p>
+          <p><b>Reset: </b>hex:0x0;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_v2d1_BFN_CSR_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

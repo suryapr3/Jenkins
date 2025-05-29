@@ -1,0 +1,14 @@
+Table Name,tx_pdpd_dly_lut,,,,,,,,,,,,,,,,,,,,
+Table Description,"PDPD extra term delay (extr_dly) relative to other terms, passthrough delay(pt_dly), field 'adv' is for extr_dly. The num of entey of this table should be extended based on use case. Indexed by [pdpd_dly]",,,,,,,,,,,,,,,,,,,,
+single entry bitwidth,16*1,,,,,,,,,,,,,,,,,,,,
+base type bit layout,,,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,,,
+Bit Field Name,,,res_15,pt_dly,,,,,,,adv,et_dly,,,,,,,,,
+Bit Field Description,,,reserved,delay value for passthrough term,,,,,,,"advance/delay indication: 0 for delay, 1 for advance",Set Extra Terms delay/advance value ,,,,,,,,,
+Unit [string],,,bit,value,,,,,,,bit,value,,,,,,,,,TODO: update unit
+Granularity,,,1,1,,,,,,,1,1,,,,,,,,,
+Minimum Value,,,0,0,,,,,,,0,0,,,,,,,,,
+Maximum Value,,,1,127,,,,,,,1,127,,,,,,,,,
+Sign Type,,,unsigned,unsigned,,,,,,,unsigned,unsigned,,,,,,,,,
+Bit Field Width,,,1,7,,,,,,,1,7,,,,,,,,,
+subtable dimension and name,1*1,,PDPD_DLY_SETTINGS,,,,,,,,,,,,,,,,,,
+,,,0,0,,,,,,,0,0,,,,,,,,more entries depends on use case,TODO: value to be updated

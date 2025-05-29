@@ -1,0 +1,3309 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <head>
+<!-- INTEL CONFIDENTIAL
+ -->
+<!-- 
+ -->
+<!-- Copyright 2024 Intel Corporation All Rights Reserved.
+ -->
+<!-- 
+ -->
+<!-- The source code contained or described herein and all documents related
+ -->
+<!-- to the source code ("Material") are owned by Intel Corporation or its
+ -->
+<!-- suppliers or licensors. Title to the Material remains with Intel
+ -->
+<!-- Corporation or its suppliers and licensors. The Material contains trade
+ -->
+<!-- secrets and proprietary and confidential information of Intel or its
+ -->
+<!-- suppliers and licensors. The Material is protected by worldwide copyright
+ -->
+<!-- and trade secret laws and treaty provisions. No part of the Material may
+ -->
+<!-- be used, copied, reproduced, modified, published, uploaded, posted,
+ -->
+<!-- transmitted, distributed, or disclosed in any way without Intel's prior
+ -->
+<!-- express written permission.
+ -->
+<!-- 
+ -->
+<!-- No license under any patent, copyright, trade secret or other intellectual
+ -->
+<!-- property right is granted to or conferred upon you by disclosure or
+ -->
+<!-- delivery of the Materials, either expressly, by implication, inducement,
+ -->
+<!-- estoppel or otherwise. Any license under such intellectual property rights
+ -->
+<!-- must be express and approved by Intel in writing. -->
+<!--  -->
+    <title>Registers in AddressMap abc_soc_top/rcs/timer/grp1/gpio/reg</title>
+
+    <!-- Default style sheet -->
+    <style type="text/css">
+      body        { font-family:Verdana,Helvetica,sans-serif; }
+      th          { background:#E0C0C0; }
+      td          { padding:0px 8px; border-width:1px; border-style:solid; border-color:black; }
+      td.unboxed  { border-style:none; }
+      ul          { list-style-type:disc; }
+      code        { white-space:pre;font-family:monospace;display:block;font-size:1.3em; }
+      code.tree   { display:inline;font-size:medium; }
+      .namsp       { font-weight:bold; }
+      .namprim     { font-style:italic; }
+      .signature   { white-space:pre;font-family:monospace;display:left;font-size:1.1em; }
+      .msgerror   { color:#FF0000; }
+      .msgwarng   { color:#CC8800; }
+      .boxed      { border-width:1px; border-style:solid; }
+      .unboxed    { border-width:1px; }
+      .tblcoll    { border-collapse:collapse; }
+      .regname    { font-size:larger; font-weight:bold; }
+      .regunalloc { background:#EEEEEE; }
+      .sdescmap   { font-style:italic; }
+      .sdescdet   { font-style:italic; font-weight:bold; }
+      .ldescdet   { font-size:smaller; }
+      .addr       { font-family:monospace; font-size:larger; }
+      .agent      { font-size:smaller; }
+      .fldview    { font-size:larger; }
+      .flddesc    { background:#FFF0B0; }
+      .tabrh      { background:#E0C0C0; }
+      .tabry      { background:#FFF2CC; }
+      .tabryd     { background:#EFD2AC; }
+      .tabrb      { background:#DEEAFA; }
+      .tabrbd     { background:#BECAEA; }
+      .tabrt      { background:#ADD9FF; }
+      .tabrtd     { background:#8DB9EF; }
+      .tabrg      { background:#C6F8CC; }
+      .tabrgl     { background:#D6FFDC; }
+      .tabrv      { background:#E0E4FE; }
+      .tabrs      { background:#DDDDDD; }
+      .fldpos     { background:#E0E0E0; text-align:center; font-weight:bold; }
+      .fldnorm    { background:#C0C0F0; text-align:center; font-weight:bold; }
+      .fldrsvd    { background:#C080F0; text-align:center; font-weight:bold; }
+      .fldgap     { text-align:center; font-weight:bold; }
+      .fldrst     { background:#FFFFE0; text-align:center; }
+      .fldrstuaf  { color:#DC143C; }
+      .accga      { text-align:center; }
+      .accno      { background:#E0E0F8; text-align:center; }
+      .accro      { background:#F8E0E0; text-align:center; }
+      .accwo      { background:#E0F8E0; text-align:center; }
+      .accrw      { background:#F8F8E0; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <hr/>
+    <h1 id="TOPOFDOC">Registers in AddressMap abc_soc_top/rcs/timer/grp1/gpio/reg</h1>
+    <h2><a href="abc_soc_regs.html">Back to main file</a></h2>
+    <p><i>
+INTEL CONFIDENTIAL
+<br/>
+
+<br/>
+Copyright 2024 Intel Corporation All Rights Reserved.
+<br/>
+
+<br/>
+The source code contained or described herein and all documents related
+<br/>
+to the source code ("Material") are owned by Intel Corporation or its
+<br/>
+suppliers or licensors. Title to the Material remains with Intel
+<br/>
+Corporation or its suppliers and licensors. The Material contains trade
+<br/>
+secrets and proprietary and confidential information of Intel or its
+<br/>
+suppliers and licensors. The Material is protected by worldwide copyright
+<br/>
+and trade secret laws and treaty provisions. No part of the Material may
+<br/>
+be used, copied, reproduced, modified, published, uploaded, posted,
+<br/>
+transmitted, distributed, or disclosed in any way without Intel's prior
+<br/>
+express written permission.
+<br/>
+
+<br/>
+No license under any patent, copyright, trade secret or other intellectual
+<br/>
+property right is granted to or conferred upon you by disclosure or
+<br/>
+delivery of the Materials, either expressly, by implication, inducement,
+<br/>
+estoppel or otherwise. Any license under such intellectual property rights
+<br/>
+must be express and approved by Intel in writing.<br/>
+<br/>
+<br/>
+This file was automatically generated by OneSource.
+<br/>
+Do not edit this file manually!<br/>
+<br/>
+<br/>
+</i></p>
+
+    <h3 class="sdescdet"></h3>
+    <p class="ldescdet"></p>
+    <hr/>
+    <h2 id="G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">AddressMap abc_soc_top/rcs/timer/grp1/gpio/reg</h2>
+
+    <!-- Registers for AddressMap abc_soc_top/rcs/timer/grp1/gpio/reg -->
+      <p>AddressUnit: 8</p>
+      <p><b>Accessible over:</b><br/>
+        &emsp;<b><a href="abc_soc_regs.html#G_GR_NOC_rcs__axi_eaacf73c">Group NOC.rcs__axi</a></b> Mem with fixed address<br/>
+      </p>
+    <table>
+      <tr>
+        <th>Address</th>
+        <th>EndAddress</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x00000000</td>
+        <td class="unboxed addr">0x000001ff</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000200</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_4EDF265D50B1720E">gpio_cfg</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Group Config</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000204</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_259B327CCD840A67">gpio_deb_cnt_sel</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO debounce counter select</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000208</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C5AB1DE835301875">gpio_polarity</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO polarity configuration</td>
+      </tr>
+      <tr class="regunalloc">
+        <td class="unboxed addr">0x0000020c</td>
+        <td class="unboxed addr">0x0000020f</td>
+        <td class="unboxed"><i>(Not allocated)</i></td>
+        <td class="unboxed sdescmap"></td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000210</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_AA62D2AC0E13C9ED">gpio_inout</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO In/Out Control</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000214</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C8AEB6FBC5B72ECF">gpio_curr_out</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Out Value</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000218</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_223AC54D3A5A0744">gpio_curr_in</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO In Value</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000021c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_075E006A671FCA35">gpio_set_val_15_0</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Value/Mask</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000220</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_E2D90414E06C1FC4">gpio_set_val_31_16</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Value/Mask</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000224</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8CD69DFDBF6434EC">gpio_in_delta</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO In Delta</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000228</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_02C6AF6CA630C9EE">gpio_in_mask</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO In MASK</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000022c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_C42F74E6D79E03D1">gpio_in_masked_delta</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO In MASKED Delta</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000230</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F916F5C7D624AC44">gpio_dr_7_0</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO output impedance values for gpio 0-7</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000234</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_8C5CA959F81B439E">gpio_dr_15_8</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO output impedance values for gpio 8 - 15</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000238</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_DDC3D08FC1E398AA">gpio_dr_23_16</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO output impedance values for gpio 16 - 23</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000023c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_1156A20E777E5141">gpio_dr_31_24</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO output impedance values for gpio 24 - 31</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000240</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_CAFC534581F6B7A2">gpio_lpr_15_0</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Low Power</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000244</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_F25B1EBA9720806B">gpio_lpr_31_16</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Low Power</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000248</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_0D1D7A364B55F582">gpio_pde_15_0</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Buffer Control</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x0000024c</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_43D0307B9DDF9E5B">gpio_pde_31_16</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Buffer Control</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000250</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_3D3B9DD671A1BE4C">gpio_pue_15_0</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Buffer Control</td>
+      </tr>
+      <tr class="tabrb">
+        <td class="unboxed addr">0x00000254</td>
+        <td class="unboxed addr"></td>
+        <td class="unboxed"><b><a href="#R_43896093A6E2D517">gpio_pue_31_16</a>  </b></td>
+        <td class="unboxed sdescmap">GPIO Buffer Control</td>
+      </tr>
+    </table>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <hr/>
+
+    <!-- Registers details / bit fields -->
+    <h2 id="G_BITFIELDS">Register Details for AddressMap abc_soc_top/rcs/timer/grp1/gpio/reg</h2>
+    <p><b>Note:</b> AddressOffsets before register name are offsets inside AddressMap (that is what the "+" means)</p>
+    <p id="R_4EDF265D50B1720E" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000200</span> Register(32 bit) gpio_cfg</span><br/>
+      <span class="sdescdet">GPIO Group Config</span><br/>
+      <span class="ldescdet">Configuration info for GPIO Group
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268600</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000022</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffffff00</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="24">-</td>
+        <td class="fldnorm" colspan="4">DEBOUNCE_CNT_2</td>
+        <td class="fldnorm" colspan="4">DEBOUNCE_CNT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="24">-</td>
+        <td class="accno" colspan="4">RW</td>
+        <td class="accno" colspan="4">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[07:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEBOUNCE_CNT_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is a secondary option to the debug count specified in bits 3:0 of this register.  By default bits 3:0 are used, but each gpio can override this and use this value instead by configuring the DEB_CNT_SEL register.</span></p>
+          <p><b>Reset: </b>hex:0x2;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEBOUNCE_CNT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Incoming GPIO signals can be filtered to avoid glitches. This register determines how many extra clk_bfn cycles an incoming GPIO bit must remain at a value before being registered as a change. The higher the value, the more latency a GPIO change takes.  If no debouncing is needed then a value of 0 should be used.  Note prior to debouncing the GPIO are first synchronized into clk_bfn domain (983Mhz).</span></p>
+          <p><b>Reset: </b>hex:0x2;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_259B327CCD840A67" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000204</span> Register(32 bit) gpio_deb_cnt_sel</span><br/>
+      <span class="sdescdet">GPIO debounce counter select</span><br/>
+      <span class="ldescdet">By default all gpio's use the same debounce count for the input.  However if some gpio need a different debounce count this register allows a secondary value to be selected (see values in gpio_cfg).  0=DEBOUNCE_CNT, 1=DEBOUNCE_CNT_2.  1 bit for each gpio in this group.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268604</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">DEBOUNCE_CNT_SEL</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">DEBOUNCE_CNT_SEL</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">This is a secondary option to the debug count specified in bits 3:0 of this register.  By default bits 3:0 are used, but each gpio can override this and use this value instead by configuring the DEB_CNT_SEL register.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C5AB1DE835301875" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000208</span> Register(32 bit) gpio_polarity</span><br/>
+      <span class="sdescdet">GPIO polarity configuration</span><br/>
+      <span class="ldescdet">This register allows each GPIO to be inverted in case a connected IP has an active low polarity.  This will add an inversion stage to the pdo pins from the timer control block.
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268608</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">gpio_pol</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">gpio_pol</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Determines if the gpio outputs need to be inverted due to a device that is active low.  If set to 1, the final PDO will be inverted.   GPIO timers should take this setting into account.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_AA62D2AC0E13C9ED" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000210</span> Register(32 bit) gpio_inout</span><br/>
+      <span class="sdescdet">GPIO In/Out Control</span><br/>
+      <span class="ldescdet">Controls the direction of the GPIO pin
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268610</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">GPIO_DIR</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DIR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Controls the direction of each GPIO pin. Set to 1 to enable the output buffer. Set to 0 to make an input pin</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C8AEB6FBC5B72ECF" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000214</span> Register(32 bit) gpio_curr_out</span><br/>
+      <span class="sdescdet">GPIO Out Value</span><br/>
+      <span class="ldescdet">Value currently being driven out of the GPIO pin
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268614</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">GPIO_OUT</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_OUT</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The value to be driven out of the GPIO when the corresponding GPIO_DIR bit is set to 1. This value can be changed by timers expiring or through writes to the gpio_set_val registers.  It can also be overridden by FOVR/PHM for gpio groups 0 and 1.</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_223AC54D3A5A0744" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000218</span> Register(32 bit) gpio_curr_in</span><br/>
+      <span class="sdescdet">GPIO In Value</span><br/>
+      <span class="ldescdet">Value currently sampled on the GPIO pin, after Synchronizing and debouncing
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268618</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">GPIO_IN</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_IN</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">The synchronized/debounced current value of the GPIO pin</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_075E006A671FCA35" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000021c</span> Register(32 bit) gpio_set_val_15_0</span><br/>
+      <span class="sdescdet">GPIO Value/Mask</span><br/>
+      <span class="ldescdet">Used to change the current value being driven from the GPIO output, note, this is the value prior to applying the gpio_polarity register.  So if that register is set then the corresponding bit will be the inverse of this value.
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0026861c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access WO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="16">GPIO_VALUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">WO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>WO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_VALUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Value to be driven out on the GPIO output when GPIO_DIR = 1 and GPIO_MASK = 1</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_E2D90414E06C1FC4" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000220</span> Register(32 bit) gpio_set_val_31_16</span><br/>
+      <span class="sdescdet">GPIO Value/Mask</span><br/>
+      <span class="ldescdet">Used to change the current value being driven from the GPIO output, note, this is the value prior to applying the gpio_polarity register.  So if that register is set then the corresponding bit will be the inverse of this value.
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268620</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access WO</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="16">GPIO_VALUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">WO</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>WO</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_VALUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Value to be driven out on the GPIO output when GPIO_DIR = 1 and GPIO_MASK = 1</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_8CD69DFDBF6434EC" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000224</span> Register(32 bit) gpio_in_delta</span><br/>
+      <span class="sdescdet">GPIO In Delta</span><br/>
+      <span class="ldescdet">Indicates that the state of the sampled GPIO input bit has changed
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268624</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW/1C/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">GPIO_IN_DELTA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW/1C/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW/1C/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_IN_DELTA</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates that the sampled value of the GPIO input has changed. This along with the GPIO_IN_MASK register are used to generate the 4 GPIO interrupts. Write 1 to each bit to clear the delta indication</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_02C6AF6CA630C9EE" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000228</span> Register(32 bit) gpio_in_mask</span><br/>
+      <span class="sdescdet">GPIO In MASK</span><br/>
+      <span class="ldescdet">Used to allow GPIO Delta to contribute to GPIO interrupt
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268628</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">GPIO_IN_MASK</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_IN_MASK</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Set to 1 to allow associated GPIO bit's contribution to GPIO interrupt. The interrupts are grouped as GPIO[31:24], GPIO[23:16], GPIO[15:8], GPIO[7:0]</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_C42F74E6D79E03D1" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000022c</span> Register(32 bit) gpio_in_masked_delta</span><br/>
+      <span class="sdescdet">GPIO In MASKED Delta</span><br/>
+      <span class="ldescdet">The logical AND of the GPIO_IN_MASK and GPIO_IN_DELTA register
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0026862c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RO/V</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed">, fully affected, fully defined</td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldnorm" colspan="32">GPIO_IN_MASKED_DELTA</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="accno" colspan="32">RO/V</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[31:00]</b><br/>RO/V</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_IN_MASKED_DELTA</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Indicates whether a GPIO_IN_DELTA is contributing to the interrupt. Read Only</span></p>
+          <p><b>Reset: </b>hex:0x00000000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F916F5C7D624AC44" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000230</span> Register(32 bit) gpio_dr_7_0</span><br/>
+      <span class="sdescdet">GPIO output impedance values for gpio 0-7</span><br/>
+      <span class="ldescdet">Controls individual output impedance of GPIO
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268630</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00005555</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_7</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_6</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_5</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_4</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_3</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_2</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_1</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_0</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_7</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_00</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Min 49.5 Ohms, Nom 67 Ohms, Max 85.8 Ohms. Maximum source/sink current for RV: 6.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_01</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Min 37.3 Ohms, Nom 50 Ohms, Max 64.7 Ohms. Maximum source/sink current for RV: 8.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_10</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Min 30 Ohms, Nom 40 Ohms, Max 52 Ohms. Maximum source/sink current for RV: 10.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_11</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Min 19 Ohms, Nom 25 Ohms, Max 33 Ohms. Maximum source/sink current for RV: 16.0mA<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_6</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_00</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Min 49.5 Ohms, Nom 67 Ohms, Max 85.8 Ohms. Maximum source/sink current for RV: 6.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_01</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Min 37.3 Ohms, Nom 50 Ohms, Max 64.7 Ohms. Maximum source/sink current for RV: 8.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_10</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Min 30 Ohms, Nom 40 Ohms, Max 52 Ohms. Maximum source/sink current for RV: 10.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_11</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Min 19 Ohms, Nom 25 Ohms, Max 33 Ohms. Maximum source/sink current for RV: 16.0mA<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_5</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_00</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Min 49.5 Ohms, Nom 67 Ohms, Max 85.8 Ohms. Maximum source/sink current for RV: 6.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_01</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Min 37.3 Ohms, Nom 50 Ohms, Max 64.7 Ohms. Maximum source/sink current for RV: 8.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_10</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Min 30 Ohms, Nom 40 Ohms, Max 52 Ohms. Maximum source/sink current for RV: 10.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_11</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Min 19 Ohms, Nom 25 Ohms, Max 33 Ohms. Maximum source/sink current for RV: 16.0mA<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_4</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_00</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Min 49.5 Ohms, Nom 67 Ohms, Max 85.8 Ohms. Maximum source/sink current for RV: 6.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_01</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Min 37.3 Ohms, Nom 50 Ohms, Max 64.7 Ohms. Maximum source/sink current for RV: 8.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_10</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Min 30 Ohms, Nom 40 Ohms, Max 52 Ohms. Maximum source/sink current for RV: 10.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_11</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Min 19 Ohms, Nom 25 Ohms, Max 33 Ohms. Maximum source/sink current for RV: 16.0mA<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_3</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_00</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Min 49.5 Ohms, Nom 67 Ohms, Max 85.8 Ohms. Maximum source/sink current for RV: 6.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_01</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Min 37.3 Ohms, Nom 50 Ohms, Max 64.7 Ohms. Maximum source/sink current for RV: 8.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_10</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Min 30 Ohms, Nom 40 Ohms, Max 52 Ohms. Maximum source/sink current for RV: 10.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_11</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Min 19 Ohms, Nom 25 Ohms, Max 33 Ohms. Maximum source/sink current for RV: 16.0mA<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_2</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_00</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Min 49.5 Ohms, Nom 67 Ohms, Max 85.8 Ohms. Maximum source/sink current for RV: 6.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_01</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Min 37.3 Ohms, Nom 50 Ohms, Max 64.7 Ohms. Maximum source/sink current for RV: 8.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_10</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Min 30 Ohms, Nom 40 Ohms, Max 52 Ohms. Maximum source/sink current for RV: 10.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_11</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Min 19 Ohms, Nom 25 Ohms, Max 33 Ohms. Maximum source/sink current for RV: 16.0mA<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_1</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_00</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Min 49.5 Ohms, Nom 67 Ohms, Max 85.8 Ohms. Maximum source/sink current for RV: 6.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_01</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Min 37.3 Ohms, Nom 50 Ohms, Max 64.7 Ohms. Maximum source/sink current for RV: 8.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_10</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Min 30 Ohms, Nom 40 Ohms, Max 52 Ohms. Maximum source/sink current for RV: 10.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_11</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Min 19 Ohms, Nom 25 Ohms, Max 33 Ohms. Maximum source/sink current for RV: 16.0mA<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_0</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n.</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+      <table>
+        <tr><th colspan="3">Valid Values</th></tr>
+        <tr><th>Name</th><th>Value(s)</th><th>Description</th></tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_00</td>
+          <td class="unboxed addr">0x0</td>
+          <td class="unboxed scdescmap">Min 49.5 Ohms, Nom 67 Ohms, Max 85.8 Ohms. Maximum source/sink current for RV: 6.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_01</td>
+          <td class="unboxed addr">0x1</td>
+          <td class="unboxed scdescmap">Min 37.3 Ohms, Nom 50 Ohms, Max 64.7 Ohms. Maximum source/sink current for RV: 8.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_10</td>
+          <td class="unboxed addr">0x2</td>
+          <td class="unboxed scdescmap">Min 30 Ohms, Nom 40 Ohms, Max 52 Ohms. Maximum source/sink current for RV: 10.0mA<br/></td>
+        </tr>
+        <tr class="tabry"><td class="unboxed">GPIO_DR_11</td>
+          <td class="unboxed addr">0x3</td>
+          <td class="unboxed scdescmap">Min 19 Ohms, Nom 25 Ohms, Max 33 Ohms. Maximum source/sink current for RV: 16.0mA<br/></td>
+        </tr>
+      </table>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_8C5CA959F81B439E" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000234</span> Register(32 bit) gpio_dr_15_8</span><br/>
+      <span class="sdescdet">GPIO output impedance values for gpio 8 - 15</span><br/>
+      <span class="ldescdet">Controls individual output impedance of GPIO
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268634</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00005555</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_15</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_14</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_13</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_12</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_11</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_10</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_9</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_8</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_15</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_14</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_13</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_12</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_11</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_10</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_9</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_8</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_DDC3D08FC1E398AA" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000238</span> Register(32 bit) gpio_dr_23_16</span><br/>
+      <span class="sdescdet">GPIO output impedance values for gpio 16 - 23</span><br/>
+      <span class="ldescdet">Controls individual output impedance of GPIO
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268638</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00005555</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_23</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_22</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_21</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_20</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_19</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_18</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_17</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_16</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_23</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_22</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_21</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_20</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_19</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_18</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_17</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_16</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_1156A20E777E5141" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000023c</span> Register(32 bit) gpio_dr_31_24</span><br/>
+      <span class="sdescdet">GPIO output impedance values for gpio 24 - 31</span><br/>
+      <span class="ldescdet">Controls individual output impedance of GPIO
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0026863c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00005555</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_31</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_30</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_29</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_28</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_27</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_26</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_25</td>
+        <td class="fldnorm" colspan="2">GPIO_DR_24</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+        <td class="accno" colspan="2">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:14]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_31</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[13:12]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_30</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[11:10]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_29</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[09:08]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_28</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[07:06]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_27</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[05:04]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_26</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[03:02]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_25</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+      <tr>
+        <td><b>[01:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_DR_24</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Output Impedance for GPIO n, see encoding values in gpio_dr_0_7</span></p>
+          <p><b>Reset: </b>hex:0x1;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_CAFC534581F6B7A2" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000240</span> Register(32 bit) gpio_lpr_15_0</span><br/>
+      <span class="sdescdet">GPIO Low Power</span><br/>
+      <span class="ldescdet">Controls the LPR bit on each GPIO
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268640</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="16">GPIO_LPR</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_LPR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When set to 1, the receiver of each GPIO is powered down. For GPIO 0 to 15</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_F25B1EBA9720806B" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000244</span> Register(32 bit) gpio_lpr_31_16</span><br/>
+      <span class="sdescdet">GPIO Low Power</span><br/>
+      <span class="ldescdet">Controls the LPR bit on each GPIO
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268644</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="16">GPIO_LPR</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_LPR</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">When set to 1, the receiver of each GPIO is powered down. For GPIO 0 to 15</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_0D1D7A364B55F582" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000248</span> Register(32 bit) gpio_pde_15_0</span><br/>
+      <span class="sdescdet">GPIO Buffer Control</span><br/>
+      <span class="ldescdet">GPIO Buffer Weak Pull-down Control
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268648</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x0000ffff</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="16">GPIO_WKPDE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_WKPDE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enables weak pull-down on the GPIO pin when set to 1. This should not be enabled at the same time as GPIO_WKPUE. </span></p>
+          <p><b>Reset: </b>hex:0xffff;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_43D0307B9DDF9E5B" class="boxed tabrb"><span class="regname">+<span class="addr">0x0000024c</span> Register(32 bit) gpio_pde_31_16</span><br/>
+      <span class="sdescdet">GPIO Buffer Control</span><br/>
+      <span class="ldescdet">GPIO Buffer Weak Pull-down Control
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x0026864c</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x0000ffff</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="16">GPIO_WKPDE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_WKPDE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enables weak pull-down on the GPIO pin when set to 1. This should not be enabled at the same time as GPIO_WKPUE. </span></p>
+          <p><b>Reset: </b>hex:0xffff;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_3D3B9DD671A1BE4C" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000250</span> Register(32 bit) gpio_pue_15_0</span><br/>
+      <span class="sdescdet">GPIO Buffer Control</span><br/>
+      <span class="ldescdet">GPIO Buffer Weak Pull-up Control
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268650</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="16">GPIO_WKPUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_WKPUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enables weak pull-up on the GPIO pin when set to 1. This should not be enabled at the same time as GPIO_WKPDE.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+    <p id="R_43896093A6E2D517" class="boxed tabrb"><span class="regname">+<span class="addr">0x00000254</span> Register(32 bit) gpio_pue_31_16</span><br/>
+      <span class="sdescdet">GPIO Buffer Control</span><br/>
+      <span class="ldescdet">GPIO Buffer Weak Pull-up Control
+      <br/><span><b>Maskable (OneSet)</b></span>
+</span></p>
+      <p><b>Addresses</b> <i>AccessRestrictions are printed as (&lt;Agent&gt;:&lt;Restriction&gt;)</i>:<br/>
+      <span class="addr">&#x2003;&#x2003;0x00268654</span> at NOC.rcs__axi (Mem) <br/>
+      </p>
+          <p><b>Access RW</b>          </p>
+    <table>
+      <tr><th colspan="3">Reset Information</th><th></th>
+      </tr>
+      <tr>
+        <th>Prio</th>
+        <th>Type</th>
+        <th>Properties</th>
+        <th>Value/Mask (hex)</th>
+      </tr>
+      <tr class="tabry">
+        <td class="unboxed">0</td>
+        <td class="unboxed">PowerUp</td>
+        <td class="unboxed"></td>
+        <td class="unboxed addr">0x00000000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Unaffected</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+      <tr class="tabrs">
+        <td class="unboxed"></td>
+        <td class="unboxed"></td>
+        <td class="unboxed">Undefined</td>
+        <td class="unboxed addr">0xffff0000</td>
+      </tr>
+    </table>
+    <p/><table class="tblcoll">
+      <tr class="fldpos"><td>Bit</td>
+        <td>31</td>
+        <td>30</td>
+        <td>29</td>
+        <td>28</td>
+        <td>27</td>
+        <td>26</td>
+        <td>25</td>
+        <td>24</td>
+        <td>23</td>
+        <td>22</td>
+        <td>21</td>
+        <td>20</td>
+        <td>19</td>
+        <td>18</td>
+        <td>17</td>
+        <td>16</td>
+        <td>15</td>
+        <td>14</td>
+        <td>13</td>
+        <td>12</td>
+        <td>11</td>
+        <td>10</td>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      <tr class="fldrst"><td style="text-align:left;">Reset</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td class="fldrstuaf">-</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr><td class="fldnorm" style="text-align:left">Name</td>
+        <td class="fldgap" colspan="16">(Mask)</td>
+        <td class="fldnorm" colspan="16">GPIO_WKPUE</td>
+      </tr>
+      <tr><td class="accno" style="text-align:left">Access</td>
+        <td class="fldgap" colspan="16">-</td>
+        <td class="accno" colspan="16">RW</td>
+      </tr>
+    </table><p/>
+    <table class="tblcoll">
+      <tr>
+        <td><b>[15:00]</b><br/>RW</td>
+        <td style="width:50vw"><p class="flddesc"><span class="regname">GPIO_WKPUE</span><br/>
+          <span class="sdescdet"></span><br/>
+          <span class="ldescdet">Enables weak pull-up on the GPIO pin when set to 1. This should not be enabled at the same time as GPIO_WKPDE.</span></p>
+          <p><b>Reset: </b>hex:0x0000;</p>
+        </td>
+      </tr>
+    </table>
+    <p><a href="#G_AR_abc_soc_top_rcs_timer_grp1_gpio_reg">Back to AddressMap</a></p>
+    <p><a href="#TOPOFDOC">Back to top</a></p>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<html><head><title>Module: vex2rcs_prog_vex2rcs</title><link rel="stylesheet" type="text/css" href="html/hive.css" />
+</head>
+<body>
+<a name="top"></a><a name="contents"></a><ul>
+<li>Function vex2rcs_prog</li><ul>
+<li><a href="html/vex2rcs_prog_vex2rcs/vex2rcs_prog/issued.html">issued operations</a></li>
+<li><a href="html/vex2rcs_prog_vex2rcs/vex2rcs_prog/resources.html">resource utilization</a></li>
+<li><a href="html/vex2rcs_prog_vex2rcs/vex2rcs_prog/sched.html">schedule information</a></li>
+</ul><br>
+<li>Function vex2rcs_prog_entry</li><ul>
+<li><a href="html/vex2rcs_prog_vex2rcs/vex2rcs_prog_entry/issued.html">issued operations</a></li>
+<li><a href="html/vex2rcs_prog_vex2rcs/vex2rcs_prog_entry/resources.html">resource utilization</a></li>
+<li><a href="html/vex2rcs_prog_vex2rcs/vex2rcs_prog_entry/sched.html">schedule information</a></li>
+</ul><br>
+<li><a href="#sources">Sources</a></li></ul><br><hr>
+<a name="sources"</a><br><big>/nfs/site/disks/xne_00001/workspace/hw/akashmur/emulval_0p8_jun21/abc_emul-srvrgen4/tests/rcs/vex2rcs_transfer/vex/vex2rcs.hive.c</big><br>
+<pre class="sourceline" name="vex2rcs.hive.c:1"><a name="vex2rcs.hive.c:1"/>  1: #include &lt;common_macros.h>
+</pre><pre class="sourceline" name="vex2rcs.hive.c:2"><a name="vex2rcs.hive.c:2"/>  2: #include "ve32_appl_target.h"
+</pre><pre class="sourceline" name="vex2rcs.hive.c:3"><a name="vex2rcs.hive.c:3"/>  3: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:4"><a name="vex2rcs.hive.c:4"/>  4: #include "defines.h"
+</pre><pre class="sourceline" name="vex2rcs.hive.c:5"><a name="vex2rcs.hive.c:5"/>  5: #include "vex2rcs.hive.h"
+</pre><pre class="sourceline" name="vex2rcs.hive.c:6"><a name="vex2rcs.hive.c:6"/>  6: #include "cir_buf.hive.h"
+</pre><pre class="sourceline" name="vex2rcs.hive.c:7"><a name="vex2rcs.hive.c:7"/>  7: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:8"><a name="vex2rcs.hive.c:8"/>  8: #if 1
+</pre><pre class="sourceline" name="vex2rcs.hive.c:9"><a name="vex2rcs.hive.c:9"/>  9: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:10"><a name="vex2rcs.hive.c:10"/> 10: vec32i32 vinput[3];
+</pre><pre class="sourceline" name="vex2rcs.hive.c:11"><a name="vex2rcs.hive.c:11"/> 11: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:12"><a name="vex2rcs.hive.c:12"/> 12: void  vex2rcs_prog() ENTRY
+</pre><pre class="sourceline" name="vex2rcs.hive.c:13"><a name="vex2rcs.hive.c:13"/> 13: {
+</pre><pre class="sourceline" name="vex2rcs.hive.c:14"><a name="vex2rcs.hive.c:14"/> 14:   for(int i = 0; i &lt; 3; i++)
+</pre><pre class="sourceline" name="vex2rcs.hive.c:15"><a name="vex2rcs.hive.c:15"/> 15: 	v_xsto_1024_i(Any, 0x0, 0x0, vinput[i]);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:16"><a name="vex2rcs.hive.c:16"/> 16: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:17"><a name="vex2rcs.hive.c:17"/> 17:   OP___printstring( "\n" );
+</pre><pre class="sourceline" name="vex2rcs.hive.c:18"><a name="vex2rcs.hive.c:18"/> 18:   OP___printstring( "------------vex2rcs core:END------------\n" );
+</pre><pre class="sourceline" name="vex2rcs.hive.c:19"><a name="vex2rcs.hive.c:19"/> 19: }
+</pre><pre class="sourceline" name="vex2rcs.hive.c:20"><a name="vex2rcs.hive.c:20"/> 20: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:21"><a name="vex2rcs.hive.c:21"/> 21: #else
+</pre><pre class="sourceline" name="vex2rcs.hive.c:22"><a name="vex2rcs.hive.c:22"/> 22: int producer_max_count ;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:23"><a name="vex2rcs.hive.c:23"/> 23: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:24"><a name="vex2rcs.hive.c:24"/> 24: unsigned int buffer_va; //base address of buffer
+</pre><pre class="sourceline" name="vex2rcs.hive.c:25"><a name="vex2rcs.hive.c:25"/> 25: unsigned int buffer_wa; //
+</pre><pre class="sourceline" name="vex2rcs.hive.c:26"><a name="vex2rcs.hive.c:26"/> 26: //unsigned int delay_count;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:27"><a name="vex2rcs.hive.c:27"/> 27: volatile int ALIGNED(128) producer_sm_gate[16];      // read pointer @ producer core  -> consumer core will write here
+</pre><pre class="sourceline" name="vex2rcs.hive.c:28"><a name="vex2rcs.hive.c:28"/> 28: int producer_token_per_request;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:29"><a name="vex2rcs.hive.c:29"/> 29: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:30"><a name="vex2rcs.hive.c:30"/> 30: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:31"><a name="vex2rcs.hive.c:31"/> 31: vec32i32 vstate;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:32"><a name="vex2rcs.hive.c:32"/> 32: void process_block_int()
+</pre><pre class="sourceline" name="vex2rcs.hive.c:33"><a name="vex2rcs.hive.c:33"/> 33: {
+</pre><pre class="sourceline" name="vex2rcs.hive.c:34"><a name="vex2rcs.hive.c:34"/> 34:   V_CLONE_32(0, vstate);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:35"><a name="vex2rcs.hive.c:35"/> 35: }
+</pre><pre class="sourceline" name="vex2rcs.hive.c:36"><a name="vex2rcs.hive.c:36"/> 36: void process_block(unsigned int buffer_va, int token_per_request, int blk_idx)
+</pre><pre class="sourceline" name="vex2rcs.hive.c:37"><a name="vex2rcs.hive.c:37"/> 37: {
+</pre><pre class="sourceline" name="vex2rcs.hive.c:38"><a name="vex2rcs.hive.c:38"/> 38:   int i, j;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:39"><a name="vex2rcs.hive.c:39"/> 39:   int idx=0;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:40"><a name="vex2rcs.hive.c:40"/> 40:   vec32i32 MEM(simd0_xvmem) *base_buffer = ( vec32i32 MEM(simd0_xvmem) * )(buffer_va);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:41"><a name="vex2rcs.hive.c:41"/> 41:   idx = (blk_idx*NUM_VEC_IN_BLK);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:42"><a name="vex2rcs.hive.c:42"/> 42:   for(j=0;j&lt;(token_per_request*NUM_VEC_IN_BLK);j++)
+</pre><pre class="sourceline" name="vex2rcs.hive.c:43"><a name="vex2rcs.hive.c:43"/> 43:   {
+</pre><pre class="sourceline" name="vex2rcs.hive.c:44"><a name="vex2rcs.hive.c:44"/> 44:     //creating data - sequence of numbers
+</pre><pre class="sourceline" name="vex2rcs.hive.c:45"><a name="vex2rcs.hive.c:45"/> 45:     vec32i32 va, v_one;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:46"><a name="vex2rcs.hive.c:46"/> 46: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:47"><a name="vex2rcs.hive.c:47"/> 47:     V_CLONE_32(1, v_one);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:48"><a name="vex2rcs.hive.c:48"/> 48:     V_ADD_32(v_one, vstate, va);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:49"><a name="vex2rcs.hive.c:49"/> 49:     
+</pre><pre class="sourceline" name="vex2rcs.hive.c:50"><a name="vex2rcs.hive.c:50"/> 50:     /*for(i = 0; i &lt; delay_count; i++)
+</pre><pre class="sourceline" name="vex2rcs.hive.c:51"><a name="vex2rcs.hive.c:51"/> 51:     {
+</pre><pre class="sourceline" name="vex2rcs.hive.c:52"><a name="vex2rcs.hive.c:52"/> 52: 		V_ADD_32(v_one, va, va);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:53"><a name="vex2rcs.hive.c:53"/> 53: 	}*/
+</pre><pre class="sourceline" name="vex2rcs.hive.c:54"><a name="vex2rcs.hive.c:54"/> 54: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:55"><a name="vex2rcs.hive.c:55"/> 55:     vstate = va;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:56"><a name="vex2rcs.hive.c:56"/> 56:     OP___dump(9990,va);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:57"><a name="vex2rcs.hive.c:57"/> 57:     (base_buffer[idx] = va) SYNC_WITH(buffer_read) SYNC_WITH(buffer_write);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:58"><a name="vex2rcs.hive.c:58"/> 58:     idx++;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:59"><a name="vex2rcs.hive.c:59"/> 59:     idx = (idx == TBS_IN_VEC) ? 0: idx;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:60"><a name="vex2rcs.hive.c:60"/> 60:   }
+</pre><pre class="sourceline" name="vex2rcs.hive.c:61"><a name="vex2rcs.hive.c:61"/> 61: }
+</pre><pre class="sourceline" name="vex2rcs.hive.c:62"><a name="vex2rcs.hive.c:62"/> 62: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:63"><a name="vex2rcs.hive.c:63"/> 63: void  vex2rcs_prog() ENTRY
+</pre><pre class="sourceline" name="vex2rcs.hive.c:64"><a name="vex2rcs.hive.c:64"/> 64: {
+</pre><pre class="sourceline" name="vex2rcs.hive.c:65"><a name="vex2rcs.hive.c:65"/> 65:   unsigned int wa = buffer_wa;//(unsigned int)&amp;write_pointer1;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:66"><a name="vex2rcs.hive.c:66"/> 66:   int wp=0;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:67"><a name="vex2rcs.hive.c:67"/> 67:   int count;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:68"><a name="vex2rcs.hive.c:68"/> 68:   int lc;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:69"><a name="vex2rcs.hive.c:69"/> 69:   int max_count;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:70"><a name="vex2rcs.hive.c:70"/> 70:   int sm_ch = PRODUCER_SM_BUF_ID;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:71"><a name="vex2rcs.hive.c:71"/> 71: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:72"><a name="vex2rcs.hive.c:72"/> 72:   semaphore_gate_init();
+</pre><pre class="sourceline" name="vex2rcs.hive.c:73"><a name="vex2rcs.hive.c:73"/> 73:   /*-------------------------------------------------------------------------*/
+</pre><pre class="sourceline" name="vex2rcs.hive.c:74"><a name="vex2rcs.hive.c:74"/> 74:   /* Initialize producer             .                                       */
+</pre><pre class="sourceline" name="vex2rcs.hive.c:75"><a name="vex2rcs.hive.c:75"/> 75:   /* TBS_IN_BLK :token buffer size for buffer1                               */
+</pre><pre class="sourceline" name="vex2rcs.hive.c:76"><a name="vex2rcs.hive.c:76"/> 76:   /* producer_token_per_request: tokens processed per request and ready      */
+</pre><pre class="sourceline" name="vex2rcs.hive.c:77"><a name="vex2rcs.hive.c:77"/> 77:   /* IS_PROD : the channel is configured for producer                        */
+</pre><pre class="sourceline" name="vex2rcs.hive.c:78"><a name="vex2rcs.hive.c:78"/> 78:   /* 0 intial value for local pointer @ producer                             */
+</pre><pre class="sourceline" name="vex2rcs.hive.c:79"><a name="vex2rcs.hive.c:79"/> 79:   /* SM_BUF_ID  - index of Semaphore used                                    */
+</pre><pre class="sourceline" name="vex2rcs.hive.c:80"><a name="vex2rcs.hive.c:80"/> 80:   /*-------------------------------------------------------------------------*/
+</pre><pre class="sourceline" name="vex2rcs.hive.c:81"><a name="vex2rcs.hive.c:81"/> 81:   circ_buff_init( IS_PROD, TBS_IN_BLK, producer_token_per_request, 0, sm_ch);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:82"><a name="vex2rcs.hive.c:82"/> 82: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:83"><a name="vex2rcs.hive.c:83"/> 83:   process_block_int();
+</pre><pre class="sourceline" name="vex2rcs.hive.c:84"><a name="vex2rcs.hive.c:84"/> 84: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:85"><a name="vex2rcs.hive.c:85"/> 85:   max_count = producer_max_count;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:86"><a name="vex2rcs.hive.c:86"/> 86:   count = 0;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:87"><a name="vex2rcs.hive.c:87"/> 87:   lc = 1; //loop condition
+</pre><pre class="sourceline" name="vex2rcs.hive.c:88"><a name="vex2rcs.hive.c:88"/> 88: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:89"><a name="vex2rcs.hive.c:89"/> 89:   while( lc )//loop untill there are blocks to send
+</pre><pre class="sourceline" name="vex2rcs.hive.c:90"><a name="vex2rcs.hive.c:90"/> 90:   {
+</pre><pre class="sourceline" name="vex2rcs.hive.c:91"><a name="vex2rcs.hive.c:91"/> 91:     int is_space_avl;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:92"><a name="vex2rcs.hive.c:92"/> 92:     int idx;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:93"><a name="vex2rcs.hive.c:93"/> 93:     //request space in the buffer
+</pre><pre class="sourceline" name="vex2rcs.hive.c:94"><a name="vex2rcs.hive.c:94"/> 94:     mc_request( Any, lc, sm_ch, is_space_avl, idx)  SYNC(buffer_read);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:95"><a name="vex2rcs.hive.c:95"/> 95: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:96"><a name="vex2rcs.hive.c:96"/> 96:     //kernel processing of the block( date write to other core memory)
+</pre><pre class="sourceline" name="vex2rcs.hive.c:97"><a name="vex2rcs.hive.c:97"/> 97:     //Process and write data if there is enough space in buffer(located in consumer core).
+</pre><pre class="sourceline" name="vex2rcs.hive.c:98"><a name="vex2rcs.hive.c:98"/> 98:     count = count + producer_token_per_request;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:99"><a name="vex2rcs.hive.c:99"/> 99:     lc = (count &lt; max_count);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:100"><a name="vex2rcs.hive.c:100"/> 100: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:101"><a name="vex2rcs.hive.c:101"/> 101:     OP___printstring("producer core: Iteration:");
+</pre><pre class="sourceline" name="vex2rcs.hive.c:102"><a name="vex2rcs.hive.c:102"/> 102:     OP___dump(4401,count);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:103"><a name="vex2rcs.hive.c:103"/> 103:     process_block(buffer_va, producer_token_per_request, idx) ;
+</pre><pre class="sourceline" name="vex2rcs.hive.c:104"><a name="vex2rcs.hive.c:104"/> 104: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:105"><a name="vex2rcs.hive.c:105"/> 105:     //inform the consumer the block is ready
+</pre><pre class="sourceline" name="vex2rcs.hive.c:106"><a name="vex2rcs.hive.c:106"/> 106:     mc_complete( Any, sm_ch, wp);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:107"><a name="vex2rcs.hive.c:107"/> 107:     v_xsto_32(Any, wa, 0, wp) SYNC(buffer_write);//send write pointer to the consumer core
+</pre><pre class="sourceline" name="vex2rcs.hive.c:108"><a name="vex2rcs.hive.c:108"/> 108:     
+</pre><pre class="sourceline" name="vex2rcs.hive.c:109"><a name="vex2rcs.hive.c:109"/> 109:   }
+</pre><pre class="sourceline" name="vex2rcs.hive.c:110"><a name="vex2rcs.hive.c:110"/> 110: 
+</pre><pre class="sourceline" name="vex2rcs.hive.c:111"><a name="vex2rcs.hive.c:111"/> 111:   OP___dump(__LINE__,count);
+</pre><pre class="sourceline" name="vex2rcs.hive.c:112"><a name="vex2rcs.hive.c:112"/> 112:   OP___printstring( "\n" );
+</pre><pre class="sourceline" name="vex2rcs.hive.c:113"><a name="vex2rcs.hive.c:113"/> 113:   OP___printstring( "------------producer core:END------------\n" );
+</pre><pre class="sourceline" name="vex2rcs.hive.c:114"><a name="vex2rcs.hive.c:114"/> 114: }
+</pre><pre class="sourceline" name="vex2rcs.hive.c:115"><a name="vex2rcs.hive.c:115"/> 115: #endif
+</pre><div class="navigator"><a href="#contents"><small>back to contents</small></a></div></body>
+</html>

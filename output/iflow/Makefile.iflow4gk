@@ -1,0 +1,41 @@
+export TOOLS_BASE := /nfs/site/disks/xne_abc_fe_002/fw_tools
+export PRJDIR := ${WORKAREA}/src/rcs_fw
+export SWTOOLS_CTL := /nfs/site/disks/xne_abc_fe_002/fw_tools/RI-2022.9-linux/XtensaTools
+export SWTOOLS_ANA := /nfs/site/disks/xne_abc_fe_002/fw_tools/RI-2022.9-linux/XtensaTools
+export COV_TOOLS := /nfs/site/disks/xne_abc_fe_002/fw_tools/cov-analysis-linux64-2022.3.1/bin
+export PYTHONPATH := scripts/table_utils:/usr/intel/pkgs/python3/3.6.3/lib/python3.6:/usr/intel/pkgs/python3/3.6.3/lib/python3.6/site-packages:/usr/intel/pkgs/python3/3.6.3/modules/r1/lib/python3.6/site-packages
+export WORKAREA = $(MODEL_ROOT)
+
+abc78.complete :
+		cd $(WORKAREA) && echo "IFLOW COMPLETE" 
+
+abc78.rcs_firmware_compile :
+		cd $(WORKAREA)/src/rcs_fw && make all 
+
+abc78.start :
+		cd $(WORKAREA) && echo "IFLOW START" 
+
+abc_emul.clean_subip :
+		cd $(WORKAREA) && \rm -rf $(WORKAREA)/subip 
+
+abc_emul.complete :
+		cd $(WORKAREA) && echo "IFLOW COMPLETE" 
+
+abc_emul.gen_download_dir :
+		cd $(WORKAREA) && \mkdir -p $(WORKAREA)/output/download 
+
+abc_emul.moab :
+		cd $(WORKAREA) && true 
+
+abc_emul.start :
+		cd $(WORKAREA) && echo "IFLOW START" 
+
+abcn5.complete :
+		cd $(WORKAREA) && echo "IFLOW COMPLETE" 
+
+abcn5.start :
+		cd $(WORKAREA) && echo "IFLOW START" 
+
+
+.PHONY :   abc78.complete  abc78.rcs_firmware_compile        abc78.start  abc_emul.clean_subip  abc_emul.complete  abc_emul.gen_download_dir  abc_emul.moab  abc_emul.start  abcn5.complete  abcn5.start 
+
