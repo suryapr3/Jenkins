@@ -32,8 +32,8 @@ class JenkinsRunner:
         self.run_username = self.args.run_username
         self.run_password = self.args.run_password
         
-        self.clone_dir = "/project/hwc/workspace/hw/users/sudharsa/projects/abc"
-        self.test_script_dir = "/nfs/site/disks/zsc14.xne_abc_fe_001/users/sudharsa/abc_emul-srvrgen4"
+        self.clone_dir = "/project/hwc/workspace/hw/users/suryapr3/ABC_HWC"
+        self.test_script_dir = "/nfs/site/disks/zsc14.xne_abc_fe_001/users/suryap/sudharsan_dir"
         self.exec_dir = self.args.dir
         self.env = self.args.env
         self.db_hw = self.args.db_hw
@@ -170,7 +170,7 @@ echo "File '$file_name' created successfully at '$file_path'."
 directory_name=$1
 
 # Define the path and file name
-file_path="/nfs/site/disks/zsc14.xne_abc_fe_001/users/sudharsa/abc_emul-srvrgen4"
+file_path="/nfs/site/disks/zsc14.xne_abc_fe_001/users/suryap/sudharsan_dir"
 file_name="test_script"
 
 # Ensure the directory exists
@@ -186,7 +186,7 @@ echo "Hello test script"
 
 # Check whether FRIO RTE and ABC RTE are loaded. If not, load them
 pwd
-cd /project/hwc/workspace/hw/users/sudharsa/projects/abc/$directory_name || { echo "Directory not found"; exit 1; }
+cd /project/hwc/workspace/hw/users/suryapr3/ABC_HWC/$directory_name || { echo "Directory not found"; exit 1; }
 source FPGA.env || { echo "FPGA.env not found"; exit 1; }
 pwd
 echo "Executing memory access tests"
