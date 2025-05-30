@@ -32,7 +32,7 @@ class JenkinsRunner:
         self.run_username = self.args.run_username
         self.run_password = self.args.run_password
         
-        self.clone_dir = "/project/hwc/workspace/hw/users/suryapr3/"
+        self.clone_dir = "/project/hwc/workspace/hw/users/suryapr3"
         self.test_script_dir = "/nfs/site/disks/zsc14.xne_abc_fe_001/users/suryap/sudharsan_dir"
         self.exec_dir = self.args.dir
         self.env = self.args.env
