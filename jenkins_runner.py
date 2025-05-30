@@ -32,7 +32,7 @@ class JenkinsRunner:
         self.run_username = self.args.run_username
         self.run_password = self.args.run_password
         
-        self.clone_dir = "/project/hwc/workspace/hw/users/suryapr3/ABC_HWC"
+        self.clone_dir = "/project/hwc/workspace/hw/users/suryapr3/"
         self.test_script_dir = "/nfs/site/disks/zsc14.xne_abc_fe_001/users/suryap/sudharsan_dir"
         self.exec_dir = self.args.dir
         self.env = self.args.env
@@ -88,7 +88,7 @@ class JenkinsRunner:
 directory_name=$1
 
 # Define the path and file name
-file_path="/project/hwc/workspace/hw/users/sudharsa/projects/abc/$directory_name"
+file_path="/project/hwc/workspace/hw/users/suryapr3/$directory_name"
 file_name="test_script"
 
 # Ensure the directory exists
@@ -104,7 +104,7 @@ echo "Hello test script"
 
 # Check whether FRIO RTE and ABC RTE are loaded. If not, load them
 pwd
-cd /project/hwc/workspace/hw/users/sudharsa/projects/abc/$directory_name || { echo "Directory not found"; exit 1; }
+cd /project/hwc/workspace/hw/users/suryapr3/$directory_name || { echo "Directory not found"; exit 1; }
 source FPGA.env || { echo "FPGA.env not found"; exit 1; }
 pwd
 echo "Executing memory access tests"
@@ -114,7 +114,7 @@ echo "Executing vha tests"
 echo "Executing v2d tests"
 echo "Executing rcs tests"
 echo "Executing vex tests"
-python ./\$PROJCT_HOME/scripts/report.py
+#python ./\$PROJCT_HOME/scripts/report.py
 EOF
 
 # Print success message
@@ -186,7 +186,7 @@ echo "Hello test script"
 
 # Check whether FRIO RTE and ABC RTE are loaded. If not, load them
 pwd
-cd /project/hwc/workspace/hw/users/suryapr3/ABC_HWC/$directory_name || { echo "Directory not found"; exit 1; }
+cd /project/hwc/workspace/hw/users/suryapr3/$directory_name || { echo "Directory not found"; exit 1; }
 source FPGA.env || { echo "FPGA.env not found"; exit 1; }
 pwd
 echo "Executing memory access tests"
@@ -273,8 +273,8 @@ echo "File '$file_name' created successfully at '$file_path'."
             time.sleep(2)
             print("Sending Mail...")
             contents = HTML_Header()
-            Send_Mail(from_address="sudharsan.kandukuri@intel.com",
-                      to_address=["lovekesh.gupta@intel.com","sudharsan.kandukuri@intel.com"],
+            Send_Mail(from_address="suryaprakash.mishra@intel.com",
+                      to_address=["sneha.singh@intel.com","suryaprakash.mishra@intel.com"],
                       Subject="ABC Jenkin Automation Regression Report",
                       contents=contents,
                       attachments=[])
