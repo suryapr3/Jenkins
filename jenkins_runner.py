@@ -81,67 +81,6 @@ class JenkinsRunner:
             print(stdout.read().decode())
             print(stderr.read().decode())
 
-            # Define the shell script content
-            script_content = """#!/bin/bash
-
-# Get the directory name from the first argument
-directory_name=$1
-
-# Define the path and file name
-file_path="/project/hwc/workspace/hw/users/suryapr3/$directory_name"
-file_name="test_script"
-
-# Ensure the directory exists
-mkdir -p "$file_path"
-
-# Full path to the file
-full_file_path="$file_path/$file_name"
-
-# Create and write the content to the file using a heredoc
-cat <<EOF > "$full_file_path"
-#!/bin/bash
-echo "Hello test script"
-
-# Check whether FRIO RTE and ABC RTE are loaded. If not, load them
-pwd
-cd /project/hwc/workspace/hw/users/suryapr3/$directory_name || { echo "Directory not found"; exit 1; }
-source FPGA.env || { echo "FPGA.env not found"; exit 1; }
-pwd
-echo "Executing memory access tests"
-echo "Executing register access tests"
-./\$PROJCT_HOME/tests/reg_access/reg_access_execution_18a.sh
-echo "Executing vha tests"
-echo "Executing v2d tests"
-echo "Executing rcs tests"
-echo "Executing vex tests"
-#python ./\$PROJCT_HOME/scripts/report.py
-EOF
-
-# Print success message
-echo "File '$file_name' created successfully at '$file_path'."
-"""
-
-            # Use SFTP to upload the script content after cloning
-            sftp = ssh.open_sftp()
-            shell_script_path = f"{full_path}/write_bash_script.sh"
-            with sftp.file(shell_script_path, 'w') as script_file:
-                script_file.write(script_content)
-            sftp.close()
-
-            # Verify script creation
-            verify_script_command = f'ls -l {shell_script_path}'
-            stdin, stdout, stderr = ssh.exec_command(verify_script_command)
-            print("Script verification output:")
-            print(stdout.read().decode())
-            print(stderr.read().decode())
-
-            # Execute the shell script
-            execute_script_command = f'bash {shell_script_path} {self.directory_name}'
-            print(f"Executing script: {execute_script_command}")
-            stdin, stdout, stderr = ssh.exec_command(execute_script_command)
-            output = stdout.read().decode()
-            error = stderr.read().decode()
-
             print(f"Executed script in {full_path}:")
             print("Output:")
             print(output)
