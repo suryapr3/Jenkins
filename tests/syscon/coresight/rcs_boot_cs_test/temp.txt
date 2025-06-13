@@ -1,0 +1,977 @@
+[Tue Feb  6 03:17:47 2024] [boot.c][line: 72] Host: main starts!
+
+[Tue Feb  6 03:17:58 2024] [boot.c][line: 72] Host: main starts!
+
+[Wed Feb  7 01:01:23 2024] [boot.c][line: 72] Host: main starts!
+
+[Wed Feb  7 01:01:37 2024] [boot.c][line: 72] Host: main starts!
+
+[Wed Feb  7 01:14:45 2024] [boot.c][line: 75] Host: main starts!
+
+[Wed Feb  7 01:14:47 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x18337
+[Wed Feb  7 01:14:47 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Wed Feb  7 01:14:47 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Wed Feb  7 01:14:47 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Wed Feb  7 01:14:47 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Wed Feb  7 01:14:47 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Wed Feb  7 01:14:47 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Wed Feb  7 01:14:47 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Wed Feb  7 01:14:51 2024] [boot.c][line: 241] Host: start rcs 2 program load
+
+[Wed Feb  7 01:17:03 2024] [boot.c][line: 75] Host: main starts!
+
+[Wed Feb  7 01:17:04 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Wed Feb  7 01:17:04 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Wed Feb  7 01:17:04 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Wed Feb  7 01:17:04 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Wed Feb  7 01:17:04 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Wed Feb  7 01:17:04 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Wed Feb  7 01:17:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Wed Feb  7 01:17:04 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Wed Feb  7 01:17:28 2024] [boot.c][line: 75] Host: main starts!
+
+[Wed Feb  7 01:17:29 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Wed Feb  7 01:17:29 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Wed Feb  7 01:17:29 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Wed Feb  7 01:17:29 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Wed Feb  7 01:17:29 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Wed Feb  7 01:17:29 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Wed Feb  7 01:17:29 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Wed Feb  7 01:17:29 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Wed Feb  7 01:17:33 2024] [boot.c][line: 242] Host: start rcs 2 program load
+
+[Wed Feb  7 01:17:33 2024] [boot.c][line: 246] Host: rcs 2 program load - done !!
+
+[Wed Feb  7 01:22:47 2024] [boot.c][line: 75] Host: main starts!
+
+[Wed Feb  7 01:22:48 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Wed Feb  7 01:22:48 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Wed Feb  7 01:22:48 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Wed Feb  7 01:22:48 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Wed Feb  7 01:22:48 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Wed Feb  7 01:22:48 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Wed Feb  7 01:22:48 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Wed Feb  7 01:22:48 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Wed Feb  7 01:22:52 2024] [boot.c][line: 242] Host: start rcs 2 program load
+
+[Wed Feb  7 01:22:52 2024] [boot.c][line: 246] Host: rcs 2 program load - done !!
+
+[Thu Feb  8 02:55:59 2024] [boot.c][line: 75] Host: main starts!
+
+[Thu Feb  8 02:56:01 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x18337
+[Thu Feb  8 02:56:01 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Thu Feb  8 02:56:01 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Thu Feb  8 02:56:01 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Thu Feb  8 02:56:01 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Thu Feb  8 02:56:01 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Thu Feb  8 02:56:01 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Thu Feb  8 02:56:01 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:13:01 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:13:03 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x18337
+[Mon Feb 19 01:13:03 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:13:03 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:13:03 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:13:03 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:13:03 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:13:03 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:13:03 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:13:04 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:13:05 2024] [boot.c][line: 98] calling srp_rcs_config...
+
+[Mon Feb 19 01:14:02 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:14:02 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:14:02 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:14:02 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:14:02 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:14:02 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:14:02 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:14:02 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:14:02 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:14:03 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:14:05 2024] [boot.c][line: 98] calling srp_rcs_config...
+
+[Mon Feb 19 01:20:57 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:20:58 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:20:58 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:20:58 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:20:58 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:20:58 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:20:59 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:20:59 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:20:59 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:20:59 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:21:00 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:21:18 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:21:19 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:21:19 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:21:19 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:21:19 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:21:19 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:21:19 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:21:19 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:21:19 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:21:20 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:22:13 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:22:14 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:22:14 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:22:14 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:22:14 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:22:14 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:22:14 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:22:14 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:22:14 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:22:15 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:22:16 2024] [boot.c][line: 99] calling srp_rcs_config...
+
+[Mon Feb 19 01:28:03 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:28:04 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:28:04 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:28:04 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:28:04 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:28:04 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:28:04 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:28:04 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:28:04 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:28:05 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:28:06 2024] [boot.c][line: 99] calling srp_rcs_config...
+
+[Mon Feb 19 01:29:35 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:29:36 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:29:36 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:29:36 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:29:36 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:29:36 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:29:36 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:29:36 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:29:36 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:29:37 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:29:38 2024] [boot.c][line: 99] calling srp_rcs_config...
+
+[Mon Feb 19 01:31:35 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:31:36 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:31:36 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:31:36 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:31:36 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:31:36 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:31:36 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:31:37 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:31:37 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:31:37 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:31:38 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:31:39 2024] [boot.c][line: 99] calling srp_rcs_config...
+
+[Mon Feb 19 01:35:40 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:35:42 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:35:42 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:35:42 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:35:42 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:35:42 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:35:42 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:35:42 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:35:42 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:35:43 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:35:44 2024] [boot.c][line: 99] calling srp_rcs_config...
+
+[Mon Feb 19 01:45:19 2024] [boot.c][line: 81] Host: main starts!
+
+[Mon Feb 19 01:45:20 2024] [common_functions.c][line: 194] INFO: asserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:45:20 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:45:20 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f018337
+[Mon Feb 19 01:45:21 2024] [common_functions.c][line: 198] INFO: deasserting the reset of subsystems from sys con 
+
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x2f01fb37
+[Mon Feb 19 01:45:21 2024] [common_functions.c][line: 226] INFO: asserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x1
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock_disable at address 0x2408098 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408098 is successful and data read is 0x1
+[Mon Feb 19 01:45:21 2024] [common_functions.c][line: 234] INFO: deasserting the reset of CRUX from CAR registers
+
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_clock disable at address 0x2408094 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_clock disable at address 0x2408094 is successful and data read is 0x0
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Mon Feb 19 01:45:21 2024] [common_functions.c][line: 141] INFO: asserting the reset and disabling the clocks 
+
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0xff
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Mon Feb 19 01:45:21 2024] [common_functions.c][line: 161] INFO: deaserting the reset and enabling the clocks 
+
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable0 at address 0x2408000 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable0 at address 0x2408000 is successful and data read is 0x0
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register car_clock_disable1 at address 0x2408004 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_clock_disable1 at address 0x2408004 is successful and data read is 0x0
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1054] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Mon Feb 19 01:45:21 2024] [init.c][line: 58] INFO: Common configuration done
+
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Mon Feb 19 01:45:21 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:45:22 2024] [cli.c][line: 1383] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Mon Feb 19 01:45:23 2024] [boot.c][line: 99] calling srp_rcs_config...
+
+[Thu May 30 04:48:17 2024] [boot.c][line: 77] Host: main starts!
+
+[Thu May 30 04:48:18 2024] [common_functions.c][line: 239] INFO: Asserting the reset of subsystems from sys con
+
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x3c33f
+[Thu May 30 04:48:18 2024] [common_functions.c][line: 243] INFO: Deasserting the reset of subsystems from sys con
+
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x7ffff
+[Thu May 30 04:48:18 2024] [common_functions.c][line: 273] INFO: Asserting the reset of CRUX from CAR registers
+
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK disable at address 0x2408094 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408094 is successful and data read is 0x1
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK_disable at address 0x2408098 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408098 is successful and data read is 0x1
+[Thu May 30 04:48:18 2024] [common_functions.c][line: 281] INFO: Deasserting the reset of CRUX from CAR registers
+
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK disable at address 0x2408094 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408094 is successful and data read is 0x0
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Thu May 30 04:48:18 2024] [common_functions.c][line: 194] INFO: Asserting the reset and disabling the CLKs
+
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable0 at address 0x2408000 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable1 at address 0x2408004 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable1 at address 0x2408004 is successful and data read is 0xff
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Thu May 30 04:48:18 2024] [common_functions.c][line: 208] INFO: Deasserting the reset and enabling the CLKs
+
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable0 at address 0x2408000 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable0 at address 0x2408000 is successful and data read is 0x0
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable1 at address 0x2408004 is successful
+[Thu May 30 04:48:18 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable1 at address 0x2408004 is successful and data read is 0x0
+[Thu May 30 04:48:18 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Thu May 30 04:48:19 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Thu May 30 04:48:19 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Thu May 30 04:48:19 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Thu May 30 04:48:19 2024] [cli.c][line: 320] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Thu May 30 04:48:19 2024] [cli.c][line: 320] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Thu May 30 04:48:19 2024] [init.c][line: 81] INFO: Common configuration done
+
+[Thu May 30 04:48:19 2024] [boot.c][line: 89] calling srp_config!
+
+[Thu May 30 04:48:19 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 04:48:19 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Thu May 30 04:48:19 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Thu May 30 04:48:19 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Thu May 30 04:48:19 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Thu May 30 04:48:19 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 04:48:19 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Thu May 30 04:48:20 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 04:48:20 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Thu May 30 04:48:21 2024] [boot.c][line: 106] calling srp_rcs_config...
+
+[Thu May 30 04:49:36 2024] [boot.c][line: 77] Host: main starts!
+
+[Thu May 30 04:49:38 2024] [common_functions.c][line: 239] INFO: Asserting the reset of subsystems from sys con
+
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x3c33f
+[Thu May 30 04:49:38 2024] [common_functions.c][line: 243] INFO: Deasserting the reset of subsystems from sys con
+
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x7ffff
+[Thu May 30 04:49:38 2024] [common_functions.c][line: 273] INFO: Asserting the reset of CRUX from CAR registers
+
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK disable at address 0x2408094 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408094 is successful and data read is 0x1
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK_disable at address 0x2408098 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408098 is successful and data read is 0x1
+[Thu May 30 04:49:38 2024] [common_functions.c][line: 281] INFO: Deasserting the reset of CRUX from CAR registers
+
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK disable at address 0x2408094 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408094 is successful and data read is 0x0
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Thu May 30 04:49:38 2024] [common_functions.c][line: 194] INFO: Asserting the reset and disabling the CLKs
+
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable0 at address 0x2408000 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable1 at address 0x2408004 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable1 at address 0x2408004 is successful and data read is 0xff
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Thu May 30 04:49:38 2024] [common_functions.c][line: 208] INFO: Deasserting the reset and enabling the CLKs
+
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable0 at address 0x2408000 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable0 at address 0x2408000 is successful and data read is 0x0
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable1 at address 0x2408004 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable1 at address 0x2408004 is successful and data read is 0x0
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Thu May 30 04:49:38 2024] [cli.c][line: 320] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Thu May 30 04:49:38 2024] [init.c][line: 78] VEX RTE config is enabled
+[Thu May 30 04:49:38 2024] [init.c][line: 81] INFO: Common configuration done
+
+[Thu May 30 04:49:38 2024] [boot.c][line: 89] calling srp_config!
+
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 04:49:38 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Thu May 30 04:49:39 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 04:49:39 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Thu May 30 04:49:40 2024] [boot.c][line: 106] calling srp_rcs_config...
+
+[Thu May 30 04:49:42 2024] [boot.c][line: 110] after calling srp_rcs_config...
+
+[Thu May 30 05:05:24 2024] [boot.c][line: 77] Host: main starts!
+
+[Thu May 30 05:05:26 2024] [common_functions.c][line: 239] INFO: Asserting the reset of subsystems from sys con
+
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x3c33f
+[Thu May 30 05:05:26 2024] [common_functions.c][line: 243] INFO: Deasserting the reset of subsystems from sys con
+
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register reset_control at address 0x1e10010 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register reset_control at address 0x1e10010 is successful and data read is 0x7ffff
+[Thu May 30 05:05:26 2024] [common_functions.c][line: 273] INFO: Asserting the reset of CRUX from CAR registers
+
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK disable at address 0x2408094 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408094 is successful and data read is 0x1
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK_disable at address 0x2408098 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408098 is successful and data read is 0x1
+[Thu May 30 05:05:26 2024] [common_functions.c][line: 281] INFO: Deasserting the reset of CRUX from CAR registers
+
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_CLK disable at address 0x2408094 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_CLK disable at address 0x2408094 is successful and data read is 0x0
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register abc_noc_soft_reset at address 0x2408098 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register abc_noc_soft_reset at address 0x2408098 is successful and data read is 0x0
+[Thu May 30 05:05:26 2024] [common_functions.c][line: 194] INFO: Asserting the reset and disabling the CLKs
+
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable0 at address 0x2408000 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable0 at address 0x2408000 is successful and data read is 0xffffffff
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable1 at address 0x2408004 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable1 at address 0x2408004 is successful and data read is 0xff
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0x0
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0x0
+[Thu May 30 05:05:26 2024] [common_functions.c][line: 208] INFO: Deasserting the reset and enabling the CLKs
+
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable0 at address 0x2408000 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable0 at address 0x2408000 is successful and data read is 0x0
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register car_CLK_disable1 at address 0x2408004 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_CLK_disable1 at address 0x2408004 is successful and data read is 0x0
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset0 at address 0x2408008 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset0 at address 0x2408008 is successful and data read is 0xffffffff
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register car_soft_reset1 at address 0x240800c is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_soft_reset1 at address 0x240800c is successful and data read is 0xff
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_mem_car_vex_reset_release0 at address 0x2408080 is successful and data read is 0xffffffff
+[Thu May 30 05:05:26 2024] [cli.c][line: 320] INFO: data read operation from register car_mem_car_vex_reset_release1 at address 0x2408084 is successful and data read is 0xff
+[Thu May 30 05:05:26 2024] [init.c][line: 78] VEX RTE config is enabled
+[Thu May 30 05:05:26 2024] [init.c][line: 81] INFO: Common configuration done
+
+[Thu May 30 05:05:26 2024] [boot.c][line: 89] calling srp_config!
+
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE1_CONTROL_ADR at address 0x26c00c is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE2_CONTROL_ADR at address 0x26c010 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE3_CONTROL_ADR at address 0x26c014 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_RCS_CONFIG_ADR at address 0x26c004 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 05:05:26 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Thu May 30 05:05:27 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_CORE0_CONTROL_ADR at address 0x26c008 is successful
+[Thu May 30 05:05:27 2024] [cli.c][line: 608] INFO: data write operation from register RCS_GPREG_SOFT_RESET_ADR at address 0x26c02c is successful
+[Thu May 30 05:05:28 2024] [boot.c][line: 106] calling srp_rcs_config...
+
+[Thu May 30 05:05:33 2024] [boot.c][line: 110] after calling srp_rcs_config...
+

@@ -1,0 +1,50 @@
+/* Statistics file  */
+
+Data Memory Usage:
+memory      address    size       variable
+------------------------------------------
+bp_config   
+                       -------------------
+                       0x0        <total>
+                       0x10000    <unused>
+------------------------------------------
+bp_dmem     
+            0x0        0x30       tst_inputs
+            0x30       0xC        tst_output
+                       -------------------
+                       0x3C       <total>
+                       0x3FC4     <unused>
+------------------------------------------
+simd0_vmem  
+                       -------------------
+                       0x0        <total>
+                       0x10000    <unused>
+------------------------------------------
+simd0_lutmem
+                       -------------------
+                       0x0        <total>
+                       0x1000     <unused>
+------------------------------------------
+total memory used: 0x3C
+
+
+
+Function Usage:
+start    end      function
+------------------------------------------
+0x0        0x1        tst_entry
+0x2        0x10       tst
+------------------------------------------
+total number of functions: 2
+
+
+
+View Usage:
+  ve32:
+    width:            386
+    issue slots:      6
+    program words:    17
+    operation stages: 0
+
+total used program words: 17
+

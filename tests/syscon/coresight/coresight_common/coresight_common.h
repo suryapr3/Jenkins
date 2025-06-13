@@ -42,6 +42,15 @@ uint32_t write_m_cs_dbg_18a(uint32_t address, uint32_t write_value, security_t a
 uint32_t read_m_cs_dbg_18a(uint32_t address, security_t access, char regname[]);
 uint32_t write_m_syscon_1_cs_dbg_18a(uint32_t address, uint32_t write_value, security_t access, char regname[]);
 uint32_t read_m_syscon_1_cs_dbg_18a(uint32_t address, security_t access, char regname[]);
-
+uint32_t read_expect_m_cs_dbg_18a(uint32_t address, uint32_t expected_data, uint32_t read_mask, \
+                                  security_t access, char regname[]);
+uint32_t write_reg_m_cs_dbg_18a(uint32_t address, uint32_t write_data, uint32_t write_mask, \
+                                security_t access, char regname[]);
+uint32_t read_reg_m_cs_dbg_18a(uint32_t address, uint32_t expected_data, uint32_t write_mask, \
+                                   uint32_t read_mask, security_t access, char regname[]);
+uint32_t read_expect_m_syscon_1_cs_dbg_18a(uint32_t address, uint32_t expected_data, uint32_t read_mask, \
+                                           security_t access, char regname[]);
+uint32_t write_expect_m_syscon_1_cs_dbg_18a(uint32_t address, uint32_t write_value, uint32_t default_value, uint32_t expected_data, \
+                                            uint32_t write_mask, uint32_t read_mask, security_t access, char regname[]);
 #endif
 

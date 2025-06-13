@@ -38,6 +38,8 @@ int main()
 {
 
     init();
+
+    system("frioPciWrite -F s6b3 -P 0x20000 0x20202e09");
     int offset;
 
    // reading and writing into rcs_non_sec for 1KB size at offsets of 4 using coresight api

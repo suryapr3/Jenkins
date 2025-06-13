@@ -310,3 +310,213 @@ uint32_t read_m_syscon_1_cs_dbg_18a(uint32_t address, security_t access, char re
         return buffer;
     }
 }
+
+/*********************************************************************
+ *Function         : read_expect_m_cs_dbg_18a
+ *Description      : This function initiates reads transaction
+                     through APB and compare with default value
+ * @input parameter: uint32_t address, uint32_t expected_data,
+ *                   uint32_t read_mask, security_t access,
+ *                   char regname[]
+ * @return         : 0 => expected read is successful
+ *                 : 1 => read is not successful
+ *********************************************************************/
+uint32_t read_expect_m_cs_dbg_18a(uint32_t address, uint32_t expected_data, uint32_t read_mask, \
+                                  security_t access, char regname[])
+{
+    uint32_t buffer;
+    buffer = read_m_cs_dbg_18a(address, access, regname);
+
+    if((buffer & read_mask) == (expected_data & read_mask))
+    {
+        LOG_INFO("data read from register %s at address [0x%x] is 0x%x but the expected data is 0x%x\n", \
+                 regname, address, buffer, expected_data);
+        return 0;
+    }
+    else
+    {
+        LOG_ERROR("data read from register %s is different than expected\n", regname);
+        LOG_INFO("data read from register %s at address [0x%x] is 0x%x but the expected data is 0x%x\n", \
+                 regname, address, buffer, expected_data);
+        return 1;
+    }
+}
+
+/*********************************************************************
+ *Function         : write_expect_m_cs_dbg_18a
+ *Description      : This function initiates write and read transaction
+                     through APB at address and compares the value
+ * @input parameter: uint32_t address, uint32_t write_data,
+ *                   uint32_t write_mask, uint32_t read_mask,
+ *                   security_t access, char regname[]
+ * @return         : 0 => expected write and read is successful
+ *                 : 1 => expected write and read is not successful
+ *********************************************************************/
+uint32_t write_expect_m_cs_dbg_18a(uint32_t address, uint32_t write_value, uint32_t default_value, uint32_t expected_data, \
+                                            uint32_t write_mask, uint32_t read_mask, security_t access, char regname[])
+{
+    uint32_t error_status;
+    uint32_t buffer,init_value;
+    uint32_t write_status;
+
+    write_status = write_value & write_mask;
+    error_status = write_m_cs_dbg_18a(address, write_status, access, regname);
+    if(error_status)
+        return 1;
+
+    // if reg is not write reg, then skip
+    if(write_status != 0)
+    {
+        buffer = read_m_syscon_1_cs_dbg_18a(address, access, regname);
+
+        if (((buffer & read_mask) == (((expected_data & write_mask) & read_mask))) || (~ write_mask & default_value))
+        {
+            LOG_INFO("data read from register %s is same", regname);
+            return 0;
+        }
+        else
+        {
+            LOG_ERROR("data read from register %s at address [0x%x] is unexpected, read data= 0x%x and expected data= 0x%x", \
+            regname, address, buffer, expected_data);
+            return 1;
+        }
+    }
+}
+
+/*********************************************************************
+ *Function         : write_reg_m_cs_dbg_18a
+ *Description      : This function initiates write transaction
+                     through APB at address this function converts
+                     write data to random data w.r.t address
+ * @input parameter: uint32_t address, uint32_t write_data,
+ *                   uint32_t write_mask, uint32_t read_mask,
+ *                   security_t access, char regname[]
+ * @return         : 0 => expected write is successful
+ *                 : 1 => expected write is not successful
+ *********************************************************************/
+uint32_t write_reg_m_cs_dbg_18a(uint32_t address, uint32_t write_data, uint32_t write_mask, \
+                                security_t access, char regname[])
+{
+    uint32_t error_status;
+    uint32_t buffer,init_value;
+
+    write_data = (write_data | address) & write_mask;
+    if(write_data != 0)
+    {
+        error_status = write_m_cs_dbg_18a(address, write_data, access, regname);
+        if(error_status)
+            return 1;
+        else
+        {
+            LOG_PRINT("data write operation to register: %s at address: 0x%x is successful", regname, address);
+            return 0;
+        }
+    }
+}
+
+/*********************************************************************
+ *Function         : read_reg_m_cs_dbg_18a
+ *Description      : This function initiates reads transaction
+                     through APB and compares with expected_data,
+                     this function converts expected data to random data
+                     w.r.t address, this function is used to read back
+                     the value that is written to writeable reg
+ * @input parameter: uint32_t address, uint32_t expected_data,
+ *                   uint32_t write_mask, uint32_t read_mask,
+ *                   security_t access, char regname[]
+ * @return         : 0 => expected read is successful
+ *                 : 1 => read is not successful
+ *********************************************************************/
+uint32_t read_reg_m_cs_dbg_18a(uint32_t address, uint32_t expected_data, uint32_t write_mask, uint32_t read_mask, \
+                               security_t access, char regname[])
+{
+    uint32_t buffer;
+
+    expected_data = (expected_data | address) & write_mask;
+    buffer = read_m_cs_dbg_18a(address, access, regname) & write_mask;
+
+    if((buffer & read_mask) == (expected_data & read_mask))
+    {
+        LOG_INFO("data read from register %s at address [0x%x] is 0x%x but the expected data is 0x%x\n", regname, address, buffer, expected_data);
+        return 0;
+    }
+    else if(expected_data == 0)
+        return 0;
+    else
+    {
+        LOG_ERROR("data read from register %s is different than expected\n", regname);
+        LOG_INFO("data read from register %s at address [0x%x] is 0x%x but the expected data is 0x%x\n", \
+                 regname, address, buffer, expected_data);
+        return 1;
+    }
+}
+
+/*********************************************************************
+ *Function         : read_expect_m_syscon_1_cs_dbg_18a
+ *Description      : This function initiates reads transaction
+                     through AXI and compare with default value
+ * @input parameter: uint32_t address, uint32_t expected_data,
+ *                   uint32_t read_mask, security_t access,
+ *                   char regname[]
+ * @return         : 0 => expected read is successful
+ *                 : 1 => read is not successful
+ *********************************************************************/
+uint32_t read_expect_m_syscon_1_cs_dbg_18a(uint32_t address, uint32_t expected_data, uint32_t read_mask, \
+                                           security_t access, char regname[])
+{
+    uint32_t buffer;
+    buffer = read_m_syscon_1_cs_dbg_18a(address, access, regname);
+
+    if((buffer & read_mask) == (expected_data & read_mask))
+    {
+        LOG_INFO("data read from address [0x%x] is 0x%x but the expected data is 0x%x\n", address, buffer, expected_data);
+        return 0;
+    }
+    else
+    {
+        LOG_ERROR("data read from register %s is different than expected\n", regname);
+        LOG_INFO("data read from address [0x%x] is 0x%x but the expected data is 0x%x\n", address, buffer, expected_data);
+        return 1;
+    }
+}
+
+/*********************************************************************
+ *Function         : write_expect_m_syscon_1cs_dbg_18a
+ *Description      : This function initiates write and read transaction
+                     through AXI at address and compares the value
+ * @input parameter: uint32_t address, uint32_t write_data,
+ *                   uint32_t write_mask, uint32_t read_mask,
+ *                   security_t access, char regname[]
+ * @return         : 0 => expected write and read is successful
+ *                 : 1 => expected write and read is not successful
+ *********************************************************************/
+uint32_t write_expect_m_syscon_1_cs_dbg_18a(uint32_t address, uint32_t write_value, uint32_t default_value, uint32_t expected_data, \
+                                            uint32_t write_mask, uint32_t read_mask, security_t access, char regname[])
+{
+    uint32_t error_status;
+    uint32_t buffer,init_value;
+    uint32_t write_status;
+
+    write_status = write_value & write_mask;
+    error_status = write_m_syscon_1_cs_dbg_18a(address, write_status, access, regname);
+    if(error_status)
+        return 1;
+
+    // if reg is not write reg, then skip
+    if(write_status != 0)
+    {
+        buffer = read_m_syscon_1_cs_dbg_18a(address, access, regname);
+
+        if (((buffer & read_mask) == (((expected_data & write_mask) & read_mask))) || (~ write_mask & default_value))
+        {
+            LOG_INFO("data read from register %s is same", regname);
+            return 0;
+        }
+        else
+        {
+            LOG_ERROR("data read from register %s at address [0x%x] is unexpected, read data= 0x%x and expected data= 0x%x", \
+            regname, address, buffer, expected_data);
+            return 1;
+        }
+    }
+}

@@ -1,0 +1,136 @@
+/**********************************************************************************************
+* INTEL CONFIDENTIAL
+* Copyright (C) 2022 Intel Corporation
+* This software and the related documents ("Material") are Intel copyrighted materials,
+* and your use of them is governed by the express license under which they were provided
+* to you ("License"). Unless the License provides otherwise, you may not use, modify,
+* copy, publish, distribute, disclose or transmit this software or the related documents
+* without Intel's prior written permission.
+* This software and the related documents are provided as is, with no express or implied
+* warranties, other than those that are expressly stated in the License.
+* No license under any patent, copyright, trade secret or other intellectual property
+* right is granted to or conferred upon you by disclosure or delivery of the Materials,
+* either expressly, by implication, inducement, estoppel or otherwise. Any license under
+* such intellectual property rights must be expressed and approved by Intel in writing.
+*********************************************************************************************/
+/**************************************************************************************
+ * @file  cti_program.c
+****************************************************************************************/
+
+#include <stdlib.h>
+#include <string.h>
+#include "time.h"
+#include "com_definitions.h"
+#include "cli.h"
+#include "init.h"
+#include "logger.h"
+#include "srp.h"
+#include "all_comps.h"
+#include "common_macro.h"
+#include "common_functions.h"
+#include "srp_block_ids.h"
+#include "coresight_head.h"
+#include "cs_soc_600_cti16bit.h"
+#include "coresight_common.h"
+
+void init_cs_soc_cti()
+{
+    uint32_t cs_soc_output_status;
+    
+    // Enable coresight CTI
+    write_m_cs_dbg_18a(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE + CS_SOC_600_CTI_16BIT_ADDRBLK_0_CTICTRL_OFFSET, 0x1, SECURE, "CS_SOC_CTI_CTRL REG");
+    
+    // Generate an event-out signal, map all channels
+    write_m_cs_dbg_18a(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE + CS_SOC_600_CTI_16BIT_ADDRBLK_0_CTIINEN15_OFFSET, 0x2, SECURE, "CS_SOC_CTI_EVEN_IN REG");
+
+    // Generate an event-out signal, map all channels
+    write_m_cs_dbg_18a(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE + CS_SOC_600_CTI_16BIT_ADDRBLK_0_CTIOUTEN15_OFFSET, 0x2, SECURE, "CS_SOC_CTI_EVEN_OUT REG");
+
+     // Link event-in to event-out
+    write_m_cs_dbg_18a(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE + CS_SOC_600_CTI_16BIT_ADDRBLK_0_CTIGATE_OFFSET, 0xf, SECURE, "CS_SOC_CTIGATE REG");
+    
+    // Read channel output status before manual trigger
+    cs_soc_output_status = read_m_cs_dbg_18a(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE + CS_SOC_600_CTI_16BIT_ADDRBLK_0_CTICHOUTSTAT_OFFSET, \
+                                                       SECURE, "CS_SOC_CTICHOUT_STATUS REG");
+    print("CS_SOC_CHANNEL_OUTPUT: 0x%x before trigger\n", cs_soc_output_status);
+    
+    // Generate manual application trigger
+    write_m_cs_dbg_18a(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE + CS_SOC_600_CTI_16BIT_ADDRBLK_0_CTIAPPSET_OFFSET, 0x1, SECURE, "CS_SOC_CTI_APPSET REG");
+    
+    // Read channel output status after manual trigger
+    cs_soc_output_status = read_m_cs_dbg_18a(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE + CS_SOC_600_CTI_16BIT_ADDRBLK_0_CTICHOUTSTAT_OFFSET, \
+                                                       SECURE, "CS_SOC_CTICHOUT_STATUS REG");
+    print("CS_SOC_CHANNEL_OUTPUT: 0x%x after trigger\n", cs_soc_output_status);
+    
+}
+
+void init_core_cti(uint32_t core_cti_address)
+{
+    // Enable coresight CTI
+    write_m_cs_dbg_18a(core_cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTICTRL_OFFSET, 0x1, SECURE, "CTI_CTRL REG");
+
+    // Generate an event-in signal, map all channels
+    write_m_cs_dbg_18a(core_cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTIINEN2_OFFSET, 0xf, SECURE, "CTI_EVENT_IN REG");
+
+    // Generate an event-out signal, map all channels
+    write_m_cs_dbg_18a(core_cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTIOUTEN2_OFFSET, 0xf, SECURE, "CTI_EVEN_OUT REG");
+    
+    uint32_t eventin_status = read_m_cs_dbg_18a(core_cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTIINEN2_OFFSET, SECURE, "CTIEVENTIN REG");
+    uint32_t eventout_status = read_m_cs_dbg_18a(core_cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTIOUTEN2_OFFSET, SECURE, "CTIEVENTIN REG");
+    print("EVENT_IN:0x%x\n",eventin_status);
+    print("EVENT_OUT:0x%x\n",eventout_status);
+    
+
+    uint32_t ctigate_core = read_m_cs_dbg_18a(core_cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTIGATE_OFFSET, SECURE, "CTIGATE REG");
+    print("CORE_CTI_GATE: 0x%x\n", ctigate_core);
+     // Link event-in to event-out, for all channels
+    //write_m_cs_dbg_18a(core_cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTIGATE_OFFSET, 0x1, SECURE, "CTIGATE REG");
+   
+}
+
+void generate_trace_event(uint32_t cti_address)
+{
+	// Generate manual application trigger
+    write_m_cs_dbg_18a(cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTIAPPSET_OFFSET, 0xf, SECURE, "CTI_APPSET REG");
+    print("Manual trigger for : 0x%x", cti_address); 
+}
+
+void cti_status(uint32_t cti_address)
+{
+    uint32_t input_status = read_m_cs_dbg_18a(cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTITRIGINSTAT_OFFSET, SECURE, "CTITRIGIN_STATUS REG");
+    uint32_t output_status = read_m_cs_dbg_18a(cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTITRIGOUTSTAT_OFFSET, SECURE, "CTITRIGOUT_STATUS REG");
+    uint32_t channel_input_status = read_m_cs_dbg_18a(cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTICHINSTAT_OFFSET, SECURE, "CTICHIN_STATUS REG");
+    uint32_t channel_output_status = read_m_cs_dbg_18a(cti_address + CSS600_CTI_16BIT_ADDRBLK_0_CTICHOUTSTAT_OFFSET, SECURE, "CTICHOUT_STATUS REG");
+    
+    print("Trig Input status: 0x%x\n", input_status);
+    print("Trig Output status at 0x%x: 0x%x\n",cti_address, output_status);
+    print("Channel Input status: 0x%x\n", channel_input_status);
+    print("Channel Output status: 0x%x\n", channel_output_status);
+    
+    // Read channel output status after manual trigger
+    //uint32_t cs_soc_output_status = read_m_cs_dbg_18a(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE + CS_SOC_600_CTI_16BIT_ADDRBLK_0_CTICHOUTSTAT_OFFSET, \
+                                                       SECURE, "CS_SOC_CTICHOUT_STATUS REG");
+   // print("CS_SOC_CHANNEL_OUTPUT: 0x%x after trigger\n", cs_soc_output_status);
+    
+}
+
+int main()
+{
+    init();
+
+    system("frioPciWrite -F s6b3 -P 0x20000 0x20202c09");
+    
+   // init_cs_soc_cti(CS_SOC_CTI16BIT_APB4_SLAVE_0_MM_BASE);
+
+    init_core_cti(VEXARRAYCS16_01_CTI16BIT_APB4_SLAVE_0_MM_BASE);
+    init_core_cti(VEXARRAYCS16_10_CTI16BIT_APB4_SLAVE_0_MM_BASE);
+    
+    generate_trace_event(VEXARRAYCS16_00_CTI16BIT_APB4_SLAVE_0_MM_BASE);
+    
+    cti_status(VEXARRAYCS16_10_CTI16BIT_APB4_SLAVE_0_MM_BASE);
+
+    cti_status(VEXARRAYCS16_20_CTI16BIT_APB4_SLAVE_0_MM_BASE);
+    cti_status(VEXARRAYCS16_01_CTI16BIT_APB4_SLAVE_0_MM_BASE);
+}
+
+

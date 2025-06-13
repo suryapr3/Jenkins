@@ -1,0 +1,7886 @@
+#ifndef _RCS_ETMB_H_
+#define _RCS_ETMB_H_
+
+// ******************************************************************************
+// ------------------------------------------------------------------------------
+//                               INTEL CONFIDENTIAL
+// ------------------------------------------------------------------------------
+//    Copyright (c) 2018 - 2024 Intel Corporation
+//
+//    This software and the related documents are Intel copyrighted materials,
+//    and your use of them is governed by the express license under which they
+//    were provided to you ("License").
+//    Unless the License provides otherwise, you may not use, modify, copy, publish,
+//    distribute, disclose or transmit this software or the related documents
+//    without Intel's prior written permission.
+//
+//    This software and the related documents are provided as is, with no express or
+//    implied warranties, other than those that are expressly stated in the License.
+// ------------------------------------------------------------------------------
+//
+// ******************************************************************************
+
+#ifndef __KERNEL__
+#include <stdint.h>
+#endif // __KERNEL__
+// ******************************************* Base address macros
+
+#define RCS_LX7_0_ETMB_BASE   ( 0xac10000 )
+#define RCS_LX7_1_ETMB_BASE   ( 0xac20000 )
+#define RCS_LX7_2_ETMB_BASE   ( 0xac30000 )
+#define RCS_KP1_ETMB_BASE     ( 0xac40000 )
+
+// ******************************************* /Base address macros
+
+
+// ******************************************* Register offset macros
+
+#define RCS_ETMB_TRCPRGCTLR_OFFSET ( 0x00000004U )
+#define RCS_ETMB_TRCPROCSELR_OFFSET ( 0x00000008U )
+#define RCS_ETMB_TRCSTATR_OFFSET ( 0x0000000cU )
+#define RCS_ETMB_TRCCONFIGR_OFFSET ( 0x00000010U )
+#define RCS_ETMB_TRCAUXCTLR_OFFSET ( 0x00000018U )
+#define RCS_ETMB_TRCEVENTCTL0R_OFFSET ( 0x00000020U )
+#define RCS_ETMB_TRCEVENTCTL1R_OFFSET ( 0x00000024U )
+#define RCS_ETMB_TRCSTALLCTLR_OFFSET ( 0x0000002cU )
+#define RCS_ETMB_TRCTSCTLR_OFFSET ( 0x00000030U )
+#define RCS_ETMB_TRCSYNCPR_OFFSET ( 0x00000034U )
+#define RCS_ETMB_TRCCCCTLR_OFFSET ( 0x00000038U )
+#define RCS_ETMB_TRCBBCTLR_OFFSET ( 0x0000003cU )
+#define RCS_ETMB_TRCTRACEIDR_OFFSET ( 0x00000040U )
+#define RCS_ETMB_TRCQCTLR_OFFSET ( 0x00000044U )
+#define RCS_ETMB_TRCVICTLR_OFFSET ( 0x00000080U )
+#define RCS_ETMB_TRCVIIECTLR_OFFSET ( 0x00000084U )
+#define RCS_ETMB_TRCVISSCTLR_OFFSET ( 0x00000088U )
+#define RCS_ETMB_TRCVIPESSCTLR_OFFSET ( 0x0000008cU )
+#define RCS_ETMB_TRCVDCTLR_OFFSET ( 0x000000a0U )
+#define RCS_ETMB_TRCVDSACCTLR_OFFSET ( 0x000000a4U )
+#define RCS_ETMB_TRCVDARCCTLR_OFFSET ( 0x000000a8U )
+#define RCS_ETMB_TRCSEQEVR0_OFFSET ( 0x00000100U )
+#define RCS_ETMB_TRCSEQEVR1_OFFSET ( 0x00000104U )
+#define RCS_ETMB_TRCSEQEVR2_OFFSET ( 0x00000108U )
+#define RCS_ETMB_TRCSEQRSTEVR_OFFSET ( 0x00000118U )
+#define RCS_ETMB_TRCSEQSTR_OFFSET ( 0x0000011cU )
+#define RCS_ETMB_TRCEXTINSELR_OFFSET ( 0x00000120U )
+#define RCS_ETMB_TRCCNTRLDVR0_OFFSET ( 0x00000140U )
+#define RCS_ETMB_TRCCNTCTLR0_OFFSET ( 0x00000150U )
+#define RCS_ETMB_TRCCNTVR0_OFFSET ( 0x00000160U )
+#define RCS_ETMB_TRCIDR8_OFFSET ( 0x00000180U )
+#define RCS_ETMB_TRCIDR9_OFFSET ( 0x00000184U )
+#define RCS_ETMB_TRCIDR10_OFFSET ( 0x00000188U )
+#define RCS_ETMB_TRCIDR11_OFFSET ( 0x0000018cU )
+#define RCS_ETMB_TRCIDR12_OFFSET ( 0x00000190U )
+#define RCS_ETMB_TRCIDR13_OFFSET ( 0x00000194U )
+#define RCS_ETMB_TRCIMSPEC0_OFFSET ( 0x000001c0U )
+#define RCS_ETMB_TRCIMSPEC1_OFFSET ( 0x000001c4U )
+#define RCS_ETMB_TRCIMSPEC2_OFFSET ( 0x000001c8U )
+#define RCS_ETMB_TRCIMSPEC3_OFFSET ( 0x000001ccU )
+#define RCS_ETMB_TRCIMSPEC4_OFFSET ( 0x000001d0U )
+#define RCS_ETMB_TRCIMSPEC5_OFFSET ( 0x000001d4U )
+#define RCS_ETMB_TRCIMSPEC6_OFFSET ( 0x000001d8U )
+#define RCS_ETMB_TRCIMSPEC7_OFFSET ( 0x000001dcU )
+#define RCS_ETMB_TRCIDR0_OFFSET ( 0x000001e0U )
+#define RCS_ETMB_TRCIDR1_OFFSET ( 0x000001e4U )
+#define RCS_ETMB_TRCIDR2_OFFSET ( 0x000001e8U )
+#define RCS_ETMB_TRCIDR3_OFFSET ( 0x000001ecU )
+#define RCS_ETMB_TRCIDR4_OFFSET ( 0x000001f0U )
+#define RCS_ETMB_TRCIDR5_OFFSET ( 0x000001f4U )
+#define RCS_ETMB_TRCIDR6_OFFSET ( 0x000001f8U )
+#define RCS_ETMB_TRCIDR7_OFFSET ( 0x000001fcU )
+#define RCS_ETMB_TRCRSCTLR2_OFFSET ( 0x00000208U )
+#define RCS_ETMB_TRCRSCTLR3_OFFSET ( 0x0000020cU )
+#define RCS_ETMB_TRCRSCTLR4_OFFSET ( 0x00000210U )
+#define RCS_ETMB_TRCRSCTLR5_OFFSET ( 0x00000214U )
+#define RCS_ETMB_TRCRSCTLR6_OFFSET ( 0x00000218U )
+#define RCS_ETMB_TRCRSCTLR7_OFFSET ( 0x0000021cU )
+#define RCS_ETMB_TRCRSCTLR8_OFFSET ( 0x00000220U )
+#define RCS_ETMB_TRCRSCTLR9_OFFSET ( 0x00000224U )
+#define RCS_ETMB_TRCRSCTLR10_OFFSET ( 0x00000228U )
+#define RCS_ETMB_TRCRSCTLR11_OFFSET ( 0x0000022cU )
+#define RCS_ETMB_TRCOSLSR_OFFSET ( 0x00000304U )
+#define RCS_ETMB_TRCPDCR_OFFSET ( 0x00000310U )
+#define RCS_ETMB_TRCPDSR_OFFSET ( 0x00000314U )
+#define RCS_ETMB_TRCACVR0_OFFSET ( 0x00000400U )
+#define RCS_ETMB_TRCACVR1_OFFSET ( 0x00000408U )
+#define RCS_ETMB_TRCACVR2_OFFSET ( 0x00000410U )
+#define RCS_ETMB_TRCACVR3_OFFSET ( 0x00000418U )
+#define RCS_ETMB_TRCACVR4_OFFSET ( 0x00000420U )
+#define RCS_ETMB_TRCACVR5_OFFSET ( 0x00000428U )
+#define RCS_ETMB_TRCACVR6_OFFSET ( 0x00000430U )
+#define RCS_ETMB_TRCACVR7_OFFSET ( 0x00000438U )
+#define RCS_ETMB_TRCACATR0_OFFSET ( 0x00000480U )
+#define RCS_ETMB_TRCACATR1_OFFSET ( 0x00000488U )
+#define RCS_ETMB_TRCACATR2_OFFSET ( 0x00000490U )
+#define RCS_ETMB_TRCACATR3_OFFSET ( 0x00000498U )
+#define RCS_ETMB_TRCACATR4_OFFSET ( 0x000004a0U )
+#define RCS_ETMB_TRCACATR5_OFFSET ( 0x000004a8U )
+#define RCS_ETMB_TRCACATR6_OFFSET ( 0x000004b0U )
+#define RCS_ETMB_TRCACATR7_OFFSET ( 0x000004b8U )
+#define RCS_ETMB_TRCCIDCVR0_OFFSET ( 0x00000600U )
+#define RCS_ETMB_TRCCIDCVR1_OFFSET ( 0x00000608U )
+#define RCS_ETMB_TRCCIDCVR2_OFFSET ( 0x00000610U )
+#define RCS_ETMB_TRCCIDCVR3_OFFSET ( 0x00000618U )
+#define RCS_ETMB_TRCCIDCVR4_OFFSET ( 0x00000620U )
+#define RCS_ETMB_TRCCIDCVR5_OFFSET ( 0x00000628U )
+#define RCS_ETMB_TRCCIDCVR6_OFFSET ( 0x00000630U )
+#define RCS_ETMB_TRCCIDCVR7_OFFSET ( 0x00000638U )
+#define RCS_ETMB_TRCCIDCCTLR0_OFFSET ( 0x00000680U )
+#define RCS_ETMB_TRCCIDCCTLR1_OFFSET ( 0x00000684U )
+#define RCS_ETMB_TRCITCTRL_OFFSET ( 0x00000f00U )
+#define RCS_ETMB_TRCCLAIMSET_OFFSET ( 0x00000fa0U )
+#define RCS_ETMB_TRCCLAIMCLR_OFFSET ( 0x00000fa4U )
+#define RCS_ETMB_TRCDEVAFF0_OFFSET ( 0x00000fa8U )
+#define RCS_ETMB_TRCDEVAFF1_OFFSET ( 0x00000facU )
+#define RCS_ETMB_TRCLAR_OFFSET ( 0x00000fb0U )
+#define RCS_ETMB_TRCLSR_OFFSET ( 0x00000fb4U )
+#define RCS_ETMB_TRCAUTHSTAT_OFFSET ( 0x00000fb8U )
+#define RCS_ETMB_TRCDEVARCH_OFFSET ( 0x00000fbcU )
+#define RCS_ETMB_TRCDEVRES0_OFFSET ( 0x00000fc0U )
+#define RCS_ETMB_TRCDEVRES1_OFFSET ( 0x00000fc4U )
+#define RCS_ETMB_TRCDEVID_OFFSET ( 0x00000fc8U )
+#define RCS_ETMB_TRCDEVTYPE_OFFSET ( 0x00000fccU )
+#define RCS_ETMB_TRCPIDR4_OFFSET ( 0x00000fd0U )
+#define RCS_ETMB_TRCPIDR5_OFFSET ( 0x00000fd4U )
+#define RCS_ETMB_TRCPIDR6_OFFSET ( 0x00000fd8U )
+#define RCS_ETMB_TRCPIDR7_OFFSET ( 0x00000fdcU )
+#define RCS_ETMB_TRCPIDR0_OFFSET ( 0x00000fe0U )
+#define RCS_ETMB_TRCPIDR1_OFFSET ( 0x00000fe4U )
+#define RCS_ETMB_TRCPIDR2_OFFSET ( 0x00000fe8U )
+#define RCS_ETMB_TRCPIDR3_OFFSET ( 0x00000fecU )
+#define RCS_ETMB_TRCCIDR0_OFFSET ( 0x00000ff0U )
+#define RCS_ETMB_TRCCIDR1_OFFSET ( 0x00000ff4U )
+#define RCS_ETMB_TRCCIDR2_OFFSET ( 0x00000ff8U )
+#define RCS_ETMB_TRCCIDR3_OFFSET ( 0x00000ffcU )
+#define RCS_ETMB_DBGCMDR_OFFSET ( 0x00001000U )
+#define RCS_ETMB_DBGBPIACSELR_OFFSET ( 0x00001004U )
+#define RCS_ETMB_DBGBPHITSTATR_OFFSET ( 0x00001008U )
+#define RCS_ETMB_DBGWPDACSELR_OFFSET ( 0x0000100cU )
+#define RCS_ETMB_DBGWPDACRSELR_OFFSET ( 0x00001010U )
+#define RCS_ETMB_DBGWPHITSTATR_OFFSET ( 0x00001014U )
+#define RCS_ETMB_DBGCPSTOPENR_OFFSET ( 0x00001018U )
+#define RCS_ETMB_DBGCPSTARTENR_OFFSET ( 0x0000101cU )
+#define RCS_ETMB_DBGCPHITSTATR_OFFSET ( 0x00001020U )
+#define RCS_ETMB_DBGPROCSTATR_OFFSET ( 0x00001024U )
+#define RCS_ETMB_DBGPROCPCR_OFFSET ( 0x00001028U )
+#define RCS_ETMB_DBGCTRLSTATR_OFFSET ( 0x0000102cU )
+#define RCS_ETMB_DBGOBSENR_OFFSET ( 0x00001030U )
+#define RCS_ETMB_DBGPLCMDR_OFFSET ( 0x00001034U )
+#define RCS_ETMB_DBGPLADDRR_OFFSET ( 0x00001038U )
+#define RCS_ETMB_DBGSPRDATAR_OFFSET ( 0x0000103cU )
+#define RCS_ETMB_DBGSPRVALIDR_OFFSET ( 0x00001040U )
+#define RCS_ETMB_TRCCFGR_OFFSET ( 0x00001044U )
+#define RCS_ETMB_IACRNGSTATR_OFFSET ( 0x00001058U )
+#define RCS_ETMB_RESERVED_IAC_OFFSET ( 0x0000105cU )
+#define RCS_ETMB_IACHITSTATR_OFFSET ( 0x00001060U )
+#define RCS_ETMB_DACRNGSTATR_OFFSET ( 0x00001064U )
+#define RCS_ETMB_RESERVED_DAC_OFFSET ( 0x00001068U )
+#define RCS_ETMB_DACHITSTATR_OFFSET ( 0x0000106cU )
+#define RCS_ETMB_PARAMSR_OFFSET ( 0x0000107cU )
+#define RCS_ETMB_IACVALR0_OFFSET ( 0x00001080U )
+#define RCS_ETMB_IACVALR1_OFFSET ( 0x00001084U )
+#define RCS_ETMB_IACVALR2_OFFSET ( 0x00001088U )
+#define RCS_ETMB_IACVALR3_OFFSET ( 0x0000108cU )
+#define RCS_ETMB_IACVALR4_OFFSET ( 0x00001090U )
+#define RCS_ETMB_IACVALR5_OFFSET ( 0x00001094U )
+#define RCS_ETMB_IACVALR6_OFFSET ( 0x00001098U )
+#define RCS_ETMB_IACVALR7_OFFSET ( 0x0000109cU )
+#define RCS_ETMB_DACCFGR0_OFFSET ( 0x00001100U )
+#define RCS_ETMB_DACCFGR1_OFFSET ( 0x00001104U )
+#define RCS_ETMB_DACCFGR2_OFFSET ( 0x00001108U )
+#define RCS_ETMB_DACCFGR3_OFFSET ( 0x0000110cU )
+#define RCS_ETMB_DACVALR0_OFFSET ( 0x00001180U )
+#define RCS_ETMB_DACVALR1_OFFSET ( 0x00001184U )
+#define RCS_ETMB_DACVALR2_OFFSET ( 0x00001188U )
+#define RCS_ETMB_DACVALR3_OFFSET ( 0x0000118cU )
+
+// ******************************************* /Register offset macros
+
+
+// ******************************************* AddressSpace macros
+#define RCS_ETMB_TRCPRGCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPRGCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCPROCSELR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPROCSELR_OFFSET ) ))
+#define RCS_ETMB_TRCSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCSTATR_OFFSET ) ))
+#define RCS_ETMB_TRCCONFIGR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCONFIGR_OFFSET ) ))
+#define RCS_ETMB_TRCAUXCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCAUXCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCEVENTCTL0R_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCEVENTCTL0R_OFFSET ) ))
+#define RCS_ETMB_TRCEVENTCTL1R_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCEVENTCTL1R_OFFSET ) ))
+#define RCS_ETMB_TRCSTALLCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCSTALLCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCTSCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCTSCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCSYNCPR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCSYNCPR_OFFSET ) ))
+#define RCS_ETMB_TRCCCCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCCCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCBBCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCBBCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCTRACEIDR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCTRACEIDR_OFFSET ) ))
+#define RCS_ETMB_TRCQCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCQCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCVICTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCVICTLR_OFFSET ) ))
+#define RCS_ETMB_TRCVIIECTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCVIIECTLR_OFFSET ) ))
+#define RCS_ETMB_TRCVISSCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCVISSCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCVIPESSCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCVIPESSCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCVDCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCVDCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCVDSACCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCVDSACCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCVDARCCTLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCVDARCCTLR_OFFSET ) ))
+#define RCS_ETMB_TRCSEQEVR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCSEQEVR0_OFFSET ) ))
+#define RCS_ETMB_TRCSEQEVR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCSEQEVR1_OFFSET ) ))
+#define RCS_ETMB_TRCSEQEVR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCSEQEVR2_OFFSET ) ))
+#define RCS_ETMB_TRCSEQRSTEVR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCSEQRSTEVR_OFFSET ) ))
+#define RCS_ETMB_TRCSEQSTR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCSEQSTR_OFFSET ) ))
+#define RCS_ETMB_TRCEXTINSELR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCEXTINSELR_OFFSET ) ))
+#define RCS_ETMB_TRCCNTRLDVR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCNTRLDVR0_OFFSET ) ))
+#define RCS_ETMB_TRCCNTCTLR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCNTCTLR0_OFFSET ) ))
+#define RCS_ETMB_TRCCNTVR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCNTVR0_OFFSET ) ))
+#define RCS_ETMB_TRCIDR8_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR8_OFFSET ) ))
+#define RCS_ETMB_TRCIDR9_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR9_OFFSET ) ))
+#define RCS_ETMB_TRCIDR10_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR10_OFFSET ) ))
+#define RCS_ETMB_TRCIDR11_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR11_OFFSET ) ))
+#define RCS_ETMB_TRCIDR12_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR12_OFFSET ) ))
+#define RCS_ETMB_TRCIDR13_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR13_OFFSET ) ))
+#define RCS_ETMB_TRCIMSPEC0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIMSPEC0_OFFSET ) ))
+#define RCS_ETMB_TRCIMSPEC1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIMSPEC1_OFFSET ) ))
+#define RCS_ETMB_TRCIMSPEC2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIMSPEC2_OFFSET ) ))
+#define RCS_ETMB_TRCIMSPEC3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIMSPEC3_OFFSET ) ))
+#define RCS_ETMB_TRCIMSPEC4_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIMSPEC4_OFFSET ) ))
+#define RCS_ETMB_TRCIMSPEC5_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIMSPEC5_OFFSET ) ))
+#define RCS_ETMB_TRCIMSPEC6_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIMSPEC6_OFFSET ) ))
+#define RCS_ETMB_TRCIMSPEC7_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIMSPEC7_OFFSET ) ))
+#define RCS_ETMB_TRCIDR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR0_OFFSET ) ))
+#define RCS_ETMB_TRCIDR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR1_OFFSET ) ))
+#define RCS_ETMB_TRCIDR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR2_OFFSET ) ))
+#define RCS_ETMB_TRCIDR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR3_OFFSET ) ))
+#define RCS_ETMB_TRCIDR4_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR4_OFFSET ) ))
+#define RCS_ETMB_TRCIDR5_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR5_OFFSET ) ))
+#define RCS_ETMB_TRCIDR6_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR6_OFFSET ) ))
+#define RCS_ETMB_TRCIDR7_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCIDR7_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR2_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR3_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR4_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR4_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR5_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR5_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR6_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR6_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR7_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR7_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR8_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR8_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR9_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR9_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR10_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR10_OFFSET ) ))
+#define RCS_ETMB_TRCRSCTLR11_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCRSCTLR11_OFFSET ) ))
+#define RCS_ETMB_TRCOSLSR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCOSLSR_OFFSET ) ))
+#define RCS_ETMB_TRCPDCR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPDCR_OFFSET ) ))
+#define RCS_ETMB_TRCPDSR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPDSR_OFFSET ) ))
+#define RCS_ETMB_TRCACVR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACVR0_OFFSET ) ))
+#define RCS_ETMB_TRCACVR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACVR1_OFFSET ) ))
+#define RCS_ETMB_TRCACVR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACVR2_OFFSET ) ))
+#define RCS_ETMB_TRCACVR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACVR3_OFFSET ) ))
+#define RCS_ETMB_TRCACVR4_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACVR4_OFFSET ) ))
+#define RCS_ETMB_TRCACVR5_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACVR5_OFFSET ) ))
+#define RCS_ETMB_TRCACVR6_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACVR6_OFFSET ) ))
+#define RCS_ETMB_TRCACVR7_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACVR7_OFFSET ) ))
+#define RCS_ETMB_TRCACATR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACATR0_OFFSET ) ))
+#define RCS_ETMB_TRCACATR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACATR1_OFFSET ) ))
+#define RCS_ETMB_TRCACATR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACATR2_OFFSET ) ))
+#define RCS_ETMB_TRCACATR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACATR3_OFFSET ) ))
+#define RCS_ETMB_TRCACATR4_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACATR4_OFFSET ) ))
+#define RCS_ETMB_TRCACATR5_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACATR5_OFFSET ) ))
+#define RCS_ETMB_TRCACATR6_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACATR6_OFFSET ) ))
+#define RCS_ETMB_TRCACATR7_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCACATR7_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCVR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCVR0_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCVR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCVR1_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCVR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCVR2_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCVR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCVR3_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCVR4_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCVR4_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCVR5_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCVR5_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCVR6_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCVR6_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCVR7_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCVR7_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCCTLR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCCTLR0_OFFSET ) ))
+#define RCS_ETMB_TRCCIDCCTLR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDCCTLR1_OFFSET ) ))
+#define RCS_ETMB_TRCITCTRL_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCITCTRL_OFFSET ) ))
+#define RCS_ETMB_TRCCLAIMSET_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCLAIMSET_OFFSET ) ))
+#define RCS_ETMB_TRCCLAIMCLR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCLAIMCLR_OFFSET ) ))
+#define RCS_ETMB_TRCDEVAFF0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCDEVAFF0_OFFSET ) ))
+#define RCS_ETMB_TRCDEVAFF1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCDEVAFF1_OFFSET ) ))
+#define RCS_ETMB_TRCLAR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCLAR_OFFSET ) ))
+#define RCS_ETMB_TRCLSR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCLSR_OFFSET ) ))
+#define RCS_ETMB_TRCAUTHSTAT_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCAUTHSTAT_OFFSET ) ))
+#define RCS_ETMB_TRCDEVARCH_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCDEVARCH_OFFSET ) ))
+#define RCS_ETMB_TRCDEVRES0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCDEVRES0_OFFSET ) ))
+#define RCS_ETMB_TRCDEVRES1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCDEVRES1_OFFSET ) ))
+#define RCS_ETMB_TRCDEVID_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCDEVID_OFFSET ) ))
+#define RCS_ETMB_TRCDEVTYPE_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCDEVTYPE_OFFSET ) ))
+#define RCS_ETMB_TRCPIDR4_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPIDR4_OFFSET ) ))
+#define RCS_ETMB_TRCPIDR5_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPIDR5_OFFSET ) ))
+#define RCS_ETMB_TRCPIDR6_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPIDR6_OFFSET ) ))
+#define RCS_ETMB_TRCPIDR7_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPIDR7_OFFSET ) ))
+#define RCS_ETMB_TRCPIDR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPIDR0_OFFSET ) ))
+#define RCS_ETMB_TRCPIDR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPIDR1_OFFSET ) ))
+#define RCS_ETMB_TRCPIDR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPIDR2_OFFSET ) ))
+#define RCS_ETMB_TRCPIDR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCPIDR3_OFFSET ) ))
+#define RCS_ETMB_TRCCIDR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDR0_OFFSET ) ))
+#define RCS_ETMB_TRCCIDR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDR1_OFFSET ) ))
+#define RCS_ETMB_TRCCIDR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDR2_OFFSET ) ))
+#define RCS_ETMB_TRCCIDR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCIDR3_OFFSET ) ))
+#define RCS_ETMB_DBGCMDR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGCMDR_OFFSET ) ))
+#define RCS_ETMB_DBGBPIACSELR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGBPIACSELR_OFFSET ) ))
+#define RCS_ETMB_DBGBPHITSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGBPHITSTATR_OFFSET ) ))
+#define RCS_ETMB_DBGWPDACSELR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGWPDACSELR_OFFSET ) ))
+#define RCS_ETMB_DBGWPDACRSELR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGWPDACRSELR_OFFSET ) ))
+#define RCS_ETMB_DBGWPHITSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGWPHITSTATR_OFFSET ) ))
+#define RCS_ETMB_DBGCPSTOPENR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGCPSTOPENR_OFFSET ) ))
+#define RCS_ETMB_DBGCPSTARTENR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGCPSTARTENR_OFFSET ) ))
+#define RCS_ETMB_DBGCPHITSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGCPHITSTATR_OFFSET ) ))
+#define RCS_ETMB_DBGPROCSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGPROCSTATR_OFFSET ) ))
+#define RCS_ETMB_DBGPROCPCR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGPROCPCR_OFFSET ) ))
+#define RCS_ETMB_DBGCTRLSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGCTRLSTATR_OFFSET ) ))
+#define RCS_ETMB_DBGOBSENR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGOBSENR_OFFSET ) ))
+#define RCS_ETMB_DBGPLCMDR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGPLCMDR_OFFSET ) ))
+#define RCS_ETMB_DBGPLADDRR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGPLADDRR_OFFSET ) ))
+#define RCS_ETMB_DBGSPRDATAR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGSPRDATAR_OFFSET ) ))
+#define RCS_ETMB_DBGSPRVALIDR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DBGSPRVALIDR_OFFSET ) ))
+#define RCS_ETMB_TRCCFGR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_TRCCFGR_OFFSET ) ))
+#define RCS_ETMB_IACRNGSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACRNGSTATR_OFFSET ) ))
+#define RCS_ETMB_RESERVED_IAC_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_RESERVED_IAC_OFFSET ) ))
+#define RCS_ETMB_IACHITSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACHITSTATR_OFFSET ) ))
+#define RCS_ETMB_DACRNGSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACRNGSTATR_OFFSET ) ))
+#define RCS_ETMB_RESERVED_DAC_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_RESERVED_DAC_OFFSET ) ))
+#define RCS_ETMB_DACHITSTATR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACHITSTATR_OFFSET ) ))
+#define RCS_ETMB_PARAMSR_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_PARAMSR_OFFSET ) ))
+#define RCS_ETMB_IACVALR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACVALR0_OFFSET ) ))
+#define RCS_ETMB_IACVALR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACVALR1_OFFSET ) ))
+#define RCS_ETMB_IACVALR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACVALR2_OFFSET ) ))
+#define RCS_ETMB_IACVALR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACVALR3_OFFSET ) ))
+#define RCS_ETMB_IACVALR4_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACVALR4_OFFSET ) ))
+#define RCS_ETMB_IACVALR5_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACVALR5_OFFSET ) ))
+#define RCS_ETMB_IACVALR6_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACVALR6_OFFSET ) ))
+#define RCS_ETMB_IACVALR7_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_IACVALR7_OFFSET ) ))
+#define RCS_ETMB_DACCFGR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACCFGR0_OFFSET ) ))
+#define RCS_ETMB_DACCFGR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACCFGR1_OFFSET ) ))
+#define RCS_ETMB_DACCFGR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACCFGR2_OFFSET ) ))
+#define RCS_ETMB_DACCFGR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACCFGR3_OFFSET ) ))
+#define RCS_ETMB_DACVALR0_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACVALR0_OFFSET ) ))
+#define RCS_ETMB_DACVALR1_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACVALR1_OFFSET ) ))
+#define RCS_ETMB_DACVALR2_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACVALR2_OFFSET ) ))
+#define RCS_ETMB_DACVALR3_ADR(_BASE) (( ( _BASE ) + (RCS_ETMB_DACVALR3_OFFSET ) ))
+
+// ******************************************* /Address Space
+
+//************************************************ RegisterStructs
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPRGCTLR register description at address offset 0x4
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPRGCTLR
+  * TRCPRGCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t EN : 1;
+    ///< Trace unit enable bit: '0' disabled; '1' enabled.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcprgctlr_reg_t;
+
+#define RCS_ETMB_TRCPRGCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPRGCTLR_RD_MASK (0x00000001U)
+#define RCS_ETMB_TRCPRGCTLR_WR_MASK (0x00000001U)
+
+
+///< Trace unit enable bit: '0' disabled; '1' enabled.
+#define RCS_ETMB_TRCPRGCTLR_EN_BF_OFF ( 0)
+#define RCS_ETMB_TRCPRGCTLR_EN_BF_WID ( 1)
+#define RCS_ETMB_TRCPRGCTLR_EN_BF_MSK (0x00000001)
+#define RCS_ETMB_TRCPRGCTLR_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPROCSELR register description at address offset 0x8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPROCSELR
+  * TRCPROCSELR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PROCSEL : 5;
+    ///< PE select bits. Only one PE supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 27;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="5" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcprocselr_reg_t;
+
+#define RCS_ETMB_TRCPROCSELR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPROCSELR_RD_MASK (0x0000001fU)
+#define RCS_ETMB_TRCPROCSELR_WR_MASK (0x00000000U)
+
+
+///< PE select bits. Only one PE supported.
+#define RCS_ETMB_TRCPROCSELR_PROCSEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCPROCSELR_PROCSEL_BF_WID ( 5)
+#define RCS_ETMB_TRCPROCSELR_PROCSEL_BF_MSK (0x0000001F)
+#define RCS_ETMB_TRCPROCSELR_PROCSEL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCSTATR register description at address offset 0xc
+  *
+  * Register default value:        0x00000003
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCSTATR
+  * TRCSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t IDLE : 1;
+    ///< Idle status bit: '0' trace unit not idle; '1' trace unit is idle
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x1"
+    uint32_t PMSTABLE : 1;
+    ///< Programmer's model stable bit. '0' not stable; '1' stable, reads from
+    ///< registers return stable data
+    ///< AccessType="RO/V" BitOffset="1" ResetValue="0x1"
+    uint32_t  : 30;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="2" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcstatr_reg_t;
+
+#define RCS_ETMB_TRCSTATR_DEFAULT (0x00000003U)
+#define RCS_ETMB_TRCSTATR_RD_MASK (0x00000003U)
+#define RCS_ETMB_TRCSTATR_WR_MASK (0x00000000U)
+
+
+///< Idle status bit: '0' trace unit not idle; '1' trace unit is idle
+#define RCS_ETMB_TRCSTATR_IDLE_BF_OFF ( 0)
+#define RCS_ETMB_TRCSTATR_IDLE_BF_WID ( 1)
+#define RCS_ETMB_TRCSTATR_IDLE_BF_MSK (0x00000001)
+#define RCS_ETMB_TRCSTATR_IDLE_BF_DEF (0x00000001)
+
+///< Programmer's model stable bit. '0' not stable; '1' stable, reads from
+///< registers return stable data
+#define RCS_ETMB_TRCSTATR_PMSTBL_BF_OFF ( 1)
+#define RCS_ETMB_TRCSTATR_PMSTBL_BF_WID ( 1)
+#define RCS_ETMB_TRCSTATR_PMSTBL_BF_MSK (0x00000002)
+#define RCS_ETMB_TRCSTATR_PMSTBL_BF_DEF (0x00000002)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCONFIGR register description at address offset 0x10
+  *
+  * Register default value:        0x00000001
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCONFIGR
+  * TRCCONFIGR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RESERVED : 1;
+    ///< Reserved. Must be '1'
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x1"
+    uint32_t INSTP0_UU : 2;
+    ///< Instruction P0 field. Unused
+    ///< AccessType="RO" BitOffset="1" ResetValue="0x0"
+    uint32_t BB : 1;
+    ///< Branch broadcast mode bit: '0' disabled; '1' enabled
+    ///< AccessType="RW" BitOffset="3" ResetValue="0x0"
+    uint32_t CCI : 1;
+    ///< Cycle counting instruction trace bit: '0' disabled; '1' enabled
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t UNUSED : 1;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="5" ResetValue="0x0"
+    uint32_t CID : 1;
+    ///< Context ID tracing bit: '0' disabled; '1' enabled
+    ///< AccessType="RW" BitOffset="6" ResetValue="0x0"
+    uint32_t VMID_UU : 1;
+    ///< Virtual context identifier tracing bit. Unused
+    ///< AccessType="RO" BitOffset="7" ResetValue="0x0"
+    uint32_t COND_UU : 3;
+    ///< Conditional instruction tracing bit. Unused
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t TS : 1;
+    ///< Global timestamp tracing bit: '0' disabled; '1' enabled
+    ///< AccessType="RW" BitOffset="11" ResetValue="0x0"
+    uint32_t RS_UU : 1;
+    ///< Return stack enable bit. Unused
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t QE_UU : 2;
+    ///< Q element enable field. Unused
+    ///< AccessType="RO" BitOffset="13" ResetValue="0x0"
+    uint32_t VMIDOPT_UU : 1;
+    ///< Control bit to configure the Virtual context identifier value used
+    ///< by the trace unit. Unused
+    ///< AccessType="RO" BitOffset="15" ResetValue="0x0"
+    uint32_t DA_UU : 1;
+    ///< Data address tracing bit. Unused
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t DV_UU : 1;
+    ///< Data value tracing bit. Unused
+    ///< AccessType="RO" BitOffset="17" ResetValue="0x0"
+    uint32_t  : 14;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="18" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcconfigr_reg_t;
+
+#define RCS_ETMB_TRCCONFIGR_DEFAULT (0x00000001U)
+#define RCS_ETMB_TRCCONFIGR_RD_MASK (0x0003ffffU)
+#define RCS_ETMB_TRCCONFIGR_WR_MASK (0x00000858U)
+
+
+///< Reserved. Must be '1'
+#define RCS_ETMB_TRCCONFIGR_RESERVED_BF_OFF ( 0)
+#define RCS_ETMB_TRCCONFIGR_RESERVED_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_RESERVED_BF_MSK (0x00000001)
+#define RCS_ETMB_TRCCONFIGR_RESERVED_BF_DEF (0x00000001)
+
+///< Instruction P0 field. Unused
+#define RCS_ETMB_TRCCONFIGR_INSTP0_UU_BF_OFF ( 1)
+#define RCS_ETMB_TRCCONFIGR_INSTP0_UU_BF_WID ( 2)
+#define RCS_ETMB_TRCCONFIGR_INSTP0_UU_BF_MSK (0x00000006)
+#define RCS_ETMB_TRCCONFIGR_INSTP0_UU_BF_DEF (0x00000000)
+
+///< Branch broadcast mode bit: '0' disabled; '1' enabled
+#define RCS_ETMB_TRCCONFIGR_BB_BF_OFF ( 3)
+#define RCS_ETMB_TRCCONFIGR_BB_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_BB_BF_MSK (0x00000008)
+#define RCS_ETMB_TRCCONFIGR_BB_BF_DEF (0x00000000)
+
+///< Cycle counting instruction trace bit: '0' disabled; '1' enabled
+#define RCS_ETMB_TRCCONFIGR_CCI_BF_OFF ( 4)
+#define RCS_ETMB_TRCCONFIGR_CCI_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_CCI_BF_MSK (0x00000010)
+#define RCS_ETMB_TRCCONFIGR_CCI_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCCONFIGR_UNUSED_BF_OFF ( 5)
+#define RCS_ETMB_TRCCONFIGR_UNUSED_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_UNUSED_BF_MSK (0x00000020)
+#define RCS_ETMB_TRCCONFIGR_UNUSED_BF_DEF (0x00000000)
+
+///< Context ID tracing bit: '0' disabled; '1' enabled
+#define RCS_ETMB_TRCCONFIGR_CID_BF_OFF ( 6)
+#define RCS_ETMB_TRCCONFIGR_CID_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_CID_BF_MSK (0x00000040)
+#define RCS_ETMB_TRCCONFIGR_CID_BF_DEF (0x00000000)
+
+///< Virtual context identifier tracing bit. Unused
+#define RCS_ETMB_TRCCONFIGR_VMID_UU_BF_OFF ( 7)
+#define RCS_ETMB_TRCCONFIGR_VMID_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_VMID_UU_BF_MSK (0x00000080)
+#define RCS_ETMB_TRCCONFIGR_VMID_UU_BF_DEF (0x00000000)
+
+///< Conditional instruction tracing bit. Unused
+#define RCS_ETMB_TRCCONFIGR_COND_UU_BF_OFF ( 8)
+#define RCS_ETMB_TRCCONFIGR_COND_UU_BF_WID ( 3)
+#define RCS_ETMB_TRCCONFIGR_COND_UU_BF_MSK (0x00000700)
+#define RCS_ETMB_TRCCONFIGR_COND_UU_BF_DEF (0x00000000)
+
+///< Global timestamp tracing bit: '0' disabled; '1' enabled
+#define RCS_ETMB_TRCCONFIGR_TS_BF_OFF (11)
+#define RCS_ETMB_TRCCONFIGR_TS_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_TS_BF_MSK (0x00000800)
+#define RCS_ETMB_TRCCONFIGR_TS_BF_DEF (0x00000000)
+
+///< Return stack enable bit. Unused
+#define RCS_ETMB_TRCCONFIGR_RS_UU_BF_OFF (12)
+#define RCS_ETMB_TRCCONFIGR_RS_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_RS_UU_BF_MSK (0x00001000)
+#define RCS_ETMB_TRCCONFIGR_RS_UU_BF_DEF (0x00000000)
+
+///< Q element enable field. Unused
+#define RCS_ETMB_TRCCONFIGR_QE_UU_BF_OFF (13)
+#define RCS_ETMB_TRCCONFIGR_QE_UU_BF_WID ( 2)
+#define RCS_ETMB_TRCCONFIGR_QE_UU_BF_MSK (0x00006000)
+#define RCS_ETMB_TRCCONFIGR_QE_UU_BF_DEF (0x00000000)
+
+///< Control bit to configure the Virtual context identifier value used
+///< by the trace unit. Unused
+#define RCS_ETMB_TRCCONFIGR_VMIDOPT_UU_BF_OFF (15)
+#define RCS_ETMB_TRCCONFIGR_VMIDOPT_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_VMIDOPT_UU_BF_MSK (0x00008000)
+#define RCS_ETMB_TRCCONFIGR_VMIDOPT_UU_BF_DEF (0x00000000)
+
+///< Data address tracing bit. Unused
+#define RCS_ETMB_TRCCONFIGR_DA_UU_BF_OFF (16)
+#define RCS_ETMB_TRCCONFIGR_DA_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_DA_UU_BF_MSK (0x00010000)
+#define RCS_ETMB_TRCCONFIGR_DA_UU_BF_DEF (0x00000000)
+
+///< Data value tracing bit. Unused
+#define RCS_ETMB_TRCCONFIGR_DV_UU_BF_OFF (17)
+#define RCS_ETMB_TRCCONFIGR_DV_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCCONFIGR_DV_UU_BF_MSK (0x00020000)
+#define RCS_ETMB_TRCCONFIGR_DV_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCAUXCTLR register description at address offset 0x18
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCAUXCTLR
+  * TRCAUXCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCAUXCTLR : 32;
+    ///< Auxiliary Control Register. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcauxctlr_reg_t;
+
+#define RCS_ETMB_TRCAUXCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCAUXCTLR_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCAUXCTLR_WR_MASK (0x00000000U)
+
+
+///< Auxiliary Control Register. Not supported.
+#define RCS_ETMB_TRCAUXCTLR_BF_OFF ( 0)
+#define RCS_ETMB_TRCAUXCTLR_BF_WID (32)
+#define RCS_ETMB_TRCAUXCTLR_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCAUXCTLR_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCEVENTCTL0R register description at address offset 0x20
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCEVENTCTL0R
+  * TRCEVENTCTL0R register.
+  */
+
+typedef union {
+  struct {
+    uint32_t EVENT0 : 8;
+    ///< Event selector 0.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t EVENT1 : 8;
+    ///< Event selector 1.
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t EVENT2 : 8;
+    ///< Event selector 2.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t EVENT3 : 8;
+    ///< Event selector 3.
+    ///< AccessType="RW" BitOffset="24" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trceventctl0r_reg_t;
+
+#define RCS_ETMB_TRCEVENTCTL0R_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCEVENTCTL0R_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCEVENTCTL0R_WR_MASK (0xffffffffU)
+
+
+///< Event selector 0.
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT0_BF_OFF ( 0)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT0_BF_WID ( 8)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT0_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT0_BF_DEF (0x00000000)
+
+///< Event selector 1.
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT1_BF_OFF ( 8)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT1_BF_WID ( 8)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT1_BF_MSK (0x0000FF00)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT1_BF_DEF (0x00000000)
+
+///< Event selector 2.
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT2_BF_OFF (16)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT2_BF_WID ( 8)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT2_BF_MSK (0x00FF0000)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT2_BF_DEF (0x00000000)
+
+///< Event selector 3.
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT3_BF_OFF (24)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT3_BF_WID ( 8)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT3_BF_MSK (0xFF000000)
+#define RCS_ETMB_TRCEVENTCTL0R_EVENT3_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCEVENTCTL1R register description at address offset 0x24
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCEVENTCTL1R
+  * TRCEVENTCTL1R register.
+  */
+
+typedef union {
+  struct {
+    uint32_t INSTEN : 4;
+    ///< Instruction event enable field. '0' no event element generated; '1'
+    ///< trace unit generates an event element for event n in the instruction
+    ///< trace stream.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t DATAEN_UU : 1;
+    ///< Data event enable field. '0' no event element generated; '1' trace
+    ///< unit generates an event element for event 0 in the data trace stream.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t UNUSED_C : 6;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="5" ResetValue="0x0"
+    uint32_t ATB_UU : 1;
+    ///< AMBA Trace Bus trigger enable bit. '0' disabled; '1' when event 0
+    ///< occurs the trace unit sets ATID=0x7D and ATDATA=TRCTRACEIDR.
+    ///< AccessType="RO" BitOffset="11" ResetValue="0x0"
+    uint32_t LPOVERRIDE_UU : 1;
+    ///< Low-power state behavior override bit. Unused
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t  : 19;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="13" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trceventctl1r_reg_t;
+
+#define RCS_ETMB_TRCEVENTCTL1R_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCEVENTCTL1R_RD_MASK (0x00001fffU)
+#define RCS_ETMB_TRCEVENTCTL1R_WR_MASK (0x0000000fU)
+
+
+///< Instruction event enable field. '0' no event element generated; '1'
+///< trace unit generates an event element for event n in the instruction
+///< trace stream.
+#define RCS_ETMB_TRCEVENTCTL1R_INSTEN_BF_OFF ( 0)
+#define RCS_ETMB_TRCEVENTCTL1R_INSTEN_BF_WID ( 4)
+#define RCS_ETMB_TRCEVENTCTL1R_INSTEN_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCEVENTCTL1R_INSTEN_BF_DEF (0x00000000)
+
+///< Data event enable field. '0' no event element generated; '1' trace
+///< unit generates an event element for event 0 in the data trace stream.
+#define RCS_ETMB_TRCEVENTCTL1R_DATAEN_UU_BF_OFF ( 4)
+#define RCS_ETMB_TRCEVENTCTL1R_DATAEN_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCEVENTCTL1R_DATAEN_UU_BF_MSK (0x00000010)
+#define RCS_ETMB_TRCEVENTCTL1R_DATAEN_UU_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCEVENTCTL1R_UNUSED_C_BF_OFF ( 5)
+#define RCS_ETMB_TRCEVENTCTL1R_UNUSED_C_BF_WID ( 6)
+#define RCS_ETMB_TRCEVENTCTL1R_UNUSED_C_BF_MSK (0x000007E0)
+#define RCS_ETMB_TRCEVENTCTL1R_UNUSED_C_BF_DEF (0x00000000)
+
+///< AMBA Trace Bus trigger enable bit. '0' disabled; '1' when event 0
+///< occurs the trace unit sets ATID=0x7D and ATDATA=TRCTRACEIDR.
+#define RCS_ETMB_TRCEVENTCTL1R_ATB_UU_BF_OFF (11)
+#define RCS_ETMB_TRCEVENTCTL1R_ATB_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCEVENTCTL1R_ATB_UU_BF_MSK (0x00000800)
+#define RCS_ETMB_TRCEVENTCTL1R_ATB_UU_BF_DEF (0x00000000)
+
+///< Low-power state behavior override bit. Unused
+#define RCS_ETMB_TRCEVENTCTL1R_LPOVRD_UU_BF_OFF (12)
+#define RCS_ETMB_TRCEVENTCTL1R_LPOVRD_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCEVENTCTL1R_LPOVRD_UU_BF_MSK (0x00001000)
+#define RCS_ETMB_TRCEVENTCTL1R_LPOVRD_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCSTALLCTLR register description at address offset 0x2c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCSTALLCTLR
+  * TRCSTALLCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t LEVEL : 4;
+    ///< Threshold level field. The field can support 16 monotonic levels from
+    ///< '0x0' (zero invasion, greater risk of FIFO overflow) to '0xF' (maximum
+    ///< invasion, less risk of FIFO overflow).
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t UNUSED : 4;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t ISTALL : 1;
+    ///< Instruction stall bit. Controls if a trace unit can stall the PE when
+    ///< the instruction trace buffer space is less than LEVEL: '0' the trace
+    ///< unit must not stall the PE; '1' the trace unit can stall the PE.
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t DSTALL_UU : 1;
+    ///< Data stall bit. Controls if a trace unit can stall the PE when the
+    ///< data trace buffer space is less than LEVEL: '0' the trace unit must
+    ///< not stall the PE; '1' the trace unit can stall the PE. Unused
+    ///< AccessType="RO" BitOffset="9" ResetValue="0x0"
+    uint32_t INSTPRIORITY_UU : 1;
+    ///< Prioritize instruction trace bit. Controls if a trace unit can prioritize
+    ///< instruction trace when the instruction trace buffer space is less
+    ///< than LEVEL. Unused
+    ///< AccessType="RO" BitOffset="10" ResetValue="0x0"
+    uint32_t DATADISCARD_UU : 2;
+    ///< Data discard field. Controls if a trace unit can discard data trace
+    ///< elements when the data trace buffer space is less than LEVEL. Unused
+    ///< AccessType="RO" BitOffset="11" ResetValue="0x0"
+    uint32_t NOOVERFLOW : 1;
+    ///< Trace overflow prevention bit: '0' Trace overflow prevention is disabled;
+    ///< '1' Trace overflow prevention is enabled. This might cause a significant
+    ///< performance impact.
+    ///< AccessType="RW" BitOffset="13" ResetValue="0x0"
+    uint32_t  : 18;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="14" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcstallctlr_reg_t;
+
+#define RCS_ETMB_TRCSTALLCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCSTALLCTLR_RD_MASK (0x00003fffU)
+#define RCS_ETMB_TRCSTALLCTLR_WR_MASK (0x0000210fU)
+
+
+///< Threshold level field. The field can support 16 monotonic levels from
+///< '0x0' (zero invasion, greater risk of FIFO overflow) to '0xF' (maximum
+///< invasion, less risk of FIFO overflow).
+#define RCS_ETMB_TRCSTALLCTLR_LVL_BF_OFF ( 0)
+#define RCS_ETMB_TRCSTALLCTLR_LVL_BF_WID ( 4)
+#define RCS_ETMB_TRCSTALLCTLR_LVL_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCSTALLCTLR_LVL_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCSTALLCTLR_UNUSED_BF_OFF ( 4)
+#define RCS_ETMB_TRCSTALLCTLR_UNUSED_BF_WID ( 4)
+#define RCS_ETMB_TRCSTALLCTLR_UNUSED_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCSTALLCTLR_UNUSED_BF_DEF (0x00000000)
+
+///< Instruction stall bit. Controls if a trace unit can stall the PE when
+///< the instruction trace buffer space is less than LEVEL: '0' the trace
+///< unit must not stall the PE; '1' the trace unit can stall the PE.
+#define RCS_ETMB_TRCSTALLCTLR_ISTALL_BF_OFF ( 8)
+#define RCS_ETMB_TRCSTALLCTLR_ISTALL_BF_WID ( 1)
+#define RCS_ETMB_TRCSTALLCTLR_ISTALL_BF_MSK (0x00000100)
+#define RCS_ETMB_TRCSTALLCTLR_ISTALL_BF_DEF (0x00000000)
+
+///< Data stall bit. Controls if a trace unit can stall the PE when the
+///< data trace buffer space is less than LEVEL: '0' the trace unit must
+///< not stall the PE; '1' the trace unit can stall the PE. Unused
+#define RCS_ETMB_TRCSTALLCTLR_DSTALL_UU_BF_OFF ( 9)
+#define RCS_ETMB_TRCSTALLCTLR_DSTALL_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCSTALLCTLR_DSTALL_UU_BF_MSK (0x00000200)
+#define RCS_ETMB_TRCSTALLCTLR_DSTALL_UU_BF_DEF (0x00000000)
+
+///< Prioritize instruction trace bit. Controls if a trace unit can prioritize
+///< instruction trace when the instruction trace buffer space is less
+///< than LEVEL. Unused
+#define RCS_ETMB_TRCSTALLCTLR_INSTPRIORITY_UU_BF_OFF (10)
+#define RCS_ETMB_TRCSTALLCTLR_INSTPRIORITY_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCSTALLCTLR_INSTPRIORITY_UU_BF_MSK (0x00000400)
+#define RCS_ETMB_TRCSTALLCTLR_INSTPRIORITY_UU_BF_DEF (0x00000000)
+
+///< Data discard field. Controls if a trace unit can discard data trace
+///< elements when the data trace buffer space is less than LEVEL. Unused
+#define RCS_ETMB_TRCSTALLCTLR_DATADISCARD_UU_BF_OFF (11)
+#define RCS_ETMB_TRCSTALLCTLR_DATADISCARD_UU_BF_WID ( 2)
+#define RCS_ETMB_TRCSTALLCTLR_DATADISCARD_UU_BF_MSK (0x00001800)
+#define RCS_ETMB_TRCSTALLCTLR_DATADISCARD_UU_BF_DEF (0x00000000)
+
+///< Trace overflow prevention bit: '0' Trace overflow prevention is disabled;
+///< '1' Trace overflow prevention is enabled. This might cause a significant
+///< performance impact.
+#define RCS_ETMB_TRCSTALLCTLR_NOOVERFLOW_BF_OFF (13)
+#define RCS_ETMB_TRCSTALLCTLR_NOOVERFLOW_BF_WID ( 1)
+#define RCS_ETMB_TRCSTALLCTLR_NOOVERFLOW_BF_MSK (0x00002000)
+#define RCS_ETMB_TRCSTALLCTLR_NOOVERFLOW_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCTSCTLR register description at address offset 0x30
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCTSCTLR
+  * TRCTSCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t EVENT : 8;
+    ///< An event selector. When the selected event is triggered, the trace
+    ///< unit inserts a global timestamp into the trace streams.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trctsctlr_reg_t;
+
+#define RCS_ETMB_TRCTSCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCTSCTLR_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCTSCTLR_WR_MASK (0x000000ffU)
+
+
+///< An event selector. When the selected event is triggered, the trace
+///< unit inserts a global timestamp into the trace streams.
+#define RCS_ETMB_TRCTSCTLR_EVENT_BF_OFF ( 0)
+#define RCS_ETMB_TRCTSCTLR_EVENT_BF_WID ( 8)
+#define RCS_ETMB_TRCTSCTLR_EVENT_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCTSCTLR_EVENT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCSYNCPR register description at address offset 0x34
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCSYNCPR
+  * TRCSYNCPR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PERIOD : 5;
+    ///< Controls how many bytes of trace (instruction and data), that a trace
+    ///< unit can generate before a trace synchronization request occurs. '00000'
+    ///< disabled; '01000' 2^8 bytes; ...; '10100' 2^20 bytes of trace.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 27;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="5" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcsyncpr_reg_t;
+
+#define RCS_ETMB_TRCSYNCPR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCSYNCPR_RD_MASK (0x0000001fU)
+#define RCS_ETMB_TRCSYNCPR_WR_MASK (0x0000001fU)
+
+
+///< Controls how many bytes of trace (instruction and data), that a trace
+///< unit can generate before a trace synchronization request occurs. '00000'
+///< disabled; '01000' 2^8 bytes; ...; '10100' 2^20 bytes of trace.
+#define RCS_ETMB_TRCSYNCPR_PERIOD_BF_OFF ( 0)
+#define RCS_ETMB_TRCSYNCPR_PERIOD_BF_WID ( 5)
+#define RCS_ETMB_TRCSYNCPR_PERIOD_BF_MSK (0x0000001F)
+#define RCS_ETMB_TRCSYNCPR_PERIOD_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCCCTLR register description at address offset 0x38
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCCCTLR
+  * TRCCCCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t THRESHOLD : 12;
+    ///< Sets the threshold for instruction trace cycle counting.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 20;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="12" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcccctlr_reg_t;
+
+#define RCS_ETMB_TRCCCCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCCCTLR_RD_MASK (0x00000fffU)
+#define RCS_ETMB_TRCCCCTLR_WR_MASK (0x00000fffU)
+
+
+///< Sets the threshold for instruction trace cycle counting.
+#define RCS_ETMB_TRCCCCTLR_TSHOLD_BF_OFF ( 0)
+#define RCS_ETMB_TRCCCCTLR_TSHOLD_BF_WID (12)
+#define RCS_ETMB_TRCCCCTLR_TSHOLD_BF_MSK (0x00000FFF)
+#define RCS_ETMB_TRCCCCTLR_TSHOLD_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCBBCTLR register description at address offset 0x3c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCBBCTLR
+  * TRCBBCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RANGE_UU : 8;
+    ///< Address range field. Selects which address comparator pairs are in
+    ///< use with branch broadcasting. For bit[n]: '0' not selected; '1' selected.
+    ///< Unused
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t MODE_UU : 1;
+    ///< Mode bit. '0' exclude mode, branch broadcasting is not enabled for
+    ///< branch instructions in the address ranges that RANGE defines; '1'
+    ///< include mode, branch broadcasting enabled for branch instructions
+    ///< in the address ranges that RANGE defines. Unused
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 23;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="9" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcbbctlr_reg_t;
+
+#define RCS_ETMB_TRCBBCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCBBCTLR_RD_MASK (0x000001ffU)
+#define RCS_ETMB_TRCBBCTLR_WR_MASK (0x00000000U)
+
+
+///< Address range field. Selects which address comparator pairs are in
+///< use with branch broadcasting. For bit[n]: '0' not selected; '1' selected.
+///< Unused
+#define RCS_ETMB_TRCBBCTLR_RANGE_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCBBCTLR_RANGE_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCBBCTLR_RANGE_UU_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCBBCTLR_RANGE_UU_BF_DEF (0x00000000)
+
+///< Mode bit. '0' exclude mode, branch broadcasting is not enabled for
+///< branch instructions in the address ranges that RANGE defines; '1'
+///< include mode, branch broadcasting enabled for branch instructions
+///< in the address ranges that RANGE defines. Unused
+#define RCS_ETMB_TRCBBCTLR_MODE_UU_BF_OFF ( 8)
+#define RCS_ETMB_TRCBBCTLR_MODE_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCBBCTLR_MODE_UU_BF_MSK (0x00000100)
+#define RCS_ETMB_TRCBBCTLR_MODE_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCTRACEIDR register description at address offset 0x40
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCTRACEIDR
+  * TRCTRACEIDR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRACEID : 7;
+    ///< Trace ID field. Sets the trace ID value for instruction trace. Bit[0]
+    ///< must be zero if data trace is enabled. If data trace is enabled then
+    ///< the ID for data trace is set to TRACEID+1.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trctraceidr_reg_t;
+
+#define RCS_ETMB_TRCTRACEIDR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCTRACEIDR_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCTRACEIDR_WR_MASK (0x0000007fU)
+
+
+///< Trace ID field. Sets the trace ID value for instruction trace. Bit[0]
+///< must be zero if data trace is enabled. If data trace is enabled then
+///< the ID for data trace is set to TRACEID+1.
+#define RCS_ETMB_TRCTRACEIDR_TRACEID_BF_OFF ( 0)
+#define RCS_ETMB_TRCTRACEIDR_TRACEID_BF_WID ( 7)
+#define RCS_ETMB_TRCTRACEIDR_TRACEID_BF_MSK (0x0000007F)
+#define RCS_ETMB_TRCTRACEIDR_TRACEID_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCQCTLR register description at address offset 0x44
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCQCTLR
+  * TRCQCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RANGE_UU : 8;
+    ///< Address range field. Specifies the address range comparators to be
+    ///< used for controlling Q elements. For bit[n]: '0' not selected; '1'
+    ///< selected. Unused
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t MODE_UU : 1;
+    ///< Mode bit. '0' exclude mode, Q element generation is not enabled in
+    ///< the address ranges that RANGE defines; '1' include mode, Q element
+    ///< generation enabled in the address ranges that RANGE defines. Unused
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 23;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="9" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcqctlr_reg_t;
+
+#define RCS_ETMB_TRCQCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCQCTLR_RD_MASK (0x000001ffU)
+#define RCS_ETMB_TRCQCTLR_WR_MASK (0x00000000U)
+
+
+///< Address range field. Specifies the address range comparators to be
+///< used for controlling Q elements. For bit[n]: '0' not selected; '1'
+///< selected. Unused
+#define RCS_ETMB_TRCQCTLR_RANGE_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCQCTLR_RANGE_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCQCTLR_RANGE_UU_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCQCTLR_RANGE_UU_BF_DEF (0x00000000)
+
+///< Mode bit. '0' exclude mode, Q element generation is not enabled in
+///< the address ranges that RANGE defines; '1' include mode, Q element
+///< generation enabled in the address ranges that RANGE defines. Unused
+#define RCS_ETMB_TRCQCTLR_MODE_UU_BF_OFF ( 8)
+#define RCS_ETMB_TRCQCTLR_MODE_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCQCTLR_MODE_UU_BF_MSK (0x00000100)
+#define RCS_ETMB_TRCQCTLR_MODE_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCVICTLR register description at address offset 0x80
+  *
+  * Register default value:        0x00000200
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCVICTLR
+  * TRCVICTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t EVENT : 8;
+    ///< An event selector. An imprecise enabling event input.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t UNUSED_A : 1;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t SSSTATUS : 1;
+    ///< Returns the status of the start/stop logic. '0' stopped state; '1'
+    ///< started state. Before software enables the trace unit it must write
+    ///< to this bit to set the initial state of the start/stop logic.
+    ///< AccessType="RW/V" BitOffset="9" ResetValue="0x1"
+    uint32_t TRCRESET_UU : 1;
+    ///< Controls whether a trace unit must trace a Reset exception. Unused
+    ///< AccessType="RO" BitOffset="10" ResetValue="0x0"
+    uint32_t TRCERR_UU : 1;
+    ///< Controls whether a trace unit must trace a System error exception.
+    ///< Unused
+    ///< AccessType="RO" BitOffset="11" ResetValue="0x0"
+    uint32_t UNUSED_B : 4;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t EXLEVEL_S_UU : 4;
+    ///< In Secure state, each bit controls whether instruction tracing is
+    ///< enabled for the corresponding Exception level. Unused
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t EXLEVEL_NS_UU : 4;
+    ///< In Non-secure state, each bit controls whether instruction tracing
+    ///< is enabled for the corresponding Exception level. Unused
+    ///< AccessType="RO" BitOffset="20" ResetValue="0x0"
+    uint32_t  : 8;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="24" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcvictlr_reg_t;
+
+#define RCS_ETMB_TRCVICTLR_DEFAULT (0x00000200U)
+#define RCS_ETMB_TRCVICTLR_RD_MASK (0x00ffffffU)
+#define RCS_ETMB_TRCVICTLR_WR_MASK (0x000002ffU)
+
+
+///< An event selector. An imprecise enabling event input.
+#define RCS_ETMB_TRCVICTLR_EVENT_BF_OFF ( 0)
+#define RCS_ETMB_TRCVICTLR_EVENT_BF_WID ( 8)
+#define RCS_ETMB_TRCVICTLR_EVENT_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCVICTLR_EVENT_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCVICTLR_UNUSED_A_BF_OFF ( 8)
+#define RCS_ETMB_TRCVICTLR_UNUSED_A_BF_WID ( 1)
+#define RCS_ETMB_TRCVICTLR_UNUSED_A_BF_MSK (0x00000100)
+#define RCS_ETMB_TRCVICTLR_UNUSED_A_BF_DEF (0x00000000)
+
+///< Returns the status of the start/stop logic. '0' stopped state; '1'
+///< started state. Before software enables the trace unit it must write
+///< to this bit to set the initial state of the start/stop logic.
+#define RCS_ETMB_TRCVICTLR_SSSTAT_BF_OFF ( 9)
+#define RCS_ETMB_TRCVICTLR_SSSTAT_BF_WID ( 1)
+#define RCS_ETMB_TRCVICTLR_SSSTAT_BF_MSK (0x00000200)
+#define RCS_ETMB_TRCVICTLR_SSSTAT_BF_DEF (0x00000200)
+
+///< Controls whether a trace unit must trace a Reset exception. Unused
+#define RCS_ETMB_TRCVICTLR_TRCRST_UU_BF_OFF (10)
+#define RCS_ETMB_TRCVICTLR_TRCRST_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCVICTLR_TRCRST_UU_BF_MSK (0x00000400)
+#define RCS_ETMB_TRCVICTLR_TRCRST_UU_BF_DEF (0x00000000)
+
+///< Controls whether a trace unit must trace a System error exception.
+///< Unused
+#define RCS_ETMB_TRCVICTLR_TRCERR_UU_BF_OFF (11)
+#define RCS_ETMB_TRCVICTLR_TRCERR_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCVICTLR_TRCERR_UU_BF_MSK (0x00000800)
+#define RCS_ETMB_TRCVICTLR_TRCERR_UU_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCVICTLR_UNUSED_B_BF_OFF (12)
+#define RCS_ETMB_TRCVICTLR_UNUSED_B_BF_WID ( 4)
+#define RCS_ETMB_TRCVICTLR_UNUSED_B_BF_MSK (0x0000F000)
+#define RCS_ETMB_TRCVICTLR_UNUSED_B_BF_DEF (0x00000000)
+
+///< In Secure state, each bit controls whether instruction tracing is
+///< enabled for the corresponding Exception level. Unused
+#define RCS_ETMB_TRCVICTLR_EXLVL_S_UU_BF_OFF (16)
+#define RCS_ETMB_TRCVICTLR_EXLVL_S_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCVICTLR_EXLVL_S_UU_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCVICTLR_EXLVL_S_UU_BF_DEF (0x00000000)
+
+///< In Non-secure state, each bit controls whether instruction tracing
+///< is enabled for the corresponding Exception level. Unused
+#define RCS_ETMB_TRCVICTLR_EXLVL_NS_UU_BF_OFF (20)
+#define RCS_ETMB_TRCVICTLR_EXLVL_NS_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCVICTLR_EXLVL_NS_UU_BF_MSK (0x00F00000)
+#define RCS_ETMB_TRCVICTLR_EXLVL_NS_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCVIIECTLR register description at address offset 0x84
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCVIIECTLR
+  * TRCVIIECTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t INCL : 4;
+    ///< Include range field. Selects which address range comparator pairs
+    ///< are in use with ViewInst include control. For bit[m]: '0' not selected;
+    ///< '1' selected.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t UNUSED : 12;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t EXCL : 4;
+    ///< Exclude range field. Selects which address range comparator pairs
+    ///< are in use with ViewInst exclude control. For bit[m]: '0' not selected;
+    ///< '1' selected.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t  : 12;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="20" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcviiectlr_reg_t;
+
+#define RCS_ETMB_TRCVIIECTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCVIIECTLR_RD_MASK (0x000fffffU)
+#define RCS_ETMB_TRCVIIECTLR_WR_MASK (0x000f000fU)
+
+
+///< Include range field. Selects which address range comparator pairs
+///< are in use with ViewInst include control. For bit[m]: '0' not selected;
+///< '1' selected.
+#define RCS_ETMB_TRCVIIECTLR_INCL_BF_OFF ( 0)
+#define RCS_ETMB_TRCVIIECTLR_INCL_BF_WID ( 4)
+#define RCS_ETMB_TRCVIIECTLR_INCL_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCVIIECTLR_INCL_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCVIIECTLR_UNUSED_BF_OFF ( 4)
+#define RCS_ETMB_TRCVIIECTLR_UNUSED_BF_WID (12)
+#define RCS_ETMB_TRCVIIECTLR_UNUSED_BF_MSK (0x0000FFF0)
+#define RCS_ETMB_TRCVIIECTLR_UNUSED_BF_DEF (0x00000000)
+
+///< Exclude range field. Selects which address range comparator pairs
+///< are in use with ViewInst exclude control. For bit[m]: '0' not selected;
+///< '1' selected.
+#define RCS_ETMB_TRCVIIECTLR_EXCL_BF_OFF (16)
+#define RCS_ETMB_TRCVIIECTLR_EXCL_BF_WID ( 4)
+#define RCS_ETMB_TRCVIIECTLR_EXCL_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCVIIECTLR_EXCL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCVISSCTLR register description at address offset 0x88
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCVISSCTLR
+  * TRCVISSCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t START : 8;
+    ///< Selects which address range comparators are in use with ViewInst start/stop
+    ///< control for the purpose of starting trace. For bit[m]: '0' not selected;
+    ///< '1' selected.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t UNUSED : 8;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t STOP : 8;
+    ///< Selects which address range comparators are in use with ViewInst start/stop
+    ///< control for the purpose of stopping trace. For bit[m]: '0' not selected;
+    ///< '1' selected.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t  : 8;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="24" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcvissctlr_reg_t;
+
+#define RCS_ETMB_TRCVISSCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCVISSCTLR_RD_MASK (0x00ffffffU)
+#define RCS_ETMB_TRCVISSCTLR_WR_MASK (0x00ff00ffU)
+
+
+///< Selects which address range comparators are in use with ViewInst start/stop
+///< control for the purpose of starting trace. For bit[m]: '0' not selected;
+///< '1' selected.
+#define RCS_ETMB_TRCVISSCTLR_START_BF_OFF ( 0)
+#define RCS_ETMB_TRCVISSCTLR_START_BF_WID ( 8)
+#define RCS_ETMB_TRCVISSCTLR_START_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCVISSCTLR_START_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCVISSCTLR_UNUSED_BF_OFF ( 8)
+#define RCS_ETMB_TRCVISSCTLR_UNUSED_BF_WID ( 8)
+#define RCS_ETMB_TRCVISSCTLR_UNUSED_BF_MSK (0x0000FF00)
+#define RCS_ETMB_TRCVISSCTLR_UNUSED_BF_DEF (0x00000000)
+
+///< Selects which address range comparators are in use with ViewInst start/stop
+///< control for the purpose of stopping trace. For bit[m]: '0' not selected;
+///< '1' selected.
+#define RCS_ETMB_TRCVISSCTLR_STOP_BF_OFF (16)
+#define RCS_ETMB_TRCVISSCTLR_STOP_BF_WID ( 8)
+#define RCS_ETMB_TRCVISSCTLR_STOP_BF_MSK (0x00FF0000)
+#define RCS_ETMB_TRCVISSCTLR_STOP_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCVIPESSCTLR register description at address offset 0x8c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCVIPESSCTLR
+  * TRCVIPESSCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t START : 16;
+    ///< Selects which PE comparator inputs are in use with ViewInst start/stop
+    ///< control for the purpose of starting trace. For bit[m]: '0' not selected;
+    ///< '1' selected.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t STOP : 16;
+    ///< Selects which PE comparator inputs are in use with ViewInst start/stop
+    ///< control for the purpose of stopping trace. For bit[m]: '0' not selected;
+    ///< '1' selected.
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcvipessctlr_reg_t;
+
+#define RCS_ETMB_TRCVIPESSCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCVIPESSCTLR_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCVIPESSCTLR_WR_MASK (0x00000000U)
+
+
+///< Selects which PE comparator inputs are in use with ViewInst start/stop
+///< control for the purpose of starting trace. For bit[m]: '0' not selected;
+///< '1' selected.
+#define RCS_ETMB_TRCVIPESSCTLR_START_BF_OFF ( 0)
+#define RCS_ETMB_TRCVIPESSCTLR_START_BF_WID (16)
+#define RCS_ETMB_TRCVIPESSCTLR_START_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCVIPESSCTLR_START_BF_DEF (0x00000000)
+
+///< Selects which PE comparator inputs are in use with ViewInst start/stop
+///< control for the purpose of stopping trace. For bit[m]: '0' not selected;
+///< '1' selected.
+#define RCS_ETMB_TRCVIPESSCTLR_STOP_BF_OFF (16)
+#define RCS_ETMB_TRCVIPESSCTLR_STOP_BF_WID (16)
+#define RCS_ETMB_TRCVIPESSCTLR_STOP_BF_MSK (0xFFFF0000)
+#define RCS_ETMB_TRCVIPESSCTLR_STOP_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCVDCTLR register description at address offset 0xa0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCVDCTLR
+  * TRCVDCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t EVENT_UU : 8;
+    ///< An event selector. Unused
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t SPREL_UU : 2;
+    ///< Controls whether a trace unit traces data for transfers that are relative
+    ///< to the Stack Pointer. Unused
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t PCREL_UU : 1;
+    ///< Controls whether a trace unit traces data for transfers that are relative
+    ///< to the Program Counter. Unused
+    ///< AccessType="RO" BitOffset="10" ResetValue="0x0"
+    uint32_t TBI_UU : 1;
+    ///< Controls which information a trace unit populates in bits[63:56] of
+    ///< the data address. Unused
+    ///< AccessType="RO" BitOffset="11" ResetValue="0x0"
+    uint32_t TRCEXDATA_UU : 1;
+    ///< Controls the tracing of data transfers for exceptions and exception
+    ///< returns on the PE. Unused
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t  : 19;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="13" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcvdctlr_reg_t;
+
+#define RCS_ETMB_TRCVDCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCVDCTLR_RD_MASK (0x00001fffU)
+#define RCS_ETMB_TRCVDCTLR_WR_MASK (0x00000000U)
+
+
+///< An event selector. Unused
+#define RCS_ETMB_TRCVDCTLR_EVENT_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCVDCTLR_EVENT_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCVDCTLR_EVENT_UU_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCVDCTLR_EVENT_UU_BF_DEF (0x00000000)
+
+///< Controls whether a trace unit traces data for transfers that are relative
+///< to the Stack Pointer. Unused
+#define RCS_ETMB_TRCVDCTLR_SPREL_UU_BF_OFF ( 8)
+#define RCS_ETMB_TRCVDCTLR_SPREL_UU_BF_WID ( 2)
+#define RCS_ETMB_TRCVDCTLR_SPREL_UU_BF_MSK (0x00000300)
+#define RCS_ETMB_TRCVDCTLR_SPREL_UU_BF_DEF (0x00000000)
+
+///< Controls whether a trace unit traces data for transfers that are relative
+///< to the Program Counter. Unused
+#define RCS_ETMB_TRCVDCTLR_PCREL_UU_BF_OFF (10)
+#define RCS_ETMB_TRCVDCTLR_PCREL_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCVDCTLR_PCREL_UU_BF_MSK (0x00000400)
+#define RCS_ETMB_TRCVDCTLR_PCREL_UU_BF_DEF (0x00000000)
+
+///< Controls which information a trace unit populates in bits[63:56] of
+///< the data address. Unused
+#define RCS_ETMB_TRCVDCTLR_TBI_UU_BF_OFF (11)
+#define RCS_ETMB_TRCVDCTLR_TBI_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCVDCTLR_TBI_UU_BF_MSK (0x00000800)
+#define RCS_ETMB_TRCVDCTLR_TBI_UU_BF_DEF (0x00000000)
+
+///< Controls the tracing of data transfers for exceptions and exception
+///< returns on the PE. Unused
+#define RCS_ETMB_TRCVDCTLR_TRCEXDATA_UU_BF_OFF (12)
+#define RCS_ETMB_TRCVDCTLR_TRCEXDATA_UU_BF_WID ( 1)
+#define RCS_ETMB_TRCVDCTLR_TRCEXDATA_UU_BF_MSK (0x00001000)
+#define RCS_ETMB_TRCVDCTLR_TRCEXDATA_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCVDSACCTLR register description at address offset 0xa4
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCVDSACCTLR
+  * TRCVDSACCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t INCL_UU : 8;
+    ///< Selects which single address comparators are in use with ViewData
+    ///< include control. Each bit represents a single address comparator.
+    ///< For bit[n]: '0' not selected; '1' selected. Unused
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t UNUSED : 8;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t EXCL_UU : 8;
+    ///< Selects which single address comparators are in use with ViewData
+    ///< exclude control. Each bit represents a single address comparator.
+    ///< For bit[n]: '0' not selected; '1' selected. Unused
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t  : 8;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="24" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcvdsacctlr_reg_t;
+
+#define RCS_ETMB_TRCVDSACCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCVDSACCTLR_RD_MASK (0x00ffffffU)
+#define RCS_ETMB_TRCVDSACCTLR_WR_MASK (0x00000000U)
+
+
+///< Selects which single address comparators are in use with ViewData
+///< include control. Each bit represents a single address comparator.
+///< For bit[n]: '0' not selected; '1' selected. Unused
+#define RCS_ETMB_TRCVDSACCTLR_INCL_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCVDSACCTLR_INCL_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCVDSACCTLR_INCL_UU_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCVDSACCTLR_INCL_UU_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCVDSACCTLR_UNUSED_BF_OFF ( 8)
+#define RCS_ETMB_TRCVDSACCTLR_UNUSED_BF_WID ( 8)
+#define RCS_ETMB_TRCVDSACCTLR_UNUSED_BF_MSK (0x0000FF00)
+#define RCS_ETMB_TRCVDSACCTLR_UNUSED_BF_DEF (0x00000000)
+
+///< Selects which single address comparators are in use with ViewData
+///< exclude control. Each bit represents a single address comparator.
+///< For bit[n]: '0' not selected; '1' selected. Unused
+#define RCS_ETMB_TRCVDSACCTLR_EXCL_UU_BF_OFF (16)
+#define RCS_ETMB_TRCVDSACCTLR_EXCL_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCVDSACCTLR_EXCL_UU_BF_MSK (0x00FF0000)
+#define RCS_ETMB_TRCVDSACCTLR_EXCL_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCVDARCCTLR register description at address offset 0xa8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCVDARCCTLR
+  * TRCVDARCCTLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t INCL_UU : 4;
+    ///< Selects which address comparator pairs are in use with ViewData include
+    ///< control. Each bit represents an address range comparator pair. For
+    ///< bit[n]: '0' not selected; '1' selected. Unused
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t UNUSED : 12;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t EXCL_UU : 4;
+    ///< Selects which address comparator pairs are in use with ViewData exclude
+    ///< control. Each bit represents an address range comparator pair. For
+    ///< bit[n]: '0' not selected; '1' selected. Unused
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t  : 12;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="20" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcvdarcctlr_reg_t;
+
+#define RCS_ETMB_TRCVDARCCTLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCVDARCCTLR_RD_MASK (0x000fffffU)
+#define RCS_ETMB_TRCVDARCCTLR_WR_MASK (0x00000000U)
+
+
+///< Selects which address comparator pairs are in use with ViewData include
+///< control. Each bit represents an address range comparator pair. For
+///< bit[n]: '0' not selected; '1' selected. Unused
+#define RCS_ETMB_TRCVDARCCTLR_INCL_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCVDARCCTLR_INCL_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCVDARCCTLR_INCL_UU_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCVDARCCTLR_INCL_UU_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCVDARCCTLR_UNUSED_BF_OFF ( 4)
+#define RCS_ETMB_TRCVDARCCTLR_UNUSED_BF_WID (12)
+#define RCS_ETMB_TRCVDARCCTLR_UNUSED_BF_MSK (0x0000FFF0)
+#define RCS_ETMB_TRCVDARCCTLR_UNUSED_BF_DEF (0x00000000)
+
+///< Selects which address comparator pairs are in use with ViewData exclude
+///< control. Each bit represents an address range comparator pair. For
+///< bit[n]: '0' not selected; '1' selected. Unused
+#define RCS_ETMB_TRCVDARCCTLR_EXCL_UU_BF_OFF (16)
+#define RCS_ETMB_TRCVDARCCTLR_EXCL_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCVDARCCTLR_EXCL_UU_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCVDARCCTLR_EXCL_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCSEQEVR0 register description at address offset 0x100
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCSEQEVR0
+  * TRCSEQEVR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t F_UU : 8;
+    ///< Forward field. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t B_UU : 8;
+    ///< Backward field. Unused.
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 16;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="16" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcseqevr0_reg_t;
+
+#define RCS_ETMB_TRCSEQEVR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCSEQEVR0_RD_MASK (0x0000ffffU)
+#define RCS_ETMB_TRCSEQEVR0_WR_MASK (0x00000000U)
+
+
+///< Forward field. Unused.
+#define RCS_ETMB_TRCSEQEVR0_F_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCSEQEVR0_F_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCSEQEVR0_F_UU_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCSEQEVR0_F_UU_BF_DEF (0x00000000)
+
+///< Backward field. Unused.
+#define RCS_ETMB_TRCSEQEVR0_B_UU_BF_OFF ( 8)
+#define RCS_ETMB_TRCSEQEVR0_B_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCSEQEVR0_B_UU_BF_MSK (0x0000FF00)
+#define RCS_ETMB_TRCSEQEVR0_B_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCSEQEVR1 register description at address offset 0x104
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCSEQEVR1
+  * TRCSEQEVR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t F_UU : 8;
+    ///< Forward field. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t B_UU : 8;
+    ///< Backward field. Unused.
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 16;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="16" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcseqevr1_reg_t;
+
+#define RCS_ETMB_TRCSEQEVR1_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCSEQEVR1_RD_MASK (0x0000ffffU)
+#define RCS_ETMB_TRCSEQEVR1_WR_MASK (0x00000000U)
+
+
+///< Forward field. Unused.
+#define RCS_ETMB_TRCSEQEVR1_F_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCSEQEVR1_F_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCSEQEVR1_F_UU_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCSEQEVR1_F_UU_BF_DEF (0x00000000)
+
+///< Backward field. Unused.
+#define RCS_ETMB_TRCSEQEVR1_B_UU_BF_OFF ( 8)
+#define RCS_ETMB_TRCSEQEVR1_B_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCSEQEVR1_B_UU_BF_MSK (0x0000FF00)
+#define RCS_ETMB_TRCSEQEVR1_B_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCSEQEVR2 register description at address offset 0x108
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCSEQEVR2
+  * TRCSEQEVR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t F_UU : 8;
+    ///< Forward field. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t B_UU : 8;
+    ///< Backward field. Unused.
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 16;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="16" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcseqevr2_reg_t;
+
+#define RCS_ETMB_TRCSEQEVR2_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCSEQEVR2_RD_MASK (0x0000ffffU)
+#define RCS_ETMB_TRCSEQEVR2_WR_MASK (0x00000000U)
+
+
+///< Forward field. Unused.
+#define RCS_ETMB_TRCSEQEVR2_F_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCSEQEVR2_F_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCSEQEVR2_F_UU_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCSEQEVR2_F_UU_BF_DEF (0x00000000)
+
+///< Backward field. Unused.
+#define RCS_ETMB_TRCSEQEVR2_B_UU_BF_OFF ( 8)
+#define RCS_ETMB_TRCSEQEVR2_B_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCSEQEVR2_B_UU_BF_MSK (0x0000FF00)
+#define RCS_ETMB_TRCSEQEVR2_B_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCSEQRSTEVR register description at address offset 0x118
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCSEQRSTEVR
+  * TRCSEQRSTEVR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RST_UU : 8;
+    ///< Reset field. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcseqrstevr_reg_t;
+
+#define RCS_ETMB_TRCSEQRSTEVR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCSEQRSTEVR_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCSEQRSTEVR_WR_MASK (0x00000000U)
+
+
+///< Reset field. Unused.
+#define RCS_ETMB_TRCSEQRSTEVR_RST_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCSEQRSTEVR_RST_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCSEQRSTEVR_RST_UU_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCSEQRSTEVR_RST_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCSEQSTR register description at address offset 0x11c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCSEQSTR
+  * TRCSEQSTR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t STATE_UU : 2;
+    ///< Sets or returns the state of the sequencer. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 30;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="2" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcseqstr_reg_t;
+
+#define RCS_ETMB_TRCSEQSTR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCSEQSTR_RD_MASK (0x00000003U)
+#define RCS_ETMB_TRCSEQSTR_WR_MASK (0x00000000U)
+
+
+///< Sets or returns the state of the sequencer. Unused.
+#define RCS_ETMB_TRCSEQSTR_STATE_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCSEQSTR_STATE_UU_BF_WID ( 2)
+#define RCS_ETMB_TRCSEQSTR_STATE_UU_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCSEQSTR_STATE_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCEXTINSELR register description at address offset 0x120
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCEXTINSELR
+  * TRCEXTINSELR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SEL0 : 8;
+    ///< Binary value that selects which external input is a resource.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t SEL1 : 8;
+    ///< Binary value that selects which external input is a resource.
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t SEL2 : 8;
+    ///< Binary value that selects which external input is a resource.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t SEL3_UU : 8;
+    ///< Binary value that selects which external input is a resource. Unused
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcextinselr_reg_t;
+
+#define RCS_ETMB_TRCEXTINSELR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCEXTINSELR_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCEXTINSELR_WR_MASK (0x00ffffffU)
+
+
+///< Binary value that selects which external input is a resource.
+#define RCS_ETMB_TRCEXTINSELR_SEL0_BF_OFF ( 0)
+#define RCS_ETMB_TRCEXTINSELR_SEL0_BF_WID ( 8)
+#define RCS_ETMB_TRCEXTINSELR_SEL0_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCEXTINSELR_SEL0_BF_DEF (0x00000000)
+
+///< Binary value that selects which external input is a resource.
+#define RCS_ETMB_TRCEXTINSELR_SEL1_BF_OFF ( 8)
+#define RCS_ETMB_TRCEXTINSELR_SEL1_BF_WID ( 8)
+#define RCS_ETMB_TRCEXTINSELR_SEL1_BF_MSK (0x0000FF00)
+#define RCS_ETMB_TRCEXTINSELR_SEL1_BF_DEF (0x00000000)
+
+///< Binary value that selects which external input is a resource.
+#define RCS_ETMB_TRCEXTINSELR_SEL2_BF_OFF (16)
+#define RCS_ETMB_TRCEXTINSELR_SEL2_BF_WID ( 8)
+#define RCS_ETMB_TRCEXTINSELR_SEL2_BF_MSK (0x00FF0000)
+#define RCS_ETMB_TRCEXTINSELR_SEL2_BF_DEF (0x00000000)
+
+///< Binary value that selects which external input is a resource. Unused
+#define RCS_ETMB_TRCEXTINSELR_SEL3_UU_BF_OFF (24)
+#define RCS_ETMB_TRCEXTINSELR_SEL3_UU_BF_WID ( 8)
+#define RCS_ETMB_TRCEXTINSELR_SEL3_UU_BF_MSK (0xFF000000)
+#define RCS_ETMB_TRCEXTINSELR_SEL3_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCNTRLDVR0 register description at address offset 0x140
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCNTRLDVR0
+  * TRCCNTRLDVR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE : 16;
+    ///< Contains the reload value for counter. When a reload event occurs
+    ///< for counter then the trace unit copies the VALUE field into counter.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 16;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="16" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccntrldvr0_reg_t;
+
+#define RCS_ETMB_TRCCNTRLDVR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCNTRLDVR0_RD_MASK (0x0000ffffU)
+#define RCS_ETMB_TRCCNTRLDVR0_WR_MASK (0x0000ffffU)
+
+
+///< Contains the reload value for counter. When a reload event occurs
+///< for counter then the trace unit copies the VALUE field into counter.
+#define RCS_ETMB_TRCCNTRLDVR0_VAL_BF_OFF ( 0)
+#define RCS_ETMB_TRCCNTRLDVR0_VAL_BF_WID (16)
+#define RCS_ETMB_TRCCNTRLDVR0_VAL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCCNTRLDVR0_VAL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCNTCTLR0 register description at address offset 0x150
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCNTCTLR0
+  * TRCCNTCTLR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CNTEVENT : 8;
+    ///< An event selector. Selects an event that when it occurs causes counter
+    ///< (n) to decrement.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t RLDEVENT : 8;
+    ///< An event selector. Selects an event that when it occurs causes a reload
+    ///< event for counter (n).
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t RLDSELF : 1;
+    ///< Controls whether a reload event occurts for counter (n) when counter
+    ///< (n) reaches zero. '0' counter is in normal mode; '1' counter is in
+    ///< self_reload mode.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t  : 15;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="17" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccntctlr0_reg_t;
+
+#define RCS_ETMB_TRCCNTCTLR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCNTCTLR0_RD_MASK (0x0001ffffU)
+#define RCS_ETMB_TRCCNTCTLR0_WR_MASK (0x0001ffffU)
+
+
+///< An event selector. Selects an event that when it occurs causes counter
+///< (n) to decrement.
+#define RCS_ETMB_TRCCNTCTLR0_CNTEVENT_BF_OFF ( 0)
+#define RCS_ETMB_TRCCNTCTLR0_CNTEVENT_BF_WID ( 8)
+#define RCS_ETMB_TRCCNTCTLR0_CNTEVENT_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCCNTCTLR0_CNTEVENT_BF_DEF (0x00000000)
+
+///< An event selector. Selects an event that when it occurs causes a reload
+///< event for counter (n).
+#define RCS_ETMB_TRCCNTCTLR0_RLDEVENT_BF_OFF ( 8)
+#define RCS_ETMB_TRCCNTCTLR0_RLDEVENT_BF_WID ( 8)
+#define RCS_ETMB_TRCCNTCTLR0_RLDEVENT_BF_MSK (0x0000FF00)
+#define RCS_ETMB_TRCCNTCTLR0_RLDEVENT_BF_DEF (0x00000000)
+
+///< Controls whether a reload event occurts for counter (n) when counter
+///< (n) reaches zero. '0' counter is in normal mode; '1' counter is in
+///< self_reload mode.
+#define RCS_ETMB_TRCCNTCTLR0_RLDSELF_BF_OFF (16)
+#define RCS_ETMB_TRCCNTCTLR0_RLDSELF_BF_WID ( 1)
+#define RCS_ETMB_TRCCNTCTLR0_RLDSELF_BF_MSK (0x00010000)
+#define RCS_ETMB_TRCCNTCTLR0_RLDSELF_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCNTVR0 register description at address offset 0x160
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCNTVR0
+  * TRCCNTVR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE : 16;
+    ///< Contains the count value of counter.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 16;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="16" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccntvr0_reg_t;
+
+#define RCS_ETMB_TRCCNTVR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCNTVR0_RD_MASK (0x0000ffffU)
+#define RCS_ETMB_TRCCNTVR0_WR_MASK (0x0000ffffU)
+
+
+///< Contains the count value of counter.
+#define RCS_ETMB_TRCCNTVR0_VAL_BF_OFF ( 0)
+#define RCS_ETMB_TRCCNTVR0_VAL_BF_WID (16)
+#define RCS_ETMB_TRCCNTVR0_VAL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCCNTVR0_VAL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR8 register description at address offset 0x180
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR8
+  * TRCIDR8 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCIDR8 : 32;
+    ///< ID Register 8.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr8_reg_t;
+
+#define RCS_ETMB_TRCIDR8_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIDR8_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR8_WR_MASK (0x00000000U)
+
+
+///< ID Register 8.
+#define RCS_ETMB_TRCIDR8_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR8_BF_WID (32)
+#define RCS_ETMB_TRCIDR8_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCIDR8_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR9 register description at address offset 0x184
+  *
+  * Register default value:        0x00000002
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR9
+  * TRCIDR9 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t NUMP0KEY : 32;
+    ///< Number of P0 right-hand keys that the trace unit can use.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x2"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr9_reg_t;
+
+#define RCS_ETMB_TRCIDR9_DEFAULT (0x00000002U)
+#define RCS_ETMB_TRCIDR9_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR9_WR_MASK (0x00000000U)
+
+
+///< Number of P0 right-hand keys that the trace unit can use.
+#define RCS_ETMB_TRCIDR9_NUMP0KEY_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR9_NUMP0KEY_BF_WID (32)
+#define RCS_ETMB_TRCIDR9_NUMP0KEY_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCIDR9_NUMP0KEY_BF_DEF (0x00000002)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR10 register description at address offset 0x188
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR10
+  * TRCIDR10 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t NUMP1KEY : 32;
+    ///< Number of P1 right-hand keys that the trace unit can use. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr10_reg_t;
+
+#define RCS_ETMB_TRCIDR10_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIDR10_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR10_WR_MASK (0x00000000U)
+
+
+///< Number of P1 right-hand keys that the trace unit can use. Not supported.
+#define RCS_ETMB_TRCIDR10_NUMP1KEY_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR10_NUMP1KEY_BF_WID (32)
+#define RCS_ETMB_TRCIDR10_NUMP1KEY_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCIDR10_NUMP1KEY_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR11 register description at address offset 0x18c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR11
+  * TRCIDR11 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCIDR11 : 32;
+    ///< ID Register 11.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr11_reg_t;
+
+#define RCS_ETMB_TRCIDR11_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIDR11_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR11_WR_MASK (0x00000000U)
+
+
+///< ID Register 11.
+#define RCS_ETMB_TRCIDR11_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR11_BF_WID (32)
+#define RCS_ETMB_TRCIDR11_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCIDR11_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR12 register description at address offset 0x190
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR12
+  * TRCIDR12 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCIDR12 : 32;
+    ///< ID Register 12.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr12_reg_t;
+
+#define RCS_ETMB_TRCIDR12_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIDR12_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR12_WR_MASK (0x00000000U)
+
+
+///< ID Register 12.
+#define RCS_ETMB_TRCIDR12_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR12_BF_WID (32)
+#define RCS_ETMB_TRCIDR12_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCIDR12_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR13 register description at address offset 0x194
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR13
+  * TRCIDR13 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCIDR13 : 32;
+    ///< ID Register 13.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr13_reg_t;
+
+#define RCS_ETMB_TRCIDR13_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIDR13_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR13_WR_MASK (0x00000000U)
+
+
+///< ID Register 13.
+#define RCS_ETMB_TRCIDR13_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR13_BF_WID (32)
+#define RCS_ETMB_TRCIDR13_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCIDR13_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIMSPEC0 register description at address offset 0x1c0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIMSPEC0
+  * TRCIMSPEC0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SUPPORT : 4;
+    ///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+    ///< features. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t EN : 4;
+    ///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcimspec0_reg_t;
+
+#define RCS_ETMB_TRCIMSPEC0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIMSPEC0_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCIMSPEC0_WR_MASK (0x00000000U)
+
+
+///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+///< features. Not supported.
+#define RCS_ETMB_TRCIMSPEC0_SUPPORT_BF_OFF ( 0)
+#define RCS_ETMB_TRCIMSPEC0_SUPPORT_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC0_SUPPORT_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIMSPEC0_SUPPORT_BF_DEF (0x00000000)
+
+///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+///< Not supported.
+#define RCS_ETMB_TRCIMSPEC0_EN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIMSPEC0_EN_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC0_EN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIMSPEC0_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIMSPEC1 register description at address offset 0x1c4
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIMSPEC1
+  * TRCIMSPEC1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SUPPORT : 4;
+    ///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+    ///< features. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t EN : 4;
+    ///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcimspec1_reg_t;
+
+#define RCS_ETMB_TRCIMSPEC1_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIMSPEC1_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCIMSPEC1_WR_MASK (0x00000000U)
+
+
+///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+///< features. Not supported.
+#define RCS_ETMB_TRCIMSPEC1_SUPPORT_BF_OFF ( 0)
+#define RCS_ETMB_TRCIMSPEC1_SUPPORT_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC1_SUPPORT_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIMSPEC1_SUPPORT_BF_DEF (0x00000000)
+
+///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+///< Not supported.
+#define RCS_ETMB_TRCIMSPEC1_EN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIMSPEC1_EN_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC1_EN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIMSPEC1_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIMSPEC2 register description at address offset 0x1c8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIMSPEC2
+  * TRCIMSPEC2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SUPPORT : 4;
+    ///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+    ///< features. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t EN : 4;
+    ///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcimspec2_reg_t;
+
+#define RCS_ETMB_TRCIMSPEC2_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIMSPEC2_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCIMSPEC2_WR_MASK (0x00000000U)
+
+
+///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+///< features. Not supported.
+#define RCS_ETMB_TRCIMSPEC2_SUPPORT_BF_OFF ( 0)
+#define RCS_ETMB_TRCIMSPEC2_SUPPORT_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC2_SUPPORT_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIMSPEC2_SUPPORT_BF_DEF (0x00000000)
+
+///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+///< Not supported.
+#define RCS_ETMB_TRCIMSPEC2_EN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIMSPEC2_EN_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC2_EN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIMSPEC2_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIMSPEC3 register description at address offset 0x1cc
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIMSPEC3
+  * TRCIMSPEC3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SUPPORT : 4;
+    ///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+    ///< features. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t EN : 4;
+    ///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcimspec3_reg_t;
+
+#define RCS_ETMB_TRCIMSPEC3_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIMSPEC3_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCIMSPEC3_WR_MASK (0x00000000U)
+
+
+///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+///< features. Not supported.
+#define RCS_ETMB_TRCIMSPEC3_SUPPORT_BF_OFF ( 0)
+#define RCS_ETMB_TRCIMSPEC3_SUPPORT_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC3_SUPPORT_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIMSPEC3_SUPPORT_BF_DEF (0x00000000)
+
+///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+///< Not supported.
+#define RCS_ETMB_TRCIMSPEC3_EN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIMSPEC3_EN_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC3_EN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIMSPEC3_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIMSPEC4 register description at address offset 0x1d0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIMSPEC4
+  * TRCIMSPEC4 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SUPPORT : 4;
+    ///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+    ///< features. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t EN : 4;
+    ///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcimspec4_reg_t;
+
+#define RCS_ETMB_TRCIMSPEC4_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIMSPEC4_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCIMSPEC4_WR_MASK (0x00000000U)
+
+
+///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+///< features. Not supported.
+#define RCS_ETMB_TRCIMSPEC4_SUPPORT_BF_OFF ( 0)
+#define RCS_ETMB_TRCIMSPEC4_SUPPORT_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC4_SUPPORT_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIMSPEC4_SUPPORT_BF_DEF (0x00000000)
+
+///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+///< Not supported.
+#define RCS_ETMB_TRCIMSPEC4_EN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIMSPEC4_EN_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC4_EN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIMSPEC4_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIMSPEC5 register description at address offset 0x1d4
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIMSPEC5
+  * TRCIMSPEC5 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SUPPORT : 4;
+    ///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+    ///< features. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t EN : 4;
+    ///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcimspec5_reg_t;
+
+#define RCS_ETMB_TRCIMSPEC5_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIMSPEC5_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCIMSPEC5_WR_MASK (0x00000000U)
+
+
+///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+///< features. Not supported.
+#define RCS_ETMB_TRCIMSPEC5_SUPPORT_BF_OFF ( 0)
+#define RCS_ETMB_TRCIMSPEC5_SUPPORT_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC5_SUPPORT_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIMSPEC5_SUPPORT_BF_DEF (0x00000000)
+
+///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+///< Not supported.
+#define RCS_ETMB_TRCIMSPEC5_EN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIMSPEC5_EN_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC5_EN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIMSPEC5_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIMSPEC6 register description at address offset 0x1d8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIMSPEC6
+  * TRCIMSPEC6 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SUPPORT : 4;
+    ///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+    ///< features. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t EN : 4;
+    ///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcimspec6_reg_t;
+
+#define RCS_ETMB_TRCIMSPEC6_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIMSPEC6_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCIMSPEC6_WR_MASK (0x00000000U)
+
+
+///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+///< features. Not supported.
+#define RCS_ETMB_TRCIMSPEC6_SUPPORT_BF_OFF ( 0)
+#define RCS_ETMB_TRCIMSPEC6_SUPPORT_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC6_SUPPORT_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIMSPEC6_SUPPORT_BF_DEF (0x00000000)
+
+///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+///< Not supported.
+#define RCS_ETMB_TRCIMSPEC6_EN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIMSPEC6_EN_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC6_EN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIMSPEC6_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIMSPEC7 register description at address offset 0x1dc
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIMSPEC7
+  * TRCIMSPEC7 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SUPPORT : 4;
+    ///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+    ///< features. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t EN : 4;
+    ///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcimspec7_reg_t;
+
+#define RCS_ETMB_TRCIMSPEC7_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIMSPEC7_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCIMSPEC7_WR_MASK (0x00000000U)
+
+
+///< Indicates whether the implementation supports IMPLEMENTATION DEFINED
+///< features. Not supported.
+#define RCS_ETMB_TRCIMSPEC7_SUPPORT_BF_OFF ( 0)
+#define RCS_ETMB_TRCIMSPEC7_SUPPORT_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC7_SUPPORT_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIMSPEC7_SUPPORT_BF_DEF (0x00000000)
+
+///< Controls whether the IMPLEMENTATION DEFINED features are enabled.
+///< Not supported.
+#define RCS_ETMB_TRCIMSPEC7_EN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIMSPEC7_EN_BF_WID ( 4)
+#define RCS_ETMB_TRCIMSPEC7_EN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIMSPEC7_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR0 register description at address offset 0x1e0
+  *
+  * Register default value:        0x28000CA1
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR0
+  * TRCIDR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RESERVED : 1;
+    ///< Reserved. Must be '0x1'
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x1"
+    uint32_t INSTP0 : 2;
+    ///< P0 tracing support field: '00' tracing of load and store instructions
+    ///< is not supported; '11' tracing of load and store instructions is supported.
+    ///< AccessType="RO" BitOffset="1" ResetValue="0x0"
+    uint32_t TRCDATA : 2;
+    ///< Data tracing support field: '00' data tracing is not supported; '11'
+    ///< tracing of data addresses and data values is suppported.
+    ///< AccessType="RO" BitOffset="3" ResetValue="0x0"
+    uint32_t TRCBB : 1;
+    ///< Branch broadcast tracing support bit: '0' branch broadcast tracing
+    ///< is not supported; '1' branch broadcast tracing is supported, the target
+    ///< address of a direct branch is explicitly traced using an Address element.
+    ///< AccessType="RO" BitOffset="5" ResetValue="0x1"
+    uint32_t TRCCOND : 1;
+    ///< Conditional instruction tracing support bit. Not supported.
+    ///< AccessType="RO" BitOffset="6" ResetValue="0x0"
+    uint32_t TRCCCI : 1;
+    ///< Cycle counting instruction bit: '0' Cycle counting in the instruction
+    ///< trace is not implemented; '1' Cycle counting in the instruction trace
+    ///< is implemented.
+    ///< AccessType="RO" BitOffset="7" ResetValue="0x1"
+    uint32_t UNUSED_A : 1;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t RETSTACK : 1;
+    ///< Return stack bit. Indicates if the implementation support a return
+    ///< stack. Not supported.
+    ///< AccessType="RO" BitOffset="9" ResetValue="0x0"
+    uint32_t NUMEVENT : 2;
+    ///< Number of event fields: '00' the trace unit supports 1 event; '01'
+    ///< 2 events; '10' 3 events; '11' 4 events.
+    ///< AccessType="RO" BitOffset="10" ResetValue="0x3"
+    uint32_t CONDTYPE : 2;
+    ///< Conditional tracing field. Not supported.
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t QFILT : 1;
+    ///< Q element filtering support field. Not supported.
+    ///< AccessType="RO" BitOffset="14" ResetValue="0x0"
+    uint32_t QSUPP : 2;
+    ///< Q element support field. Not supported.
+    ///< AccessType="RO" BitOffset="15" ResetValue="0x0"
+    uint32_t TRCEXDATA : 1;
+    ///< Indicates support for the tracing of data transfers for exceptions
+    ///< and exception returns. Not supported.
+    ///< AccessType="RO" BitOffset="17" ResetValue="0x0"
+    uint32_t UNUSED_B : 6;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="18" ResetValue="0x0"
+    uint32_t TSSIZE : 5;
+    ///< Global timestamp size field: '0x0' not supported; '0x6' 48 bits; '0x8'
+    ///< 64 bits.
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x8"
+    uint32_t COMMOPT : 1;
+    ///< Commit mode field. Only commit mode '1' supported, i.e. no commit
+    ///< field in cycle count packet
+    ///< AccessType="RO" BitOffset="29" ResetValue="0x1"
+    uint32_t  : 2;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="30" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr0_reg_t;
+
+#define RCS_ETMB_TRCIDR0_DEFAULT (0x28000ca1U)
+#define RCS_ETMB_TRCIDR0_RD_MASK (0x3fffffffU)
+#define RCS_ETMB_TRCIDR0_WR_MASK (0x00000000U)
+
+
+///< Reserved. Must be '0x1'
+#define RCS_ETMB_TRCIDR0_RESERVED_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR0_RESERVED_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_RESERVED_BF_MSK (0x00000001)
+#define RCS_ETMB_TRCIDR0_RESERVED_BF_DEF (0x00000001)
+
+///< P0 tracing support field: '00' tracing of load and store instructions
+///< is not supported; '11' tracing of load and store instructions is supported.
+#define RCS_ETMB_TRCIDR0_INSTP0_BF_OFF ( 1)
+#define RCS_ETMB_TRCIDR0_INSTP0_BF_WID ( 2)
+#define RCS_ETMB_TRCIDR0_INSTP0_BF_MSK (0x00000006)
+#define RCS_ETMB_TRCIDR0_INSTP0_BF_DEF (0x00000000)
+
+///< Data tracing support field: '00' data tracing is not supported; '11'
+///< tracing of data addresses and data values is suppported.
+#define RCS_ETMB_TRCIDR0_TRCDATA_BF_OFF ( 3)
+#define RCS_ETMB_TRCIDR0_TRCDATA_BF_WID ( 2)
+#define RCS_ETMB_TRCIDR0_TRCDATA_BF_MSK (0x00000018)
+#define RCS_ETMB_TRCIDR0_TRCDATA_BF_DEF (0x00000000)
+
+///< Branch broadcast tracing support bit: '0' branch broadcast tracing
+///< is not supported; '1' branch broadcast tracing is supported, the target
+///< address of a direct branch is explicitly traced using an Address element.
+#define RCS_ETMB_TRCIDR0_TRCBB_BF_OFF ( 5)
+#define RCS_ETMB_TRCIDR0_TRCBB_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_TRCBB_BF_MSK (0x00000020)
+#define RCS_ETMB_TRCIDR0_TRCBB_BF_DEF (0x00000020)
+
+///< Conditional instruction tracing support bit. Not supported.
+#define RCS_ETMB_TRCIDR0_TRCCOND_BF_OFF ( 6)
+#define RCS_ETMB_TRCIDR0_TRCCOND_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_TRCCOND_BF_MSK (0x00000040)
+#define RCS_ETMB_TRCIDR0_TRCCOND_BF_DEF (0x00000000)
+
+///< Cycle counting instruction bit: '0' Cycle counting in the instruction
+///< trace is not implemented; '1' Cycle counting in the instruction trace
+///< is implemented.
+#define RCS_ETMB_TRCIDR0_TRCCCI_BF_OFF ( 7)
+#define RCS_ETMB_TRCIDR0_TRCCCI_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_TRCCCI_BF_MSK (0x00000080)
+#define RCS_ETMB_TRCIDR0_TRCCCI_BF_DEF (0x00000080)
+
+///< Unused
+#define RCS_ETMB_TRCIDR0_UNUSED_A_BF_OFF ( 8)
+#define RCS_ETMB_TRCIDR0_UNUSED_A_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_UNUSED_A_BF_MSK (0x00000100)
+#define RCS_ETMB_TRCIDR0_UNUSED_A_BF_DEF (0x00000000)
+
+///< Return stack bit. Indicates if the implementation support a return
+///< stack. Not supported.
+#define RCS_ETMB_TRCIDR0_RETSTACK_BF_OFF ( 9)
+#define RCS_ETMB_TRCIDR0_RETSTACK_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_RETSTACK_BF_MSK (0x00000200)
+#define RCS_ETMB_TRCIDR0_RETSTACK_BF_DEF (0x00000000)
+
+///< Number of event fields: '00' the trace unit supports 1 event; '01'
+///< 2 events; '10' 3 events; '11' 4 events.
+#define RCS_ETMB_TRCIDR0_NUMEVENT_BF_OFF (10)
+#define RCS_ETMB_TRCIDR0_NUMEVENT_BF_WID ( 2)
+#define RCS_ETMB_TRCIDR0_NUMEVENT_BF_MSK (0x00000C00)
+#define RCS_ETMB_TRCIDR0_NUMEVENT_BF_DEF (0x00000C00)
+
+///< Conditional tracing field. Not supported.
+#define RCS_ETMB_TRCIDR0_CONDTYPE_BF_OFF (12)
+#define RCS_ETMB_TRCIDR0_CONDTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCIDR0_CONDTYPE_BF_MSK (0x00003000)
+#define RCS_ETMB_TRCIDR0_CONDTYPE_BF_DEF (0x00000000)
+
+///< Q element filtering support field. Not supported.
+#define RCS_ETMB_TRCIDR0_QFILT_BF_OFF (14)
+#define RCS_ETMB_TRCIDR0_QFILT_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_QFILT_BF_MSK (0x00004000)
+#define RCS_ETMB_TRCIDR0_QFILT_BF_DEF (0x00000000)
+
+///< Q element support field. Not supported.
+#define RCS_ETMB_TRCIDR0_QSUPP_BF_OFF (15)
+#define RCS_ETMB_TRCIDR0_QSUPP_BF_WID ( 2)
+#define RCS_ETMB_TRCIDR0_QSUPP_BF_MSK (0x00018000)
+#define RCS_ETMB_TRCIDR0_QSUPP_BF_DEF (0x00000000)
+
+///< Indicates support for the tracing of data transfers for exceptions
+///< and exception returns. Not supported.
+#define RCS_ETMB_TRCIDR0_TRCEXDATA_BF_OFF (17)
+#define RCS_ETMB_TRCIDR0_TRCEXDATA_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_TRCEXDATA_BF_MSK (0x00020000)
+#define RCS_ETMB_TRCIDR0_TRCEXDATA_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCIDR0_UNUSED_B_BF_OFF (18)
+#define RCS_ETMB_TRCIDR0_UNUSED_B_BF_WID ( 6)
+#define RCS_ETMB_TRCIDR0_UNUSED_B_BF_MSK (0x00FC0000)
+#define RCS_ETMB_TRCIDR0_UNUSED_B_BF_DEF (0x00000000)
+
+///< Global timestamp size field: '0x0' not supported; '0x6' 48 bits; '0x8'
+///< 64 bits.
+#define RCS_ETMB_TRCIDR0_TSSIZE_BF_OFF (24)
+#define RCS_ETMB_TRCIDR0_TSSIZE_BF_WID ( 5)
+#define RCS_ETMB_TRCIDR0_TSSIZE_BF_MSK (0x1F000000)
+#define RCS_ETMB_TRCIDR0_TSSIZE_BF_DEF (0x08000000)
+
+///< Commit mode field. Only commit mode '1' supported, i.e. no commit
+///< field in cycle count packet
+#define RCS_ETMB_TRCIDR0_COMMOPT_BF_OFF (29)
+#define RCS_ETMB_TRCIDR0_COMMOPT_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR0_COMMOPT_BF_MSK (0x20000000)
+#define RCS_ETMB_TRCIDR0_COMMOPT_BF_DEF (0x20000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR1 register description at address offset 0x1e4
+  *
+  * Register default value:        0x6900F400
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR1
+  * TRCIDR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t REVISION : 4;
+    ///< Returns an IMPLEMENTATION DEFINED value that identifies the revision
+    ///< of the trace registers or the OS Lock registers.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t TRCARCHMIN : 4;
+    ///< Minor version number of the trace unit architecture. Only '0x0' for
+    ///< ETMv4.0 is supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t TRCARCHMAJ : 4;
+    ///< Major version number of the trace unit architecture. Only '0x4' for
+    ///< ETMv4.0 is supported.
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x4"
+    uint32_t RESERVED : 4;
+    ///< Reserved. Must be '0xF'
+    ///< AccessType="RO" BitOffset="12" ResetValue="0xF"
+    uint32_t UNUSED : 8;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t DESIGNER : 8;
+    ///< Indicates which company designed the trace unit. The permitted value
+    ///< is: 0x69 Intel Corporation.
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x69"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr1_reg_t;
+
+#define RCS_ETMB_TRCIDR1_DEFAULT (0x6900f400U)
+#define RCS_ETMB_TRCIDR1_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR1_WR_MASK (0x00000000U)
+
+
+///< Returns an IMPLEMENTATION DEFINED value that identifies the revision
+///< of the trace registers or the OS Lock registers.
+#define RCS_ETMB_TRCIDR1_REVISION_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR1_REVISION_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR1_REVISION_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIDR1_REVISION_BF_DEF (0x00000000)
+
+///< Minor version number of the trace unit architecture. Only '0x0' for
+///< ETMv4.0 is supported.
+#define RCS_ETMB_TRCIDR1_TRCARCHMIN_BF_OFF ( 4)
+#define RCS_ETMB_TRCIDR1_TRCARCHMIN_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR1_TRCARCHMIN_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIDR1_TRCARCHMIN_BF_DEF (0x00000000)
+
+///< Major version number of the trace unit architecture. Only '0x4' for
+///< ETMv4.0 is supported.
+#define RCS_ETMB_TRCIDR1_TRCARCHMAJ_BF_OFF ( 8)
+#define RCS_ETMB_TRCIDR1_TRCARCHMAJ_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR1_TRCARCHMAJ_BF_MSK (0x00000F00)
+#define RCS_ETMB_TRCIDR1_TRCARCHMAJ_BF_DEF (0x00000400)
+
+///< Reserved. Must be '0xF'
+#define RCS_ETMB_TRCIDR1_RESERVED_BF_OFF (12)
+#define RCS_ETMB_TRCIDR1_RESERVED_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR1_RESERVED_BF_MSK (0x0000F000)
+#define RCS_ETMB_TRCIDR1_RESERVED_BF_DEF (0x0000F000)
+
+///< Unused
+#define RCS_ETMB_TRCIDR1_UNUSED_BF_OFF (16)
+#define RCS_ETMB_TRCIDR1_UNUSED_BF_WID ( 8)
+#define RCS_ETMB_TRCIDR1_UNUSED_BF_MSK (0x00FF0000)
+#define RCS_ETMB_TRCIDR1_UNUSED_BF_DEF (0x00000000)
+
+///< Indicates which company designed the trace unit. The permitted value
+///< is: 0x69 Intel Corporation.
+#define RCS_ETMB_TRCIDR1_DESIGNER_BF_OFF (24)
+#define RCS_ETMB_TRCIDR1_DESIGNER_BF_WID ( 8)
+#define RCS_ETMB_TRCIDR1_DESIGNER_BF_MSK (0xFF000000)
+#define RCS_ETMB_TRCIDR1_DESIGNER_BF_DEF (0x69000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR2 register description at address offset 0x1e8
+  *
+  * Register default value:        0x04000084
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR2
+  * TRCIDR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t IASIZE : 5;
+    ///< Instruction address size. Only '0x4' for maximum of 32 bit address
+    ///< size supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x4"
+    uint32_t CIDSIZE : 5;
+    ///< Context ID size in bytes: '0x0' context ID not supported; '0x4' maximum
+    ///< of 32 bit context ID size.
+    ///< AccessType="RO" BitOffset="5" ResetValue="0x4"
+    uint32_t VMIDSIZE : 5;
+    ///< Virtual context identifier size. Only '0x0' for VMID tracing not supported
+    ///< is valid.
+    ///< AccessType="RO" BitOffset="10" ResetValue="0x0"
+    uint32_t DASIZE : 5;
+    ///< Data address size in bytes: '0x0' data address tracing not supported;
+    ///< '0x4' maximum of 32 bit data address size; '0x8' maximum of 64 bit
+    ///< data address size.
+    ///< AccessType="RO" BitOffset="15" ResetValue="0x0"
+    uint32_t DVSIZE : 5;
+    ///< Data value size in bytes: '0x0' data value tracing not supported;
+    ///< '0x4' maximum of 32 bit data value size; '0x8' maximum of 64 bit data
+    ///< value size.
+    ///< AccessType="RO" BitOffset="20" ResetValue="0x0"
+    uint32_t CCSIZE : 4;
+    ///< Size of the cycle counter in bits minus 12.
+    ///< AccessType="RO" BitOffset="25" ResetValue="0x2"
+    uint32_t VMIDOPT : 2;
+    ///< Indicates the options for observing the Virtual context identifier
+    ///< in the PE. Only '0x0' for not supported is valid.
+    ///< AccessType="RO" BitOffset="29" ResetValue="0x0"
+    uint32_t  : 1;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="31" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr2_reg_t;
+
+#define RCS_ETMB_TRCIDR2_DEFAULT (0x04000084U)
+#define RCS_ETMB_TRCIDR2_RD_MASK (0x7fffffffU)
+#define RCS_ETMB_TRCIDR2_WR_MASK (0x00000000U)
+
+
+///< Instruction address size. Only '0x4' for maximum of 32 bit address
+///< size supported.
+#define RCS_ETMB_TRCIDR2_IASIZE_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR2_IASIZE_BF_WID ( 5)
+#define RCS_ETMB_TRCIDR2_IASIZE_BF_MSK (0x0000001F)
+#define RCS_ETMB_TRCIDR2_IASIZE_BF_DEF (0x00000004)
+
+///< Context ID size in bytes: '0x0' context ID not supported; '0x4' maximum
+///< of 32 bit context ID size.
+#define RCS_ETMB_TRCIDR2_CIDSIZE_BF_OFF ( 5)
+#define RCS_ETMB_TRCIDR2_CIDSIZE_BF_WID ( 5)
+#define RCS_ETMB_TRCIDR2_CIDSIZE_BF_MSK (0x000003E0)
+#define RCS_ETMB_TRCIDR2_CIDSIZE_BF_DEF (0x00000080)
+
+///< Virtual context identifier size. Only '0x0' for VMID tracing not supported
+///< is valid.
+#define RCS_ETMB_TRCIDR2_VMIDSIZE_BF_OFF (10)
+#define RCS_ETMB_TRCIDR2_VMIDSIZE_BF_WID ( 5)
+#define RCS_ETMB_TRCIDR2_VMIDSIZE_BF_MSK (0x00007C00)
+#define RCS_ETMB_TRCIDR2_VMIDSIZE_BF_DEF (0x00000000)
+
+///< Data address size in bytes: '0x0' data address tracing not supported;
+///< '0x4' maximum of 32 bit data address size; '0x8' maximum of 64 bit
+///< data address size.
+#define RCS_ETMB_TRCIDR2_DASIZE_BF_OFF (15)
+#define RCS_ETMB_TRCIDR2_DASIZE_BF_WID ( 5)
+#define RCS_ETMB_TRCIDR2_DASIZE_BF_MSK (0x000F8000)
+#define RCS_ETMB_TRCIDR2_DASIZE_BF_DEF (0x00000000)
+
+///< Data value size in bytes: '0x0' data value tracing not supported;
+///< '0x4' maximum of 32 bit data value size; '0x8' maximum of 64 bit data
+///< value size.
+#define RCS_ETMB_TRCIDR2_DVSIZE_BF_OFF (20)
+#define RCS_ETMB_TRCIDR2_DVSIZE_BF_WID ( 5)
+#define RCS_ETMB_TRCIDR2_DVSIZE_BF_MSK (0x01F00000)
+#define RCS_ETMB_TRCIDR2_DVSIZE_BF_DEF (0x00000000)
+
+///< Size of the cycle counter in bits minus 12.
+#define RCS_ETMB_TRCIDR2_CCSIZE_BF_OFF (25)
+#define RCS_ETMB_TRCIDR2_CCSIZE_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR2_CCSIZE_BF_MSK (0x1E000000)
+#define RCS_ETMB_TRCIDR2_CCSIZE_BF_DEF (0x04000000)
+
+///< Indicates the options for observing the Virtual context identifier
+///< in the PE. Only '0x0' for not supported is valid.
+#define RCS_ETMB_TRCIDR2_VMIDOPT_BF_OFF (29)
+#define RCS_ETMB_TRCIDR2_VMIDOPT_BF_WID ( 2)
+#define RCS_ETMB_TRCIDR2_VMIDOPT_BF_MSK (0x60000000)
+#define RCS_ETMB_TRCIDR2_VMIDOPT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR3 register description at address offset 0x1ec
+  *
+  * Register default value:        0x8C000001
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR3
+  * TRCIDR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CCITMIN : 12;
+    ///< Indicates the minimum value that can be programmed in TRCCCCTLR.THRESHOLD.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x1"
+    uint32_t NUMPROC : 2;
+    ///< Indicates the number of PEs available for tracing. Only '0x0' for
+    ///< one PE is supported.
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t UNUSED : 2;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="14" ResetValue="0x0"
+    uint32_t EXLEVEL_S : 4;
+    ///< In Secure state, each bit indicates whether instruction tracing is
+    ///< supported for the corresponding Exception level. Not supported.
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t EXLEVEL_NS : 4;
+    ///< In Non-secure state, each bit indicates whether instruction tracing
+    ///< is supported for the corresponding Exception level. Not supported.
+    ///< AccessType="RO" BitOffset="20" ResetValue="0x0"
+    uint32_t TRCERR : 1;
+    ///< Indicates if TRCVICTLR.TRCERR is supported. Not supported.
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x0"
+    uint32_t SYNCPR : 1;
+    ///< Indicates if an implementation has a fixed synchronization period:
+    ///< '0' TRCSYNCPR is read-write so software can change the synchronization
+    ///< period. '1' TRCSYNCPR is read-only so the synchronization period is
+    ///< fixed.
+    ///< AccessType="RO" BitOffset="25" ResetValue="0x0"
+    uint32_t STALLCTL : 1;
+    ///< Indicates if TRCSTALLCTLR is supported: '0' not supported; '1' supported.
+    ///< AccessType="RO" BitOffset="26" ResetValue="0x1"
+    uint32_t SYSSTALL : 1;
+    ///< Indicates if the implementation can support stall control: '0' The
+    ///< system does not support stall control of the PE. '1' The system can
+    ///< support stall control of the PE.
+    ///< AccessType="RO" BitOffset="27" ResetValue="0x1"
+    uint32_t NUMPROCH : 3;
+    ///< Indicates the number of PEs available for tracing. Only '0x0' for
+    ///< one PE is supported.
+    ///< AccessType="RO" BitOffset="28" ResetValue="0x0"
+    uint32_t NOOVERFLOW : 1;
+    ///< Indicates if TRCSTALLCTLR.NOOVERFLOW is supported: '0' not supported;
+    ///< '1' supported.
+    ///< AccessType="RO" BitOffset="31" ResetValue="0x1"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr3_reg_t;
+
+#define RCS_ETMB_TRCIDR3_DEFAULT (0x8c000001U)
+#define RCS_ETMB_TRCIDR3_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR3_WR_MASK (0x00000000U)
+
+
+///< Indicates the minimum value that can be programmed in TRCCCCTLR.THRESHOLD.
+#define RCS_ETMB_TRCIDR3_CCITMIN_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR3_CCITMIN_BF_WID (12)
+#define RCS_ETMB_TRCIDR3_CCITMIN_BF_MSK (0x00000FFF)
+#define RCS_ETMB_TRCIDR3_CCITMIN_BF_DEF (0x00000001)
+
+///< Indicates the number of PEs available for tracing. Only '0x0' for
+///< one PE is supported.
+#define RCS_ETMB_TRCIDR3_NUMPROC_BF_OFF (12)
+#define RCS_ETMB_TRCIDR3_NUMPROC_BF_WID ( 2)
+#define RCS_ETMB_TRCIDR3_NUMPROC_BF_MSK (0x00003000)
+#define RCS_ETMB_TRCIDR3_NUMPROC_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCIDR3_UNUSED_BF_OFF (14)
+#define RCS_ETMB_TRCIDR3_UNUSED_BF_WID ( 2)
+#define RCS_ETMB_TRCIDR3_UNUSED_BF_MSK (0x0000C000)
+#define RCS_ETMB_TRCIDR3_UNUSED_BF_DEF (0x00000000)
+
+///< In Secure state, each bit indicates whether instruction tracing is
+///< supported for the corresponding Exception level. Not supported.
+#define RCS_ETMB_TRCIDR3_EXLVL_S_BF_OFF (16)
+#define RCS_ETMB_TRCIDR3_EXLVL_S_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR3_EXLVL_S_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCIDR3_EXLVL_S_BF_DEF (0x00000000)
+
+///< In Non-secure state, each bit indicates whether instruction tracing
+///< is supported for the corresponding Exception level. Not supported.
+#define RCS_ETMB_TRCIDR3_EXLVL_NS_BF_OFF (20)
+#define RCS_ETMB_TRCIDR3_EXLVL_NS_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR3_EXLVL_NS_BF_MSK (0x00F00000)
+#define RCS_ETMB_TRCIDR3_EXLVL_NS_BF_DEF (0x00000000)
+
+///< Indicates if TRCVICTLR.TRCERR is supported. Not supported.
+#define RCS_ETMB_TRCIDR3_TRCERR_BF_OFF (24)
+#define RCS_ETMB_TRCIDR3_TRCERR_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR3_TRCERR_BF_MSK (0x01000000)
+#define RCS_ETMB_TRCIDR3_TRCERR_BF_DEF (0x00000000)
+
+///< Indicates if an implementation has a fixed synchronization period:
+///< '0' TRCSYNCPR is read-write so software can change the synchronization
+///< period. '1' TRCSYNCPR is read-only so the synchronization period is
+///< fixed.
+#define RCS_ETMB_TRCIDR3_SYNCPR_BF_OFF (25)
+#define RCS_ETMB_TRCIDR3_SYNCPR_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR3_SYNCPR_BF_MSK (0x02000000)
+#define RCS_ETMB_TRCIDR3_SYNCPR_BF_DEF (0x00000000)
+
+///< Indicates if TRCSTALLCTLR is supported: '0' not supported; '1' supported.
+#define RCS_ETMB_TRCIDR3_STALLCTL_BF_OFF (26)
+#define RCS_ETMB_TRCIDR3_STALLCTL_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR3_STALLCTL_BF_MSK (0x04000000)
+#define RCS_ETMB_TRCIDR3_STALLCTL_BF_DEF (0x04000000)
+
+///< Indicates if the implementation can support stall control: '0' The
+///< system does not support stall control of the PE. '1' The system can
+///< support stall control of the PE.
+#define RCS_ETMB_TRCIDR3_SYSSTALL_BF_OFF (27)
+#define RCS_ETMB_TRCIDR3_SYSSTALL_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR3_SYSSTALL_BF_MSK (0x08000000)
+#define RCS_ETMB_TRCIDR3_SYSSTALL_BF_DEF (0x08000000)
+
+///< Indicates the number of PEs available for tracing. Only '0x0' for
+///< one PE is supported.
+#define RCS_ETMB_TRCIDR3_NUMPROCH_BF_OFF (28)
+#define RCS_ETMB_TRCIDR3_NUMPROCH_BF_WID ( 3)
+#define RCS_ETMB_TRCIDR3_NUMPROCH_BF_MSK (0x70000000)
+#define RCS_ETMB_TRCIDR3_NUMPROCH_BF_DEF (0x00000000)
+
+///< Indicates if TRCSTALLCTLR.NOOVERFLOW is supported: '0' not supported;
+///< '1' supported.
+#define RCS_ETMB_TRCIDR3_NOOVERFLOW_BF_OFF (31)
+#define RCS_ETMB_TRCIDR3_NOOVERFLOW_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR3_NOOVERFLOW_BF_MSK (0x80000000)
+#define RCS_ETMB_TRCIDR3_NOOVERFLOW_BF_DEF (0x80000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR4 register description at address offset 0x1f0
+  *
+  * Register default value:        0x02050004
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR4
+  * TRCIDR4 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t NUMACPAIRS : 4;
+    ///< The number of address comparator pairs that are available for tracing.
+    ///< Permitted values are from '0x0' (none) to '0x8' (8 pairs).
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x4"
+    uint32_t NUMDVC : 4;
+    ///< The number of data value comparators that are available for tracing.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t SUPPDAC : 1;
+    ///< Indicates if the implementation can support data address comparisons:
+    ///< '0' the implementation does not support data address comparisons;
+    ///< '1' the implementation can support data address comparisons.
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t UNUSED : 3;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="9" ResetValue="0x0"
+    uint32_t NUMPC : 4;
+    ///< The number of PE comparator inputs that are available for tracing.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t NUMRSPAIR : 4;
+    ///< The number of resource selection pairs that are available for tracing.
+    ///< Permitted values are from '0x0' (one pair) to '0xF' (16 pairs).
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x5"
+    uint32_t NUMSSCC : 4;
+    ///< The number of single-shot comparator controls that are available for
+    ///< tracing. Not supported.
+    ///< AccessType="RO" BitOffset="20" ResetValue="0x0"
+    uint32_t NUMCIDC : 4;
+    ///< The number of Context ID comparators that are available for tracing.
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x2"
+    uint32_t NUMVMIDC : 4;
+    ///< The number of Virtual context identifier comparators that are available
+    ///< for tracing. Not supported.
+    ///< AccessType="RO" BitOffset="28" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr4_reg_t;
+
+#define RCS_ETMB_TRCIDR4_DEFAULT (0x02050004U)
+#define RCS_ETMB_TRCIDR4_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR4_WR_MASK (0x00000000U)
+
+
+///< The number of address comparator pairs that are available for tracing.
+///< Permitted values are from '0x0' (none) to '0x8' (8 pairs).
+#define RCS_ETMB_TRCIDR4_NUMACPAIRS_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR4_NUMACPAIRS_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR4_NUMACPAIRS_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCIDR4_NUMACPAIRS_BF_DEF (0x00000004)
+
+///< The number of data value comparators that are available for tracing.
+///< Not supported.
+#define RCS_ETMB_TRCIDR4_NUMDVC_BF_OFF ( 4)
+#define RCS_ETMB_TRCIDR4_NUMDVC_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR4_NUMDVC_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCIDR4_NUMDVC_BF_DEF (0x00000000)
+
+///< Indicates if the implementation can support data address comparisons:
+///< '0' the implementation does not support data address comparisons;
+///< '1' the implementation can support data address comparisons.
+#define RCS_ETMB_TRCIDR4_SUPPDAC_BF_OFF ( 8)
+#define RCS_ETMB_TRCIDR4_SUPPDAC_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR4_SUPPDAC_BF_MSK (0x00000100)
+#define RCS_ETMB_TRCIDR4_SUPPDAC_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCIDR4_UNUSED_BF_OFF ( 9)
+#define RCS_ETMB_TRCIDR4_UNUSED_BF_WID ( 3)
+#define RCS_ETMB_TRCIDR4_UNUSED_BF_MSK (0x00000E00)
+#define RCS_ETMB_TRCIDR4_UNUSED_BF_DEF (0x00000000)
+
+///< The number of PE comparator inputs that are available for tracing.
+///< Not supported.
+#define RCS_ETMB_TRCIDR4_NUMPC_BF_OFF (12)
+#define RCS_ETMB_TRCIDR4_NUMPC_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR4_NUMPC_BF_MSK (0x0000F000)
+#define RCS_ETMB_TRCIDR4_NUMPC_BF_DEF (0x00000000)
+
+///< The number of resource selection pairs that are available for tracing.
+///< Permitted values are from '0x0' (one pair) to '0xF' (16 pairs).
+#define RCS_ETMB_TRCIDR4_NUMRSPAIR_BF_OFF (16)
+#define RCS_ETMB_TRCIDR4_NUMRSPAIR_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR4_NUMRSPAIR_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCIDR4_NUMRSPAIR_BF_DEF (0x00050000)
+
+///< The number of single-shot comparator controls that are available for
+///< tracing. Not supported.
+#define RCS_ETMB_TRCIDR4_NUMSSCC_BF_OFF (20)
+#define RCS_ETMB_TRCIDR4_NUMSSCC_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR4_NUMSSCC_BF_MSK (0x00F00000)
+#define RCS_ETMB_TRCIDR4_NUMSSCC_BF_DEF (0x00000000)
+
+///< The number of Context ID comparators that are available for tracing.
+#define RCS_ETMB_TRCIDR4_NUMCIDC_BF_OFF (24)
+#define RCS_ETMB_TRCIDR4_NUMCIDC_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR4_NUMCIDC_BF_MSK (0x0F000000)
+#define RCS_ETMB_TRCIDR4_NUMCIDC_BF_DEF (0x02000000)
+
+///< The number of Virtual context identifier comparators that are available
+///< for tracing. Not supported.
+#define RCS_ETMB_TRCIDR4_NUMVMIDC_BF_OFF (28)
+#define RCS_ETMB_TRCIDR4_NUMVMIDC_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR4_NUMVMIDC_BF_MSK (0xF0000000)
+#define RCS_ETMB_TRCIDR4_NUMVMIDC_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR5 register description at address offset 0x1f4
+  *
+  * Register default value:        0x10070603
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR5
+  * TRCIDR5 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t NUMEXTIN : 9;
+    ///< Indicates how many external inputs are implemented. Permitted values
+    ///< are: from '0x0' (none) to '0x100' (256 external inputs).
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x3"
+    uint32_t NUMEXTINSEL : 3;
+    ///< Indicates how many external input select resources are implemented.
+    ///< The permitted values are: '0x0' (none) to '0x4' (4 external input
+    ///< select resources).
+    ///< AccessType="RO" BitOffset="9" ResetValue="0x3"
+    uint32_t UNUSED_A : 4;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t TRACEIDSIZE : 6;
+    ///< Indicates the trace ID width. The permitted value is: '0x07' a 7-bit
+    ///< trace ID. This defines the width of the TRCTRACEIDR.TRACEID field.
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x7"
+    uint32_t ATBTRIG : 1;
+    ///< Indicates if the implementation can support ATB triggers: '0' the
+    ///< implementation does not support ATB triggers; '1' the implementation
+    ///< supports ATB triggers. Not supported.
+    ///< AccessType="RO" BitOffset="22" ResetValue="0x0"
+    uint32_t LPOVERRIDE : 1;
+    ///< Indicates if the implementation can support low-power state override.
+    ///< Not supported.
+    ///< AccessType="RO" BitOffset="23" ResetValue="0x0"
+    uint32_t UNUSED_B : 1;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x0"
+    uint32_t NUMSEQSTATE : 3;
+    ///< The number of sequencer states that are implemented. Permitted values
+    ///< are: from '0x0' (none) to '0x4' (4 sequencer states).
+    ///< AccessType="RO" BitOffset="25" ResetValue="0x0"
+    uint32_t NUMCNTR : 3;
+    ///< The number of counters that are available for tracing. Permitted values
+    ///< are: from '0x0' (none) to '0x4' (4 counters).
+    ///< AccessType="RO" BitOffset="28" ResetValue="0x1"
+    uint32_t REDFUNCNTR : 1;
+    ///< Indicates if the reduced function counter is implemented. Not supported.
+    ///< AccessType="RO" BitOffset="31" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr5_reg_t;
+
+#define RCS_ETMB_TRCIDR5_DEFAULT (0x10070603U)
+#define RCS_ETMB_TRCIDR5_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR5_WR_MASK (0x00000000U)
+
+
+///< Indicates how many external inputs are implemented. Permitted values
+///< are: from '0x0' (none) to '0x100' (256 external inputs).
+#define RCS_ETMB_TRCIDR5_NUMEXTIN_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR5_NUMEXTIN_BF_WID ( 9)
+#define RCS_ETMB_TRCIDR5_NUMEXTIN_BF_MSK (0x000001FF)
+#define RCS_ETMB_TRCIDR5_NUMEXTIN_BF_DEF (0x00000003)
+
+///< Indicates how many external input select resources are implemented.
+///< The permitted values are: '0x0' (none) to '0x4' (4 external input
+///< select resources).
+#define RCS_ETMB_TRCIDR5_NUMEXTINSEL_BF_OFF ( 9)
+#define RCS_ETMB_TRCIDR5_NUMEXTINSEL_BF_WID ( 3)
+#define RCS_ETMB_TRCIDR5_NUMEXTINSEL_BF_MSK (0x00000E00)
+#define RCS_ETMB_TRCIDR5_NUMEXTINSEL_BF_DEF (0x00000600)
+
+///< Unused
+#define RCS_ETMB_TRCIDR5_UNUSED_A_BF_OFF (12)
+#define RCS_ETMB_TRCIDR5_UNUSED_A_BF_WID ( 4)
+#define RCS_ETMB_TRCIDR5_UNUSED_A_BF_MSK (0x0000F000)
+#define RCS_ETMB_TRCIDR5_UNUSED_A_BF_DEF (0x00000000)
+
+///< Indicates the trace ID width. The permitted value is: '0x07' a 7-bit
+///< trace ID. This defines the width of the TRCTRACEIDR.TRACEID field.
+#define RCS_ETMB_TRCIDR5_TRACEIDSIZE_BF_OFF (16)
+#define RCS_ETMB_TRCIDR5_TRACEIDSIZE_BF_WID ( 6)
+#define RCS_ETMB_TRCIDR5_TRACEIDSIZE_BF_MSK (0x003F0000)
+#define RCS_ETMB_TRCIDR5_TRACEIDSIZE_BF_DEF (0x00070000)
+
+///< Indicates if the implementation can support ATB triggers: '0' the
+///< implementation does not support ATB triggers; '1' the implementation
+///< supports ATB triggers. Not supported.
+#define RCS_ETMB_TRCIDR5_ATBTRIG_BF_OFF (22)
+#define RCS_ETMB_TRCIDR5_ATBTRIG_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR5_ATBTRIG_BF_MSK (0x00400000)
+#define RCS_ETMB_TRCIDR5_ATBTRIG_BF_DEF (0x00000000)
+
+///< Indicates if the implementation can support low-power state override.
+///< Not supported.
+#define RCS_ETMB_TRCIDR5_LPOVRD_BF_OFF (23)
+#define RCS_ETMB_TRCIDR5_LPOVRD_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR5_LPOVRD_BF_MSK (0x00800000)
+#define RCS_ETMB_TRCIDR5_LPOVRD_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCIDR5_UNUSED_B_BF_OFF (24)
+#define RCS_ETMB_TRCIDR5_UNUSED_B_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR5_UNUSED_B_BF_MSK (0x01000000)
+#define RCS_ETMB_TRCIDR5_UNUSED_B_BF_DEF (0x00000000)
+
+///< The number of sequencer states that are implemented. Permitted values
+///< are: from '0x0' (none) to '0x4' (4 sequencer states).
+#define RCS_ETMB_TRCIDR5_NUMSEQSTATE_BF_OFF (25)
+#define RCS_ETMB_TRCIDR5_NUMSEQSTATE_BF_WID ( 3)
+#define RCS_ETMB_TRCIDR5_NUMSEQSTATE_BF_MSK (0x0E000000)
+#define RCS_ETMB_TRCIDR5_NUMSEQSTATE_BF_DEF (0x00000000)
+
+///< The number of counters that are available for tracing. Permitted values
+///< are: from '0x0' (none) to '0x4' (4 counters).
+#define RCS_ETMB_TRCIDR5_NUMCNTR_BF_OFF (28)
+#define RCS_ETMB_TRCIDR5_NUMCNTR_BF_WID ( 3)
+#define RCS_ETMB_TRCIDR5_NUMCNTR_BF_MSK (0x70000000)
+#define RCS_ETMB_TRCIDR5_NUMCNTR_BF_DEF (0x10000000)
+
+///< Indicates if the reduced function counter is implemented. Not supported.
+#define RCS_ETMB_TRCIDR5_REDFUNCNTR_BF_OFF (31)
+#define RCS_ETMB_TRCIDR5_REDFUNCNTR_BF_WID ( 1)
+#define RCS_ETMB_TRCIDR5_REDFUNCNTR_BF_MSK (0x80000000)
+#define RCS_ETMB_TRCIDR5_REDFUNCNTR_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR6 register description at address offset 0x1f8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR6
+  * TRCIDR6 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCIDR6 : 32;
+    ///< ID Register 6.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr6_reg_t;
+
+#define RCS_ETMB_TRCIDR6_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIDR6_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR6_WR_MASK (0x00000000U)
+
+
+///< ID Register 6.
+#define RCS_ETMB_TRCIDR6_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR6_BF_WID (32)
+#define RCS_ETMB_TRCIDR6_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCIDR6_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCIDR7 register description at address offset 0x1fc
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCIDR7
+  * TRCIDR7 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCIDR7 : 32;
+    ///< ID Register 7.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcidr7_reg_t;
+
+#define RCS_ETMB_TRCIDR7_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCIDR7_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCIDR7_WR_MASK (0x00000000U)
+
+
+///< ID Register 7.
+#define RCS_ETMB_TRCIDR7_BF_OFF ( 0)
+#define RCS_ETMB_TRCIDR7_BF_WID (32)
+#define RCS_ETMB_TRCIDR7_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCIDR7_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR2 register description at address offset 0x208
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR2
+  * TRCRSCTLR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t PAIRINV : 1;
+    ///< Controls whether the combined result from a resource pair is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="21" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr2_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR2_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR2_RD_MASK (0x003fffffU)
+#define RCS_ETMB_TRCRSCTLR2_WR_MASK (0x003fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR2_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR2_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR2_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR2_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR2_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR2_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR2_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR2_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR2_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR2_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR2_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR2_INV_BF_DEF (0x00000000)
+
+///< Controls whether the combined result from a resource pair is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR2_PAIRINV_BF_OFF (21)
+#define RCS_ETMB_TRCRSCTLR2_PAIRINV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR2_PAIRINV_BF_MSK (0x00200000)
+#define RCS_ETMB_TRCRSCTLR2_PAIRINV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR3 register description at address offset 0x20c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR3
+  * TRCRSCTLR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t  : 11;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="21" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr3_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR3_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR3_RD_MASK (0x001fffffU)
+#define RCS_ETMB_TRCRSCTLR3_WR_MASK (0x001fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR3_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR3_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR3_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR3_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR3_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR3_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR3_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR3_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR3_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR3_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR3_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR3_INV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR4 register description at address offset 0x210
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR4
+  * TRCRSCTLR4 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t PAIRINV : 1;
+    ///< Controls whether the combined result from a resource pair is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="21" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr4_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR4_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR4_RD_MASK (0x003fffffU)
+#define RCS_ETMB_TRCRSCTLR4_WR_MASK (0x003fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR4_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR4_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR4_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR4_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR4_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR4_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR4_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR4_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR4_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR4_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR4_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR4_INV_BF_DEF (0x00000000)
+
+///< Controls whether the combined result from a resource pair is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR4_PAIRINV_BF_OFF (21)
+#define RCS_ETMB_TRCRSCTLR4_PAIRINV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR4_PAIRINV_BF_MSK (0x00200000)
+#define RCS_ETMB_TRCRSCTLR4_PAIRINV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR5 register description at address offset 0x214
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR5
+  * TRCRSCTLR5 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t  : 11;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="21" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr5_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR5_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR5_RD_MASK (0x001fffffU)
+#define RCS_ETMB_TRCRSCTLR5_WR_MASK (0x001fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR5_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR5_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR5_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR5_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR5_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR5_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR5_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR5_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR5_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR5_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR5_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR5_INV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR6 register description at address offset 0x218
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR6
+  * TRCRSCTLR6 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t PAIRINV : 1;
+    ///< Controls whether the combined result from a resource pair is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="21" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr6_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR6_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR6_RD_MASK (0x003fffffU)
+#define RCS_ETMB_TRCRSCTLR6_WR_MASK (0x003fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR6_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR6_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR6_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR6_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR6_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR6_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR6_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR6_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR6_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR6_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR6_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR6_INV_BF_DEF (0x00000000)
+
+///< Controls whether the combined result from a resource pair is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR6_PAIRINV_BF_OFF (21)
+#define RCS_ETMB_TRCRSCTLR6_PAIRINV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR6_PAIRINV_BF_MSK (0x00200000)
+#define RCS_ETMB_TRCRSCTLR6_PAIRINV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR7 register description at address offset 0x21c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR7
+  * TRCRSCTLR7 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t  : 11;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="21" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr7_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR7_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR7_RD_MASK (0x001fffffU)
+#define RCS_ETMB_TRCRSCTLR7_WR_MASK (0x001fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR7_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR7_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR7_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR7_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR7_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR7_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR7_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR7_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR7_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR7_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR7_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR7_INV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR8 register description at address offset 0x220
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR8
+  * TRCRSCTLR8 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t PAIRINV : 1;
+    ///< Controls whether the combined result from a resource pair is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="21" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr8_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR8_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR8_RD_MASK (0x003fffffU)
+#define RCS_ETMB_TRCRSCTLR8_WR_MASK (0x003fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR8_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR8_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR8_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR8_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR8_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR8_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR8_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR8_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR8_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR8_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR8_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR8_INV_BF_DEF (0x00000000)
+
+///< Controls whether the combined result from a resource pair is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR8_PAIRINV_BF_OFF (21)
+#define RCS_ETMB_TRCRSCTLR8_PAIRINV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR8_PAIRINV_BF_MSK (0x00200000)
+#define RCS_ETMB_TRCRSCTLR8_PAIRINV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR9 register description at address offset 0x224
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR9
+  * TRCRSCTLR9 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t  : 11;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="21" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr9_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR9_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR9_RD_MASK (0x001fffffU)
+#define RCS_ETMB_TRCRSCTLR9_WR_MASK (0x001fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR9_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR9_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR9_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR9_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR9_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR9_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR9_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR9_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR9_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR9_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR9_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR9_INV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR10 register description at address offset 0x228
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR10
+  * TRCRSCTLR10 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t PAIRINV : 1;
+    ///< Controls whether the combined result from a resource pair is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="21" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr10_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR10_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR10_RD_MASK (0x003fffffU)
+#define RCS_ETMB_TRCRSCTLR10_WR_MASK (0x003fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR10_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR10_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR10_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR10_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR10_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR10_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR10_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR10_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR10_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR10_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR10_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR10_INV_BF_DEF (0x00000000)
+
+///< Controls whether the combined result from a resource pair is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR10_PAIRINV_BF_OFF (21)
+#define RCS_ETMB_TRCRSCTLR10_PAIRINV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR10_PAIRINV_BF_MSK (0x00200000)
+#define RCS_ETMB_TRCRSCTLR10_PAIRINV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCRSCTLR11 register description at address offset 0x22c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCRSCTLR11
+  * TRCRSCTLR11 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 16;
+    ///< Selects one or more resources from the group that the GROUP field
+    ///< selects. Each bit represents a resource from the selected group.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t GROUP : 4;
+    ///< Selects a group of resources. '0000' External input selector 0-3.
+    ///< AccessType="RW" BitOffset="16" ResetValue="0x0"
+    uint32_t INV : 1;
+    ///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+    ///< '0' is not inverted; '1' is inverted.
+    ///< AccessType="RW" BitOffset="20" ResetValue="0x0"
+    uint32_t  : 11;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="21" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcrsctlr11_reg_t;
+
+#define RCS_ETMB_TRCRSCTLR11_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCRSCTLR11_RD_MASK (0x001fffffU)
+#define RCS_ETMB_TRCRSCTLR11_WR_MASK (0x001fffffU)
+
+
+///< Selects one or more resources from the group that the GROUP field
+///< selects. Each bit represents a resource from the selected group.
+#define RCS_ETMB_TRCRSCTLR11_SEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCRSCTLR11_SEL_BF_WID (16)
+#define RCS_ETMB_TRCRSCTLR11_SEL_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCRSCTLR11_SEL_BF_DEF (0x00000000)
+
+///< Selects a group of resources. '0000' External input selector 0-3.
+#define RCS_ETMB_TRCRSCTLR11_GRP_BF_OFF (16)
+#define RCS_ETMB_TRCRSCTLR11_GRP_BF_WID ( 4)
+#define RCS_ETMB_TRCRSCTLR11_GRP_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCRSCTLR11_GRP_BF_DEF (0x00000000)
+
+///< Controls whether the resource, that GROUP and SELECT selects, is inverted:
+///< '0' is not inverted; '1' is inverted.
+#define RCS_ETMB_TRCRSCTLR11_INV_BF_OFF (20)
+#define RCS_ETMB_TRCRSCTLR11_INV_BF_WID ( 1)
+#define RCS_ETMB_TRCRSCTLR11_INV_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCRSCTLR11_INV_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCOSLSR register description at address offset 0x304
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCOSLSR
+  * TRCOSLSR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t OSLM_0 : 1;
+    ///< OS Lock model field. '00' OS Lock is not implemented; '10' OS Lock
+    ///< is implemented.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t OSLK : 1;
+    ///< OS Lock status bit: '0' the OS Lock is unlocked; '1' the OS Lock is
+    ///< locked.
+    ///< AccessType="RO" BitOffset="1" ResetValue="0x0"
+    uint32_t UNUSED : 1;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="2" ResetValue="0x0"
+    uint32_t OSLM_1 : 1;
+    ///< OS Lock model field. '00' OS Lock is not implemented; '10' OS Lock
+    ///< is implemented.
+    ///< AccessType="RO" BitOffset="3" ResetValue="0x0"
+    uint32_t  : 28;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="4" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcoslsr_reg_t;
+
+#define RCS_ETMB_TRCOSLSR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCOSLSR_RD_MASK (0x0000000fU)
+#define RCS_ETMB_TRCOSLSR_WR_MASK (0x00000000U)
+
+
+///< OS Lock model field. '00' OS Lock is not implemented; '10' OS Lock
+///< is implemented.
+#define RCS_ETMB_TRCOSLSR_OSLM_0_BF_OFF ( 0)
+#define RCS_ETMB_TRCOSLSR_OSLM_0_BF_WID ( 1)
+#define RCS_ETMB_TRCOSLSR_OSLM_0_BF_MSK (0x00000001)
+#define RCS_ETMB_TRCOSLSR_OSLM_0_BF_DEF (0x00000000)
+
+///< OS Lock status bit: '0' the OS Lock is unlocked; '1' the OS Lock is
+///< locked.
+#define RCS_ETMB_TRCOSLSR_OSLK_BF_OFF ( 1)
+#define RCS_ETMB_TRCOSLSR_OSLK_BF_WID ( 1)
+#define RCS_ETMB_TRCOSLSR_OSLK_BF_MSK (0x00000002)
+#define RCS_ETMB_TRCOSLSR_OSLK_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCOSLSR_UNUSED_BF_OFF ( 2)
+#define RCS_ETMB_TRCOSLSR_UNUSED_BF_WID ( 1)
+#define RCS_ETMB_TRCOSLSR_UNUSED_BF_MSK (0x00000004)
+#define RCS_ETMB_TRCOSLSR_UNUSED_BF_DEF (0x00000000)
+
+///< OS Lock model field. '00' OS Lock is not implemented; '10' OS Lock
+///< is implemented.
+#define RCS_ETMB_TRCOSLSR_OSLM_1_BF_OFF ( 3)
+#define RCS_ETMB_TRCOSLSR_OSLM_1_BF_WID ( 1)
+#define RCS_ETMB_TRCOSLSR_OSLM_1_BF_MSK (0x00000008)
+#define RCS_ETMB_TRCOSLSR_OSLM_1_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPDCR register description at address offset 0x310
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPDCR
+  * TRCPDCR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t UNUSED : 3;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t PU : 1;
+    ///< Powerup request bit: '0' the system can remove power from the trace
+    ///< unit; '1' the system must provide power to the trace unit.
+    ///< AccessType="RO" BitOffset="3" ResetValue="0x0"
+    uint32_t  : 28;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="4" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpdcr_reg_t;
+
+#define RCS_ETMB_TRCPDCR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPDCR_RD_MASK (0x0000000fU)
+#define RCS_ETMB_TRCPDCR_WR_MASK (0x00000000U)
+
+
+///< Unused
+#define RCS_ETMB_TRCPDCR_UNUSED_BF_OFF ( 0)
+#define RCS_ETMB_TRCPDCR_UNUSED_BF_WID ( 3)
+#define RCS_ETMB_TRCPDCR_UNUSED_BF_MSK (0x00000007)
+#define RCS_ETMB_TRCPDCR_UNUSED_BF_DEF (0x00000000)
+
+///< Powerup request bit: '0' the system can remove power from the trace
+///< unit; '1' the system must provide power to the trace unit.
+#define RCS_ETMB_TRCPDCR_PU_BF_OFF ( 3)
+#define RCS_ETMB_TRCPDCR_PU_BF_WID ( 1)
+#define RCS_ETMB_TRCPDCR_PU_BF_MSK (0x00000008)
+#define RCS_ETMB_TRCPDCR_PU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPDSR register description at address offset 0x314
+  *
+  * Register default value:        0x00000001
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPDSR
+  * TRCPDSR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t POWER : 1;
+    ///< Power status bit: '0' the trace unit core power domain is not powered;
+    ///< '1' the trace unit core power domain is powered.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x1"
+    uint32_t STICKYPD : 1;
+    ///< Sticky powerdown status bit. '0' the state of TRCOSLSR and trace registers
+    ///< are valid. '1' the state of TRCOSLSR and trace registers might not
+    ///< be valid. Not supported.
+    ///< AccessType="RO" BitOffset="1" ResetValue="0x0"
+    uint32_t UNUSED : 3;
+    ///< Unused
+    ///< AccessType="RO" BitOffset="2" ResetValue="0x0"
+    uint32_t OSLK : 1;
+    ///< OS Lock status bit: '0' the OS Lock is unlocked; '1' the OS Lock is
+    ///< locked. Not supported.
+    ///< AccessType="RO" BitOffset="5" ResetValue="0x0"
+    uint32_t  : 26;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="6" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpdsr_reg_t;
+
+#define RCS_ETMB_TRCPDSR_DEFAULT (0x00000001U)
+#define RCS_ETMB_TRCPDSR_RD_MASK (0x0000003fU)
+#define RCS_ETMB_TRCPDSR_WR_MASK (0x00000000U)
+
+
+///< Power status bit: '0' the trace unit core power domain is not powered;
+///< '1' the trace unit core power domain is powered.
+#define RCS_ETMB_TRCPDSR_PWR_BF_OFF ( 0)
+#define RCS_ETMB_TRCPDSR_PWR_BF_WID ( 1)
+#define RCS_ETMB_TRCPDSR_PWR_BF_MSK (0x00000001)
+#define RCS_ETMB_TRCPDSR_PWR_BF_DEF (0x00000001)
+
+///< Sticky powerdown status bit. '0' the state of TRCOSLSR and trace registers
+///< are valid. '1' the state of TRCOSLSR and trace registers might not
+///< be valid. Not supported.
+#define RCS_ETMB_TRCPDSR_STICKYPD_BF_OFF ( 1)
+#define RCS_ETMB_TRCPDSR_STICKYPD_BF_WID ( 1)
+#define RCS_ETMB_TRCPDSR_STICKYPD_BF_MSK (0x00000002)
+#define RCS_ETMB_TRCPDSR_STICKYPD_BF_DEF (0x00000000)
+
+///< Unused
+#define RCS_ETMB_TRCPDSR_UNUSED_BF_OFF ( 2)
+#define RCS_ETMB_TRCPDSR_UNUSED_BF_WID ( 3)
+#define RCS_ETMB_TRCPDSR_UNUSED_BF_MSK (0x0000001C)
+#define RCS_ETMB_TRCPDSR_UNUSED_BF_DEF (0x00000000)
+
+///< OS Lock status bit: '0' the OS Lock is unlocked; '1' the OS Lock is
+///< locked. Not supported.
+#define RCS_ETMB_TRCPDSR_OSLK_BF_OFF ( 5)
+#define RCS_ETMB_TRCPDSR_OSLK_BF_WID ( 1)
+#define RCS_ETMB_TRCPDSR_OSLK_BF_MSK (0x00000020)
+#define RCS_ETMB_TRCPDSR_OSLK_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACVR0 register description at address offset 0x400
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACVR0
+  * TRCACVR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacvr0_reg_t;
+
+#define RCS_ETMB_TRCACVR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACVR0_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCACVR0_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCACVR0_BF_OFF ( 0)
+#define RCS_ETMB_TRCACVR0_BF_WID (32)
+#define RCS_ETMB_TRCACVR0_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCACVR0_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACVR1 register description at address offset 0x408
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACVR1
+  * TRCACVR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacvr1_reg_t;
+
+#define RCS_ETMB_TRCACVR1_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACVR1_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCACVR1_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCACVR1_BF_OFF ( 0)
+#define RCS_ETMB_TRCACVR1_BF_WID (32)
+#define RCS_ETMB_TRCACVR1_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCACVR1_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACVR2 register description at address offset 0x410
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACVR2
+  * TRCACVR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacvr2_reg_t;
+
+#define RCS_ETMB_TRCACVR2_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACVR2_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCACVR2_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCACVR2_BF_OFF ( 0)
+#define RCS_ETMB_TRCACVR2_BF_WID (32)
+#define RCS_ETMB_TRCACVR2_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCACVR2_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACVR3 register description at address offset 0x418
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACVR3
+  * TRCACVR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacvr3_reg_t;
+
+#define RCS_ETMB_TRCACVR3_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACVR3_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCACVR3_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCACVR3_BF_OFF ( 0)
+#define RCS_ETMB_TRCACVR3_BF_WID (32)
+#define RCS_ETMB_TRCACVR3_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCACVR3_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACVR4 register description at address offset 0x420
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACVR4
+  * TRCACVR4 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacvr4_reg_t;
+
+#define RCS_ETMB_TRCACVR4_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACVR4_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCACVR4_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCACVR4_BF_OFF ( 0)
+#define RCS_ETMB_TRCACVR4_BF_WID (32)
+#define RCS_ETMB_TRCACVR4_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCACVR4_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACVR5 register description at address offset 0x428
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACVR5
+  * TRCACVR5 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacvr5_reg_t;
+
+#define RCS_ETMB_TRCACVR5_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACVR5_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCACVR5_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCACVR5_BF_OFF ( 0)
+#define RCS_ETMB_TRCACVR5_BF_WID (32)
+#define RCS_ETMB_TRCACVR5_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCACVR5_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACVR6 register description at address offset 0x430
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACVR6
+  * TRCACVR6 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacvr6_reg_t;
+
+#define RCS_ETMB_TRCACVR6_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACVR6_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCACVR6_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCACVR6_BF_OFF ( 0)
+#define RCS_ETMB_TRCACVR6_BF_WID (32)
+#define RCS_ETMB_TRCACVR6_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCACVR6_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACVR7 register description at address offset 0x438
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACVR7
+  * TRCACVR7 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacvr7_reg_t;
+
+#define RCS_ETMB_TRCACVR7_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACVR7_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCACVR7_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCACVR7_BF_OFF ( 0)
+#define RCS_ETMB_TRCACVR7_BF_WID (32)
+#define RCS_ETMB_TRCACVR7_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCACVR7_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACATR0 register description at address offset 0x480
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACATR0
+  * TRCACATR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TYPE : 2;
+    ///< Controls what type of comparison performs: '00' instruction address;
+    ///< '01' data load address; '10' data store address; '11' data load address
+    ///< or data store address.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t CONTEXTTYPE : 2;
+    ///< Controls whether the trace unit performs a Context ID comparison:
+    ///< '00' no Context ID comparison; '01' with Context ID comparison using
+    ///< the comparator that the CONTEXT field specifies. If both the Context
+    ///< ID comparator and the address comparator match, the trace unit signals
+    ///< a match.
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t CONTEXT : 3;
+    ///< Selects a Context ID comparator.
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacatr0_reg_t;
+
+#define RCS_ETMB_TRCACATR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACATR0_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCACATR0_WR_MASK (0x0000007fU)
+
+
+///< Controls what type of comparison performs: '00' instruction address;
+///< '01' data load address; '10' data store address; '11' data load address
+///< or data store address.
+#define RCS_ETMB_TRCACATR0_TYPE_BF_OFF ( 0)
+#define RCS_ETMB_TRCACATR0_TYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR0_TYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCACATR0_TYPE_BF_DEF (0x00000000)
+
+///< Controls whether the trace unit performs a Context ID comparison:
+///< '00' no Context ID comparison; '01' with Context ID comparison using
+///< the comparator that the CONTEXT field specifies. If both the Context
+///< ID comparator and the address comparator match, the trace unit signals
+///< a match.
+#define RCS_ETMB_TRCACATR0_CONTEXTTYPE_BF_OFF ( 2)
+#define RCS_ETMB_TRCACATR0_CONTEXTTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR0_CONTEXTTYPE_BF_MSK (0x0000000C)
+#define RCS_ETMB_TRCACATR0_CONTEXTTYPE_BF_DEF (0x00000000)
+
+///< Selects a Context ID comparator.
+#define RCS_ETMB_TRCACATR0_CONTEXT_BF_OFF ( 4)
+#define RCS_ETMB_TRCACATR0_CONTEXT_BF_WID ( 3)
+#define RCS_ETMB_TRCACATR0_CONTEXT_BF_MSK (0x00000070)
+#define RCS_ETMB_TRCACATR0_CONTEXT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACATR1 register description at address offset 0x488
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACATR1
+  * TRCACATR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TYPE : 2;
+    ///< Controls what type of comparison performs: '00' instruction address;
+    ///< '01' data load address; '10' data store address; '11' data load address
+    ///< or data store address.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t CONTEXTTYPE : 2;
+    ///< Controls whether the trace unit performs a Context ID comparison:
+    ///< '00' no Context ID comparison; '01' with Context ID comparison using
+    ///< the comparator that the CONTEXT field specifies. If both the Context
+    ///< ID comparator and the address comparator match, the trace unit signals
+    ///< a match.
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t CONTEXT : 3;
+    ///< Selects a Context ID comparator.
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacatr1_reg_t;
+
+#define RCS_ETMB_TRCACATR1_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACATR1_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCACATR1_WR_MASK (0x0000007fU)
+
+
+///< Controls what type of comparison performs: '00' instruction address;
+///< '01' data load address; '10' data store address; '11' data load address
+///< or data store address.
+#define RCS_ETMB_TRCACATR1_TYPE_BF_OFF ( 0)
+#define RCS_ETMB_TRCACATR1_TYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR1_TYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCACATR1_TYPE_BF_DEF (0x00000000)
+
+///< Controls whether the trace unit performs a Context ID comparison:
+///< '00' no Context ID comparison; '01' with Context ID comparison using
+///< the comparator that the CONTEXT field specifies. If both the Context
+///< ID comparator and the address comparator match, the trace unit signals
+///< a match.
+#define RCS_ETMB_TRCACATR1_CONTEXTTYPE_BF_OFF ( 2)
+#define RCS_ETMB_TRCACATR1_CONTEXTTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR1_CONTEXTTYPE_BF_MSK (0x0000000C)
+#define RCS_ETMB_TRCACATR1_CONTEXTTYPE_BF_DEF (0x00000000)
+
+///< Selects a Context ID comparator.
+#define RCS_ETMB_TRCACATR1_CONTEXT_BF_OFF ( 4)
+#define RCS_ETMB_TRCACATR1_CONTEXT_BF_WID ( 3)
+#define RCS_ETMB_TRCACATR1_CONTEXT_BF_MSK (0x00000070)
+#define RCS_ETMB_TRCACATR1_CONTEXT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACATR2 register description at address offset 0x490
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACATR2
+  * TRCACATR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TYPE : 2;
+    ///< Controls what type of comparison performs: '00' instruction address;
+    ///< '01' data load address; '10' data store address; '11' data load address
+    ///< or data store address.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t CONTEXTTYPE : 2;
+    ///< Controls whether the trace unit performs a Context ID comparison:
+    ///< '00' no Context ID comparison; '01' with Context ID comparison using
+    ///< the comparator that the CONTEXT field specifies. If both the Context
+    ///< ID comparator and the address comparator match, the trace unit signals
+    ///< a match.
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t CONTEXT : 3;
+    ///< Selects a Context ID comparator.
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacatr2_reg_t;
+
+#define RCS_ETMB_TRCACATR2_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACATR2_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCACATR2_WR_MASK (0x0000007fU)
+
+
+///< Controls what type of comparison performs: '00' instruction address;
+///< '01' data load address; '10' data store address; '11' data load address
+///< or data store address.
+#define RCS_ETMB_TRCACATR2_TYPE_BF_OFF ( 0)
+#define RCS_ETMB_TRCACATR2_TYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR2_TYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCACATR2_TYPE_BF_DEF (0x00000000)
+
+///< Controls whether the trace unit performs a Context ID comparison:
+///< '00' no Context ID comparison; '01' with Context ID comparison using
+///< the comparator that the CONTEXT field specifies. If both the Context
+///< ID comparator and the address comparator match, the trace unit signals
+///< a match.
+#define RCS_ETMB_TRCACATR2_CONTEXTTYPE_BF_OFF ( 2)
+#define RCS_ETMB_TRCACATR2_CONTEXTTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR2_CONTEXTTYPE_BF_MSK (0x0000000C)
+#define RCS_ETMB_TRCACATR2_CONTEXTTYPE_BF_DEF (0x00000000)
+
+///< Selects a Context ID comparator.
+#define RCS_ETMB_TRCACATR2_CONTEXT_BF_OFF ( 4)
+#define RCS_ETMB_TRCACATR2_CONTEXT_BF_WID ( 3)
+#define RCS_ETMB_TRCACATR2_CONTEXT_BF_MSK (0x00000070)
+#define RCS_ETMB_TRCACATR2_CONTEXT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACATR3 register description at address offset 0x498
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACATR3
+  * TRCACATR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TYPE : 2;
+    ///< Controls what type of comparison performs: '00' instruction address;
+    ///< '01' data load address; '10' data store address; '11' data load address
+    ///< or data store address.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t CONTEXTTYPE : 2;
+    ///< Controls whether the trace unit performs a Context ID comparison:
+    ///< '00' no Context ID comparison; '01' with Context ID comparison using
+    ///< the comparator that the CONTEXT field specifies. If both the Context
+    ///< ID comparator and the address comparator match, the trace unit signals
+    ///< a match.
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t CONTEXT : 3;
+    ///< Selects a Context ID comparator.
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacatr3_reg_t;
+
+#define RCS_ETMB_TRCACATR3_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACATR3_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCACATR3_WR_MASK (0x0000007fU)
+
+
+///< Controls what type of comparison performs: '00' instruction address;
+///< '01' data load address; '10' data store address; '11' data load address
+///< or data store address.
+#define RCS_ETMB_TRCACATR3_TYPE_BF_OFF ( 0)
+#define RCS_ETMB_TRCACATR3_TYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR3_TYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCACATR3_TYPE_BF_DEF (0x00000000)
+
+///< Controls whether the trace unit performs a Context ID comparison:
+///< '00' no Context ID comparison; '01' with Context ID comparison using
+///< the comparator that the CONTEXT field specifies. If both the Context
+///< ID comparator and the address comparator match, the trace unit signals
+///< a match.
+#define RCS_ETMB_TRCACATR3_CONTEXTTYPE_BF_OFF ( 2)
+#define RCS_ETMB_TRCACATR3_CONTEXTTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR3_CONTEXTTYPE_BF_MSK (0x0000000C)
+#define RCS_ETMB_TRCACATR3_CONTEXTTYPE_BF_DEF (0x00000000)
+
+///< Selects a Context ID comparator.
+#define RCS_ETMB_TRCACATR3_CONTEXT_BF_OFF ( 4)
+#define RCS_ETMB_TRCACATR3_CONTEXT_BF_WID ( 3)
+#define RCS_ETMB_TRCACATR3_CONTEXT_BF_MSK (0x00000070)
+#define RCS_ETMB_TRCACATR3_CONTEXT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACATR4 register description at address offset 0x4a0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACATR4
+  * TRCACATR4 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TYPE : 2;
+    ///< Controls what type of comparison performs: '00' instruction address;
+    ///< '01' data load address; '10' data store address; '11' data load address
+    ///< or data store address.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t CONTEXTTYPE : 2;
+    ///< Controls whether the trace unit performs a Context ID comparison:
+    ///< '00' no Context ID comparison; '01' with Context ID comparison using
+    ///< the comparator that the CONTEXT field specifies. If both the Context
+    ///< ID comparator and the address comparator match, the trace unit signals
+    ///< a match.
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t CONTEXT : 3;
+    ///< Selects a Context ID comparator.
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacatr4_reg_t;
+
+#define RCS_ETMB_TRCACATR4_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACATR4_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCACATR4_WR_MASK (0x0000007fU)
+
+
+///< Controls what type of comparison performs: '00' instruction address;
+///< '01' data load address; '10' data store address; '11' data load address
+///< or data store address.
+#define RCS_ETMB_TRCACATR4_TYPE_BF_OFF ( 0)
+#define RCS_ETMB_TRCACATR4_TYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR4_TYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCACATR4_TYPE_BF_DEF (0x00000000)
+
+///< Controls whether the trace unit performs a Context ID comparison:
+///< '00' no Context ID comparison; '01' with Context ID comparison using
+///< the comparator that the CONTEXT field specifies. If both the Context
+///< ID comparator and the address comparator match, the trace unit signals
+///< a match.
+#define RCS_ETMB_TRCACATR4_CONTEXTTYPE_BF_OFF ( 2)
+#define RCS_ETMB_TRCACATR4_CONTEXTTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR4_CONTEXTTYPE_BF_MSK (0x0000000C)
+#define RCS_ETMB_TRCACATR4_CONTEXTTYPE_BF_DEF (0x00000000)
+
+///< Selects a Context ID comparator.
+#define RCS_ETMB_TRCACATR4_CONTEXT_BF_OFF ( 4)
+#define RCS_ETMB_TRCACATR4_CONTEXT_BF_WID ( 3)
+#define RCS_ETMB_TRCACATR4_CONTEXT_BF_MSK (0x00000070)
+#define RCS_ETMB_TRCACATR4_CONTEXT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACATR5 register description at address offset 0x4a8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACATR5
+  * TRCACATR5 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TYPE : 2;
+    ///< Controls what type of comparison performs: '00' instruction address;
+    ///< '01' data load address; '10' data store address; '11' data load address
+    ///< or data store address.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t CONTEXTTYPE : 2;
+    ///< Controls whether the trace unit performs a Context ID comparison:
+    ///< '00' no Context ID comparison; '01' with Context ID comparison using
+    ///< the comparator that the CONTEXT field specifies. If both the Context
+    ///< ID comparator and the address comparator match, the trace unit signals
+    ///< a match.
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t CONTEXT : 3;
+    ///< Selects a Context ID comparator.
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacatr5_reg_t;
+
+#define RCS_ETMB_TRCACATR5_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACATR5_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCACATR5_WR_MASK (0x0000007fU)
+
+
+///< Controls what type of comparison performs: '00' instruction address;
+///< '01' data load address; '10' data store address; '11' data load address
+///< or data store address.
+#define RCS_ETMB_TRCACATR5_TYPE_BF_OFF ( 0)
+#define RCS_ETMB_TRCACATR5_TYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR5_TYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCACATR5_TYPE_BF_DEF (0x00000000)
+
+///< Controls whether the trace unit performs a Context ID comparison:
+///< '00' no Context ID comparison; '01' with Context ID comparison using
+///< the comparator that the CONTEXT field specifies. If both the Context
+///< ID comparator and the address comparator match, the trace unit signals
+///< a match.
+#define RCS_ETMB_TRCACATR5_CONTEXTTYPE_BF_OFF ( 2)
+#define RCS_ETMB_TRCACATR5_CONTEXTTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR5_CONTEXTTYPE_BF_MSK (0x0000000C)
+#define RCS_ETMB_TRCACATR5_CONTEXTTYPE_BF_DEF (0x00000000)
+
+///< Selects a Context ID comparator.
+#define RCS_ETMB_TRCACATR5_CONTEXT_BF_OFF ( 4)
+#define RCS_ETMB_TRCACATR5_CONTEXT_BF_WID ( 3)
+#define RCS_ETMB_TRCACATR5_CONTEXT_BF_MSK (0x00000070)
+#define RCS_ETMB_TRCACATR5_CONTEXT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACATR6 register description at address offset 0x4b0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACATR6
+  * TRCACATR6 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TYPE : 2;
+    ///< Controls what type of comparison performs: '00' instruction address;
+    ///< '01' data load address; '10' data store address; '11' data load address
+    ///< or data store address.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t CONTEXTTYPE : 2;
+    ///< Controls whether the trace unit performs a Context ID comparison:
+    ///< '00' no Context ID comparison; '01' with Context ID comparison using
+    ///< the comparator that the CONTEXT field specifies. If both the Context
+    ///< ID comparator and the address comparator match, the trace unit signals
+    ///< a match.
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t CONTEXT : 3;
+    ///< Selects a Context ID comparator.
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacatr6_reg_t;
+
+#define RCS_ETMB_TRCACATR6_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACATR6_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCACATR6_WR_MASK (0x0000007fU)
+
+
+///< Controls what type of comparison performs: '00' instruction address;
+///< '01' data load address; '10' data store address; '11' data load address
+///< or data store address.
+#define RCS_ETMB_TRCACATR6_TYPE_BF_OFF ( 0)
+#define RCS_ETMB_TRCACATR6_TYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR6_TYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCACATR6_TYPE_BF_DEF (0x00000000)
+
+///< Controls whether the trace unit performs a Context ID comparison:
+///< '00' no Context ID comparison; '01' with Context ID comparison using
+///< the comparator that the CONTEXT field specifies. If both the Context
+///< ID comparator and the address comparator match, the trace unit signals
+///< a match.
+#define RCS_ETMB_TRCACATR6_CONTEXTTYPE_BF_OFF ( 2)
+#define RCS_ETMB_TRCACATR6_CONTEXTTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR6_CONTEXTTYPE_BF_MSK (0x0000000C)
+#define RCS_ETMB_TRCACATR6_CONTEXTTYPE_BF_DEF (0x00000000)
+
+///< Selects a Context ID comparator.
+#define RCS_ETMB_TRCACATR6_CONTEXT_BF_OFF ( 4)
+#define RCS_ETMB_TRCACATR6_CONTEXT_BF_WID ( 3)
+#define RCS_ETMB_TRCACATR6_CONTEXT_BF_MSK (0x00000070)
+#define RCS_ETMB_TRCACATR6_CONTEXT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCACATR7 register description at address offset 0x4b8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCACATR7
+  * TRCACATR7 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TYPE : 2;
+    ///< Controls what type of comparison performs: '00' instruction address;
+    ///< '01' data load address; '10' data store address; '11' data load address
+    ///< or data store address.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t CONTEXTTYPE : 2;
+    ///< Controls whether the trace unit performs a Context ID comparison:
+    ///< '00' no Context ID comparison; '01' with Context ID comparison using
+    ///< the comparator that the CONTEXT field specifies. If both the Context
+    ///< ID comparator and the address comparator match, the trace unit signals
+    ///< a match.
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t CONTEXT : 3;
+    ///< Selects a Context ID comparator.
+    ///< AccessType="RW" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 25;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="7" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcacatr7_reg_t;
+
+#define RCS_ETMB_TRCACATR7_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCACATR7_RD_MASK (0x0000007fU)
+#define RCS_ETMB_TRCACATR7_WR_MASK (0x0000007fU)
+
+
+///< Controls what type of comparison performs: '00' instruction address;
+///< '01' data load address; '10' data store address; '11' data load address
+///< or data store address.
+#define RCS_ETMB_TRCACATR7_TYPE_BF_OFF ( 0)
+#define RCS_ETMB_TRCACATR7_TYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR7_TYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCACATR7_TYPE_BF_DEF (0x00000000)
+
+///< Controls whether the trace unit performs a Context ID comparison:
+///< '00' no Context ID comparison; '01' with Context ID comparison using
+///< the comparator that the CONTEXT field specifies. If both the Context
+///< ID comparator and the address comparator match, the trace unit signals
+///< a match.
+#define RCS_ETMB_TRCACATR7_CONTEXTTYPE_BF_OFF ( 2)
+#define RCS_ETMB_TRCACATR7_CONTEXTTYPE_BF_WID ( 2)
+#define RCS_ETMB_TRCACATR7_CONTEXTTYPE_BF_MSK (0x0000000C)
+#define RCS_ETMB_TRCACATR7_CONTEXTTYPE_BF_DEF (0x00000000)
+
+///< Selects a Context ID comparator.
+#define RCS_ETMB_TRCACATR7_CONTEXT_BF_OFF ( 4)
+#define RCS_ETMB_TRCACATR7_CONTEXT_BF_WID ( 3)
+#define RCS_ETMB_TRCACATR7_CONTEXT_BF_MSK (0x00000070)
+#define RCS_ETMB_TRCACATR7_CONTEXT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCVR0 register description at address offset 0x600
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCVR0
+  * TRCCIDCVR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcvr0_reg_t;
+
+#define RCS_ETMB_TRCCIDCVR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCVR0_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCVR0_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCCIDCVR0_VAL_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCVR0_VAL_BF_WID (32)
+#define RCS_ETMB_TRCCIDCVR0_VAL_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCIDCVR0_VAL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCVR1 register description at address offset 0x608
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCVR1
+  * TRCCIDCVR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcvr1_reg_t;
+
+#define RCS_ETMB_TRCCIDCVR1_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCVR1_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCVR1_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_TRCCIDCVR1_VAL_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCVR1_VAL_BF_WID (32)
+#define RCS_ETMB_TRCCIDCVR1_VAL_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCIDCVR1_VAL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCVR2 register description at address offset 0x610
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCVR2
+  * TRCCIDCVR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE_UU : 32;
+    ///< Address value. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcvr2_reg_t;
+
+#define RCS_ETMB_TRCCIDCVR2_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCVR2_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCVR2_WR_MASK (0x00000000U)
+
+
+///< Address value. Unused.
+#define RCS_ETMB_TRCCIDCVR2_VAL_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCVR2_VAL_UU_BF_WID (32)
+#define RCS_ETMB_TRCCIDCVR2_VAL_UU_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCIDCVR2_VAL_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCVR3 register description at address offset 0x618
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCVR3
+  * TRCCIDCVR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE_UU : 32;
+    ///< Address value. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcvr3_reg_t;
+
+#define RCS_ETMB_TRCCIDCVR3_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCVR3_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCVR3_WR_MASK (0x00000000U)
+
+
+///< Address value. Unused.
+#define RCS_ETMB_TRCCIDCVR3_VAL_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCVR3_VAL_UU_BF_WID (32)
+#define RCS_ETMB_TRCCIDCVR3_VAL_UU_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCIDCVR3_VAL_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCVR4 register description at address offset 0x620
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCVR4
+  * TRCCIDCVR4 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE_UU : 32;
+    ///< Address value. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcvr4_reg_t;
+
+#define RCS_ETMB_TRCCIDCVR4_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCVR4_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCVR4_WR_MASK (0x00000000U)
+
+
+///< Address value. Unused.
+#define RCS_ETMB_TRCCIDCVR4_VAL_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCVR4_VAL_UU_BF_WID (32)
+#define RCS_ETMB_TRCCIDCVR4_VAL_UU_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCIDCVR4_VAL_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCVR5 register description at address offset 0x628
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCVR5
+  * TRCCIDCVR5 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE_UU : 32;
+    ///< Address value. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcvr5_reg_t;
+
+#define RCS_ETMB_TRCCIDCVR5_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCVR5_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCVR5_WR_MASK (0x00000000U)
+
+
+///< Address value. Unused.
+#define RCS_ETMB_TRCCIDCVR5_VAL_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCVR5_VAL_UU_BF_WID (32)
+#define RCS_ETMB_TRCCIDCVR5_VAL_UU_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCIDCVR5_VAL_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCVR6 register description at address offset 0x630
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCVR6
+  * TRCCIDCVR6 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE_UU : 32;
+    ///< Address value. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcvr6_reg_t;
+
+#define RCS_ETMB_TRCCIDCVR6_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCVR6_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCVR6_WR_MASK (0x00000000U)
+
+
+///< Address value. Unused.
+#define RCS_ETMB_TRCCIDCVR6_VAL_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCVR6_VAL_UU_BF_WID (32)
+#define RCS_ETMB_TRCCIDCVR6_VAL_UU_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCIDCVR6_VAL_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCVR7 register description at address offset 0x638
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCVR7
+  * TRCCIDCVR7 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t VALUE_UU : 32;
+    ///< Address value. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcvr7_reg_t;
+
+#define RCS_ETMB_TRCCIDCVR7_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCVR7_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCVR7_WR_MASK (0x00000000U)
+
+
+///< Address value. Unused.
+#define RCS_ETMB_TRCCIDCVR7_VAL_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCVR7_VAL_UU_BF_WID (32)
+#define RCS_ETMB_TRCCIDCVR7_VAL_UU_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCIDCVR7_VAL_UU_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCCTLR0 register description at address offset 0x680
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCCTLR0
+  * TRCCIDCCTLR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t COMP0 : 4;
+    ///< Controls the mask value applied to TRCCIDCVR0. Each bit in this field
+    ///< corresponds to a byte in TRCCIDCVR0. '0' the relevant byte is included
+    ///< when it performs the context ID comparison; '1' the relevant byte
+    ///< is ignored.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t UU0 : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t COMP1 : 4;
+    ///< Controls the mask value applied to TRCCIDCVR1. Each bit in this field
+    ///< corresponds to a byte in TRCCIDCVR1. '0' the relevant byte is included
+    ///< when it performs the context ID comparison; '1' the relevant byte
+    ///< is ignored.
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t UU1 : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t COMP2_UU : 4;
+    ///< Controls the mask value applied to TRCCIDCVR2. Unused.
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t UU2 : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="20" ResetValue="0x0"
+    uint32_t COMP3_UU : 4;
+    ///< Controls the mask value applied to TRCCIDCVR3. Unused.
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x0"
+    uint32_t UU3 : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="28" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcctlr0_reg_t;
+
+#define RCS_ETMB_TRCCIDCCTLR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCCTLR0_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCCTLR0_WR_MASK (0x00000f0fU)
+
+
+///< Controls the mask value applied to TRCCIDCVR0. Each bit in this field
+///< corresponds to a byte in TRCCIDCVR0. '0' the relevant byte is included
+///< when it performs the context ID comparison; '1' the relevant byte
+///< is ignored.
+#define RCS_ETMB_TRCCIDCCTLR0_COMP0_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP0_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP0_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP0_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_TRCCIDCCTLR0_UU0_BF_OFF ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_UU0_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_UU0_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCCIDCCTLR0_UU0_BF_DEF (0x00000000)
+
+///< Controls the mask value applied to TRCCIDCVR1. Each bit in this field
+///< corresponds to a byte in TRCCIDCVR1. '0' the relevant byte is included
+///< when it performs the context ID comparison; '1' the relevant byte
+///< is ignored.
+#define RCS_ETMB_TRCCIDCCTLR0_COMP1_BF_OFF ( 8)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP1_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP1_BF_MSK (0x00000F00)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP1_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_TRCCIDCCTLR0_UU1_BF_OFF (12)
+#define RCS_ETMB_TRCCIDCCTLR0_UU1_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_UU1_BF_MSK (0x0000F000)
+#define RCS_ETMB_TRCCIDCCTLR0_UU1_BF_DEF (0x00000000)
+
+///< Controls the mask value applied to TRCCIDCVR2. Unused.
+#define RCS_ETMB_TRCCIDCCTLR0_COMP2_UU_BF_OFF (16)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP2_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP2_UU_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP2_UU_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_TRCCIDCCTLR0_UU2_BF_OFF (20)
+#define RCS_ETMB_TRCCIDCCTLR0_UU2_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_UU2_BF_MSK (0x00F00000)
+#define RCS_ETMB_TRCCIDCCTLR0_UU2_BF_DEF (0x00000000)
+
+///< Controls the mask value applied to TRCCIDCVR3. Unused.
+#define RCS_ETMB_TRCCIDCCTLR0_COMP3_UU_BF_OFF (24)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP3_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP3_UU_BF_MSK (0x0F000000)
+#define RCS_ETMB_TRCCIDCCTLR0_COMP3_UU_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_TRCCIDCCTLR0_UU3_BF_OFF (28)
+#define RCS_ETMB_TRCCIDCCTLR0_UU3_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR0_UU3_BF_MSK (0xF0000000)
+#define RCS_ETMB_TRCCIDCCTLR0_UU3_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDCCTLR1 register description at address offset 0x684
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDCCTLR1
+  * TRCCIDCCTLR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t COMP4_UU : 4;
+    ///< Controls the mask value applied to TRCCIDCVR4. Unused.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t UU4 : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t COMP5_UU : 4;
+    ///< Controls the mask value applied to TRCCIDCVR5. Unused.
+    ///< AccessType="RO" BitOffset="8" ResetValue="0x0"
+    uint32_t UU5 : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x0"
+    uint32_t COMP6_UU : 4;
+    ///< Controls the mask value applied to TRCCIDCVR6. Unused.
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t UU6 : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="20" ResetValue="0x0"
+    uint32_t COMP7_UU : 4;
+    ///< Controls the mask value applied to TRCCIDCVR7. Unused.
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x0"
+    uint32_t UU7 : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="28" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidcctlr1_reg_t;
+
+#define RCS_ETMB_TRCCIDCCTLR1_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCIDCCTLR1_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCIDCCTLR1_WR_MASK (0x00000000U)
+
+
+///< Controls the mask value applied to TRCCIDCVR4. Unused.
+#define RCS_ETMB_TRCCIDCCTLR1_COMP4_UU_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP4_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP4_UU_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP4_UU_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_TRCCIDCCTLR1_UU4_BF_OFF ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_UU4_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_UU4_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCCIDCCTLR1_UU4_BF_DEF (0x00000000)
+
+///< Controls the mask value applied to TRCCIDCVR5. Unused.
+#define RCS_ETMB_TRCCIDCCTLR1_COMP5_UU_BF_OFF ( 8)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP5_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP5_UU_BF_MSK (0x00000F00)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP5_UU_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_TRCCIDCCTLR1_UU5_BF_OFF (12)
+#define RCS_ETMB_TRCCIDCCTLR1_UU5_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_UU5_BF_MSK (0x0000F000)
+#define RCS_ETMB_TRCCIDCCTLR1_UU5_BF_DEF (0x00000000)
+
+///< Controls the mask value applied to TRCCIDCVR6. Unused.
+#define RCS_ETMB_TRCCIDCCTLR1_COMP6_UU_BF_OFF (16)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP6_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP6_UU_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP6_UU_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_TRCCIDCCTLR1_UU6_BF_OFF (20)
+#define RCS_ETMB_TRCCIDCCTLR1_UU6_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_UU6_BF_MSK (0x00F00000)
+#define RCS_ETMB_TRCCIDCCTLR1_UU6_BF_DEF (0x00000000)
+
+///< Controls the mask value applied to TRCCIDCVR7. Unused.
+#define RCS_ETMB_TRCCIDCCTLR1_COMP7_UU_BF_OFF (24)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP7_UU_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP7_UU_BF_MSK (0x0F000000)
+#define RCS_ETMB_TRCCIDCCTLR1_COMP7_UU_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_TRCCIDCCTLR1_UU7_BF_OFF (28)
+#define RCS_ETMB_TRCCIDCCTLR1_UU7_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDCCTLR1_UU7_BF_MSK (0xF0000000)
+#define RCS_ETMB_TRCCIDCCTLR1_UU7_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCITCTRL register description at address offset 0xf00
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCITCTRL
+  * TRCITCTRL register.
+  */
+
+typedef union {
+  struct {
+    uint32_t IME : 1;
+    ///< Integration mode enable bit. '0' the trace unit is not in integration
+    ///< mode; '1' the trace unit is in integration mode.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcitctrl_reg_t;
+
+#define RCS_ETMB_TRCITCTRL_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCITCTRL_RD_MASK (0x00000001U)
+#define RCS_ETMB_TRCITCTRL_WR_MASK (0x00000001U)
+
+
+///< Integration mode enable bit. '0' the trace unit is not in integration
+///< mode; '1' the trace unit is in integration mode.
+#define RCS_ETMB_TRCITCTRL_IME_BF_OFF ( 0)
+#define RCS_ETMB_TRCITCTRL_IME_BF_WID ( 1)
+#define RCS_ETMB_TRCITCTRL_IME_BF_MSK (0x00000001)
+#define RCS_ETMB_TRCITCTRL_IME_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCLAIMSET register description at address offset 0xfa0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCLAIMSET
+  * TRCCLAIMSET register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCCLAIMSET : 32;
+    ///< Claim Tag Set Register.
+    ///< AccessType="RW/V" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcclaimset_reg_t;
+
+#define RCS_ETMB_TRCCLAIMSET_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCLAIMSET_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCLAIMSET_WR_MASK (0xffffffffU)
+
+
+///< Claim Tag Set Register.
+#define RCS_ETMB_TRCCLAIMSET_BF_OFF ( 0)
+#define RCS_ETMB_TRCCLAIMSET_BF_WID (32)
+#define RCS_ETMB_TRCCLAIMSET_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCLAIMSET_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCLAIMCLR register description at address offset 0xfa4
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCLAIMCLR
+  * TRCCLAIMCLR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCCLAIMCLR : 32;
+    ///< Claim Tag Clear Register.
+    ///< AccessType="RW/V" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcclaimclr_reg_t;
+
+#define RCS_ETMB_TRCCLAIMCLR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCLAIMCLR_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCCLAIMCLR_WR_MASK (0xffffffffU)
+
+
+///< Claim Tag Clear Register.
+#define RCS_ETMB_TRCCLAIMCLR_BF_OFF ( 0)
+#define RCS_ETMB_TRCCLAIMCLR_BF_WID (32)
+#define RCS_ETMB_TRCCLAIMCLR_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCCLAIMCLR_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCDEVAFF0 register description at address offset 0xfa8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCDEVAFF0
+  * TRCDEVAFF0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCDEVAFF : 32;
+    ///< Device Affinity register. For ARM processors in multiprocessor systems.
+    ///< Not supported
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcdevaff0_reg_t;
+
+#define RCS_ETMB_TRCDEVAFF0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCDEVAFF0_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCDEVAFF0_WR_MASK (0x00000000U)
+
+
+///< Device Affinity register. For ARM processors in multiprocessor systems.
+///< Not supported
+#define RCS_ETMB_TRCDEVAFF0_TRCDEVAFF_BF_OFF ( 0)
+#define RCS_ETMB_TRCDEVAFF0_TRCDEVAFF_BF_WID (32)
+#define RCS_ETMB_TRCDEVAFF0_TRCDEVAFF_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCDEVAFF0_TRCDEVAFF_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCDEVAFF1 register description at address offset 0xfac
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCDEVAFF1
+  * TRCDEVAFF1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCDEVAFF : 32;
+    ///< Device Affinity register. For ARM processors in multiprocessor systems.
+    ///< Not supported
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcdevaff1_reg_t;
+
+#define RCS_ETMB_TRCDEVAFF1_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCDEVAFF1_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCDEVAFF1_WR_MASK (0x00000000U)
+
+
+///< Device Affinity register. For ARM processors in multiprocessor systems.
+///< Not supported
+#define RCS_ETMB_TRCDEVAFF1_TRCDEVAFF_BF_OFF ( 0)
+#define RCS_ETMB_TRCDEVAFF1_TRCDEVAFF_BF_WID (32)
+#define RCS_ETMB_TRCDEVAFF1_TRCDEVAFF_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCDEVAFF1_TRCDEVAFF_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCLAR register description at address offset 0xfb0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCLAR
+  * TRCLAR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCLAR : 32;
+    ///< Software Lock Access Register. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trclar_reg_t;
+
+#define RCS_ETMB_TRCLAR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCLAR_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCLAR_WR_MASK (0x00000000U)
+
+
+///< Software Lock Access Register. Not supported.
+#define RCS_ETMB_TRCLAR_BF_OFF ( 0)
+#define RCS_ETMB_TRCLAR_BF_WID (32)
+#define RCS_ETMB_TRCLAR_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCLAR_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCLSR register description at address offset 0xfb4
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCLSR
+  * TRCLSR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SLI : 1;
+    ///< Indicates if the trace unit implements a Software Lock for accesses
+    ///< from the memory-mapped interface. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trclsr_reg_t;
+
+#define RCS_ETMB_TRCLSR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCLSR_RD_MASK (0x00000001U)
+#define RCS_ETMB_TRCLSR_WR_MASK (0x00000000U)
+
+
+///< Indicates if the trace unit implements a Software Lock for accesses
+///< from the memory-mapped interface. Not supported.
+#define RCS_ETMB_TRCLSR_SLI_BF_OFF ( 0)
+#define RCS_ETMB_TRCLSR_SLI_BF_WID ( 1)
+#define RCS_ETMB_TRCLSR_SLI_BF_MSK (0x00000001)
+#define RCS_ETMB_TRCLSR_SLI_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCAUTHSTATUS register description at address offset 0xfb8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCAUTHSTATUS
+  * TRCAUTHSTATUS register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCAUTHSTATUS : 32;
+    ///< Authentication Status Register. Not supported.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcauthstat_reg_t;
+
+#define RCS_ETMB_TRCAUTHSTAT_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCAUTHSTAT_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCAUTHSTAT_WR_MASK (0x00000000U)
+
+
+///< Authentication Status Register. Not supported.
+#define RCS_ETMB_TRCAUTHSTAT_BF_OFF ( 0)
+#define RCS_ETMB_TRCAUTHSTAT_BF_WID (32)
+#define RCS_ETMB_TRCAUTHSTAT_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCAUTHSTAT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCDEVARCH register description at address offset 0xfbc
+  *
+  * Register default value:        0x47704A13
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCDEVARCH
+  * TRCDEVARCH register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ARCHID : 16;
+    ///< Architecture ID. Bits[15:12] return 0x4, the architecture version
+    ///< for ETMv4. Bits[11:0] return 0xA13, the architecture part number for
+    ///< an ETMv4 trace unit.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x4A13"
+    uint32_t REVISION : 4;
+    ///< Identifies the revision number of the trace unit architecture. 0x0
+    ///< ETMv4.0; 0x1 ETMv4.1; 0x2 ETM4.2.
+    ///< AccessType="RO" BitOffset="16" ResetValue="0x0"
+    uint32_t PRESENT : 1;
+    ///< Indicates the presence of this register.
+    ///< AccessType="RO" BitOffset="20" ResetValue="0x1"
+    uint32_t ARCHITECT : 11;
+    ///< Architecture ID. Bits[31:28] return 0x4, the JEP106 continuation code
+    ///< for ARM. Bits[27:21] return '0111011', the JEP106 code for ARM.
+    ///< AccessType="RO" BitOffset="21" ResetValue="0x23B"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcdevarch_reg_t;
+
+#define RCS_ETMB_TRCDEVARCH_DEFAULT (0x47704a13U)
+#define RCS_ETMB_TRCDEVARCH_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCDEVARCH_WR_MASK (0x00000000U)
+
+
+///< Architecture ID. Bits[15:12] return 0x4, the architecture version
+///< for ETMv4. Bits[11:0] return 0xA13, the architecture part number for
+///< an ETMv4 trace unit.
+#define RCS_ETMB_TRCDEVARCH_ARCHID_BF_OFF ( 0)
+#define RCS_ETMB_TRCDEVARCH_ARCHID_BF_WID (16)
+#define RCS_ETMB_TRCDEVARCH_ARCHID_BF_MSK (0x0000FFFF)
+#define RCS_ETMB_TRCDEVARCH_ARCHID_BF_DEF (0x00004A13)
+
+///< Identifies the revision number of the trace unit architecture. 0x0
+///< ETMv4.0; 0x1 ETMv4.1; 0x2 ETM4.2.
+#define RCS_ETMB_TRCDEVARCH_REVISION_BF_OFF (16)
+#define RCS_ETMB_TRCDEVARCH_REVISION_BF_WID ( 4)
+#define RCS_ETMB_TRCDEVARCH_REVISION_BF_MSK (0x000F0000)
+#define RCS_ETMB_TRCDEVARCH_REVISION_BF_DEF (0x00000000)
+
+///< Indicates the presence of this register.
+#define RCS_ETMB_TRCDEVARCH_PRESENT_BF_OFF (20)
+#define RCS_ETMB_TRCDEVARCH_PRESENT_BF_WID ( 1)
+#define RCS_ETMB_TRCDEVARCH_PRESENT_BF_MSK (0x00100000)
+#define RCS_ETMB_TRCDEVARCH_PRESENT_BF_DEF (0x00100000)
+
+///< Architecture ID. Bits[31:28] return 0x4, the JEP106 continuation code
+///< for ARM. Bits[27:21] return '0111011', the JEP106 code for ARM.
+#define RCS_ETMB_TRCDEVARCH_ARCHITECT_BF_OFF (21)
+#define RCS_ETMB_TRCDEVARCH_ARCHITECT_BF_WID (11)
+#define RCS_ETMB_TRCDEVARCH_ARCHITECT_BF_MSK (0xFFE00000)
+#define RCS_ETMB_TRCDEVARCH_ARCHITECT_BF_DEF (0x47600000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCDEVRES0 register description at address offset 0xfc0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCDEVRES0
+  * TRCDEVRES0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCDEVRES0 : 32;
+    ///< Reserved.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcdevres0_reg_t;
+
+#define RCS_ETMB_TRCDEVRES0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCDEVRES0_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCDEVRES0_WR_MASK (0x00000000U)
+
+
+///< Reserved.
+#define RCS_ETMB_TRCDEVRES0_BF_OFF ( 0)
+#define RCS_ETMB_TRCDEVRES0_BF_WID (32)
+#define RCS_ETMB_TRCDEVRES0_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCDEVRES0_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCDEVRES1 register description at address offset 0xfc4
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCDEVRES1
+  * TRCDEVRES1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCDEVRES1 : 32;
+    ///< Reserved.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcdevres1_reg_t;
+
+#define RCS_ETMB_TRCDEVRES1_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCDEVRES1_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCDEVRES1_WR_MASK (0x00000000U)
+
+
+///< Reserved.
+#define RCS_ETMB_TRCDEVRES1_BF_OFF ( 0)
+#define RCS_ETMB_TRCDEVRES1_BF_WID (32)
+#define RCS_ETMB_TRCDEVRES1_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCDEVRES1_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCDEVID register description at address offset 0xfc8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCDEVID
+  * TRCDEVID register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCDEVID : 32;
+    ///< Device ID Register.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcdevid_reg_t;
+
+#define RCS_ETMB_TRCDEVID_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCDEVID_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCDEVID_WR_MASK (0x00000000U)
+
+
+///< Device ID Register.
+#define RCS_ETMB_TRCDEVID_BF_OFF ( 0)
+#define RCS_ETMB_TRCDEVID_BF_WID (32)
+#define RCS_ETMB_TRCDEVID_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCDEVID_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCDEVTYPE register description at address offset 0xfcc
+  *
+  * Register default value:        0x00000013
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCDEVTYPE
+  * TRCDEVTYPE register.
+  */
+
+typedef union {
+  struct {
+    uint32_t MAJOR : 4;
+    ///< Returns 0x3, to indicate that the trace unit is a trace source.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x3"
+    uint32_t SUB : 4;
+    ///< Returns 0x1, to indicate that the trace unit generates PE trace.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x1"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcdevtype_reg_t;
+
+#define RCS_ETMB_TRCDEVTYPE_DEFAULT (0x00000013U)
+#define RCS_ETMB_TRCDEVTYPE_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCDEVTYPE_WR_MASK (0x00000000U)
+
+
+///< Returns 0x3, to indicate that the trace unit is a trace source.
+#define RCS_ETMB_TRCDEVTYPE_MAJOR_BF_OFF ( 0)
+#define RCS_ETMB_TRCDEVTYPE_MAJOR_BF_WID ( 4)
+#define RCS_ETMB_TRCDEVTYPE_MAJOR_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCDEVTYPE_MAJOR_BF_DEF (0x00000003)
+
+///< Returns 0x1, to indicate that the trace unit generates PE trace.
+#define RCS_ETMB_TRCDEVTYPE_SUB_BF_OFF ( 4)
+#define RCS_ETMB_TRCDEVTYPE_SUB_BF_WID ( 4)
+#define RCS_ETMB_TRCDEVTYPE_SUB_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCDEVTYPE_SUB_BF_DEF (0x00000010)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPIDR4 register description at address offset 0xfd0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPIDR4
+  * TRCPIDR4 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t DES_2 : 4;
+    ///< The IMPLEMENTATION DEFINED JEP106 continuation code.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t SIZE : 4;
+    ///< Indicates that the trace unit memory map occupies 4KB.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpidr4_reg_t;
+
+#define RCS_ETMB_TRCPIDR4_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPIDR4_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCPIDR4_WR_MASK (0x00000000U)
+
+
+///< The IMPLEMENTATION DEFINED JEP106 continuation code.
+#define RCS_ETMB_TRCPIDR4_DES_2_BF_OFF ( 0)
+#define RCS_ETMB_TRCPIDR4_DES_2_BF_WID ( 4)
+#define RCS_ETMB_TRCPIDR4_DES_2_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCPIDR4_DES_2_BF_DEF (0x00000000)
+
+///< Indicates that the trace unit memory map occupies 4KB.
+#define RCS_ETMB_TRCPIDR4_SIZE_BF_OFF ( 4)
+#define RCS_ETMB_TRCPIDR4_SIZE_BF_WID ( 4)
+#define RCS_ETMB_TRCPIDR4_SIZE_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCPIDR4_SIZE_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPIDR5 register description at address offset 0xfd4
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPIDR5
+  * TRCPIDR5 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCPIDR5 : 32;
+    ///< Peripheral ID5 Register.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpidr5_reg_t;
+
+#define RCS_ETMB_TRCPIDR5_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPIDR5_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCPIDR5_WR_MASK (0x00000000U)
+
+
+///< Peripheral ID5 Register.
+#define RCS_ETMB_TRCPIDR5_BF_OFF ( 0)
+#define RCS_ETMB_TRCPIDR5_BF_WID (32)
+#define RCS_ETMB_TRCPIDR5_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCPIDR5_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPIDR6 register description at address offset 0xfd8
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPIDR6
+  * TRCPIDR6 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCPIDR6 : 32;
+    ///< Peripheral ID6 Register.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpidr6_reg_t;
+
+#define RCS_ETMB_TRCPIDR6_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPIDR6_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCPIDR6_WR_MASK (0x00000000U)
+
+
+///< Peripheral ID6 Register.
+#define RCS_ETMB_TRCPIDR6_BF_OFF ( 0)
+#define RCS_ETMB_TRCPIDR6_BF_WID (32)
+#define RCS_ETMB_TRCPIDR6_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCPIDR6_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPIDR7 register description at address offset 0xfdc
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPIDR7
+  * TRCPIDR7 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t TRCPIDR7 : 32;
+    ///< Peripheral ID7 Register.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpidr7_reg_t;
+
+#define RCS_ETMB_TRCPIDR7_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPIDR7_RD_MASK (0xffffffffU)
+#define RCS_ETMB_TRCPIDR7_WR_MASK (0x00000000U)
+
+
+///< Peripheral ID7 Register.
+#define RCS_ETMB_TRCPIDR7_BF_OFF ( 0)
+#define RCS_ETMB_TRCPIDR7_BF_WID (32)
+#define RCS_ETMB_TRCPIDR7_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_TRCPIDR7_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPIDR0 register description at address offset 0xfe0
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPIDR0
+  * TRCPIDR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PART_0 : 8;
+    ///< Bits[7:0] of the IMPLEMENTATION DEFINED part number.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpidr0_reg_t;
+
+#define RCS_ETMB_TRCPIDR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPIDR0_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCPIDR0_WR_MASK (0x00000000U)
+
+
+///< Bits[7:0] of the IMPLEMENTATION DEFINED part number.
+#define RCS_ETMB_TRCPIDR0_PART_0_BF_OFF ( 0)
+#define RCS_ETMB_TRCPIDR0_PART_0_BF_WID ( 8)
+#define RCS_ETMB_TRCPIDR0_PART_0_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCPIDR0_PART_0_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPIDR1 register description at address offset 0xfe4
+  *
+  * Register default value:        0x00000090
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPIDR1
+  * TRCPIDR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PART_1 : 4;
+    ///< Bits[11:8] of the IMPLEMENTATION DEFINED part number.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t DES_0 : 4;
+    ///< Bits[3:0] of the IMPLEMENTATION DEFINED JEP106 identification code.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x9"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpidr1_reg_t;
+
+#define RCS_ETMB_TRCPIDR1_DEFAULT (0x00000090U)
+#define RCS_ETMB_TRCPIDR1_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCPIDR1_WR_MASK (0x00000000U)
+
+
+///< Bits[11:8] of the IMPLEMENTATION DEFINED part number.
+#define RCS_ETMB_TRCPIDR1_PART_1_BF_OFF ( 0)
+#define RCS_ETMB_TRCPIDR1_PART_1_BF_WID ( 4)
+#define RCS_ETMB_TRCPIDR1_PART_1_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCPIDR1_PART_1_BF_DEF (0x00000000)
+
+///< Bits[3:0] of the IMPLEMENTATION DEFINED JEP106 identification code.
+#define RCS_ETMB_TRCPIDR1_DES_0_BF_OFF ( 4)
+#define RCS_ETMB_TRCPIDR1_DES_0_BF_WID ( 4)
+#define RCS_ETMB_TRCPIDR1_DES_0_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCPIDR1_DES_0_BF_DEF (0x00000090)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPIDR2 register description at address offset 0xfe8
+  *
+  * Register default value:        0x00000008
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPIDR2
+  * TRCPIDR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t DES_1 : 3;
+    ///< Bits[6:4] of the IMPLEMENTATION DEFINED JEP106 identification code.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t JEDEC : 1;
+    ///< Indicates that the TRCPIDR1[7:4], TRCPIDR2[6:4] and TRCPIDR4.DES_2
+    ///< fields represent a JEP106 identification code.
+    ///< AccessType="RO" BitOffset="3" ResetValue="0x1"
+    uint32_t REVISION : 4;
+    ///< The IMPLEMENTATION DEFINED revision number for the trace unit implementation.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpidr2_reg_t;
+
+#define RCS_ETMB_TRCPIDR2_DEFAULT (0x00000008U)
+#define RCS_ETMB_TRCPIDR2_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCPIDR2_WR_MASK (0x00000000U)
+
+
+///< Bits[6:4] of the IMPLEMENTATION DEFINED JEP106 identification code.
+#define RCS_ETMB_TRCPIDR2_DES_1_BF_OFF ( 0)
+#define RCS_ETMB_TRCPIDR2_DES_1_BF_WID ( 3)
+#define RCS_ETMB_TRCPIDR2_DES_1_BF_MSK (0x00000007)
+#define RCS_ETMB_TRCPIDR2_DES_1_BF_DEF (0x00000000)
+
+///< Indicates that the TRCPIDR1[7:4], TRCPIDR2[6:4] and TRCPIDR4.DES_2
+///< fields represent a JEP106 identification code.
+#define RCS_ETMB_TRCPIDR2_JEDEC_BF_OFF ( 3)
+#define RCS_ETMB_TRCPIDR2_JEDEC_BF_WID ( 1)
+#define RCS_ETMB_TRCPIDR2_JEDEC_BF_MSK (0x00000008)
+#define RCS_ETMB_TRCPIDR2_JEDEC_BF_DEF (0x00000008)
+
+///< The IMPLEMENTATION DEFINED revision number for the trace unit implementation.
+#define RCS_ETMB_TRCPIDR2_REVISION_BF_OFF ( 4)
+#define RCS_ETMB_TRCPIDR2_REVISION_BF_WID ( 4)
+#define RCS_ETMB_TRCPIDR2_REVISION_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCPIDR2_REVISION_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCPIDR3 register description at address offset 0xfec
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCPIDR3
+  * TRCPIDR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CMOD : 4;
+    ///< An IMPLEMENTATION DEFINED value that indicates an endorsed modification
+    ///< to the implementation.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t REVAND : 4;
+    ///< The IMPLEMENTATION DEFINED manufacturing revision number for the implementation.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trcpidr3_reg_t;
+
+#define RCS_ETMB_TRCPIDR3_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCPIDR3_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCPIDR3_WR_MASK (0x00000000U)
+
+
+///< An IMPLEMENTATION DEFINED value that indicates an endorsed modification
+///< to the implementation.
+#define RCS_ETMB_TRCPIDR3_CMOD_BF_OFF ( 0)
+#define RCS_ETMB_TRCPIDR3_CMOD_BF_WID ( 4)
+#define RCS_ETMB_TRCPIDR3_CMOD_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCPIDR3_CMOD_BF_DEF (0x00000000)
+
+///< The IMPLEMENTATION DEFINED manufacturing revision number for the implementation.
+#define RCS_ETMB_TRCPIDR3_REVAND_BF_OFF ( 4)
+#define RCS_ETMB_TRCPIDR3_REVAND_BF_WID ( 4)
+#define RCS_ETMB_TRCPIDR3_REVAND_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCPIDR3_REVAND_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDR0 register description at address offset 0xff0
+  *
+  * Register default value:        0x0000000D
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDR0
+  * TRCCIDR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PRMBL_0 : 8;
+    ///< Returns 0x0D.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0xD"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidr0_reg_t;
+
+#define RCS_ETMB_TRCCIDR0_DEFAULT (0x0000000dU)
+#define RCS_ETMB_TRCCIDR0_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCCIDR0_WR_MASK (0x00000000U)
+
+
+///< Returns 0x0D.
+#define RCS_ETMB_TRCCIDR0_PRMBL_0_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDR0_PRMBL_0_BF_WID ( 8)
+#define RCS_ETMB_TRCCIDR0_PRMBL_0_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCCIDR0_PRMBL_0_BF_DEF (0x0000000D)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDR1 register description at address offset 0xff4
+  *
+  * Register default value:        0x00000090
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDR1
+  * TRCCIDR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PRMBL_1 : 4;
+    ///< Returns 0x0.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+    uint32_t CLASS : 4;
+    ///< Returns 0x9, to indicate that the trace unit is a debug component,
+    ///< with CoreSight architecture compliant management registers.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x9"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidr1_reg_t;
+
+#define RCS_ETMB_TRCCIDR1_DEFAULT (0x00000090U)
+#define RCS_ETMB_TRCCIDR1_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCCIDR1_WR_MASK (0x00000000U)
+
+
+///< Returns 0x0.
+#define RCS_ETMB_TRCCIDR1_PRMBL_1_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDR1_PRMBL_1_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDR1_PRMBL_1_BF_MSK (0x0000000F)
+#define RCS_ETMB_TRCCIDR1_PRMBL_1_BF_DEF (0x00000000)
+
+///< Returns 0x9, to indicate that the trace unit is a debug component,
+///< with CoreSight architecture compliant management registers.
+#define RCS_ETMB_TRCCIDR1_CLASS_BF_OFF ( 4)
+#define RCS_ETMB_TRCCIDR1_CLASS_BF_WID ( 4)
+#define RCS_ETMB_TRCCIDR1_CLASS_BF_MSK (0x000000F0)
+#define RCS_ETMB_TRCCIDR1_CLASS_BF_DEF (0x00000090)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDR2 register description at address offset 0xff8
+  *
+  * Register default value:        0x00000005
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDR2
+  * TRCCIDR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PRMBL_2 : 8;
+    ///< Returns 0x05.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x5"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidr2_reg_t;
+
+#define RCS_ETMB_TRCCIDR2_DEFAULT (0x00000005U)
+#define RCS_ETMB_TRCCIDR2_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCCIDR2_WR_MASK (0x00000000U)
+
+
+///< Returns 0x05.
+#define RCS_ETMB_TRCCIDR2_PRMBL_2_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDR2_PRMBL_2_BF_WID ( 8)
+#define RCS_ETMB_TRCCIDR2_PRMBL_2_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCCIDR2_PRMBL_2_BF_DEF (0x00000005)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCIDR3 register description at address offset 0xffc
+  *
+  * Register default value:        0x000000B1
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCIDR3
+  * TRCCIDR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PRMBL_3 : 8;
+    ///< Returns 0xB1.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0xB1"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccidr3_reg_t;
+
+#define RCS_ETMB_TRCCIDR3_DEFAULT (0x000000b1U)
+#define RCS_ETMB_TRCCIDR3_RD_MASK (0x000000ffU)
+#define RCS_ETMB_TRCCIDR3_WR_MASK (0x00000000U)
+
+
+///< Returns 0xB1.
+#define RCS_ETMB_TRCCIDR3_PRMBL_3_BF_OFF ( 0)
+#define RCS_ETMB_TRCCIDR3_PRMBL_3_BF_WID ( 8)
+#define RCS_ETMB_TRCCIDR3_PRMBL_3_BF_MSK (0x000000FF)
+#define RCS_ETMB_TRCCIDR3_PRMBL_3_BF_DEF (0x000000B1)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGCMDR register description at address offset 0x1000
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGCMDR
+  * DBGCMDR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CMD : 3;
+    ///< Command: '001' Debug On; '010' Debug Off; '011' Stop; '100' Continue;
+    ///< '101' Single-step; Other options are ignored.
+    ///< AccessType="WO" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 29;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="3" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgcmdr_reg_t;
+
+#define RCS_ETMB_DBGCMDR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGCMDR_RD_MASK (0x00000000U)
+#define RCS_ETMB_DBGCMDR_WR_MASK (0x00000007U)
+
+
+///< Command: '001' Debug On; '010' Debug Off; '011' Stop; '100' Continue;
+///< '101' Single-step; Other options are ignored.
+#define RCS_ETMB_DBGCMDR_CMD_BF_OFF ( 0)
+#define RCS_ETMB_DBGCMDR_CMD_BF_WID ( 3)
+#define RCS_ETMB_DBGCMDR_CMD_BF_MSK (0x00000007)
+#define RCS_ETMB_DBGCMDR_CMD_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGBPIACSELR register description at address offset 0x1004
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGBPIACSELR
+  * DBGBPIACSELR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 8;
+    ///< For each bit n corresponding to an instruction address comparator:
+    ///< '0' not selected; '1' selected for breakpoint.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgbpiacselr_reg_t;
+
+#define RCS_ETMB_DBGBPIACSELR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGBPIACSELR_RD_MASK (0x000000ffU)
+#define RCS_ETMB_DBGBPIACSELR_WR_MASK (0x000000ffU)
+
+
+///< For each bit n corresponding to an instruction address comparator:
+///< '0' not selected; '1' selected for breakpoint.
+#define RCS_ETMB_DBGBPIACSELR_SEL_BF_OFF ( 0)
+#define RCS_ETMB_DBGBPIACSELR_SEL_BF_WID ( 8)
+#define RCS_ETMB_DBGBPIACSELR_SEL_BF_MSK (0x000000FF)
+#define RCS_ETMB_DBGBPIACSELR_SEL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGBPHITSTATR register description at address offset 0x1008
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGBPHITSTATR
+  * DBGBPHITSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t HIT : 8;
+    ///< For each bit n corresponding to an instruction address comparator:
+    ///< '0' no hit; '1' hit.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgbphitstatr_reg_t;
+
+#define RCS_ETMB_DBGBPHITSTATR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGBPHITSTATR_RD_MASK (0x000000ffU)
+#define RCS_ETMB_DBGBPHITSTATR_WR_MASK (0x00000000U)
+
+
+///< For each bit n corresponding to an instruction address comparator:
+///< '0' no hit; '1' hit.
+#define RCS_ETMB_DBGBPHITSTATR_HIT_BF_OFF ( 0)
+#define RCS_ETMB_DBGBPHITSTATR_HIT_BF_WID ( 8)
+#define RCS_ETMB_DBGBPHITSTATR_HIT_BF_MSK (0x000000FF)
+#define RCS_ETMB_DBGBPHITSTATR_HIT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGWPDACSELR register description at address offset 0x100c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGWPDACSELR
+  * DBGWPDACSELR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 4;
+    ///< For each bit n corresponding to a data address comparator: '0' not
+    ///< selected; '1' selected for watchpoint.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 28;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="4" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgwpdacselr_reg_t;
+
+#define RCS_ETMB_DBGWPDACSELR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGWPDACSELR_RD_MASK (0x0000000fU)
+#define RCS_ETMB_DBGWPDACSELR_WR_MASK (0x0000000fU)
+
+
+///< For each bit n corresponding to a data address comparator: '0' not
+///< selected; '1' selected for watchpoint.
+#define RCS_ETMB_DBGWPDACSELR_SEL_BF_OFF ( 0)
+#define RCS_ETMB_DBGWPDACSELR_SEL_BF_WID ( 4)
+#define RCS_ETMB_DBGWPDACSELR_SEL_BF_MSK (0x0000000F)
+#define RCS_ETMB_DBGWPDACSELR_SEL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGWPDACRSELR register description at address offset 0x1010
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGWPDACRSELR
+  * DBGWPDACRSELR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t SELECT : 2;
+    ///< For each bit n corresponding to a data address comparator pair: '0'
+    ///< not selected; '1' selected for watchpoint.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 30;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="2" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgwpdacrselr_reg_t;
+
+#define RCS_ETMB_DBGWPDACRSELR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGWPDACRSELR_RD_MASK (0x00000003U)
+#define RCS_ETMB_DBGWPDACRSELR_WR_MASK (0x00000003U)
+
+
+///< For each bit n corresponding to a data address comparator pair: '0'
+///< not selected; '1' selected for watchpoint.
+#define RCS_ETMB_DBGWPDACRSELR_SEL_BF_OFF ( 0)
+#define RCS_ETMB_DBGWPDACRSELR_SEL_BF_WID ( 2)
+#define RCS_ETMB_DBGWPDACRSELR_SEL_BF_MSK (0x00000003)
+#define RCS_ETMB_DBGWPDACRSELR_SEL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGWPHITSTATR register description at address offset 0x1014
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGWPHITSTATR
+  * DBGWPHITSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t HIT : 4;
+    ///< For each bit n corresponding to a data address comparator: '0' no
+    ///< hit; '1' hit.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 28;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="4" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgwphitstatr_reg_t;
+
+#define RCS_ETMB_DBGWPHITSTATR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGWPHITSTATR_RD_MASK (0x0000000fU)
+#define RCS_ETMB_DBGWPHITSTATR_WR_MASK (0x00000000U)
+
+
+///< For each bit n corresponding to a data address comparator: '0' no
+///< hit; '1' hit.
+#define RCS_ETMB_DBGWPHITSTATR_HIT_BF_OFF ( 0)
+#define RCS_ETMB_DBGWPHITSTATR_HIT_BF_WID ( 4)
+#define RCS_ETMB_DBGWPHITSTATR_HIT_BF_MSK (0x0000000F)
+#define RCS_ETMB_DBGWPHITSTATR_HIT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGCPSTOPENR register description at address offset 0x1018
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGCPSTOPENR
+  * DBGCPSTOPENR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CP_ENABLE : 1;
+    ///< For each bit n corresponding to a crosspoint: '0' cross-breaking disabled;
+    ///< '1' enabled.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgcpstopenr_reg_t;
+
+#define RCS_ETMB_DBGCPSTOPENR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGCPSTOPENR_RD_MASK (0x00000001U)
+#define RCS_ETMB_DBGCPSTOPENR_WR_MASK (0x00000001U)
+
+
+///< For each bit n corresponding to a crosspoint: '0' cross-breaking disabled;
+///< '1' enabled.
+#define RCS_ETMB_DBGCPSTOPENR_CP_EN_BF_OFF ( 0)
+#define RCS_ETMB_DBGCPSTOPENR_CP_EN_BF_WID ( 1)
+#define RCS_ETMB_DBGCPSTOPENR_CP_EN_BF_MSK (0x00000001)
+#define RCS_ETMB_DBGCPSTOPENR_CP_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGCPSTARTENR register description at address offset 0x101c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGCPSTARTENR
+  * DBGCPSTARTENR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CP_ENABLE : 1;
+    ///< For each bit n corresponding to a crosspoint: '0' cross-continuing
+    ///< disabled; '1' enabled.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgcpstartenr_reg_t;
+
+#define RCS_ETMB_DBGCPSTARTENR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGCPSTARTENR_RD_MASK (0x00000001U)
+#define RCS_ETMB_DBGCPSTARTENR_WR_MASK (0x00000001U)
+
+
+///< For each bit n corresponding to a crosspoint: '0' cross-continuing
+///< disabled; '1' enabled.
+#define RCS_ETMB_DBGCPSTARTENR_CP_EN_BF_OFF ( 0)
+#define RCS_ETMB_DBGCPSTARTENR_CP_EN_BF_WID ( 1)
+#define RCS_ETMB_DBGCPSTARTENR_CP_EN_BF_MSK (0x00000001)
+#define RCS_ETMB_DBGCPSTARTENR_CP_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGCPHITSTATR register description at address offset 0x1020
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGCPHITSTATR
+  * DBGCPHITSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t HIT : 1;
+    ///< For each bit n corresponding to a crosspoint: '0' external CP driver
+    ///< did not reach a hit; '1' reached a hit.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgcphitstatr_reg_t;
+
+#define RCS_ETMB_DBGCPHITSTATR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGCPHITSTATR_RD_MASK (0x00000001U)
+#define RCS_ETMB_DBGCPHITSTATR_WR_MASK (0x00000000U)
+
+
+///< For each bit n corresponding to a crosspoint: '0' external CP driver
+///< did not reach a hit; '1' reached a hit.
+#define RCS_ETMB_DBGCPHITSTATR_HIT_BF_OFF ( 0)
+#define RCS_ETMB_DBGCPHITSTATR_HIT_BF_WID ( 1)
+#define RCS_ETMB_DBGCPHITSTATR_HIT_BF_MSK (0x00000001)
+#define RCS_ETMB_DBGCPHITSTATR_HIT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGPROCSTATR register description at address offset 0x1024
+  *
+  * Register default value:        0x00000001
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGPROCSTATR
+  * DBGPROCSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t IDLING : 1;
+    ///< Idling. The processor is inactive and ready to start a new program.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x1"
+    uint32_t STARTING : 1;
+    ///< Starting. The processor is starting execution.
+    ///< AccessType="RO/V" BitOffset="1" ResetValue="0x0"
+    uint32_t EXECUTING : 1;
+    ///< Executing. The processor is actively executing operations.
+    ///< AccessType="RO/V" BitOffset="2" ResetValue="0x0"
+    uint32_t STALLING : 1;
+    ///< Stalling. The processor is stalled. This may for instance be caused
+    ///< by blocking reads or writes on empty or full FIFO channels, instruction
+    ///< cache misses, etc. The processor will automatically leave the stalling
+    ///< state when the conditions causing the stall disappear.
+    ///< AccessType="RO/V" BitOffset="3" ResetValue="0x0"
+    uint32_t SLEEPING : 1;
+    ///< Sleeping. The processor has been put into a sleeping state by executing
+    ///< a sleep() operation. It can be made to exit the sleeping state by
+    ///< writing the start register in the status & control registers of the
+    ///< cell via normal memory-mapped IO.
+    ///< AccessType="RO/V" BitOffset="4" ResetValue="0x0"
+    uint32_t BREAKING : 1;
+    ///< Breaking. The processor has been put into debug mode by hitting a
+    ///< break-, watch- or cross-point or by a Stop command from the debug
+    ///< controller. It can be made to exit debug mode by a Continue command.
+    ///< AccessType="RO/V" BitOffset="5" ResetValue="0x0"
+    uint32_t  : 26;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="6" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgprocstatr_reg_t;
+
+#define RCS_ETMB_DBGPROCSTATR_DEFAULT (0x00000001U)
+#define RCS_ETMB_DBGPROCSTATR_RD_MASK (0x0000003fU)
+#define RCS_ETMB_DBGPROCSTATR_WR_MASK (0x00000000U)
+
+
+///< Idling. The processor is inactive and ready to start a new program.
+#define RCS_ETMB_DBGPROCSTATR_IDLING_BF_OFF ( 0)
+#define RCS_ETMB_DBGPROCSTATR_IDLING_BF_WID ( 1)
+#define RCS_ETMB_DBGPROCSTATR_IDLING_BF_MSK (0x00000001)
+#define RCS_ETMB_DBGPROCSTATR_IDLING_BF_DEF (0x00000001)
+
+///< Starting. The processor is starting execution.
+#define RCS_ETMB_DBGPROCSTATR_STARTING_BF_OFF ( 1)
+#define RCS_ETMB_DBGPROCSTATR_STARTING_BF_WID ( 1)
+#define RCS_ETMB_DBGPROCSTATR_STARTING_BF_MSK (0x00000002)
+#define RCS_ETMB_DBGPROCSTATR_STARTING_BF_DEF (0x00000000)
+
+///< Executing. The processor is actively executing operations.
+#define RCS_ETMB_DBGPROCSTATR_EXECUTING_BF_OFF ( 2)
+#define RCS_ETMB_DBGPROCSTATR_EXECUTING_BF_WID ( 1)
+#define RCS_ETMB_DBGPROCSTATR_EXECUTING_BF_MSK (0x00000004)
+#define RCS_ETMB_DBGPROCSTATR_EXECUTING_BF_DEF (0x00000000)
+
+///< Stalling. The processor is stalled. This may for instance be caused
+///< by blocking reads or writes on empty or full FIFO channels, instruction
+///< cache misses, etc. The processor will automatically leave the stalling
+///< state when the conditions causing the stall disappear.
+#define RCS_ETMB_DBGPROCSTATR_STALLING_BF_OFF ( 3)
+#define RCS_ETMB_DBGPROCSTATR_STALLING_BF_WID ( 1)
+#define RCS_ETMB_DBGPROCSTATR_STALLING_BF_MSK (0x00000008)
+#define RCS_ETMB_DBGPROCSTATR_STALLING_BF_DEF (0x00000000)
+
+///< Sleeping. The processor has been put into a sleeping state by executing
+///< a sleep() operation. It can be made to exit the sleeping state by
+///< writing the start register in the status & control registers of the
+///< cell via normal memory-mapped IO.
+#define RCS_ETMB_DBGPROCSTATR_SLEEPING_BF_OFF ( 4)
+#define RCS_ETMB_DBGPROCSTATR_SLEEPING_BF_WID ( 1)
+#define RCS_ETMB_DBGPROCSTATR_SLEEPING_BF_MSK (0x00000010)
+#define RCS_ETMB_DBGPROCSTATR_SLEEPING_BF_DEF (0x00000000)
+
+///< Breaking. The processor has been put into debug mode by hitting a
+///< break-, watch- or cross-point or by a Stop command from the debug
+///< controller. It can be made to exit debug mode by a Continue command.
+#define RCS_ETMB_DBGPROCSTATR_BREAKING_BF_OFF ( 5)
+#define RCS_ETMB_DBGPROCSTATR_BREAKING_BF_WID ( 1)
+#define RCS_ETMB_DBGPROCSTATR_BREAKING_BF_MSK (0x00000020)
+#define RCS_ETMB_DBGPROCSTATR_BREAKING_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGPROCPCR register description at address offset 0x1028
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGPROCPCR
+  * DBGPROCPCR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t PC : 22;
+    ///< Program counter.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgprocpcr_reg_t;
+
+#define RCS_ETMB_DBGPROCPCR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGPROCPCR_RD_MASK (0x003fffffU)
+#define RCS_ETMB_DBGPROCPCR_WR_MASK (0x00000000U)
+
+
+///< Program counter.
+#define RCS_ETMB_DBGPROCPCR_PC_BF_OFF ( 0)
+#define RCS_ETMB_DBGPROCPCR_PC_BF_WID (22)
+#define RCS_ETMB_DBGPROCPCR_PC_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_DBGPROCPCR_PC_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGCTRLSTATR register description at address offset 0x102c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGCTRLSTATR
+  * DBGCTRLSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t STATE : 3;
+    ///< '000' Off; '001' Idle; '010' Stopped; '011' Run until stop; '100'
+    ///< Run one step; Others undefined.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 29;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="3" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgctrlstatr_reg_t;
+
+#define RCS_ETMB_DBGCTRLSTATR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGCTRLSTATR_RD_MASK (0x00000007U)
+#define RCS_ETMB_DBGCTRLSTATR_WR_MASK (0x00000000U)
+
+
+///< '000' Off; '001' Idle; '010' Stopped; '011' Run until stop; '100'
+///< Run one step; Others undefined.
+#define RCS_ETMB_DBGCTRLSTATR_STATE_BF_OFF ( 0)
+#define RCS_ETMB_DBGCTRLSTATR_STATE_BF_WID ( 3)
+#define RCS_ETMB_DBGCTRLSTATR_STATE_BF_MSK (0x00000007)
+#define RCS_ETMB_DBGCTRLSTATR_STATE_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGOBSENR register description at address offset 0x1030
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGOBSENR
+  * DBGOBSENR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t OBS_ENABLE : 1;
+    ///< Enables '1' debug observation mode for processor register files and
+    ///< data memories.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgobsenr_reg_t;
+
+#define RCS_ETMB_DBGOBSENR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGOBSENR_RD_MASK (0x00000001U)
+#define RCS_ETMB_DBGOBSENR_WR_MASK (0x00000001U)
+
+
+///< Enables '1' debug observation mode for processor register files and
+///< data memories.
+#define RCS_ETMB_DBGOBSENR_OBS_EN_BF_OFF ( 0)
+#define RCS_ETMB_DBGOBSENR_OBS_EN_BF_WID ( 1)
+#define RCS_ETMB_DBGOBSENR_OBS_EN_BF_MSK (0x00000001)
+#define RCS_ETMB_DBGOBSENR_OBS_EN_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGPLCMDR register description at address offset 0x1034
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGPLCMDR
+  * DBGPLCMDR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CMD : 1;
+    ///< CIO access trigger. Once the command is received in the register,
+    ///< the CIO initiator access takes place.
+    ///< AccessType="WO" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgplcmdr_reg_t;
+
+#define RCS_ETMB_DBGPLCMDR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGPLCMDR_RD_MASK (0x00000000U)
+#define RCS_ETMB_DBGPLCMDR_WR_MASK (0x00000001U)
+
+
+///< CIO access trigger. Once the command is received in the register,
+///< the CIO initiator access takes place.
+#define RCS_ETMB_DBGPLCMDR_CMD_BF_OFF ( 0)
+#define RCS_ETMB_DBGPLCMDR_CMD_BF_WID ( 1)
+#define RCS_ETMB_DBGPLCMDR_CMD_BF_MSK (0x00000001)
+#define RCS_ETMB_DBGPLCMDR_CMD_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGPLADDRR register description at address offset 0x1038
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGPLADDRR
+  * DBGPLADDRR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Used to preload the byte address used with a CIO read or write command.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgpladdrr_reg_t;
+
+#define RCS_ETMB_DBGPLADDRR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGPLADDRR_RD_MASK (0xffffffffU)
+#define RCS_ETMB_DBGPLADDRR_WR_MASK (0xffffffffU)
+
+
+///< Used to preload the byte address used with a CIO read or write command.
+#define RCS_ETMB_DBGPLADDRR_BF_OFF ( 0)
+#define RCS_ETMB_DBGPLADDRR_BF_WID (32)
+#define RCS_ETMB_DBGPLADDRR_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_DBGPLADDRR_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGSPRDATAR register description at address offset 0x103c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGSPRDATAR
+  * DBGSPRDATAR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t DATA : 32;
+    ///< Used to sample the data obtained through a CIO read command.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgsprdatar_reg_t;
+
+#define RCS_ETMB_DBGSPRDATAR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGSPRDATAR_RD_MASK (0xffffffffU)
+#define RCS_ETMB_DBGSPRDATAR_WR_MASK (0x00000000U)
+
+
+///< Used to sample the data obtained through a CIO read command.
+#define RCS_ETMB_DBGSPRDATAR_DATA_BF_OFF ( 0)
+#define RCS_ETMB_DBGSPRDATAR_DATA_BF_WID (32)
+#define RCS_ETMB_DBGSPRDATAR_DATA_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_DBGSPRDATAR_DATA_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DBGSPRVALIDR register description at address offset 0x1040
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DBGSPRVALIDR
+  * DBGSPRVALIDR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t DATA : 1;
+    ///< Validates the data obtained through a CIO read command.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 31;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="1" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dbgsprvalidr_reg_t;
+
+#define RCS_ETMB_DBGSPRVALIDR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DBGSPRVALIDR_RD_MASK (0x00000001U)
+#define RCS_ETMB_DBGSPRVALIDR_WR_MASK (0x00000000U)
+
+
+///< Validates the data obtained through a CIO read command.
+#define RCS_ETMB_DBGSPRVALIDR_DATA_BF_OFF ( 0)
+#define RCS_ETMB_DBGSPRVALIDR_DATA_BF_WID ( 1)
+#define RCS_ETMB_DBGSPRVALIDR_DATA_BF_MSK (0x00000001)
+#define RCS_ETMB_DBGSPRVALIDR_DATA_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_TRCCFGR register description at address offset 0x1044
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_TRCCFGR
+  * TRCCFGR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t MMIOSEL : 2;
+    ///< MMIO selector.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 30;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="2" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_trccfgr_reg_t;
+
+#define RCS_ETMB_TRCCFGR_DEFAULT (0x00000000U)
+#define RCS_ETMB_TRCCFGR_RD_MASK (0x00000003U)
+#define RCS_ETMB_TRCCFGR_WR_MASK (0x00000003U)
+
+
+///< MMIO selector.
+#define RCS_ETMB_TRCCFGR_MMIOSEL_BF_OFF ( 0)
+#define RCS_ETMB_TRCCFGR_MMIOSEL_BF_WID ( 2)
+#define RCS_ETMB_TRCCFGR_MMIOSEL_BF_MSK (0x00000003)
+#define RCS_ETMB_TRCCFGR_MMIOSEL_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACRNGSTATR register description at address offset 0x1058
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACRNGSTATR
+  * IACRNGSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RNG : 8;
+    ///< For each bit n corresponding to an instruction address comparator:
+    ///< '0' used as single; '1' used as pair for range.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacrngstatr_reg_t;
+
+#define RCS_ETMB_IACRNGSTATR_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACRNGSTATR_RD_MASK (0x000000ffU)
+#define RCS_ETMB_IACRNGSTATR_WR_MASK (0x00000000U)
+
+
+///< For each bit n corresponding to an instruction address comparator:
+///< '0' used as single; '1' used as pair for range.
+#define RCS_ETMB_IACRNGSTATR_RNG_BF_OFF ( 0)
+#define RCS_ETMB_IACRNGSTATR_RNG_BF_WID ( 8)
+#define RCS_ETMB_IACRNGSTATR_RNG_BF_MSK (0x000000FF)
+#define RCS_ETMB_IACRNGSTATR_RNG_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_RESERVED_IAC register description at address offset 0x105c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_RESERVED_IAC
+  * RESERVED_IAC register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RESERVED_IAC : 32;
+    ///< Reserved.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_reserved_iac_reg_t;
+
+#define RCS_ETMB_RESERVED_IAC_DEFAULT (0x00000000U)
+#define RCS_ETMB_RESERVED_IAC_RD_MASK (0xffffffffU)
+#define RCS_ETMB_RESERVED_IAC_WR_MASK (0x00000000U)
+
+
+///< Reserved.
+#define RCS_ETMB_RESERVED_IAC_RESERVED_IAC_BF_OFF ( 0)
+#define RCS_ETMB_RESERVED_IAC_RESERVED_IAC_BF_WID (32)
+#define RCS_ETMB_RESERVED_IAC_RESERVED_IAC_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_RESERVED_IAC_RESERVED_IAC_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACHITSTATR register description at address offset 0x1060
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACHITSTATR
+  * IACHITSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t HIT : 8;
+    ///< For each bit n corresponding to an instruction address comparator:
+    ///< '0' no hit; '1' hit.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 24;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="8" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iachitstatr_reg_t;
+
+#define RCS_ETMB_IACHITSTATR_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACHITSTATR_RD_MASK (0x000000ffU)
+#define RCS_ETMB_IACHITSTATR_WR_MASK (0x00000000U)
+
+
+///< For each bit n corresponding to an instruction address comparator:
+///< '0' no hit; '1' hit.
+#define RCS_ETMB_IACHITSTATR_HIT_BF_OFF ( 0)
+#define RCS_ETMB_IACHITSTATR_HIT_BF_WID ( 8)
+#define RCS_ETMB_IACHITSTATR_HIT_BF_MSK (0x000000FF)
+#define RCS_ETMB_IACHITSTATR_HIT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACRNGSTATR register description at address offset 0x1064
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACRNGSTATR
+  * DACRNGSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RNG : 4;
+    ///< For each bit n corresponding to a data address comparator: '0' used
+    ///< as single; '1' used as pair for range.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 28;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="4" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dacrngstatr_reg_t;
+
+#define RCS_ETMB_DACRNGSTATR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACRNGSTATR_RD_MASK (0x0000000fU)
+#define RCS_ETMB_DACRNGSTATR_WR_MASK (0x00000000U)
+
+
+///< For each bit n corresponding to a data address comparator: '0' used
+///< as single; '1' used as pair for range.
+#define RCS_ETMB_DACRNGSTATR_RNG_BF_OFF ( 0)
+#define RCS_ETMB_DACRNGSTATR_RNG_BF_WID ( 4)
+#define RCS_ETMB_DACRNGSTATR_RNG_BF_MSK (0x0000000F)
+#define RCS_ETMB_DACRNGSTATR_RNG_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_RESERVED_DAC register description at address offset 0x1068
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_RESERVED_DAC
+  * RESERVED_DAC register.
+  */
+
+typedef union {
+  struct {
+    uint32_t RESERVED_DAC : 32;
+    ///< Reserved.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_reserved_dac_reg_t;
+
+#define RCS_ETMB_RESERVED_DAC_DEFAULT (0x00000000U)
+#define RCS_ETMB_RESERVED_DAC_RD_MASK (0xffffffffU)
+#define RCS_ETMB_RESERVED_DAC_WR_MASK (0x00000000U)
+
+
+///< Reserved.
+#define RCS_ETMB_RESERVED_DAC_RESERVED_DAC_BF_OFF ( 0)
+#define RCS_ETMB_RESERVED_DAC_RESERVED_DAC_BF_WID (32)
+#define RCS_ETMB_RESERVED_DAC_RESERVED_DAC_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_RESERVED_DAC_RESERVED_DAC_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACHITSTATR register description at address offset 0x106c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACHITSTATR
+  * DACHITSTATR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t HIT : 4;
+    ///< For each bit n corresponding to a data address comparator: '0' no
+    ///< hit; '1' hit.
+    ///< AccessType="RO/V" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 28;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="4" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_dachitstatr_reg_t;
+
+#define RCS_ETMB_DACHITSTATR_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACHITSTATR_RD_MASK (0x0000000fU)
+#define RCS_ETMB_DACHITSTATR_WR_MASK (0x00000000U)
+
+
+///< For each bit n corresponding to a data address comparator: '0' no
+///< hit; '1' hit.
+#define RCS_ETMB_DACHITSTATR_HIT_BF_OFF ( 0)
+#define RCS_ETMB_DACHITSTATR_HIT_BF_WID ( 4)
+#define RCS_ETMB_DACHITSTATR_HIT_BF_MSK (0x0000000F)
+#define RCS_ETMB_DACHITSTATR_HIT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_PARAMSR register description at address offset 0x107c
+  *
+  * Register default value:        0x00044108
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_PARAMSR
+  * PARAMSR register.
+  */
+
+typedef union {
+  struct {
+    uint32_t NR_IACS : 6;
+    ///< Number of instruction address (PC) comparators.
+    ///< AccessType="RO" BitOffset="0" ResetValue="0x8"
+    uint32_t NR_DACS : 6;
+    ///< Number of data address comparators.
+    ///< AccessType="RO" BitOffset="6" ResetValue="0x4"
+    uint32_t NR_MMIOS : 6;
+    ///< Number of watched LSU MMIO ports.
+    ///< AccessType="RO" BitOffset="12" ResetValue="0x4"
+    uint32_t NR_CPS : 6;
+    ///< Number of crosspoint start/stop pairs.
+    ///< AccessType="RO" BitOffset="18" ResetValue="0x1"
+    uint32_t TRACE_SUPPORT : 1;
+    ///< Trace support available.
+    ///< AccessType="RO" BitOffset="24" ResetValue="0x0"
+    uint32_t  : 7;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="25" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_paramsr_reg_t;
+
+#define RCS_ETMB_PARAMSR_DEFAULT (0x00044108U)
+#define RCS_ETMB_PARAMSR_RD_MASK (0x01ffffffU)
+#define RCS_ETMB_PARAMSR_WR_MASK (0x00000000U)
+
+
+///< Number of instruction address (PC) comparators.
+#define RCS_ETMB_PARAMSR_NR_IACS_BF_OFF ( 0)
+#define RCS_ETMB_PARAMSR_NR_IACS_BF_WID ( 6)
+#define RCS_ETMB_PARAMSR_NR_IACS_BF_MSK (0x0000003F)
+#define RCS_ETMB_PARAMSR_NR_IACS_BF_DEF (0x00000008)
+
+///< Number of data address comparators.
+#define RCS_ETMB_PARAMSR_NR_DACS_BF_OFF ( 6)
+#define RCS_ETMB_PARAMSR_NR_DACS_BF_WID ( 6)
+#define RCS_ETMB_PARAMSR_NR_DACS_BF_MSK (0x00000FC0)
+#define RCS_ETMB_PARAMSR_NR_DACS_BF_DEF (0x00000100)
+
+///< Number of watched LSU MMIO ports.
+#define RCS_ETMB_PARAMSR_NR_MMIOS_BF_OFF (12)
+#define RCS_ETMB_PARAMSR_NR_MMIOS_BF_WID ( 6)
+#define RCS_ETMB_PARAMSR_NR_MMIOS_BF_MSK (0x0003F000)
+#define RCS_ETMB_PARAMSR_NR_MMIOS_BF_DEF (0x00004000)
+
+///< Number of crosspoint start/stop pairs.
+#define RCS_ETMB_PARAMSR_NR_CPS_BF_OFF (18)
+#define RCS_ETMB_PARAMSR_NR_CPS_BF_WID ( 6)
+#define RCS_ETMB_PARAMSR_NR_CPS_BF_MSK (0x00FC0000)
+#define RCS_ETMB_PARAMSR_NR_CPS_BF_DEF (0x00040000)
+
+///< Trace support available.
+#define RCS_ETMB_PARAMSR_TRACE_SUPPORT_BF_OFF (24)
+#define RCS_ETMB_PARAMSR_TRACE_SUPPORT_BF_WID ( 1)
+#define RCS_ETMB_PARAMSR_TRACE_SUPPORT_BF_MSK (0x01000000)
+#define RCS_ETMB_PARAMSR_TRACE_SUPPORT_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACVALR0 register description at address offset 0x1080
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACVALR0
+  * IACVALR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 22;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacvalr0_reg_t;
+
+#define RCS_ETMB_IACVALR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACVALR0_RD_MASK (0x003fffffU)
+#define RCS_ETMB_IACVALR0_WR_MASK (0x003fffffU)
+
+
+///< Address value.
+#define RCS_ETMB_IACVALR0_BF_OFF ( 0)
+#define RCS_ETMB_IACVALR0_BF_WID (22)
+#define RCS_ETMB_IACVALR0_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_IACVALR0_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACVALR1 register description at address offset 0x1084
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACVALR1
+  * IACVALR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 22;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacvalr1_reg_t;
+
+#define RCS_ETMB_IACVALR1_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACVALR1_RD_MASK (0x003fffffU)
+#define RCS_ETMB_IACVALR1_WR_MASK (0x003fffffU)
+
+
+///< Address value.
+#define RCS_ETMB_IACVALR1_BF_OFF ( 0)
+#define RCS_ETMB_IACVALR1_BF_WID (22)
+#define RCS_ETMB_IACVALR1_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_IACVALR1_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACVALR2 register description at address offset 0x1088
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACVALR2
+  * IACVALR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 22;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacvalr2_reg_t;
+
+#define RCS_ETMB_IACVALR2_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACVALR2_RD_MASK (0x003fffffU)
+#define RCS_ETMB_IACVALR2_WR_MASK (0x003fffffU)
+
+
+///< Address value.
+#define RCS_ETMB_IACVALR2_BF_OFF ( 0)
+#define RCS_ETMB_IACVALR2_BF_WID (22)
+#define RCS_ETMB_IACVALR2_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_IACVALR2_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACVALR3 register description at address offset 0x108c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACVALR3
+  * IACVALR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 22;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacvalr3_reg_t;
+
+#define RCS_ETMB_IACVALR3_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACVALR3_RD_MASK (0x003fffffU)
+#define RCS_ETMB_IACVALR3_WR_MASK (0x003fffffU)
+
+
+///< Address value.
+#define RCS_ETMB_IACVALR3_BF_OFF ( 0)
+#define RCS_ETMB_IACVALR3_BF_WID (22)
+#define RCS_ETMB_IACVALR3_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_IACVALR3_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACVALR4 register description at address offset 0x1090
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACVALR4
+  * IACVALR4 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 22;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacvalr4_reg_t;
+
+#define RCS_ETMB_IACVALR4_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACVALR4_RD_MASK (0x003fffffU)
+#define RCS_ETMB_IACVALR4_WR_MASK (0x003fffffU)
+
+
+///< Address value.
+#define RCS_ETMB_IACVALR4_BF_OFF ( 0)
+#define RCS_ETMB_IACVALR4_BF_WID (22)
+#define RCS_ETMB_IACVALR4_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_IACVALR4_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACVALR5 register description at address offset 0x1094
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACVALR5
+  * IACVALR5 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 22;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacvalr5_reg_t;
+
+#define RCS_ETMB_IACVALR5_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACVALR5_RD_MASK (0x003fffffU)
+#define RCS_ETMB_IACVALR5_WR_MASK (0x003fffffU)
+
+
+///< Address value.
+#define RCS_ETMB_IACVALR5_BF_OFF ( 0)
+#define RCS_ETMB_IACVALR5_BF_WID (22)
+#define RCS_ETMB_IACVALR5_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_IACVALR5_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACVALR6 register description at address offset 0x1098
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACVALR6
+  * IACVALR6 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 22;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacvalr6_reg_t;
+
+#define RCS_ETMB_IACVALR6_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACVALR6_RD_MASK (0x003fffffU)
+#define RCS_ETMB_IACVALR6_WR_MASK (0x003fffffU)
+
+
+///< Address value.
+#define RCS_ETMB_IACVALR6_BF_OFF ( 0)
+#define RCS_ETMB_IACVALR6_BF_WID (22)
+#define RCS_ETMB_IACVALR6_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_IACVALR6_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_IACVALR7 register description at address offset 0x109c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_IACVALR7
+  * IACVALR7 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 22;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t  : 10;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="22" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_iacvalr7_reg_t;
+
+#define RCS_ETMB_IACVALR7_DEFAULT (0x00000000U)
+#define RCS_ETMB_IACVALR7_RD_MASK (0x003fffffU)
+#define RCS_ETMB_IACVALR7_WR_MASK (0x003fffffU)
+
+
+///< Address value.
+#define RCS_ETMB_IACVALR7_BF_OFF ( 0)
+#define RCS_ETMB_IACVALR7_BF_WID (22)
+#define RCS_ETMB_IACVALR7_BF_MSK (0x003FFFFF)
+#define RCS_ETMB_IACVALR7_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACCFGR0 register description at address offset 0x1100
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACCFGR0
+  * DACCFGR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CMPTYPE : 2;
+    ///< Compares: 'B01' loads; 'B10' stores; 'B11' all addresses.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t MMIOSEL : 2;
+    ///< The load/store unit mmio to watch. '0' DMEM LSU; '1' Scalar Initiator
+    ///< LSU; '2' SDF TSU; '3' Vector Initiator LSU
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t UNUSED : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t DATASIZE : 4;
+    ///< Access type. Controls the width of the data value comparison. Valid
+    ///< values: DMEM LSU= '0' 8b, '1' 16b, '2' 32b, '3' 64b. Scalar Initiator
+    ///< LSU= '2' 32b. SDF TSU= '2' 32b. Vector Initiator LSU= '2' 32b, '3'
+    ///< 64b, '6' 512b, '7' 1024b, '8' 2048b.
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 20;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="12" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_daccfgr0_reg_t;
+
+#define RCS_ETMB_DACCFGR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACCFGR0_RD_MASK (0x00000fffU)
+#define RCS_ETMB_DACCFGR0_WR_MASK (0x00000f0fU)
+
+
+///< Compares: 'B01' loads; 'B10' stores; 'B11' all addresses.
+#define RCS_ETMB_DACCFGR0_CMPTYPE_BF_OFF ( 0)
+#define RCS_ETMB_DACCFGR0_CMPTYPE_BF_WID ( 2)
+#define RCS_ETMB_DACCFGR0_CMPTYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_DACCFGR0_CMPTYPE_BF_DEF (0x00000000)
+
+///< The load/store unit mmio to watch. '0' DMEM LSU; '1' Scalar Initiator
+///< LSU; '2' SDF TSU; '3' Vector Initiator LSU
+#define RCS_ETMB_DACCFGR0_MMIOSEL_BF_OFF ( 2)
+#define RCS_ETMB_DACCFGR0_MMIOSEL_BF_WID ( 2)
+#define RCS_ETMB_DACCFGR0_MMIOSEL_BF_MSK (0x0000000C)
+#define RCS_ETMB_DACCFGR0_MMIOSEL_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_DACCFGR0_UNUSED_BF_OFF ( 4)
+#define RCS_ETMB_DACCFGR0_UNUSED_BF_WID ( 4)
+#define RCS_ETMB_DACCFGR0_UNUSED_BF_MSK (0x000000F0)
+#define RCS_ETMB_DACCFGR0_UNUSED_BF_DEF (0x00000000)
+
+///< Access type. Controls the width of the data value comparison. Valid
+///< values: DMEM LSU= '0' 8b, '1' 16b, '2' 32b, '3' 64b. Scalar Initiator
+///< LSU= '2' 32b. SDF TSU= '2' 32b. Vector Initiator LSU= '2' 32b, '3'
+///< 64b, '6' 512b, '7' 1024b, '8' 2048b.
+#define RCS_ETMB_DACCFGR0_DATASIZE_BF_OFF ( 8)
+#define RCS_ETMB_DACCFGR0_DATASIZE_BF_WID ( 4)
+#define RCS_ETMB_DACCFGR0_DATASIZE_BF_MSK (0x00000F00)
+#define RCS_ETMB_DACCFGR0_DATASIZE_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACCFGR1 register description at address offset 0x1104
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACCFGR1
+  * DACCFGR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CMPTYPE : 2;
+    ///< Compares: 'B01' loads; 'B10' stores; 'B11' all addresses.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t MMIOSEL : 2;
+    ///< The load/store unit mmio to watch. '0' DMEM LSU; '1' Scalar Initiator
+    ///< LSU; '2' SDF TSU; '3' Vector Initiator LSU
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t UNUSED : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t DATASIZE : 4;
+    ///< Access type. Controls the width of the data value comparison. Valid
+    ///< values: DMEM LSU= '0' 8b, '1' 16b, '2' 32b, '3' 64b. Scalar Initiator
+    ///< LSU= '2' 32b. SDF TSU= '2' 32b. Vector Initiator LSU= '2' 32b, '3'
+    ///< 64b, '6' 512b, '7' 1024b, '8' 2048b.
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 20;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="12" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_daccfgr1_reg_t;
+
+#define RCS_ETMB_DACCFGR1_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACCFGR1_RD_MASK (0x00000fffU)
+#define RCS_ETMB_DACCFGR1_WR_MASK (0x00000f0fU)
+
+
+///< Compares: 'B01' loads; 'B10' stores; 'B11' all addresses.
+#define RCS_ETMB_DACCFGR1_CMPTYPE_BF_OFF ( 0)
+#define RCS_ETMB_DACCFGR1_CMPTYPE_BF_WID ( 2)
+#define RCS_ETMB_DACCFGR1_CMPTYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_DACCFGR1_CMPTYPE_BF_DEF (0x00000000)
+
+///< The load/store unit mmio to watch. '0' DMEM LSU; '1' Scalar Initiator
+///< LSU; '2' SDF TSU; '3' Vector Initiator LSU
+#define RCS_ETMB_DACCFGR1_MMIOSEL_BF_OFF ( 2)
+#define RCS_ETMB_DACCFGR1_MMIOSEL_BF_WID ( 2)
+#define RCS_ETMB_DACCFGR1_MMIOSEL_BF_MSK (0x0000000C)
+#define RCS_ETMB_DACCFGR1_MMIOSEL_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_DACCFGR1_UNUSED_BF_OFF ( 4)
+#define RCS_ETMB_DACCFGR1_UNUSED_BF_WID ( 4)
+#define RCS_ETMB_DACCFGR1_UNUSED_BF_MSK (0x000000F0)
+#define RCS_ETMB_DACCFGR1_UNUSED_BF_DEF (0x00000000)
+
+///< Access type. Controls the width of the data value comparison. Valid
+///< values: DMEM LSU= '0' 8b, '1' 16b, '2' 32b, '3' 64b. Scalar Initiator
+///< LSU= '2' 32b. SDF TSU= '2' 32b. Vector Initiator LSU= '2' 32b, '3'
+///< 64b, '6' 512b, '7' 1024b, '8' 2048b.
+#define RCS_ETMB_DACCFGR1_DATASIZE_BF_OFF ( 8)
+#define RCS_ETMB_DACCFGR1_DATASIZE_BF_WID ( 4)
+#define RCS_ETMB_DACCFGR1_DATASIZE_BF_MSK (0x00000F00)
+#define RCS_ETMB_DACCFGR1_DATASIZE_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACCFGR2 register description at address offset 0x1108
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACCFGR2
+  * DACCFGR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CMPTYPE : 2;
+    ///< Compares: 'B01' loads; 'B10' stores; 'B11' all addresses.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t MMIOSEL : 2;
+    ///< The load/store unit mmio to watch. '0' DMEM LSU; '1' Scalar Initiator
+    ///< LSU; '2' SDF TSU; '3' Vector Initiator LSU
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t UNUSED : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t DATASIZE : 4;
+    ///< Access type. Controls the width of the data value comparison. Valid
+    ///< values: DMEM LSU= '0' 8b, '1' 16b, '2' 32b, '3' 64b. Scalar Initiator
+    ///< LSU= '2' 32b. SDF TSU= '2' 32b. Vector Initiator LSU= '2' 32b, '3'
+    ///< 64b, '6' 512b, '7' 1024b, '8' 2048b.
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 20;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="12" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_daccfgr2_reg_t;
+
+#define RCS_ETMB_DACCFGR2_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACCFGR2_RD_MASK (0x00000fffU)
+#define RCS_ETMB_DACCFGR2_WR_MASK (0x00000f0fU)
+
+
+///< Compares: 'B01' loads; 'B10' stores; 'B11' all addresses.
+#define RCS_ETMB_DACCFGR2_CMPTYPE_BF_OFF ( 0)
+#define RCS_ETMB_DACCFGR2_CMPTYPE_BF_WID ( 2)
+#define RCS_ETMB_DACCFGR2_CMPTYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_DACCFGR2_CMPTYPE_BF_DEF (0x00000000)
+
+///< The load/store unit mmio to watch. '0' DMEM LSU; '1' Scalar Initiator
+///< LSU; '2' SDF TSU; '3' Vector Initiator LSU
+#define RCS_ETMB_DACCFGR2_MMIOSEL_BF_OFF ( 2)
+#define RCS_ETMB_DACCFGR2_MMIOSEL_BF_WID ( 2)
+#define RCS_ETMB_DACCFGR2_MMIOSEL_BF_MSK (0x0000000C)
+#define RCS_ETMB_DACCFGR2_MMIOSEL_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_DACCFGR2_UNUSED_BF_OFF ( 4)
+#define RCS_ETMB_DACCFGR2_UNUSED_BF_WID ( 4)
+#define RCS_ETMB_DACCFGR2_UNUSED_BF_MSK (0x000000F0)
+#define RCS_ETMB_DACCFGR2_UNUSED_BF_DEF (0x00000000)
+
+///< Access type. Controls the width of the data value comparison. Valid
+///< values: DMEM LSU= '0' 8b, '1' 16b, '2' 32b, '3' 64b. Scalar Initiator
+///< LSU= '2' 32b. SDF TSU= '2' 32b. Vector Initiator LSU= '2' 32b, '3'
+///< 64b, '6' 512b, '7' 1024b, '8' 2048b.
+#define RCS_ETMB_DACCFGR2_DATASIZE_BF_OFF ( 8)
+#define RCS_ETMB_DACCFGR2_DATASIZE_BF_WID ( 4)
+#define RCS_ETMB_DACCFGR2_DATASIZE_BF_MSK (0x00000F00)
+#define RCS_ETMB_DACCFGR2_DATASIZE_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACCFGR3 register description at address offset 0x110c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACCFGR3
+  * DACCFGR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t CMPTYPE : 2;
+    ///< Compares: 'B01' loads; 'B10' stores; 'B11' all addresses.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+    uint32_t MMIOSEL : 2;
+    ///< The load/store unit mmio to watch. '0' DMEM LSU; '1' Scalar Initiator
+    ///< LSU; '2' SDF TSU; '3' Vector Initiator LSU
+    ///< AccessType="RW" BitOffset="2" ResetValue="0x0"
+    uint32_t UNUSED : 4;
+    ///< Unused.
+    ///< AccessType="RO" BitOffset="4" ResetValue="0x0"
+    uint32_t DATASIZE : 4;
+    ///< Access type. Controls the width of the data value comparison. Valid
+    ///< values: DMEM LSU= '0' 8b, '1' 16b, '2' 32b, '3' 64b. Scalar Initiator
+    ///< LSU= '2' 32b. SDF TSU= '2' 32b. Vector Initiator LSU= '2' 32b, '3'
+    ///< 64b, '6' 512b, '7' 1024b, '8' 2048b.
+    ///< AccessType="RW" BitOffset="8" ResetValue="0x0"
+    uint32_t  : 20;
+    ///< Reserved
+    ///< AccessType="RO" BitOffset="12" ResetValue="None"
+  } ;
+  uint32_t value;
+} rcs_etmb_daccfgr3_reg_t;
+
+#define RCS_ETMB_DACCFGR3_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACCFGR3_RD_MASK (0x00000fffU)
+#define RCS_ETMB_DACCFGR3_WR_MASK (0x00000f0fU)
+
+
+///< Compares: 'B01' loads; 'B10' stores; 'B11' all addresses.
+#define RCS_ETMB_DACCFGR3_CMPTYPE_BF_OFF ( 0)
+#define RCS_ETMB_DACCFGR3_CMPTYPE_BF_WID ( 2)
+#define RCS_ETMB_DACCFGR3_CMPTYPE_BF_MSK (0x00000003)
+#define RCS_ETMB_DACCFGR3_CMPTYPE_BF_DEF (0x00000000)
+
+///< The load/store unit mmio to watch. '0' DMEM LSU; '1' Scalar Initiator
+///< LSU; '2' SDF TSU; '3' Vector Initiator LSU
+#define RCS_ETMB_DACCFGR3_MMIOSEL_BF_OFF ( 2)
+#define RCS_ETMB_DACCFGR3_MMIOSEL_BF_WID ( 2)
+#define RCS_ETMB_DACCFGR3_MMIOSEL_BF_MSK (0x0000000C)
+#define RCS_ETMB_DACCFGR3_MMIOSEL_BF_DEF (0x00000000)
+
+///< Unused.
+#define RCS_ETMB_DACCFGR3_UNUSED_BF_OFF ( 4)
+#define RCS_ETMB_DACCFGR3_UNUSED_BF_WID ( 4)
+#define RCS_ETMB_DACCFGR3_UNUSED_BF_MSK (0x000000F0)
+#define RCS_ETMB_DACCFGR3_UNUSED_BF_DEF (0x00000000)
+
+///< Access type. Controls the width of the data value comparison. Valid
+///< values: DMEM LSU= '0' 8b, '1' 16b, '2' 32b, '3' 64b. Scalar Initiator
+///< LSU= '2' 32b. SDF TSU= '2' 32b. Vector Initiator LSU= '2' 32b, '3'
+///< 64b, '6' 512b, '7' 1024b, '8' 2048b.
+#define RCS_ETMB_DACCFGR3_DATASIZE_BF_OFF ( 8)
+#define RCS_ETMB_DACCFGR3_DATASIZE_BF_WID ( 4)
+#define RCS_ETMB_DACCFGR3_DATASIZE_BF_MSK (0x00000F00)
+#define RCS_ETMB_DACCFGR3_DATASIZE_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACVALR0 register description at address offset 0x1180
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACVALR0
+  * DACVALR0 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_dacvalr0_reg_t;
+
+#define RCS_ETMB_DACVALR0_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACVALR0_RD_MASK (0xffffffffU)
+#define RCS_ETMB_DACVALR0_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_DACVALR0_BF_OFF ( 0)
+#define RCS_ETMB_DACVALR0_BF_WID (32)
+#define RCS_ETMB_DACVALR0_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_DACVALR0_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACVALR1 register description at address offset 0x1184
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACVALR1
+  * DACVALR1 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_dacvalr1_reg_t;
+
+#define RCS_ETMB_DACVALR1_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACVALR1_RD_MASK (0xffffffffU)
+#define RCS_ETMB_DACVALR1_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_DACVALR1_BF_OFF ( 0)
+#define RCS_ETMB_DACVALR1_BF_WID (32)
+#define RCS_ETMB_DACVALR1_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_DACVALR1_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACVALR2 register description at address offset 0x1188
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACVALR2
+  * DACVALR2 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_dacvalr2_reg_t;
+
+#define RCS_ETMB_DACVALR2_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACVALR2_RD_MASK (0xffffffffU)
+#define RCS_ETMB_DACVALR2_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_DACVALR2_BF_OFF ( 0)
+#define RCS_ETMB_DACVALR2_BF_WID (32)
+#define RCS_ETMB_DACVALR2_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_DACVALR2_BF_DEF (0x00000000)
+
+
+/** @briefRCS_ETMB_MAP_MEM_ETMB_MAP_REG_ETMB_DACVALR3 register description at address offset 0x118c
+  *
+  * Register default value:        0x00000000
+  * Register full path in IP: rcs_etmb_map_MEM/rcs_etmb_map/reg_etmb_DACVALR3
+  * DACVALR3 register.
+  */
+
+typedef union {
+  struct {
+    uint32_t ADDRESS : 32;
+    ///< Address value.
+    ///< AccessType="RW" BitOffset="0" ResetValue="0x0"
+  } ;
+  uint32_t value;
+} rcs_etmb_dacvalr3_reg_t;
+
+#define RCS_ETMB_DACVALR3_DEFAULT (0x00000000U)
+#define RCS_ETMB_DACVALR3_RD_MASK (0xffffffffU)
+#define RCS_ETMB_DACVALR3_WR_MASK (0xffffffffU)
+
+
+///< Address value.
+#define RCS_ETMB_DACVALR3_BF_OFF ( 0)
+#define RCS_ETMB_DACVALR3_BF_WID (32)
+#define RCS_ETMB_DACVALR3_BF_MSK (0xFFFFFFFF)
+#define RCS_ETMB_DACVALR3_BF_DEF (0x00000000)
+
+//************************************************ /RegisterStructs
+
+
+// ******************************************* Register pointer macros
+
+#define RCS_ETMB_TRCPRGCTLR_REG(_BASE) ((rcs_etmb_trcprgctlr_reg_t*) RCS_ETMB_TRCPRGCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCPROCSELR_REG(_BASE) ((rcs_etmb_trcprocselr_reg_t*) RCS_ETMB_TRCPROCSELR_ADR(_BASE))
+#define RCS_ETMB_TRCSTATR_REG(_BASE) ((rcs_etmb_trcstatr_reg_t*) RCS_ETMB_TRCSTATR_ADR(_BASE))
+#define RCS_ETMB_TRCCONFIGR_REG(_BASE) ((rcs_etmb_trcconfigr_reg_t*) RCS_ETMB_TRCCONFIGR_ADR(_BASE))
+#define RCS_ETMB_TRCAUXCTLR_REG(_BASE) ((rcs_etmb_trcauxctlr_reg_t*) RCS_ETMB_TRCAUXCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCEVENTCTL0R_REG(_BASE) ((rcs_etmb_trceventctl0r_reg_t*) RCS_ETMB_TRCEVENTCTL0R_ADR(_BASE))
+#define RCS_ETMB_TRCEVENTCTL1R_REG(_BASE) ((rcs_etmb_trceventctl1r_reg_t*) RCS_ETMB_TRCEVENTCTL1R_ADR(_BASE))
+#define RCS_ETMB_TRCSTALLCTLR_REG(_BASE) ((rcs_etmb_trcstallctlr_reg_t*) RCS_ETMB_TRCSTALLCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCTSCTLR_REG(_BASE) ((rcs_etmb_trctsctlr_reg_t*) RCS_ETMB_TRCTSCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCSYNCPR_REG(_BASE) ((rcs_etmb_trcsyncpr_reg_t*) RCS_ETMB_TRCSYNCPR_ADR(_BASE))
+#define RCS_ETMB_TRCCCCTLR_REG(_BASE) ((rcs_etmb_trcccctlr_reg_t*) RCS_ETMB_TRCCCCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCBBCTLR_REG(_BASE) ((rcs_etmb_trcbbctlr_reg_t*) RCS_ETMB_TRCBBCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCTRACEIDR_REG(_BASE) ((rcs_etmb_trctraceidr_reg_t*) RCS_ETMB_TRCTRACEIDR_ADR(_BASE))
+#define RCS_ETMB_TRCQCTLR_REG(_BASE) ((rcs_etmb_trcqctlr_reg_t*) RCS_ETMB_TRCQCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCVICTLR_REG(_BASE) ((rcs_etmb_trcvictlr_reg_t*) RCS_ETMB_TRCVICTLR_ADR(_BASE))
+#define RCS_ETMB_TRCVIIECTLR_REG(_BASE) ((rcs_etmb_trcviiectlr_reg_t*) RCS_ETMB_TRCVIIECTLR_ADR(_BASE))
+#define RCS_ETMB_TRCVISSCTLR_REG(_BASE) ((rcs_etmb_trcvissctlr_reg_t*) RCS_ETMB_TRCVISSCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCVIPESSCTLR_REG(_BASE) ((rcs_etmb_trcvipessctlr_reg_t*) RCS_ETMB_TRCVIPESSCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCVDCTLR_REG(_BASE) ((rcs_etmb_trcvdctlr_reg_t*) RCS_ETMB_TRCVDCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCVDSACCTLR_REG(_BASE) ((rcs_etmb_trcvdsacctlr_reg_t*) RCS_ETMB_TRCVDSACCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCVDARCCTLR_REG(_BASE) ((rcs_etmb_trcvdarcctlr_reg_t*) RCS_ETMB_TRCVDARCCTLR_ADR(_BASE))
+#define RCS_ETMB_TRCSEQEVR0_REG(_BASE) ((rcs_etmb_trcseqevr0_reg_t*) RCS_ETMB_TRCSEQEVR0_ADR(_BASE))
+#define RCS_ETMB_TRCSEQEVR1_REG(_BASE) ((rcs_etmb_trcseqevr1_reg_t*) RCS_ETMB_TRCSEQEVR1_ADR(_BASE))
+#define RCS_ETMB_TRCSEQEVR2_REG(_BASE) ((rcs_etmb_trcseqevr2_reg_t*) RCS_ETMB_TRCSEQEVR2_ADR(_BASE))
+#define RCS_ETMB_TRCSEQRSTEVR_REG(_BASE) ((rcs_etmb_trcseqrstevr_reg_t*) RCS_ETMB_TRCSEQRSTEVR_ADR(_BASE))
+#define RCS_ETMB_TRCSEQSTR_REG(_BASE) ((rcs_etmb_trcseqstr_reg_t*) RCS_ETMB_TRCSEQSTR_ADR(_BASE))
+#define RCS_ETMB_TRCEXTINSELR_REG(_BASE) ((rcs_etmb_trcextinselr_reg_t*) RCS_ETMB_TRCEXTINSELR_ADR(_BASE))
+#define RCS_ETMB_TRCCNTRLDVR0_REG(_BASE) ((rcs_etmb_trccntrldvr0_reg_t*) RCS_ETMB_TRCCNTRLDVR0_ADR(_BASE))
+#define RCS_ETMB_TRCCNTCTLR0_REG(_BASE) ((rcs_etmb_trccntctlr0_reg_t*) RCS_ETMB_TRCCNTCTLR0_ADR(_BASE))
+#define RCS_ETMB_TRCCNTVR0_REG(_BASE) ((rcs_etmb_trccntvr0_reg_t*) RCS_ETMB_TRCCNTVR0_ADR(_BASE))
+#define RCS_ETMB_TRCIDR8_REG(_BASE) ((rcs_etmb_trcidr8_reg_t*) RCS_ETMB_TRCIDR8_ADR(_BASE))
+#define RCS_ETMB_TRCIDR9_REG(_BASE) ((rcs_etmb_trcidr9_reg_t*) RCS_ETMB_TRCIDR9_ADR(_BASE))
+#define RCS_ETMB_TRCIDR10_REG(_BASE) ((rcs_etmb_trcidr10_reg_t*) RCS_ETMB_TRCIDR10_ADR(_BASE))
+#define RCS_ETMB_TRCIDR11_REG(_BASE) ((rcs_etmb_trcidr11_reg_t*) RCS_ETMB_TRCIDR11_ADR(_BASE))
+#define RCS_ETMB_TRCIDR12_REG(_BASE) ((rcs_etmb_trcidr12_reg_t*) RCS_ETMB_TRCIDR12_ADR(_BASE))
+#define RCS_ETMB_TRCIDR13_REG(_BASE) ((rcs_etmb_trcidr13_reg_t*) RCS_ETMB_TRCIDR13_ADR(_BASE))
+#define RCS_ETMB_TRCIMSPEC0_REG(_BASE) ((rcs_etmb_trcimspec0_reg_t*) RCS_ETMB_TRCIMSPEC0_ADR(_BASE))
+#define RCS_ETMB_TRCIMSPEC1_REG(_BASE) ((rcs_etmb_trcimspec1_reg_t*) RCS_ETMB_TRCIMSPEC1_ADR(_BASE))
+#define RCS_ETMB_TRCIMSPEC2_REG(_BASE) ((rcs_etmb_trcimspec2_reg_t*) RCS_ETMB_TRCIMSPEC2_ADR(_BASE))
+#define RCS_ETMB_TRCIMSPEC3_REG(_BASE) ((rcs_etmb_trcimspec3_reg_t*) RCS_ETMB_TRCIMSPEC3_ADR(_BASE))
+#define RCS_ETMB_TRCIMSPEC4_REG(_BASE) ((rcs_etmb_trcimspec4_reg_t*) RCS_ETMB_TRCIMSPEC4_ADR(_BASE))
+#define RCS_ETMB_TRCIMSPEC5_REG(_BASE) ((rcs_etmb_trcimspec5_reg_t*) RCS_ETMB_TRCIMSPEC5_ADR(_BASE))
+#define RCS_ETMB_TRCIMSPEC6_REG(_BASE) ((rcs_etmb_trcimspec6_reg_t*) RCS_ETMB_TRCIMSPEC6_ADR(_BASE))
+#define RCS_ETMB_TRCIMSPEC7_REG(_BASE) ((rcs_etmb_trcimspec7_reg_t*) RCS_ETMB_TRCIMSPEC7_ADR(_BASE))
+#define RCS_ETMB_TRCIDR0_REG(_BASE) ((rcs_etmb_trcidr0_reg_t*) RCS_ETMB_TRCIDR0_ADR(_BASE))
+#define RCS_ETMB_TRCIDR1_REG(_BASE) ((rcs_etmb_trcidr1_reg_t*) RCS_ETMB_TRCIDR1_ADR(_BASE))
+#define RCS_ETMB_TRCIDR2_REG(_BASE) ((rcs_etmb_trcidr2_reg_t*) RCS_ETMB_TRCIDR2_ADR(_BASE))
+#define RCS_ETMB_TRCIDR3_REG(_BASE) ((rcs_etmb_trcidr3_reg_t*) RCS_ETMB_TRCIDR3_ADR(_BASE))
+#define RCS_ETMB_TRCIDR4_REG(_BASE) ((rcs_etmb_trcidr4_reg_t*) RCS_ETMB_TRCIDR4_ADR(_BASE))
+#define RCS_ETMB_TRCIDR5_REG(_BASE) ((rcs_etmb_trcidr5_reg_t*) RCS_ETMB_TRCIDR5_ADR(_BASE))
+#define RCS_ETMB_TRCIDR6_REG(_BASE) ((rcs_etmb_trcidr6_reg_t*) RCS_ETMB_TRCIDR6_ADR(_BASE))
+#define RCS_ETMB_TRCIDR7_REG(_BASE) ((rcs_etmb_trcidr7_reg_t*) RCS_ETMB_TRCIDR7_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR2_REG(_BASE) ((rcs_etmb_trcrsctlr2_reg_t*) RCS_ETMB_TRCRSCTLR2_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR3_REG(_BASE) ((rcs_etmb_trcrsctlr3_reg_t*) RCS_ETMB_TRCRSCTLR3_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR4_REG(_BASE) ((rcs_etmb_trcrsctlr4_reg_t*) RCS_ETMB_TRCRSCTLR4_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR5_REG(_BASE) ((rcs_etmb_trcrsctlr5_reg_t*) RCS_ETMB_TRCRSCTLR5_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR6_REG(_BASE) ((rcs_etmb_trcrsctlr6_reg_t*) RCS_ETMB_TRCRSCTLR6_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR7_REG(_BASE) ((rcs_etmb_trcrsctlr7_reg_t*) RCS_ETMB_TRCRSCTLR7_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR8_REG(_BASE) ((rcs_etmb_trcrsctlr8_reg_t*) RCS_ETMB_TRCRSCTLR8_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR9_REG(_BASE) ((rcs_etmb_trcrsctlr9_reg_t*) RCS_ETMB_TRCRSCTLR9_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR10_REG(_BASE) ((rcs_etmb_trcrsctlr10_reg_t*) RCS_ETMB_TRCRSCTLR10_ADR(_BASE))
+#define RCS_ETMB_TRCRSCTLR11_REG(_BASE) ((rcs_etmb_trcrsctlr11_reg_t*) RCS_ETMB_TRCRSCTLR11_ADR(_BASE))
+#define RCS_ETMB_TRCOSLSR_REG(_BASE) ((rcs_etmb_trcoslsr_reg_t*) RCS_ETMB_TRCOSLSR_ADR(_BASE))
+#define RCS_ETMB_TRCPDCR_REG(_BASE) ((rcs_etmb_trcpdcr_reg_t*) RCS_ETMB_TRCPDCR_ADR(_BASE))
+#define RCS_ETMB_TRCPDSR_REG(_BASE) ((rcs_etmb_trcpdsr_reg_t*) RCS_ETMB_TRCPDSR_ADR(_BASE))
+#define RCS_ETMB_TRCACVR0_REG(_BASE) ((rcs_etmb_trcacvr0_reg_t*) RCS_ETMB_TRCACVR0_ADR(_BASE))
+#define RCS_ETMB_TRCACVR1_REG(_BASE) ((rcs_etmb_trcacvr1_reg_t*) RCS_ETMB_TRCACVR1_ADR(_BASE))
+#define RCS_ETMB_TRCACVR2_REG(_BASE) ((rcs_etmb_trcacvr2_reg_t*) RCS_ETMB_TRCACVR2_ADR(_BASE))
+#define RCS_ETMB_TRCACVR3_REG(_BASE) ((rcs_etmb_trcacvr3_reg_t*) RCS_ETMB_TRCACVR3_ADR(_BASE))
+#define RCS_ETMB_TRCACVR4_REG(_BASE) ((rcs_etmb_trcacvr4_reg_t*) RCS_ETMB_TRCACVR4_ADR(_BASE))
+#define RCS_ETMB_TRCACVR5_REG(_BASE) ((rcs_etmb_trcacvr5_reg_t*) RCS_ETMB_TRCACVR5_ADR(_BASE))
+#define RCS_ETMB_TRCACVR6_REG(_BASE) ((rcs_etmb_trcacvr6_reg_t*) RCS_ETMB_TRCACVR6_ADR(_BASE))
+#define RCS_ETMB_TRCACVR7_REG(_BASE) ((rcs_etmb_trcacvr7_reg_t*) RCS_ETMB_TRCACVR7_ADR(_BASE))
+#define RCS_ETMB_TRCACATR0_REG(_BASE) ((rcs_etmb_trcacatr0_reg_t*) RCS_ETMB_TRCACATR0_ADR(_BASE))
+#define RCS_ETMB_TRCACATR1_REG(_BASE) ((rcs_etmb_trcacatr1_reg_t*) RCS_ETMB_TRCACATR1_ADR(_BASE))
+#define RCS_ETMB_TRCACATR2_REG(_BASE) ((rcs_etmb_trcacatr2_reg_t*) RCS_ETMB_TRCACATR2_ADR(_BASE))
+#define RCS_ETMB_TRCACATR3_REG(_BASE) ((rcs_etmb_trcacatr3_reg_t*) RCS_ETMB_TRCACATR3_ADR(_BASE))
+#define RCS_ETMB_TRCACATR4_REG(_BASE) ((rcs_etmb_trcacatr4_reg_t*) RCS_ETMB_TRCACATR4_ADR(_BASE))
+#define RCS_ETMB_TRCACATR5_REG(_BASE) ((rcs_etmb_trcacatr5_reg_t*) RCS_ETMB_TRCACATR5_ADR(_BASE))
+#define RCS_ETMB_TRCACATR6_REG(_BASE) ((rcs_etmb_trcacatr6_reg_t*) RCS_ETMB_TRCACATR6_ADR(_BASE))
+#define RCS_ETMB_TRCACATR7_REG(_BASE) ((rcs_etmb_trcacatr7_reg_t*) RCS_ETMB_TRCACATR7_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCVR0_REG(_BASE) ((rcs_etmb_trccidcvr0_reg_t*) RCS_ETMB_TRCCIDCVR0_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCVR1_REG(_BASE) ((rcs_etmb_trccidcvr1_reg_t*) RCS_ETMB_TRCCIDCVR1_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCVR2_REG(_BASE) ((rcs_etmb_trccidcvr2_reg_t*) RCS_ETMB_TRCCIDCVR2_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCVR3_REG(_BASE) ((rcs_etmb_trccidcvr3_reg_t*) RCS_ETMB_TRCCIDCVR3_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCVR4_REG(_BASE) ((rcs_etmb_trccidcvr4_reg_t*) RCS_ETMB_TRCCIDCVR4_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCVR5_REG(_BASE) ((rcs_etmb_trccidcvr5_reg_t*) RCS_ETMB_TRCCIDCVR5_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCVR6_REG(_BASE) ((rcs_etmb_trccidcvr6_reg_t*) RCS_ETMB_TRCCIDCVR6_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCVR7_REG(_BASE) ((rcs_etmb_trccidcvr7_reg_t*) RCS_ETMB_TRCCIDCVR7_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCCTLR0_REG(_BASE) ((rcs_etmb_trccidcctlr0_reg_t*) RCS_ETMB_TRCCIDCCTLR0_ADR(_BASE))
+#define RCS_ETMB_TRCCIDCCTLR1_REG(_BASE) ((rcs_etmb_trccidcctlr1_reg_t*) RCS_ETMB_TRCCIDCCTLR1_ADR(_BASE))
+#define RCS_ETMB_TRCITCTRL_REG(_BASE) ((rcs_etmb_trcitctrl_reg_t*) RCS_ETMB_TRCITCTRL_ADR(_BASE))
+#define RCS_ETMB_TRCCLAIMSET_REG(_BASE) ((rcs_etmb_trcclaimset_reg_t*) RCS_ETMB_TRCCLAIMSET_ADR(_BASE))
+#define RCS_ETMB_TRCCLAIMCLR_REG(_BASE) ((rcs_etmb_trcclaimclr_reg_t*) RCS_ETMB_TRCCLAIMCLR_ADR(_BASE))
+#define RCS_ETMB_TRCDEVAFF0_REG(_BASE) ((rcs_etmb_trcdevaff0_reg_t*) RCS_ETMB_TRCDEVAFF0_ADR(_BASE))
+#define RCS_ETMB_TRCDEVAFF1_REG(_BASE) ((rcs_etmb_trcdevaff1_reg_t*) RCS_ETMB_TRCDEVAFF1_ADR(_BASE))
+#define RCS_ETMB_TRCLAR_REG(_BASE) ((rcs_etmb_trclar_reg_t*) RCS_ETMB_TRCLAR_ADR(_BASE))
+#define RCS_ETMB_TRCLSR_REG(_BASE) ((rcs_etmb_trclsr_reg_t*) RCS_ETMB_TRCLSR_ADR(_BASE))
+#define RCS_ETMB_TRCAUTHSTAT_REG(_BASE) ((rcs_etmb_trcauthstat_reg_t*) RCS_ETMB_TRCAUTHSTAT_ADR(_BASE))
+#define RCS_ETMB_TRCDEVARCH_REG(_BASE) ((rcs_etmb_trcdevarch_reg_t*) RCS_ETMB_TRCDEVARCH_ADR(_BASE))
+#define RCS_ETMB_TRCDEVRES0_REG(_BASE) ((rcs_etmb_trcdevres0_reg_t*) RCS_ETMB_TRCDEVRES0_ADR(_BASE))
+#define RCS_ETMB_TRCDEVRES1_REG(_BASE) ((rcs_etmb_trcdevres1_reg_t*) RCS_ETMB_TRCDEVRES1_ADR(_BASE))
+#define RCS_ETMB_TRCDEVID_REG(_BASE) ((rcs_etmb_trcdevid_reg_t*) RCS_ETMB_TRCDEVID_ADR(_BASE))
+#define RCS_ETMB_TRCDEVTYPE_REG(_BASE) ((rcs_etmb_trcdevtype_reg_t*) RCS_ETMB_TRCDEVTYPE_ADR(_BASE))
+#define RCS_ETMB_TRCPIDR4_REG(_BASE) ((rcs_etmb_trcpidr4_reg_t*) RCS_ETMB_TRCPIDR4_ADR(_BASE))
+#define RCS_ETMB_TRCPIDR5_REG(_BASE) ((rcs_etmb_trcpidr5_reg_t*) RCS_ETMB_TRCPIDR5_ADR(_BASE))
+#define RCS_ETMB_TRCPIDR6_REG(_BASE) ((rcs_etmb_trcpidr6_reg_t*) RCS_ETMB_TRCPIDR6_ADR(_BASE))
+#define RCS_ETMB_TRCPIDR7_REG(_BASE) ((rcs_etmb_trcpidr7_reg_t*) RCS_ETMB_TRCPIDR7_ADR(_BASE))
+#define RCS_ETMB_TRCPIDR0_REG(_BASE) ((rcs_etmb_trcpidr0_reg_t*) RCS_ETMB_TRCPIDR0_ADR(_BASE))
+#define RCS_ETMB_TRCPIDR1_REG(_BASE) ((rcs_etmb_trcpidr1_reg_t*) RCS_ETMB_TRCPIDR1_ADR(_BASE))
+#define RCS_ETMB_TRCPIDR2_REG(_BASE) ((rcs_etmb_trcpidr2_reg_t*) RCS_ETMB_TRCPIDR2_ADR(_BASE))
+#define RCS_ETMB_TRCPIDR3_REG(_BASE) ((rcs_etmb_trcpidr3_reg_t*) RCS_ETMB_TRCPIDR3_ADR(_BASE))
+#define RCS_ETMB_TRCCIDR0_REG(_BASE) ((rcs_etmb_trccidr0_reg_t*) RCS_ETMB_TRCCIDR0_ADR(_BASE))
+#define RCS_ETMB_TRCCIDR1_REG(_BASE) ((rcs_etmb_trccidr1_reg_t*) RCS_ETMB_TRCCIDR1_ADR(_BASE))
+#define RCS_ETMB_TRCCIDR2_REG(_BASE) ((rcs_etmb_trccidr2_reg_t*) RCS_ETMB_TRCCIDR2_ADR(_BASE))
+#define RCS_ETMB_TRCCIDR3_REG(_BASE) ((rcs_etmb_trccidr3_reg_t*) RCS_ETMB_TRCCIDR3_ADR(_BASE))
+#define RCS_ETMB_DBGCMDR_REG(_BASE) ((rcs_etmb_dbgcmdr_reg_t*) RCS_ETMB_DBGCMDR_ADR(_BASE))
+#define RCS_ETMB_DBGBPIACSELR_REG(_BASE) ((rcs_etmb_dbgbpiacselr_reg_t*) RCS_ETMB_DBGBPIACSELR_ADR(_BASE))
+#define RCS_ETMB_DBGBPHITSTATR_REG(_BASE) ((rcs_etmb_dbgbphitstatr_reg_t*) RCS_ETMB_DBGBPHITSTATR_ADR(_BASE))
+#define RCS_ETMB_DBGWPDACSELR_REG(_BASE) ((rcs_etmb_dbgwpdacselr_reg_t*) RCS_ETMB_DBGWPDACSELR_ADR(_BASE))
+#define RCS_ETMB_DBGWPDACRSELR_REG(_BASE) ((rcs_etmb_dbgwpdacrselr_reg_t*) RCS_ETMB_DBGWPDACRSELR_ADR(_BASE))
+#define RCS_ETMB_DBGWPHITSTATR_REG(_BASE) ((rcs_etmb_dbgwphitstatr_reg_t*) RCS_ETMB_DBGWPHITSTATR_ADR(_BASE))
+#define RCS_ETMB_DBGCPSTOPENR_REG(_BASE) ((rcs_etmb_dbgcpstopenr_reg_t*) RCS_ETMB_DBGCPSTOPENR_ADR(_BASE))
+#define RCS_ETMB_DBGCPSTARTENR_REG(_BASE) ((rcs_etmb_dbgcpstartenr_reg_t*) RCS_ETMB_DBGCPSTARTENR_ADR(_BASE))
+#define RCS_ETMB_DBGCPHITSTATR_REG(_BASE) ((rcs_etmb_dbgcphitstatr_reg_t*) RCS_ETMB_DBGCPHITSTATR_ADR(_BASE))
+#define RCS_ETMB_DBGPROCSTATR_REG(_BASE) ((rcs_etmb_dbgprocstatr_reg_t*) RCS_ETMB_DBGPROCSTATR_ADR(_BASE))
+#define RCS_ETMB_DBGPROCPCR_REG(_BASE) ((rcs_etmb_dbgprocpcr_reg_t*) RCS_ETMB_DBGPROCPCR_ADR(_BASE))
+#define RCS_ETMB_DBGCTRLSTATR_REG(_BASE) ((rcs_etmb_dbgctrlstatr_reg_t*) RCS_ETMB_DBGCTRLSTATR_ADR(_BASE))
+#define RCS_ETMB_DBGOBSENR_REG(_BASE) ((rcs_etmb_dbgobsenr_reg_t*) RCS_ETMB_DBGOBSENR_ADR(_BASE))
+#define RCS_ETMB_DBGPLCMDR_REG(_BASE) ((rcs_etmb_dbgplcmdr_reg_t*) RCS_ETMB_DBGPLCMDR_ADR(_BASE))
+#define RCS_ETMB_DBGPLADDRR_REG(_BASE) ((rcs_etmb_dbgpladdrr_reg_t*) RCS_ETMB_DBGPLADDRR_ADR(_BASE))
+#define RCS_ETMB_DBGSPRDATAR_REG(_BASE) ((rcs_etmb_dbgsprdatar_reg_t*) RCS_ETMB_DBGSPRDATAR_ADR(_BASE))
+#define RCS_ETMB_DBGSPRVALIDR_REG(_BASE) ((rcs_etmb_dbgsprvalidr_reg_t*) RCS_ETMB_DBGSPRVALIDR_ADR(_BASE))
+#define RCS_ETMB_TRCCFGR_REG(_BASE) ((rcs_etmb_trccfgr_reg_t*) RCS_ETMB_TRCCFGR_ADR(_BASE))
+#define RCS_ETMB_IACRNGSTATR_REG(_BASE) ((rcs_etmb_iacrngstatr_reg_t*) RCS_ETMB_IACRNGSTATR_ADR(_BASE))
+#define RCS_ETMB_RESERVED_IAC_REG(_BASE) ((rcs_etmb_reserved_iac_reg_t*) RCS_ETMB_RESERVED_IAC_ADR(_BASE))
+#define RCS_ETMB_IACHITSTATR_REG(_BASE) ((rcs_etmb_iachitstatr_reg_t*) RCS_ETMB_IACHITSTATR_ADR(_BASE))
+#define RCS_ETMB_DACRNGSTATR_REG(_BASE) ((rcs_etmb_dacrngstatr_reg_t*) RCS_ETMB_DACRNGSTATR_ADR(_BASE))
+#define RCS_ETMB_RESERVED_DAC_REG(_BASE) ((rcs_etmb_reserved_dac_reg_t*) RCS_ETMB_RESERVED_DAC_ADR(_BASE))
+#define RCS_ETMB_DACHITSTATR_REG(_BASE) ((rcs_etmb_dachitstatr_reg_t*) RCS_ETMB_DACHITSTATR_ADR(_BASE))
+#define RCS_ETMB_PARAMSR_REG(_BASE) ((rcs_etmb_paramsr_reg_t*) RCS_ETMB_PARAMSR_ADR(_BASE))
+#define RCS_ETMB_IACVALR0_REG(_BASE) ((rcs_etmb_iacvalr0_reg_t*) RCS_ETMB_IACVALR0_ADR(_BASE))
+#define RCS_ETMB_IACVALR1_REG(_BASE) ((rcs_etmb_iacvalr1_reg_t*) RCS_ETMB_IACVALR1_ADR(_BASE))
+#define RCS_ETMB_IACVALR2_REG(_BASE) ((rcs_etmb_iacvalr2_reg_t*) RCS_ETMB_IACVALR2_ADR(_BASE))
+#define RCS_ETMB_IACVALR3_REG(_BASE) ((rcs_etmb_iacvalr3_reg_t*) RCS_ETMB_IACVALR3_ADR(_BASE))
+#define RCS_ETMB_IACVALR4_REG(_BASE) ((rcs_etmb_iacvalr4_reg_t*) RCS_ETMB_IACVALR4_ADR(_BASE))
+#define RCS_ETMB_IACVALR5_REG(_BASE) ((rcs_etmb_iacvalr5_reg_t*) RCS_ETMB_IACVALR5_ADR(_BASE))
+#define RCS_ETMB_IACVALR6_REG(_BASE) ((rcs_etmb_iacvalr6_reg_t*) RCS_ETMB_IACVALR6_ADR(_BASE))
+#define RCS_ETMB_IACVALR7_REG(_BASE) ((rcs_etmb_iacvalr7_reg_t*) RCS_ETMB_IACVALR7_ADR(_BASE))
+#define RCS_ETMB_DACCFGR0_REG(_BASE) ((rcs_etmb_daccfgr0_reg_t*) RCS_ETMB_DACCFGR0_ADR(_BASE))
+#define RCS_ETMB_DACCFGR1_REG(_BASE) ((rcs_etmb_daccfgr1_reg_t*) RCS_ETMB_DACCFGR1_ADR(_BASE))
+#define RCS_ETMB_DACCFGR2_REG(_BASE) ((rcs_etmb_daccfgr2_reg_t*) RCS_ETMB_DACCFGR2_ADR(_BASE))
+#define RCS_ETMB_DACCFGR3_REG(_BASE) ((rcs_etmb_daccfgr3_reg_t*) RCS_ETMB_DACCFGR3_ADR(_BASE))
+#define RCS_ETMB_DACVALR0_REG(_BASE) ((rcs_etmb_dacvalr0_reg_t*) RCS_ETMB_DACVALR0_ADR(_BASE))
+#define RCS_ETMB_DACVALR1_REG(_BASE) ((rcs_etmb_dacvalr1_reg_t*) RCS_ETMB_DACVALR1_ADR(_BASE))
+#define RCS_ETMB_DACVALR2_REG(_BASE) ((rcs_etmb_dacvalr2_reg_t*) RCS_ETMB_DACVALR2_ADR(_BASE))
+#define RCS_ETMB_DACVALR3_REG(_BASE) ((rcs_etmb_dacvalr3_reg_t*) RCS_ETMB_DACVALR3_ADR(_BASE))
+
+// ******************************************* /Register pointer macros
+
+
+// ******************************************* AddressSpace struct
+typedef struct
+{
+    const uint8_t        reservedArea0 [4];   /*< Address offset = 0x0 */
+    rcs_etmb_trcprgctlr_reg_t ETMB_TRCPRGCTLR; /*< Address offset = 0x4 */
+    rcs_etmb_trcprocselr_reg_t ETMB_TRCPROCSELR; /*< Address offset = 0x8 */
+    rcs_etmb_trcstatr_reg_t ETMB_TRCSTATR; /*< Address offset = 0xc */
+    rcs_etmb_trcconfigr_reg_t ETMB_TRCCONFIGR; /*< Address offset = 0x10 */
+    const uint8_t        reservedArea1 [4];   /*< Address offset = 0x14 */
+    rcs_etmb_trcauxctlr_reg_t ETMB_TRCAUXCTLR; /*< Address offset = 0x18 */
+    const uint8_t        reservedArea2 [4];   /*< Address offset = 0x1c */
+    rcs_etmb_trceventctl0r_reg_t ETMB_TRCEVENTCTL0R; /*< Address offset = 0x20 */
+    rcs_etmb_trceventctl1r_reg_t ETMB_TRCEVENTCTL1R; /*< Address offset = 0x24 */
+    const uint8_t        reservedArea3 [4];   /*< Address offset = 0x28 */
+    rcs_etmb_trcstallctlr_reg_t ETMB_TRCSTALLCTLR; /*< Address offset = 0x2c */
+    rcs_etmb_trctsctlr_reg_t ETMB_TRCTSCTLR; /*< Address offset = 0x30 */
+    rcs_etmb_trcsyncpr_reg_t ETMB_TRCSYNCPR; /*< Address offset = 0x34 */
+    rcs_etmb_trcccctlr_reg_t ETMB_TRCCCCTLR; /*< Address offset = 0x38 */
+    rcs_etmb_trcbbctlr_reg_t ETMB_TRCBBCTLR; /*< Address offset = 0x3c */
+    rcs_etmb_trctraceidr_reg_t ETMB_TRCTRACEIDR; /*< Address offset = 0x40 */
+    rcs_etmb_trcqctlr_reg_t ETMB_TRCQCTLR; /*< Address offset = 0x44 */
+    const uint8_t        reservedArea4 [56];  /*< Address offset = 0x48 */
+    rcs_etmb_trcvictlr_reg_t ETMB_TRCVICTLR; /*< Address offset = 0x80 */
+    rcs_etmb_trcviiectlr_reg_t ETMB_TRCVIIECTLR; /*< Address offset = 0x84 */
+    rcs_etmb_trcvissctlr_reg_t ETMB_TRCVISSCTLR; /*< Address offset = 0x88 */
+    rcs_etmb_trcvipessctlr_reg_t ETMB_TRCVIPESSCTLR; /*< Address offset = 0x8c */
+    const uint8_t        reservedArea5 [16];  /*< Address offset = 0x90 */
+    rcs_etmb_trcvdctlr_reg_t ETMB_TRCVDCTLR; /*< Address offset = 0xa0 */
+    rcs_etmb_trcvdsacctlr_reg_t ETMB_TRCVDSACCTLR; /*< Address offset = 0xa4 */
+    rcs_etmb_trcvdarcctlr_reg_t ETMB_TRCVDARCCTLR; /*< Address offset = 0xa8 */
+    const uint8_t        reservedArea6 [84];  /*< Address offset = 0xac */
+    rcs_etmb_trcseqevr0_reg_t ETMB_TRCSEQEVR0; /*< Address offset = 0x100 */
+    rcs_etmb_trcseqevr1_reg_t ETMB_TRCSEQEVR1; /*< Address offset = 0x104 */
+    rcs_etmb_trcseqevr2_reg_t ETMB_TRCSEQEVR2; /*< Address offset = 0x108 */
+    const uint8_t        reservedArea7 [12];  /*< Address offset = 0x10c */
+    rcs_etmb_trcseqrstevr_reg_t ETMB_TRCSEQRSTEVR; /*< Address offset = 0x118 */
+    rcs_etmb_trcseqstr_reg_t ETMB_TRCSEQSTR; /*< Address offset = 0x11c */
+    rcs_etmb_trcextinselr_reg_t ETMB_TRCEXTINSELR; /*< Address offset = 0x120 */
+    const uint8_t        reservedArea8 [28];  /*< Address offset = 0x124 */
+    rcs_etmb_trccntrldvr0_reg_t ETMB_TRCCNTRLDVR0; /*< Address offset = 0x140 */
+    const uint8_t        reservedArea9 [12];  /*< Address offset = 0x144 */
+    rcs_etmb_trccntctlr0_reg_t ETMB_TRCCNTCTLR0; /*< Address offset = 0x150 */
+    const uint8_t        reservedArea10 [12]; /*< Address offset = 0x154 */
+    rcs_etmb_trccntvr0_reg_t ETMB_TRCCNTVR0; /*< Address offset = 0x160 */
+    const uint8_t        reservedArea11 [28]; /*< Address offset = 0x164 */
+    rcs_etmb_trcidr8_reg_t ETMB_TRCIDR8; /*< Address offset = 0x180 */
+    rcs_etmb_trcidr9_reg_t ETMB_TRCIDR9; /*< Address offset = 0x184 */
+    rcs_etmb_trcidr10_reg_t ETMB_TRCIDR10; /*< Address offset = 0x188 */
+    rcs_etmb_trcidr11_reg_t ETMB_TRCIDR11; /*< Address offset = 0x18c */
+    rcs_etmb_trcidr12_reg_t ETMB_TRCIDR12; /*< Address offset = 0x190 */
+    rcs_etmb_trcidr13_reg_t ETMB_TRCIDR13; /*< Address offset = 0x194 */
+    const uint8_t        reservedArea12 [40]; /*< Address offset = 0x198 */
+    rcs_etmb_trcimspec0_reg_t ETMB_TRCIMSPEC0; /*< Address offset = 0x1c0 */
+    rcs_etmb_trcimspec1_reg_t ETMB_TRCIMSPEC1; /*< Address offset = 0x1c4 */
+    rcs_etmb_trcimspec2_reg_t ETMB_TRCIMSPEC2; /*< Address offset = 0x1c8 */
+    rcs_etmb_trcimspec3_reg_t ETMB_TRCIMSPEC3; /*< Address offset = 0x1cc */
+    rcs_etmb_trcimspec4_reg_t ETMB_TRCIMSPEC4; /*< Address offset = 0x1d0 */
+    rcs_etmb_trcimspec5_reg_t ETMB_TRCIMSPEC5; /*< Address offset = 0x1d4 */
+    rcs_etmb_trcimspec6_reg_t ETMB_TRCIMSPEC6; /*< Address offset = 0x1d8 */
+    rcs_etmb_trcimspec7_reg_t ETMB_TRCIMSPEC7; /*< Address offset = 0x1dc */
+    rcs_etmb_trcidr0_reg_t ETMB_TRCIDR0; /*< Address offset = 0x1e0 */
+    rcs_etmb_trcidr1_reg_t ETMB_TRCIDR1; /*< Address offset = 0x1e4 */
+    rcs_etmb_trcidr2_reg_t ETMB_TRCIDR2; /*< Address offset = 0x1e8 */
+    rcs_etmb_trcidr3_reg_t ETMB_TRCIDR3; /*< Address offset = 0x1ec */
+    rcs_etmb_trcidr4_reg_t ETMB_TRCIDR4; /*< Address offset = 0x1f0 */
+    rcs_etmb_trcidr5_reg_t ETMB_TRCIDR5; /*< Address offset = 0x1f4 */
+    rcs_etmb_trcidr6_reg_t ETMB_TRCIDR6; /*< Address offset = 0x1f8 */
+    rcs_etmb_trcidr7_reg_t ETMB_TRCIDR7; /*< Address offset = 0x1fc */
+    const uint8_t        reservedArea13 [8];  /*< Address offset = 0x200 */
+    rcs_etmb_trcrsctlr2_reg_t ETMB_TRCRSCTLR2; /*< Address offset = 0x208 */
+    rcs_etmb_trcrsctlr3_reg_t ETMB_TRCRSCTLR3; /*< Address offset = 0x20c */
+    rcs_etmb_trcrsctlr4_reg_t ETMB_TRCRSCTLR4; /*< Address offset = 0x210 */
+    rcs_etmb_trcrsctlr5_reg_t ETMB_TRCRSCTLR5; /*< Address offset = 0x214 */
+    rcs_etmb_trcrsctlr6_reg_t ETMB_TRCRSCTLR6; /*< Address offset = 0x218 */
+    rcs_etmb_trcrsctlr7_reg_t ETMB_TRCRSCTLR7; /*< Address offset = 0x21c */
+    rcs_etmb_trcrsctlr8_reg_t ETMB_TRCRSCTLR8; /*< Address offset = 0x220 */
+    rcs_etmb_trcrsctlr9_reg_t ETMB_TRCRSCTLR9; /*< Address offset = 0x224 */
+    rcs_etmb_trcrsctlr10_reg_t ETMB_TRCRSCTLR10; /*< Address offset = 0x228 */
+    rcs_etmb_trcrsctlr11_reg_t ETMB_TRCRSCTLR11; /*< Address offset = 0x22c */
+    const uint8_t        reservedArea14 [212]; /*< Address offset = 0x230 */
+    rcs_etmb_trcoslsr_reg_t ETMB_TRCOSLSR; /*< Address offset = 0x304 */
+    const uint8_t        reservedArea15 [8];  /*< Address offset = 0x308 */
+    rcs_etmb_trcpdcr_reg_t ETMB_TRCPDCR; /*< Address offset = 0x310 */
+    rcs_etmb_trcpdsr_reg_t ETMB_TRCPDSR; /*< Address offset = 0x314 */
+    const uint8_t        reservedArea16 [232]; /*< Address offset = 0x318 */
+    rcs_etmb_trcacvr0_reg_t ETMB_TRCACVR0; /*< Address offset = 0x400 */
+    const uint8_t        reservedArea17 [4];  /*< Address offset = 0x404 */
+    rcs_etmb_trcacvr1_reg_t ETMB_TRCACVR1; /*< Address offset = 0x408 */
+    const uint8_t        reservedArea18 [4];  /*< Address offset = 0x40c */
+    rcs_etmb_trcacvr2_reg_t ETMB_TRCACVR2; /*< Address offset = 0x410 */
+    const uint8_t        reservedArea19 [4];  /*< Address offset = 0x414 */
+    rcs_etmb_trcacvr3_reg_t ETMB_TRCACVR3; /*< Address offset = 0x418 */
+    const uint8_t        reservedArea20 [4];  /*< Address offset = 0x41c */
+    rcs_etmb_trcacvr4_reg_t ETMB_TRCACVR4; /*< Address offset = 0x420 */
+    const uint8_t        reservedArea21 [4];  /*< Address offset = 0x424 */
+    rcs_etmb_trcacvr5_reg_t ETMB_TRCACVR5; /*< Address offset = 0x428 */
+    const uint8_t        reservedArea22 [4];  /*< Address offset = 0x42c */
+    rcs_etmb_trcacvr6_reg_t ETMB_TRCACVR6; /*< Address offset = 0x430 */
+    const uint8_t        reservedArea23 [4];  /*< Address offset = 0x434 */
+    rcs_etmb_trcacvr7_reg_t ETMB_TRCACVR7; /*< Address offset = 0x438 */
+    const uint8_t        reservedArea24 [68]; /*< Address offset = 0x43c */
+    rcs_etmb_trcacatr0_reg_t ETMB_TRCACATR0; /*< Address offset = 0x480 */
+    const uint8_t        reservedArea25 [4];  /*< Address offset = 0x484 */
+    rcs_etmb_trcacatr1_reg_t ETMB_TRCACATR1; /*< Address offset = 0x488 */
+    const uint8_t        reservedArea26 [4];  /*< Address offset = 0x48c */
+    rcs_etmb_trcacatr2_reg_t ETMB_TRCACATR2; /*< Address offset = 0x490 */
+    const uint8_t        reservedArea27 [4];  /*< Address offset = 0x494 */
+    rcs_etmb_trcacatr3_reg_t ETMB_TRCACATR3; /*< Address offset = 0x498 */
+    const uint8_t        reservedArea28 [4];  /*< Address offset = 0x49c */
+    rcs_etmb_trcacatr4_reg_t ETMB_TRCACATR4; /*< Address offset = 0x4a0 */
+    const uint8_t        reservedArea29 [4];  /*< Address offset = 0x4a4 */
+    rcs_etmb_trcacatr5_reg_t ETMB_TRCACATR5; /*< Address offset = 0x4a8 */
+    const uint8_t        reservedArea30 [4];  /*< Address offset = 0x4ac */
+    rcs_etmb_trcacatr6_reg_t ETMB_TRCACATR6; /*< Address offset = 0x4b0 */
+    const uint8_t        reservedArea31 [4];  /*< Address offset = 0x4b4 */
+    rcs_etmb_trcacatr7_reg_t ETMB_TRCACATR7; /*< Address offset = 0x4b8 */
+    const uint8_t        reservedArea32 [324]; /*< Address offset = 0x4bc */
+    rcs_etmb_trccidcvr0_reg_t ETMB_TRCCIDCVR0; /*< Address offset = 0x600 */
+    const uint8_t        reservedArea33 [4];  /*< Address offset = 0x604 */
+    rcs_etmb_trccidcvr1_reg_t ETMB_TRCCIDCVR1; /*< Address offset = 0x608 */
+    const uint8_t        reservedArea34 [4];  /*< Address offset = 0x60c */
+    rcs_etmb_trccidcvr2_reg_t ETMB_TRCCIDCVR2; /*< Address offset = 0x610 */
+    const uint8_t        reservedArea35 [4];  /*< Address offset = 0x614 */
+    rcs_etmb_trccidcvr3_reg_t ETMB_TRCCIDCVR3; /*< Address offset = 0x618 */
+    const uint8_t        reservedArea36 [4];  /*< Address offset = 0x61c */
+    rcs_etmb_trccidcvr4_reg_t ETMB_TRCCIDCVR4; /*< Address offset = 0x620 */
+    const uint8_t        reservedArea37 [4];  /*< Address offset = 0x624 */
+    rcs_etmb_trccidcvr5_reg_t ETMB_TRCCIDCVR5; /*< Address offset = 0x628 */
+    const uint8_t        reservedArea38 [4];  /*< Address offset = 0x62c */
+    rcs_etmb_trccidcvr6_reg_t ETMB_TRCCIDCVR6; /*< Address offset = 0x630 */
+    const uint8_t        reservedArea39 [4];  /*< Address offset = 0x634 */
+    rcs_etmb_trccidcvr7_reg_t ETMB_TRCCIDCVR7; /*< Address offset = 0x638 */
+    const uint8_t        reservedArea40 [68]; /*< Address offset = 0x63c */
+    rcs_etmb_trccidcctlr0_reg_t ETMB_TRCCIDCCTLR0; /*< Address offset = 0x680 */
+    rcs_etmb_trccidcctlr1_reg_t ETMB_TRCCIDCCTLR1; /*< Address offset = 0x684 */
+    const uint8_t        reservedArea41 [2168]; /*< Address offset = 0x688 */
+    rcs_etmb_trcitctrl_reg_t ETMB_TRCITCTRL; /*< Address offset = 0xf00 */
+    const uint8_t        reservedArea42 [156]; /*< Address offset = 0xf04 */
+    rcs_etmb_trcclaimset_reg_t ETMB_TRCCLAIMSET; /*< Address offset = 0xfa0 */
+    rcs_etmb_trcclaimclr_reg_t ETMB_TRCCLAIMCLR; /*< Address offset = 0xfa4 */
+    rcs_etmb_trcdevaff0_reg_t ETMB_TRCDEVAFF0; /*< Address offset = 0xfa8 */
+    rcs_etmb_trcdevaff1_reg_t ETMB_TRCDEVAFF1; /*< Address offset = 0xfac */
+    rcs_etmb_trclar_reg_t ETMB_TRCLAR; /*< Address offset = 0xfb0 */
+    rcs_etmb_trclsr_reg_t ETMB_TRCLSR; /*< Address offset = 0xfb4 */
+    rcs_etmb_trcauthstat_reg_t ETMB_TRCAUTHSTAT; /*< Address offset = 0xfb8 */
+    rcs_etmb_trcdevarch_reg_t ETMB_TRCDEVARCH; /*< Address offset = 0xfbc */
+    rcs_etmb_trcdevres0_reg_t ETMB_TRCDEVRES0; /*< Address offset = 0xfc0 */
+    rcs_etmb_trcdevres1_reg_t ETMB_TRCDEVRES1; /*< Address offset = 0xfc4 */
+    rcs_etmb_trcdevid_reg_t ETMB_TRCDEVID; /*< Address offset = 0xfc8 */
+    rcs_etmb_trcdevtype_reg_t ETMB_TRCDEVTYPE; /*< Address offset = 0xfcc */
+    rcs_etmb_trcpidr4_reg_t ETMB_TRCPIDR4; /*< Address offset = 0xfd0 */
+    rcs_etmb_trcpidr5_reg_t ETMB_TRCPIDR5; /*< Address offset = 0xfd4 */
+    rcs_etmb_trcpidr6_reg_t ETMB_TRCPIDR6; /*< Address offset = 0xfd8 */
+    rcs_etmb_trcpidr7_reg_t ETMB_TRCPIDR7; /*< Address offset = 0xfdc */
+    rcs_etmb_trcpidr0_reg_t ETMB_TRCPIDR0; /*< Address offset = 0xfe0 */
+    rcs_etmb_trcpidr1_reg_t ETMB_TRCPIDR1; /*< Address offset = 0xfe4 */
+    rcs_etmb_trcpidr2_reg_t ETMB_TRCPIDR2; /*< Address offset = 0xfe8 */
+    rcs_etmb_trcpidr3_reg_t ETMB_TRCPIDR3; /*< Address offset = 0xfec */
+    rcs_etmb_trccidr0_reg_t ETMB_TRCCIDR0; /*< Address offset = 0xff0 */
+    rcs_etmb_trccidr1_reg_t ETMB_TRCCIDR1; /*< Address offset = 0xff4 */
+    rcs_etmb_trccidr2_reg_t ETMB_TRCCIDR2; /*< Address offset = 0xff8 */
+    rcs_etmb_trccidr3_reg_t ETMB_TRCCIDR3; /*< Address offset = 0xffc */
+    rcs_etmb_dbgcmdr_reg_t ETMB_DBGCMDR; /*< Address offset = 0x1000 */
+    rcs_etmb_dbgbpiacselr_reg_t ETMB_DBGBPIACSELR; /*< Address offset = 0x1004 */
+    rcs_etmb_dbgbphitstatr_reg_t ETMB_DBGBPHITSTATR; /*< Address offset = 0x1008 */
+    rcs_etmb_dbgwpdacselr_reg_t ETMB_DBGWPDACSELR; /*< Address offset = 0x100c */
+    rcs_etmb_dbgwpdacrselr_reg_t ETMB_DBGWPDACRSELR; /*< Address offset = 0x1010 */
+    rcs_etmb_dbgwphitstatr_reg_t ETMB_DBGWPHITSTATR; /*< Address offset = 0x1014 */
+    rcs_etmb_dbgcpstopenr_reg_t ETMB_DBGCPSTOPENR; /*< Address offset = 0x1018 */
+    rcs_etmb_dbgcpstartenr_reg_t ETMB_DBGCPSTARTENR; /*< Address offset = 0x101c */
+    rcs_etmb_dbgcphitstatr_reg_t ETMB_DBGCPHITSTATR; /*< Address offset = 0x1020 */
+    rcs_etmb_dbgprocstatr_reg_t ETMB_DBGPROCSTATR; /*< Address offset = 0x1024 */
+    rcs_etmb_dbgprocpcr_reg_t ETMB_DBGPROCPCR; /*< Address offset = 0x1028 */
+    rcs_etmb_dbgctrlstatr_reg_t ETMB_DBGCTRLSTATR; /*< Address offset = 0x102c */
+    rcs_etmb_dbgobsenr_reg_t ETMB_DBGOBSENR; /*< Address offset = 0x1030 */
+    rcs_etmb_dbgplcmdr_reg_t ETMB_DBGPLCMDR; /*< Address offset = 0x1034 */
+    rcs_etmb_dbgpladdrr_reg_t ETMB_DBGPLADDRR; /*< Address offset = 0x1038 */
+    rcs_etmb_dbgsprdatar_reg_t ETMB_DBGSPRDATAR; /*< Address offset = 0x103c */
+    rcs_etmb_dbgsprvalidr_reg_t ETMB_DBGSPRVALIDR; /*< Address offset = 0x1040 */
+    rcs_etmb_trccfgr_reg_t ETMB_TRCCFGR; /*< Address offset = 0x1044 */
+    const uint8_t        reservedArea43 [16]; /*< Address offset = 0x1048 */
+    rcs_etmb_iacrngstatr_reg_t ETMB_IACRNGSTATR; /*< Address offset = 0x1058 */
+    rcs_etmb_reserved_iac_reg_t ETMB_RESERVED_IAC; /*< Address offset = 0x105c */
+    rcs_etmb_iachitstatr_reg_t ETMB_IACHITSTATR; /*< Address offset = 0x1060 */
+    rcs_etmb_dacrngstatr_reg_t ETMB_DACRNGSTATR; /*< Address offset = 0x1064 */
+    rcs_etmb_reserved_dac_reg_t ETMB_RESERVED_DAC; /*< Address offset = 0x1068 */
+    rcs_etmb_dachitstatr_reg_t ETMB_DACHITSTATR; /*< Address offset = 0x106c */
+    const uint8_t        reservedArea44 [12]; /*< Address offset = 0x1070 */
+    rcs_etmb_paramsr_reg_t ETMB_PARAMSR; /*< Address offset = 0x107c */
+    rcs_etmb_iacvalr0_reg_t ETMB_IACVALR0; /*< Address offset = 0x1080 */
+    rcs_etmb_iacvalr1_reg_t ETMB_IACVALR1; /*< Address offset = 0x1084 */
+    rcs_etmb_iacvalr2_reg_t ETMB_IACVALR2; /*< Address offset = 0x1088 */
+    rcs_etmb_iacvalr3_reg_t ETMB_IACVALR3; /*< Address offset = 0x108c */
+    rcs_etmb_iacvalr4_reg_t ETMB_IACVALR4; /*< Address offset = 0x1090 */
+    rcs_etmb_iacvalr5_reg_t ETMB_IACVALR5; /*< Address offset = 0x1094 */
+    rcs_etmb_iacvalr6_reg_t ETMB_IACVALR6; /*< Address offset = 0x1098 */
+    rcs_etmb_iacvalr7_reg_t ETMB_IACVALR7; /*< Address offset = 0x109c */
+    const uint8_t        reservedArea45 [96]; /*< Address offset = 0x10a0 */
+    rcs_etmb_daccfgr0_reg_t ETMB_DACCFGR0; /*< Address offset = 0x1100 */
+    rcs_etmb_daccfgr1_reg_t ETMB_DACCFGR1; /*< Address offset = 0x1104 */
+    rcs_etmb_daccfgr2_reg_t ETMB_DACCFGR2; /*< Address offset = 0x1108 */
+    rcs_etmb_daccfgr3_reg_t ETMB_DACCFGR3; /*< Address offset = 0x110c */
+    const uint8_t        reservedArea46 [112]; /*< Address offset = 0x1110 */
+    rcs_etmb_dacvalr0_reg_t ETMB_DACVALR0; /*< Address offset = 0x1180 */
+    rcs_etmb_dacvalr1_reg_t ETMB_DACVALR1; /*< Address offset = 0x1184 */
+    rcs_etmb_dacvalr2_reg_t ETMB_DACVALR2; /*< Address offset = 0x1188 */
+    rcs_etmb_dacvalr3_reg_t ETMB_DACVALR3; /*< Address offset = 0x118c */
+} rcs_etmb_t;     // size: 0x0274
+
+// AddressSpace struct pointer
+//
+#define RCS_LX7_0_ETMB   ((rcs_etmb_t*) RCS_LX7_0_ETMB_BASE)
+#define RCS_LX7_1_ETMB   ((rcs_etmb_t*) RCS_LX7_1_ETMB_BASE)
+#define RCS_LX7_2_ETMB   ((rcs_etmb_t*) RCS_LX7_2_ETMB_BASE)
+#define RCS_KP1_ETMB   ((rcs_etmb_t*) RCS_KP1_ETMB_BASE)
+
+// ******************************************* /Address Space
+
+#endif      // _ETMB_H_
+
